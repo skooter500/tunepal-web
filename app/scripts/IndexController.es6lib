@@ -1,0 +1,9 @@
+export default class IndexController {
+  constructor($location) {
+    this.$location = $location;
+  }
+
+  isActive(route) {
+    return route === this.$location.path();
+  }
+}

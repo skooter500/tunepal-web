@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "tunepal-web",
+  "version": "1.0.0",
+  "authors": [
+    "Bryan Duggen <skooter500@gmail.com>",
+    "Chris Xue <chrisxue815@gmail.com>"
+  ],
+  "description": "TODO",
+  "license": "TODO",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}

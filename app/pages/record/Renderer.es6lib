@@ -1,0 +1,188 @@
+import Recorder from './Recorder.es6lib';
+const LogoPath = '/images/recording_logo.png';
+
+export default class Renderer {
+  get countdownTime() { return this.config.countdownTime; }
+  set countdownTime(value) { this.config.countdownTime = value; }
+
+  constructor(config, recorder, canvas) {
+    this.config = config;
+    this.recorder = recorder;
+    this._canvas = canvas;
+
+    this._logo = new Image();
+    this._logo.src = LogoPath;
+
+    this._canvas.addEventListener('click', () => this._recordClicked());
+
+    this._canvasContext = this._canvas.getContext('2d');
+  }
+
+  _recordClicked() {
+    switch (this.recorder.status) {
+      case Recorder.Status.STOPPED:
+      case Recorder.Status.ANALYSIS_SUCCEEDED:
+        this.recorder.initAsync()
+        .then(() => this._startCountingDown());
+        break;
+      case Recorder.Status.COUNTING_DOWN:
+        this.recorder.stop();
+        clearInterval(this._timer);
+        break;
+      case Recorder.Status.RECORDING:
+        this.recorder.stop();
+        break;
+    }
+  }
+
+  _startCountingDown() {
+    this._timeLeft = this.countdownTime;
+
+    if (this._timeLeft <= 0) {
+      this.recorder.start();
+    }
+    else {
+      this._timer = setInterval(() => this._countdown(), 1000);
+    }
+  }
+
+  _countdown() {
+    this._timeLeft -= 1;
+    if (this._timeLeft <= 0) {
+      clearInterval(this._timer);
+      this.recorder.start();
+    }
+  }
+
+  draw() {
+    this._updateCanvasSize();
+
+    this._canvasContext.save();
+    this._canvasContext.clearRect(0, 0, this._canvas.width, this._canvas.height);
+
+    this._drawLogo();
+    this._drawAmplitude();
+    this._drawProgress();
+    this._drawStatus();
+
+    this._canvasContext.restore();
+  }
+
+  _updateCanvasSize() {
+    // Make it visually fill the positioned parent
+    canvas.style.width ='100%';
+    canvas.style.height='100%';
+
+    // ...then set the internal size to match
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    let logoOffset = (this._canvas.width > this._canvas.height)
+      ? { x: -10, y: -40 }
+      : { x: 0, y: -40 };
+
+    this._logoCenter = {
+      x: this._canvas.width / 2 + logoOffset.x,
+      y: this._canvas.height / 2 + logoOffset.y
+    };
+  }
+
+  _drawLogo() {
+    const RADIUS = 150;
+    let width = RADIUS * 2;
+    let height = width * this._logo.height / this._logo.width;
+    let topLeft = {
+      x: this._logoCenter.x - width / 2,
+      y: this._logoCenter.y - height / 2
+    };
+
+    this._canvasContext.drawImage(this._logo, topLeft.x, topLeft.y, width, height);
+  }
+
+  _drawProgress() {
+    let innerRadius = 150;
+    let outerRadius = 160;
+
+    if (this.recorder.progress > 0) {
+      let angle = 2 * Math.PI * this.recorder.progress;
+      let startingAngle = Math.PI * 3 / 2;
+      let endingAngle = startingAngle + angle;
+      let p1 = { x: this._logoCenter.x, y: this._logoCenter.y - innerRadius };
+      let p2 = { x: this._logoCenter.x, y: this._logoCenter.y - outerRadius };
+      let p3 = { x: this._logoCenter.x + outerRadius * Math.sin(angle), y: this._logoCenter.y - outerRadius * Math.cos(angle) };
+      let p4 = { x: this._logoCenter.x + innerRadius * Math.sin(angle), y: this._logoCenter.y - innerRadius * Math.cos(angle) };
+
+      this._canvasContext.beginPath();
+      this._canvasContext.moveTo(p1.x, p1.y);
+      this._canvasContext.lineTo(p2.x, p2.y);
+      this._canvasContext.arc(this._logoCenter.x, this._logoCenter.y, outerRadius, startingAngle, endingAngle, false);
+      this._canvasContext.moveTo(p3.x, p3.y);
+      this._canvasContext.lineTo(p4.x, p4.y);
+      this._canvasContext.arc(this._logoCenter.x, this._logoCenter.y, innerRadius, endingAngle, startingAngle, true);
+      this._canvasContext.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      this._canvasContext.fill();
+    }
+  }
+
+  _drawAmplitude() {
+    let innerRadius = 160;
+    let minWidth = 15;
+    let maxWidth = 30;
+    let width = minWidth;
+
+    if (this.recorder.amplitude) {
+      let rate = this.recorder.amplitude;
+      if (rate > 1) rate = 1;
+      if (rate < 0) rate = 0;
+      width += maxWidth * rate;
+    }
+
+    let radius = innerRadius + width / 2;
+    this._canvasContext.beginPath();
+    this._canvasContext.arc(this._logoCenter.x, this._logoCenter.y, radius, 0, 2 * Math.PI, true);
+    this._canvasContext.lineWidth = width;
+    this._canvasContext.strokeStyle = 'rgb(176, 210, 13)';
+    this._canvasContext.stroke();
+  }
+
+  _drawStatus() {
+    let status;
+
+    if (this._timeLeft > 0) {
+      status = `RECORDING IN ${this._timeLeft} SEC...`;
+    }
+    else {
+      status = this._getRecorderStatusText();
+    }
+
+    this._canvasContext.font = '20px Roboto';
+    let width = this._canvasContext.measureText(status).width;
+    let offset = { x: 0, y: 250 };
+    let topLeft = {
+      x: this._logoCenter.x - width / 2,
+      y: this._logoCenter.y + offset.y
+    };
+
+    this._canvasContext.fillStyle = 'white';
+    this._canvasContext.fillText(status, topLeft.x, topLeft.y);
+  }
+
+  _getRecorderStatusText() {
+    switch (this.recorder.status) {
+      case Recorder.Status.STOPPED:
+        return 'TAP TO RECORD';
+      case Recorder.Status.INIT:
+        return 'ACCESSING THE MICROPHONE...';
+      case Recorder.Status.INIT_SUCCEEDED:
+        return 'SUCCEEDED';
+      case Recorder.Status.INIT_FAILED:
+        return 'ERROR: CANNOT ACCESS THE MICROPHONE';
+      case Recorder.Status.RECORDING:
+        return 'RECORDING... (TAP TO STOP)';
+      case Recorder.Status.ANALYZING:
+        return `ANALYZING... (${'TODO'} %)`;
+      case Recorder.Status.ANALYSIS_SUCCEEDED:
+        return 'SUCCEEDED';
+    }
+  }
+}

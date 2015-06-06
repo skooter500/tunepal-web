@@ -1,0 +1,160 @@
+// import dsp.js from html or use importScripts from web worker
+import FuzzyHistogram from './FuzzyHistogram.es6lib'
+import PitchDetector from './PitchDetector.es6lib'
+import PitchSpeller from './PitchSpeller.es6lib'
+import Utils from '../Utils.es6lib'
+
+export default class Transcriber {
+  get inputSampleRate() { return this._inputSampleRate; }
+  set inputSampleRate(value) { this._inputSampleRate = value; }
+
+  get sampleTime() { return this._sampleTime; }
+  set sampleTime(value) { this._sampleTime = value; }
+
+  get fundamental() { return this._fundamental; }
+  set fundamental(value) { this._fundamental = value; }
+
+  get enableSampleRateConversion() { return this._enableSampleRateConversion; }
+  set enableSampleRateConversion(value) { this._enableSampleRateConversion = value; }
+
+  get progress() { return this._progress; }
+  get interrupted() { return this._interrupted; }
+  get signal() { return this._signal; }
+  get outputSampleRate() { return this._outputSampleRate; }
+  get numInputSamples() { return this._inputSampleRate * this._sampleTime; }
+  get numOutputSamples() { return this._outputSampleRate * this._sampleTime; }
+
+  constructor(params) {
+    this._inputSampleRate = typeof params.inputSampleRate !== 'undefined'
+      ? params.inputSampleRate
+      : Transcriber.DEFAULT_SAMPLE_RATE;
+
+    this._sampleTime = typeof params.sampleTime !== 'undefined'
+      ? params.sampleTime
+      : Transcriber.DEFAULT_SAMPLE_TIME;
+
+    this._fundamental = typeof params.fundamental !== 'undefined'
+      ? params.fundamental
+      : Transcriber.DEFAULT_FUNDAMENTAL;
+
+    this._enableSampleRateConversion = typeof params.enableSampleRateConversion !== 'undefined'
+      ? params.enableSampleRateConversion
+      : false;
+
+    if (this._enableSampleRateConversion) {
+      this._outputSampleRate = Transcriber.DEFAULT_SAMPLE_RATE;
+    }
+    else {
+      this._outputSampleRate = this._inputSampleRate;
+    }
+
+    this._windowFunction = new WindowFunction(DSP.HANN);
+    this._powerSpectrum = new FFT(Transcriber.FRAME_SIZE, this._outputSampleRate);
+  }
+
+  transcribe(signal, midi = false) {
+    if (this._enableSampleRateConversion) {
+      this._signal = this._convertSampleRate(signal);
+    }
+    else {
+      this._signal = signal;
+    }
+
+    let speller = new PitchSpeller(this._fundamental);
+    let numHops = Math.floor((this.numOutputSamples - Transcriber.FRAME_SIZE) / Transcriber.HOP_SIZE) + 1;
+    let notes = [];
+    let lastNote = '';
+
+    for (let i = 0; i < numHops; i++) {
+      if (this._interrupted) {
+        return '';
+      }
+
+      let startAt = Transcriber.HOP_SIZE * i;
+      this._progress = i / numHops;
+
+      let frame = this._signal.slice(startAt, startAt + Transcriber.FRAME_SIZE);
+
+      this._windowFunction.process(frame);
+      let spectrum = this._powerSpectrum.forward(frame);
+
+      let frequency = PitchDetector.mikelsFrequency(spectrum, this._outputSampleRate, Transcriber.FRAME_SIZE);
+
+      let currentNote = midi
+        ? speller.spellFrequencyAsMidi(frequency)
+        : speller.spellFrequency(frequency);
+
+      if (currentNote != lastNote) {
+        lastNote = currentNote;
+        let note = {
+          spelling: currentNote,
+          frequency: frequency,
+          onset: startAt / this._outputSampleRate,
+        };
+        notes.push(note);
+      }
+    }
+
+    let transcription = this._postProcess(notes, midi);
+    return transcription;
+  }
+
+  _convertSampleRate(inSignal) {
+    let outSignal = new Float32Array(this.numOutputSamples);
+    let end = 0;
+
+    for (let i = 0; i < outSignal.length; i++) {
+      //TODO: smooth interpolation
+      let begin = end;
+      end = Math.floor((i + 1) * this._inputSampleRate / this._outputSampleRate);
+      let sum = 0;
+
+      for (let j = begin; j < end; j++) {
+        sum += inSignal[j];
+      }
+
+      outSignal[i] = sum / (end - begin);
+    }
+
+    return outSignal;
+  }
+
+  _postProcess(notes, midi) {
+    let transcription = '';
+
+    for (let i = 0; i < notes.length - 1; i++) {
+      notes[i].duration = notes[i + 1].onset - notes[i].onset;
+    }
+
+    notes.last().duration = this._sampleTime - notes.last().onset;
+
+    let durations = new Array(notes.length);
+    for (let i = 0; i < notes.length; i++) {
+      durations[i] = notes[i].duration;
+    }
+
+    let quaverLength = FuzzyHistogram.calculatePeek(durations, 0.33, 0.1);
+
+    for (let note of notes) {
+      if (note.spelling == 'Z') continue;
+
+      note.qq = Math.round(note.duration / quaverLength);
+
+      let spelling = note.spelling;
+      if (midi) spelling += ',';
+      spelling = spelling.repeat(note.qq);
+
+      transcription += spelling;
+    }
+
+    return transcription;
+  }
+}
+
+Transcriber.DEFAULT_SAMPLE_RATE = 22050;
+Transcriber.DEFAULT_SAMPLE_TIME = 12;
+Transcriber.DEFAULT_FUNDAMENTAL = 'D';
+Transcriber.FRAME_SIZE = 2048;
+Transcriber.SPECTRUM_SIZE = Transcriber.FRAME_SIZE / 2;
+Transcriber.OVERLAP = 0.75;
+Transcriber.HOP_SIZE = Transcriber.FRAME_SIZE * (1 - Transcriber.OVERLAP);

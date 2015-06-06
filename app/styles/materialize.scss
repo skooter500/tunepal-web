@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+// Mixins
+@import "../lib/materialize/sass/components/prefixer";
+@import "../lib/materialize/sass/components/mixins";
+@import "../lib/materialize/sass/components/color";
+
+// Variables;
+@import "_variables";
+
+// Reset
+@import "../lib/materialize/sass/components/normalize";
+
+//TODO: remove unused components
+// components
+@import "../lib/materialize/sass/components/global";
+@import "../lib/materialize/sass/components/icons-material-design";
+@import "../lib/materialize/sass/components/grid";
+@import "../lib/materialize/sass/components/navbar";
+@import "../lib/materialize/sass/components/roboto";
+@import "../lib/materialize/sass/components/typography";
+@import "../lib/materialize/sass/components/cards";
+@import "../lib/materialize/sass/components/toast";
+@import "../lib/materialize/sass/components/tabs";
+@import "../lib/materialize/sass/components/tooltip";
+@import "../lib/materialize/sass/components/buttons";
+@import "../lib/materialize/sass/components/dropdown";
+@import "../lib/materialize/sass/components/waves";
+@import "../lib/materialize/sass/components/modal";
+@import "../lib/materialize/sass/components/collapsible";
+@import "../lib/materialize/sass/components/materialbox";
+@import "../lib/materialize/sass/components/form";
+@import "../lib/materialize/sass/components/table_of_contents";
+@import "../lib/materialize/sass/components/sideNav";
+@import "../lib/materialize/sass/components/preloader";
+@import "../lib/materialize/sass/components/slider";
+@import "../lib/materialize/sass/components/date_picker/default.scss";
+@import "../lib/materialize/sass/components/date_picker/default.date.scss";
+@import "../lib/materialize/sass/components/date_picker/default.time.scss";

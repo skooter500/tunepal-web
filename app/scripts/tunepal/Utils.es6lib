@@ -1,0 +1,82 @@
+export default class Utils {
+  static defineProperty(className, ...names) {
+    for (name of names) {
+      Object.defineProperty(className, name, {
+        get: function() { return this[`_${name}`]; },
+        set: function(value) { this[`_${name}`] = value; },
+      });
+    }
+  }
+
+  static createEnum(names) {
+    let enumClass = {};
+    for (let i = 0; i < names.length; i++) {
+      enumClass[names[i]] = i + 1;
+    }
+    return enumClass;
+  }
+
+  static createPolyfills() {
+    if (typeof navigator !== 'undefined') {
+      navigator.getUserMedia = (navigator.getUserMedia
+        || navigator.webkitGetUserMedia
+        || navigator.mozGetUserMedia
+        || navigator.msGetUserMedia
+      );
+    }
+
+    if (typeof window !== 'undefined') {
+      window.AudioContext = (window.AudioContext
+        || window.webkitAudioContext
+      );
+
+      window.requestAnimationFrame = (window.requestAnimationFrame
+        || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame
+        || window.oRequestAnimationFrame
+        || window.msRequestAnimationFrame
+        || function(callback) {
+          return window.setTimeout(callback, 1000 / 60);
+        }
+      );
+
+      window.cancelAnimationFrame = (window.cancelAnimationFrame
+        || window.webkitCancelAnimationFrame
+        || window.mozCancelAnimationFrame
+        || window.oCancelAnimationFrame
+        || window.msCancelAnimationFrame
+        || function(id) {
+          window.clearTimeout(id);
+        }
+      );
+    }
+
+    if (typeof AudioBuffer !== 'undefined') {
+      AudioBuffer.prototype.copyToChannel = (AudioBuffer.prototype.copyToChannel
+        || function(source, channelNumber, startInChannel) {
+          this.getChannelData(channelNumber).set(source, startInChannel);
+        }
+      );
+    }
+
+    if (typeof Float32Array !== 'undefined') {
+      Float32Array.prototype.slice = (Float32Array.prototype.slice
+        || function(begin, end) {
+          begin = typeof begin !== 'undefined' ? begin : 0;
+          end = typeof end !== 'undefined' ? end : this.length;
+
+          let newArray = this.buffer.slice(4 * begin, 4 * end);
+          return new Float32Array(newArray);
+        }
+      );
+    }
+  }
+}
+
+Array.prototype.last = (Array.prototype.last
+  || function() {
+    return this[this.length - 1]
+  }
+);
+
+Utils.createPolyfills();

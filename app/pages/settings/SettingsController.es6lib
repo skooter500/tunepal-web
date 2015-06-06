@@ -1,0 +1,49 @@
+import Config from '../../scripts/tunepal/Config.es6lib';
+
+export default class App {
+  constructor($scope, config) {
+    this.$scope = $scope;  // view model
+
+    this.config = config;
+
+    this._initMidiInstruments();
+    this._initSelects();
+  }
+
+  _initSelects() {
+    let settings = this;
+    let selects = $('select');
+
+    selects.each((i, select) => {
+      select = $(select);
+      let modelName = select.attr('model');
+      let val = eval(modelName);
+      select.val(val);
+    });
+
+    selects.material_select();
+
+    selects.change(event => {
+      // prevent angular from incorrectly catching change event of parent div
+      event.stopPropagation();
+
+      let select = $(event.target);
+      let assignment = `${select.attr('model')} = "${select.val()}"`;
+      eval(assignment);
+    });
+  }
+
+  _initMidiInstruments() {
+    $.each(Config.MidiInstruments, function (i, item) {
+      $('select[model="settings.config.melody"]').append($('<option>', {
+        value: item,
+        text : item
+      }));
+
+      $('select[model="settings.config.chords"]').append($('<option>', {
+        value: item,
+        text : item
+      }));
+    });
+  }
+}

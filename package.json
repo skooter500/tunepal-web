@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "tunepal-web",
+  "version": "1.0.0",
+  "contributors": [
+    "Bryan Duggen <skooter500@gmail.com>",
+    "Chris Xue <chrisxue815@gmail.com>"
+  ],
+  "description": "TODO",
+  "license": "TODO",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.7.6",
+    "del": "^1.2.0",
+    "glob": "^5.0.10",
+    "gulp": "^3.9.0",
+    "gulp-babel": "git@github.com:chrisxue815/gulp-babel.git",
+    "gulp-concat": "^2.5.2",
+    "gulp-cordova": "^0.1.2",
+    "gulp-debug": "^2.0.1",
+    "gulp-es6-module-transpiler": "git@github.com:chrisxue815/gulp-es6-module-transpiler.git",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.1",
+    "gulp-size": "^1.2.1",
+    "gulp-strip-debug": "^1.0.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.5",
+    "merge-stream": "^0.1.7",
+    "run-sequence": "^1.1.0",
+    "through2": "^0.6.5",
+    "vinyl-transform": "^1.0.0"
+  },
+  "scripts": {
+    "deps": "git submodule update --init && npm install -g bower cordova grunt-cli gulp tsd typescript && cd app/styles/materialize && npm install"
+  }
+}

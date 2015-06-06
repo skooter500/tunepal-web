@@ -1,0 +1,66 @@
+import Recorder from './Recorder.es6lib';
+import Renderer from './Renderer.es6lib';
+import Searcher from './Searcher.es6lib';
+import Utils from '../../scripts/tunepal/Utils.es6lib';
+
+export default class RecordController {
+  constructor($scope, config, audioContext) {
+    this.$scope = $scope;  // view model
+    this.config = config;
+    this.audioContext = audioContext;
+
+    this.recorder = new Recorder(config, audioContext);
+    this.recorder.onTranscribed = result => this.onTranscribed(result);
+
+    let canvas = document.getElementById('canvas');
+    let container = canvas.parentNode;
+
+    this.renderer = new Renderer(config, this.recorder, canvas);
+
+    this.searcher = new Searcher(config);
+
+    this._requestId = window.requestAnimationFrame(() => this._update());
+    $scope.$on('$routeChangeStart',
+      () => window.cancelAnimationFrame(this._requestId)
+    );
+  }
+
+  _update() {
+    this.renderer.draw();
+
+    this._requestId = window.requestAnimationFrame(() => this._update());
+  }
+
+  onTranscribed(result) {
+    this.$scope.$apply(() => this.result = result);
+  }
+
+  playSignal() {
+    if (this.signalPlayer) {
+      this.signalPlayer.stop(0);
+      this.signalPlayer = null;
+    }
+    else {
+      if (!this._audio) {
+        this._audio = this.audioContext.createBuffer(1, this.recorder.numSamples, this.recorder.sampleRate);
+        this._audio.copyToChannel(this.recorder.signal, 0);
+      }
+
+      this.signalPlayer = this.audioContext.createBufferSource();
+      this.signalPlayer.buffer = this._audio;
+      this.signalPlayer.connect(this.audioContext.destination);
+      this.signalPlayer.onended = this.apply(() => this.signalPlayer = null);
+      this.signalPlayer.start(0, 0, this._audio.duration);
+    }
+  }
+
+  // apply() is used to execute an expression in angular from outside of the angular framework.
+  // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
+  apply(func, that = this) {
+    let wrap = function() {
+      let args = arguments;
+      return this.$scope.$apply(() => func.apply(that, args));
+    };
+    return wrap.bind(this);
+  }
+}

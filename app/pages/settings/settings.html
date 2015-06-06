@@ -1,0 +1,99 @@
+<div class="row">
+  <!-- See reference for s and m class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+  <div class="col s12 m12">
+    <div class="card">
+      <div class="card-content">
+        <ul class="collection">
+          <li class="collection-item">
+            <span class="card-collection-title">Search Settings</span>
+          </li>
+          <li class="collection-item">
+            <span class="title">Fundamental</span>
+            <p>Transcribe from an instrument which is not in concert pitch</p>
+            <p class="input-field">
+              <select model="settings.config.fundamental">
+                <option value="Bb">Bb</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="Eb">Eb</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+              </select>
+            </p>
+          </li>
+          <li class="collection-item">
+            <span class="title">Tunebook</span>
+            <p>Limit your search to certain tunebooks</p>
+            <p><a class="waves-effect waves-light btn">Select Tunebooks TODO</a></p>
+          </li>
+          <li class="collection-item">
+            <span class="title">Time Signatures</span>
+            <p>Limit your searches to certain time signatures</p>
+            <p class="input-field">
+              <select model="settings.config.timeSigs">
+                <option value="all">All</option>
+                <option value="reels">C, C|,  4/4,  2/4,  2/2, 4/2 - Reels, hornpipes, polkas etc.</option>
+                <option value="jigs">6/8, 12/8 - Jigs, slides etc.</option>
+                <option value="slip_jigs">9/8 - Slip Jigs, hop jigs</option>
+                <option value="waltzes">3/4 - Waltzes, mazurkas, polskas, minuets etc.</option>
+                <option value="unusual_jigs">3/8 - Unusual Jigs &amp; Waltzes</option>
+                <option value="unusual_hornpipes">3/2, 6/4 - Unusual English hornpipes and country dances</option>
+              </select>
+            </p>
+          </li>
+          <li class="collection-item">
+            <span class="title">Countdown</span>
+            <p>Countdown several seconds before recording</p>
+            <p class="range-field">
+              <input type="range" ng-model="settings.config.countdownTime" min="0" max="10" />
+              <span class="thumb"><span class="value">{{settings.config.countdownTime}}</span></span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <ul class="collection">
+          <li class="collection-item">
+            <span class="card-collection-title">Playback Settings</span>
+          </li>
+          <li class="collection-item">
+            <span class="title">Melody</span>
+            <p>The instrument used to play the melody</p>
+            <p class="input-field">
+              <select model="settings.config.melody">
+              </select>
+            </p>
+          </li>
+          <li class="collection-item">
+            <span class="title">Chords</span>
+            <p>The instrument used to play chords</p>
+            <p class="input-field">
+              <select model="settings.config.chords">
+              </select>
+            </p>
+          </li>
+          <li class="collection-item">
+            <span class="title">Speed</span>
+            <p>Playback speed</p>
+            <p class="range-field">
+              <input type="range" ng-model="settings.config.playbackSpeed" min="1" max="10" />
+              <span class="thumb"><span class="value">{{settings.config.playbackSpeed}}</span></span>
+            </p>
+          </li>
+          <li class="collection-item">
+            <span class="title">Transpose</span>
+            <p>Transpose tune playback (in semitones)</p>
+            <p class="range-field">
+              <input type="range" ng-model="settings.config.transpose" min="-12" max="12" />
+              <span class="thumb"><span class="value">{{settings.config.transpose}}</span></span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+# Cordova
+merges/
+platforms/
+plugins/
+www/
+
+# Temporary files
+.tmp/
+.tmp_merges/
+
+# npm and bower
+node_modules
+bower_components
+
+# Webstorm
+.idea/
+
+# Visual Studio
+*.user
+.vs/
+bin/
+obj/

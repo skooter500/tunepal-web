@@ -1,0 +1,4 @@
+[submodule "app/lib/materialize"]
+	path = app/lib/materialize
+	url = git@github.com:chrisxue815/materialize.git
+	branch = master

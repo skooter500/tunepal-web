@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="" ng-app="TunepalApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tunepal</title>
+
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#000000">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#303030">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Tunepal">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Tunepal">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body ng-controller="IndexController as index">
+  <header class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" data-activates="left-nav" class="hamburger-button button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <a class="page-title">Record</a>
+        <ul class="right">
+          <li><a href="/#!/search"><i class="mdi-action-search"></i></a></li>
+        </ul>
+      </div>
+      <ul class="side-nav fixed" id="left-nav">
+        <div class="side-nav-toolbar">
+          <span>Menu</span>
+        </div>
+        <li ng-class="{active: index.isActive('/record')}"><a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a></li>
+        <li ng-class="{active: index.isActive('/my-tunes')}"><a href="/#!/my-tunes"><i class="mdi-image-audiotrack left"></i>My Tunes</a></li>
+        <li ng-class="{active: index.isActive('/settings')}"><a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div ng-view></div>
+  </main>
+
+  <!-- Materialize -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="lib/materialize/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+
+  <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+
+  <script src="scripts/3rdparty/browser-polyfill.min.js"></script>
+  <script src="scripts/3rdparty/dsp.js"></script>
+
+  <script src="scripts/App.js"></script>
+</body>
+</html>
