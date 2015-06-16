@@ -32,13 +32,17 @@
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
   <!-- Materialize -->
-  <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
+  <!-- build:css lib/materialize/css/materialize.min.css -->
+  <link rel="stylesheet" href="lib/materialize/css/materialize.css">
+  <!-- endbuild -->
 
   <!-- Custom style -->
+  <!-- build:css styles/main.min.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 </head>
 
-<body ng-controller="IndexController as index">
+<body id="tunepal-content" ng-controller="IndexController as index">
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
@@ -53,29 +57,50 @@
           <span>Menu</span>
         </div>
         <li ng-class="{active: index.isActive('/record')}"><a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a></li>
-        <li ng-class="{active: index.isActive('/my-tunes')}"><a href="/#!/my-tunes"><i class="mdi-image-audiotrack left"></i>My Tunes</a></li>
+        <li ng-class="{active: index.isActive('/my-tunes')}"><a href="/#!/my-tunes"><i class="mdi-image-audiotrack left"></i>My Tunes (TODO)</a></li>
         <li ng-class="{active: index.isActive('/settings')}"><a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main class="container">
     <div ng-view></div>
   </main>
 
   <!-- Materialize -->
+
+  <!-- build:js https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-  <script src="lib/materialize/js/materialize.min.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js lib/materialize/js/materialize.min.js -->
+  <script src="lib/materialize/js/materialize.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+  <!-- endbuild -->
 
   <!-- AngularJS -->
+
+  <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.min.js -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.min.js -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+  <!-- endbuild -->
 
-  <script src="scripts/3rdparty/browser-polyfill.min.js"></script>
-  <script src="scripts/3rdparty/dsp.js"></script>
+  <!-- build:js scripts/3rdparty/browser-polyfill.js -->
+  <script src="scripts/3rdparty/browser-polyfill.js"></script>
+  <!-- endbuild -->
 
+  <!-- build:js scripts/3rdparty/App.min.js -->
   <script src="scripts/App.js"></script>
+  <!-- endbuild -->
 </body>
 </html>

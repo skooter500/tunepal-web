@@ -176,7 +176,7 @@ export default class Renderer {
       case Recorder.Status.INIT_SUCCEEDED:
         return 'SUCCEEDED';
       case Recorder.Status.INIT_FAILED:
-        return 'ERROR: CANNOT ACCESS THE MICROPHONE';
+        return 'ERROR: CANNOT ACCESS THE MICROPHONE. TODO: guide users how to allow microphone access';
       case Recorder.Status.RECORDING:
         return 'RECORDING... (TAP TO STOP)';
       case Recorder.Status.ANALYZING:

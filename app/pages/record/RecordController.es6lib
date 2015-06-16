@@ -23,6 +23,8 @@ export default class RecordController {
     $scope.$on('$routeChangeStart',
       () => window.cancelAnimationFrame(this._requestId)
     );
+
+    $('.page-title').text('Record');
   }
 
   _update() {

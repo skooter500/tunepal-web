@@ -1,4 +1,4 @@
-import Config from './tunepal/Config.es6lib';
+import Config from './tunepal/config/Config.es6lib';
 import IndexController from './IndexController.es6lib'
 import RecordController from '../pages/record/RecordController.es6lib'
 import SettingsController from '../pages/settings/SettingsController.es6lib'

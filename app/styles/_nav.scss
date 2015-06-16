@@ -1,0 +1,45 @@
+.side-nav-toolbar {
+  height: 64px;
+  padding: 0 16px 0 16px;
+  background-color: $primary-color;
+}
+
+nav, main, footer {
+  padding-left: 240px;
+}
+
+.nav-wrapper {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  a.page-title {
+    padding-left: 56px;
+    font-size: 24px;
+    line-height: 64px;
+  }
+}
+
+@media #{$medium-and-down} {
+  nav, main, footer {
+    padding-left: 0;
+  }
+
+  .nav-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+
+    a.hamburger-button {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    a.page-title {
+      padding-left: 0;
+      position: fixed;
+      left: 72px;
+      right: 72px;
+      line-height: 56px;
+      font-size: 20px;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import Transcriber from './Transcriber.es6lib'
 import Utils from '../Utils.es6lib'
 const ScriptPaths = [
   '/scripts/3rdparty/dsp.js',
-  '/scripts/3rdparty/browser-polyfill.min.js',
+  '/scripts/3rdparty/browser-polyfill.js',
 ];
 
 export default class TranscriberWorker {

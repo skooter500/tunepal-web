@@ -6,7 +6,7 @@ $primary-color-dark: darken($primary-color, 15%) !default;
 $primary-background-color: #303030 !default;
 
 $primary-font-color: #fff !default;
-$secondary-color: color("teal", "lighten-1") !default;
+$secondary-color: color("teal", "base") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;

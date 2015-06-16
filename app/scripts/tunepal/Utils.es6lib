@@ -1,4 +1,21 @@
 export default class Utils {
+  static getObjectFromStorage(key) {
+    let value = localStorage.getItem(key);
+    return value && JSON.parse(value);
+  }
+
+  static setObjectToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify((value)));
+  }
+
+  static makeArray(start = 0, end = 10, step = 1) {
+    let array = [];
+    for (let i = start; i <= end; i += step) {
+      array.push(i);
+    }
+    return array;
+  }
+
   static defineProperty(className, ...names) {
     for (name of names) {
       Object.defineProperty(className, name, {

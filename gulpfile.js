@@ -1,10 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')({rename: {
-  'gulp-strip-debug': 'strip_debug',
-  'gulp-es6-module-transpiler': 'concat_module'
-}});
+var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
@@ -59,31 +56,32 @@ gulp.task('materialize-js', function () {
     .pipe($.plumber({
       errorHandler: swallowError
     }))
-    .pipe($.strip_debug())
     .pipe($.concat('materialize.js'))
-    //.pipe($.uglify())  //TODO: separate debug and release build
-    .pipe($.rename('materialize.min.js'))
     .pipe(gulp.dest('.tmp/lib/materialize/js'))
-    .pipe($.size({title: 'Materialize js'}));
+    .pipe($.size({title: 'materialize-js'}));
 });
 
 // Copy Materialize fonts to tmp
 gulp.task('materialize-fonts', function () {
   return gulp.src('font/**/*', {cwd: 'app/lib/materialize'})
     .pipe(gulp.dest('.tmp/lib/materialize/font'))
-    .pipe($.size({title: 'Materialize fonts'}));
+    .pipe($.size({title: 'materialize-fonts'}));
 });
 
 // Copy Materialize fonts to tmp
 gulp.task('materialize-styles', function () {
-  var sassTask = gulp.src('app/styles/materialize.scss')
+  return gulp.src('app/styles/materialize.scss')
     .pipe($.plumber({
       errorHandler: swallowError
     }))
-    .pipe($.sass({outputStyle: 'compressed'}).on('error', $.sass.logError))
-    .pipe($.rename('materialize.min.css'))
+    .pipe($.sass({
+        includePaths: [path.join(__dirname, 'app/styles')],
+        outputStyle: 'expanded'
+      })
+      .on('error', $.sass.logError)
+    )
     .pipe(gulp.dest('.tmp/lib/materialize/css'))
-    .pipe($.size({title: 'Materialize fonts'}));
+    .pipe($.size({title: 'materialize-styles'}));
 });
 
 // Build Materialize
@@ -95,13 +93,18 @@ gulp.task('materialize', function (cb) {
 
 // Build Materialize and SASS
 gulp.task('styles', function () {
-  var sassTask = gulp.src(['app/styles/**/*.scss', '!app/styles/materialize.scss'])
+  return gulp.src(['app/styles/**/*.scss', '!app/styles/materialize.scss'])
     .pipe($.plumber({
       errorHandler: swallowError
     }))
-    .pipe($.sass({outputStyle: 'compressed'}).on('error', $.sass.logError))
+    .pipe($.sass({
+        includePaths: [path.join(__dirname, 'app/styles')],
+        outputStyle: 'expanded'
+      })
+      .on('error', $.sass.logError)
+    )
     .pipe(gulp.dest('.tmp/styles'))
-    .pipe($.size({title: 'Styles'}));
+    .pipe($.size({title: 'styles'}));
 });
 
 // Build ECMAScript 6
@@ -110,7 +113,7 @@ gulp.task('es6', function () {
     .pipe($.plumber({
       errorHandler: swallowError
     }))
-    .pipe($.concat_module())
+    .pipe($.es6ModuleTranspiler())
     .pipe($.babel())
     .pipe($.rename(function (filePath) {
       filePath.dirname = filePath.dirname.replace('app' + path.sep, '');
@@ -118,7 +121,7 @@ gulp.task('es6', function () {
       filePath.extname = '.js';
     }))
     .pipe(gulp.dest('.tmp'))
-    .pipe($.size({title: 'ECMAScript 6 Compile'}));
+    .pipe($.size({title: 'es6'}));
 });
 
 // Clean output directories
@@ -167,29 +170,57 @@ gulp.task('copy', function () {
   var images = gulp.src(['app/images/**/*'])
     .pipe(gulp.dest('www/images'));
 
-  var pages = gulp.src(['app/pages/**/*.html'])
-    .pipe(gulp.dest('www/pages'));
-
   var rootFiles = gulp.src(['app/*'])
     .pipe(gulp.dest('www'));
 
-  var lib = gulp.src(['.tmp/lib/**/*'])
-    .pipe($.debug())
-    .pipe(gulp.dest('www/lib'));
+  var tmpDir = gulp.src(['.tmp/**/*'])
+    .pipe(gulp.dest('www'));
 
-  var scripts = gulp.src(['.tmp/scripts/**/*'])
-    .pipe(gulp.dest('www/scripts'));
-
-  var styles = gulp.src(['.tmp/styles/**/*'])
-    .pipe(gulp.dest('www/styles'));
-
-  return merge(images, pages, rootFiles, lib, scripts, styles)
+  return merge(images, rootFiles, tmpDir)
     .pipe($.size({title: 'copy'}));
+});
+
+// Search and minify html, js, css
+gulp.task('minify-search', function () {
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
+
+  return gulp.src(['app/**/*.html'])
+    .pipe(assets)
+    // Remove console, alert, and debugger statements from code
+    .pipe($.if('*.js', $.stripDebug()))
+    // Concatenate And Minify JavaScript
+    .pipe($.if('*.js', $.uglify({mangle: false})))
+    // Concatenate And Minify Styles
+    // In case you are still using useref build blocks
+    .pipe($.if('*.css', $.cssmin()))
+    .pipe(assets.restore())
+    .pipe($.useref())
+    // Minify Any HTML
+    .pipe($.if('*.html', $.minifyHtml({
+      empty: true,  // do not remove empty attributes
+      conditionals: true,  // do not remove conditional internet explorer comments
+      spare:true  // do not remove redundant attributes
+    })))
+    // Output Files
+    .pipe(gulp.dest('www'))
+    .pipe($.size({title: 'minify-search'}));
+});
+
+gulp.task('minify', ['minify-search'], function () {
+  //TODO
+  //var images = gulp.src(['app/images/**/*'])
+
+  var dsp = gulp.src(['app/scripts/3rdparty/dsp.js'])
+    .pipe($.uglify({mangle: false}))
+    .pipe(gulp.dest('www/scripts/3rdparty'));
+
+  return merge(dsp)
+    .pipe($.size({title: 'minify'}));
 });
 
 // Deploy to GAE
 gulp.task('deploy', $.shell.task([
-  'appcfg.py update dist'
+  'appcfg.py update www'
 ]));
 
 // Build production files, the default task
@@ -198,5 +229,6 @@ gulp.task('default', function (cb) {
     'clean',
     ['materialize', 'styles', 'es6'],
     'copy',
+    'minify',
     cb);
 });

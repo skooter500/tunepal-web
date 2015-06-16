@@ -1,77 +1,19 @@
+// Mixins
+@import "../lib/materialize/sass/components/prefixer";
+@import "../lib/materialize/sass/components/mixins";
 @import "../lib/materialize/sass/components/color";
+
+// Variables
 @import "_variables";
 
-html, body {
-  background-color: $primary-background-color;
-}
+// global
+@import "../lib/materialize/sass/components/global";
+@import "_global";
+@import "_nav";
+@import "_card";
 
-.side-nav-toolbar {
-  height: 64px;
-  padding: 0 16px 0 16px;
-  background-color: $primary-color;
-}
+// record
+@import "_record";
 
-nav, main, footer {
-  padding-left: 240px;
-}
-
-.nav-wrapper {
-  padding-left: 16px;
-  padding-right: 16px;
-
-  a.page-title {
-    padding-left: 56px;
-    font-size: 24px;
-    line-height: 64px;
-  }
-}
-
-.flexible-collection .collection-item {
-  border-bottom: 1px solid #e0e0e0
-}
-
-@media #{$medium-and-down} {
-  nav, main, footer {
-    padding-left: 0;
-  }
-
-  .nav-wrapper {
-    padding-left: 0px;
-    padding-right: 0px;
-
-    a.hamburger-button {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-
-    a.page-title {
-      padding-left: 0;
-      position: fixed;
-      left: 72px;
-      right: 72px;
-      line-height: 56px;
-      font-size: 20px;
-    }
-  }
-}
-
-.card {
-  background-color: $primary-color-light;
-  color: $primary-font-color;
-
-  .card-collection-title {
-    color: rgba(255,255,255,.8)
-  }
-}
-
-ul.collection {
-  border: none;
-
-  li.collection-item {
-    background-color: rgba(0,0,0,0);
-
-    .title {
-      font-weight: bold;
-    }
-  }
-}
+// settings
+@import "_settings";

@@ -1,0 +1,60 @@
+#tunepal-content {
+
+.card {
+  background-color: $primary-color-light;
+  color: $primary-font-color;
+
+  .card-content {
+    padding: 0;
+  }
+
+  .divider {
+    margin: 0 20px;
+  }
+}
+
+.collection {
+  border: none;
+
+  .collection-item {
+    padding: 10px 20px;
+    border-bottom: none;
+    background-color: rgba(0,0,0,0);
+    color: $primary-font-color;
+
+    &:not(.active):hover {
+      background-color: rgba(0,0,0,.2);
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .secondary-content {
+      color: rgba(255,255,255,.5);
+    }
+
+    &.card-collection-title {
+      color: rgba(255,255,255,.5);
+
+      &:not(.active):hover {
+        background-color: transparent;
+      }
+
+      .title {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.modal-content {
+  padding: 0;
+}
+.modal {
+  .secondary-content i {
+    color: $secondary-color;
+  }
+}
+
+}

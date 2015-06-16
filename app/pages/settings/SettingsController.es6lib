@@ -1,35 +1,39 @@
-import Config from '../../scripts/tunepal/Config.es6lib';
+import Config from '../../scripts/tunepal/config/Config.es6lib';
 
 export default class App {
   constructor($scope, config) {
     this.$scope = $scope;  // view model
 
     this.config = config;
+    this.Config = Config;
+
+    $('.page-title').text('Settings');
 
     this._initMidiInstruments();
-    this._initSelects();
+    this.validatePlaybackSpeed();
+    this._initPopupOptions();
   }
 
-  _initSelects() {
-    let settings = this;
-    let selects = $('select');
+  _initPopupOptions() {
+    // if screen is medium or up
+    if ($(window).width() > 600) {
+      $('.bottom-sheet').removeClass('bottom-sheet')
+    }
 
-    selects.each((i, select) => {
-      select = $(select);
-      let modelName = select.attr('model');
-      let val = eval(modelName);
-      select.val(val);
-    });
+    // bind modal triggers to their modals
+    $('.modal-trigger').leanModal();
 
-    selects.material_select();
+    // scroll to the first selected item when modal is popping up
+    $('.modal-trigger').each((i, trigger) => {
+      $(trigger).click(() => {
+        let modal = $(trigger.hash);
+        let content = modal.find('.modal-content');
+        let current = content.find('.secondary-content').parent();
+        if (current == null) return;
 
-    selects.change(event => {
-      // prevent angular from incorrectly catching change event of parent div
-      event.stopPropagation();
-
-      let select = $(event.target);
-      let assignment = `${select.attr('model')} = "${select.val()}"`;
-      eval(assignment);
+        let scrollTop = current[0].offsetTop + current.outerHeight() - content.height() / 2;
+        content.animate({scrollTop: scrollTop}, 500);
+      });
     });
   }
 
@@ -45,5 +49,26 @@ export default class App {
         text : item
       }));
     });
+  }
+
+  set(key, value) {
+    this.config[key] = value;
+    $(`#${key}-sheet`).closeModal();
+  }
+
+  setTunebooks(id) {
+    this.config.tunebooks.toggle(id);
+  }
+
+  validatePlaybackSpeed() {
+    let value = parseInt(this.config.playbackSpeed);
+    let input = $('input[ng-model="settings.config.playbackSpeed"]');
+
+    if (isNaN(value) || value <= 0) {
+      input.removeClass('valid').addClass('invalid');
+    }
+    else {
+      input.removeClass('invalid').addClass('valid');
+    }
   }
 }
