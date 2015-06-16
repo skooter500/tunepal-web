@@ -23,15 +23,6 @@ function swallowError(err) {
   this.emit('end');
 }
 
-// Copy All Files At The Root Level (app)
-gulp.task('copy', function () {
-  var app = gulp.src('app/*')
-    .pipe(gulp.dest('www'));
-
-  return merge(app)
-    .pipe($.size({title: 'copy'}));
-});
-
 // Build Materialize js
 gulp.task('materialize-js', function () {
   var jsFiles = [
@@ -76,14 +67,14 @@ gulp.task('materialize-js', function () {
     .pipe($.size({title: 'Materialize js'}));
 });
 
-// Copy Materialize fonts
+// Copy Materialize fonts to tmp
 gulp.task('materialize-fonts', function () {
   return gulp.src('font/**/*', {cwd: 'app/lib/materialize'})
     .pipe(gulp.dest('.tmp/lib/materialize/font'))
     .pipe($.size({title: 'Materialize fonts'}));
 });
 
-// Copy Materialize fonts
+// Copy Materialize fonts to tmp
 gulp.task('materialize-styles', function () {
   var sassTask = gulp.src('app/styles/materialize.scss')
     .pipe($.plumber({
@@ -98,13 +89,11 @@ gulp.task('materialize-styles', function () {
 // Build Materialize
 gulp.task('materialize', function (cb) {
   runSequence(
-    'materialize-fonts',
-    'materialize-js',
-    'materialize-styles',
+    ['materialize-fonts', 'materialize-js', 'materialize-styles'],
     cb);
 });
 
-// Build Materialize and sass
+// Build Materialize and SASS
 gulp.task('styles', function () {
   var sassTask = gulp.src(['app/styles/**/*.scss', '!app/styles/materialize.scss'])
     .pipe($.plumber({
@@ -132,7 +121,7 @@ gulp.task('es6', function () {
     .pipe($.size({title: 'ECMAScript 6 Compile'}));
 });
 
-// Clean Output Directory
+// Clean output directories
 gulp.task('clean', del.bind(null, [
   '.tmp',
   '.tmp_merges',
@@ -140,15 +129,15 @@ gulp.task('clean', del.bind(null, [
   'www'
 ]));
 
-gulp.task('build-debug', function (cb) {
+gulp.task('build', function (cb) {
   runSequence(
     'clean',
     ['materialize', 'styles', 'es6'],
     cb);
 });
 
-// Watch Files For Changes & Reload
-gulp.task('serve', ['build-debug'], function () {
+// Watch files for changes & reload
+gulp.task('serve', ['build'], function () {
   browserSync({
     notify: false,
     server: {
@@ -173,9 +162,41 @@ gulp.task('serve:dist', ['default'], function () {
   });
 });
 
-// Build Production Files, the Default Task
-gulp.task('default', ['clean'], function (cb) {
+// Copy files to www
+gulp.task('copy', function () {
+  var images = gulp.src(['app/images/**/*'])
+    .pipe(gulp.dest('www/images'));
+
+  var pages = gulp.src(['app/pages/**/*.html'])
+    .pipe(gulp.dest('www/pages'));
+
+  var rootFiles = gulp.src(['app/*'])
+    .pipe(gulp.dest('www'));
+
+  var lib = gulp.src(['.tmp/lib/**/*'])
+    .pipe($.debug())
+    .pipe(gulp.dest('www/lib'));
+
+  var scripts = gulp.src(['.tmp/scripts/**/*'])
+    .pipe(gulp.dest('www/scripts'));
+
+  var styles = gulp.src(['.tmp/styles/**/*'])
+    .pipe(gulp.dest('www/styles'));
+
+  return merge(images, pages, rootFiles, lib, scripts, styles)
+    .pipe($.size({title: 'copy'}));
+});
+
+// Deploy to GAE
+gulp.task('deploy', $.shell.task([
+  'appcfg.py update dist'
+]));
+
+// Build production files, the default task
+gulp.task('default', function (cb) {
   runSequence(
-    ['copy', 'styles', 'es6'],
+    'clean',
+    ['materialize', 'styles', 'es6'],
+    'copy',
     cb);
 });
