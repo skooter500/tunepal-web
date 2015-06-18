@@ -173,10 +173,10 @@ gulp.task('copy', function () {
   var rootFiles = gulp.src(['app/*'])
     .pipe(gulp.dest('www'));
 
-  var tmpDir = gulp.src(['.tmp/**/*'])
+  var tmpFiles = gulp.src(['.tmp/**/*'])
     .pipe(gulp.dest('www'));
 
-  return merge(images, rootFiles, tmpDir)
+  return merge(images, rootFiles, tmpFiles)
     .pipe($.size({title: 'copy'}));
 });
 
@@ -184,12 +184,13 @@ gulp.task('copy', function () {
 gulp.task('minify-search', function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
 
-  return gulp.src(['app/**/*.html'])
+  return gulp.src(['app/**/*.html', '!app/lib/materialize/**/*.html'])
     .pipe(assets)
     // Remove console, alert, and debugger statements from code
     .pipe($.if('*.js', $.stripDebug()))
     // Concatenate And Minify JavaScript
-    .pipe($.if('*.js', $.uglify({mangle: false})))
+    .pipe($.if('app/scripts/App.js', $.uglify({mangle: false})))
+    .pipe($.if(['**/*.js', '!app/scripts/App.js'], $.uglify({mangle: true})))
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.cssmin()))
@@ -211,10 +212,14 @@ gulp.task('minify', ['minify-search'], function () {
   //var images = gulp.src(['app/images/**/*'])
 
   var dsp = gulp.src(['app/scripts/3rdparty/dsp.js'])
-    .pipe($.uglify({mangle: false}))
+    .pipe($.uglify())
     .pipe(gulp.dest('www/scripts/3rdparty'));
 
-  return merge(dsp)
+  var transcriber = gulp.src(['.tmp/scripts/tunepal/transcription/TranscriberWorker.js'])
+    .pipe($.uglify())
+    .pipe(gulp.dest('www/scripts/tunepal/transcription'));
+
+  return merge(dsp, transcriber)
     .pipe($.size({title: 'minify'}));
 });
 
