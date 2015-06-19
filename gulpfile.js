@@ -186,11 +186,12 @@ gulp.task('minify-search', function () {
 
   return gulp.src(['app/**/*.html', '!app/lib/materialize/**/*.html'])
     .pipe(assets)
+    .pipe($.debug())
     // Remove console, alert, and debugger statements from code
     .pipe($.if('*.js', $.stripDebug()))
     // Concatenate And Minify JavaScript
-    .pipe($.if('app/scripts/App.js', $.uglify({mangle: false})))
-    .pipe($.if(['**/*.js', '!app/scripts/App.js'], $.uglify({mangle: true})))
+    .pipe($.if('**/App.js', $.uglify({mangle: false})))
+    .pipe($.if(['**/*.js', '!**/App.js'], $.uglify({mangle: true})))
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.cssmin()))
