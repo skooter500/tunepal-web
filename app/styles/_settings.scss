@@ -9,34 +9,4 @@
   left: 0;
 }
 
-.modal.bottom-sheet {
-  max-height: 70%;
-}
-
-// Modal with fixed header
-.modal.modal-fixed-header {
-  padding: 0;
-  height: 70%;
-
-  .modal-header {
-    color: rgba(255, 255, 255, 0.5);
-    padding: 10px 20px;
-    width: 100%;
-    min-height: 54px;
-    @extend .z-depth-1;
-    @include flexbox();
-    @include align(center);
-
-    .header {
-      display: block;
-    }
-  }
-
-  .modal-content {
-    max-height: calc(100% - 54px);
-    width: 100%;
-    overflow-y: auto;
-  }
-}
-
 }

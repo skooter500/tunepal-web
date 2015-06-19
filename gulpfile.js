@@ -75,7 +75,7 @@ gulp.task('materialize-styles', function () {
       errorHandler: swallowError
     }))
     .pipe($.sass({
-        includePaths: [path.join(__dirname, 'app/styles')],
+        includePaths: ['./app/styles'],
         outputStyle: 'expanded'
       })
       .on('error', $.sass.logError)
@@ -93,12 +93,12 @@ gulp.task('materialize', function (cb) {
 
 // Build Materialize and SASS
 gulp.task('styles', function () {
-  return gulp.src(['app/styles/**/*.scss', '!app/styles/materialize.scss'])
+  return gulp.src(['app/styles/main.scss'])
     .pipe($.plumber({
       errorHandler: swallowError
     }))
     .pipe($.sass({
-        includePaths: [path.join(__dirname, 'app/styles')],
+        includePaths: ['app/styles'],
         outputStyle: 'expanded'
       })
       .on('error', $.sass.logError)
@@ -215,9 +215,9 @@ gulp.task('minify', ['minify-search'], function () {
     .pipe($.uglify())
     .pipe(gulp.dest('www/scripts/3rdparty'));
 
-  var transcriber = gulp.src(['.tmp/scripts/tunepal/transcription/TranscriberWorker.js'])
+  var transcriber = gulp.src(['.tmp/scripts/transcription/TranscriberWorker.js'])
     .pipe($.uglify())
-    .pipe(gulp.dest('www/scripts/tunepal/transcription'));
+    .pipe(gulp.dest('www/scripts/transcription'));
 
   return merge(dsp, transcriber)
     .pipe($.size({title: 'minify'}));

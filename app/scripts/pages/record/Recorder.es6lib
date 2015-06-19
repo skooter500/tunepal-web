@@ -1,5 +1,5 @@
-import Utils from '../../scripts/tunepal/Utils.es6lib';
-import TranscriberAsync from '../../scripts/tunepal/transcription/TranscriberAsync.es6lib';
+import Utils from '../../Utils.es6lib';
+import TranscriberAsync from '../../transcription/TranscriberAsync.es6lib';
 
 export default class Recorder {
   get sampleTime() { return this.config.sampleTime; }

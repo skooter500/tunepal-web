@@ -1,0 +1,19 @@
+#tunepal-index {
+
+.side-nav {
+  .side-nav-toolbar {
+    height: 64px;
+    padding: 0 16px 0 16px;
+    background-color: $primary-color;
+  }
+
+  li:hover, li.active {
+    background-color: $hover-background-color-light;
+  }
+
+  a {
+    color: $primary-font-color;
+  }
+}
+
+}

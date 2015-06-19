@@ -1,0 +1,16 @@
+#record {
+
+.canvas {
+  position: fixed;
+  top: $navbar-height;
+  width: calc(100% - 240px);
+  height: calc(100% - #{$navbar-height});
+
+  @media #{$medium-and-down} {
+    top: $navbar-height-mobile;
+    width: 100%;
+    height: calc(100% - #{$navbar-height-mobile});
+  }
+}
+
+}

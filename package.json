@@ -38,6 +38,6 @@
     "vinyl-transform": "^1.0.0"
   },
   "scripts": {
-    "deps": "git submodule update --init && npm install -g bower cordova gulp && npm install && bower install && cd app/styles/materialize && npm install && bower install"
+    "deps": "git submodule update --init && npm install -g bower cordova gulp ripple-emulator && npm install && bower install"
   }
 }

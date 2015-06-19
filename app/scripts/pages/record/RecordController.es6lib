@@ -1,23 +1,21 @@
 import Recorder from './Recorder.es6lib';
 import Renderer from './Renderer.es6lib';
-import Searcher from './Searcher.es6lib';
-import Utils from '../../scripts/tunepal/Utils.es6lib';
+import Config from '../../Config.es6lib'
+import Utils from '../../Utils.es6lib';
 
 export default class RecordController {
-  constructor($scope, config, audioContext) {
+  constructor($scope) {
     this.$scope = $scope;  // view model
-    this.config = config;
-    this.audioContext = audioContext;
+    this.config = Config;
+    this.audioContext = this.config.audioContext;
 
-    this.recorder = new Recorder(config, audioContext);
+    this.recorder = new Recorder(this.config, this.audioContext);
     this.recorder.onTranscribed = result => this.onTranscribed(result);
 
     let canvas = document.getElementById('canvas');
     let container = canvas.parentNode;
 
-    this.renderer = new Renderer(config, this.recorder, canvas);
-
-    this.searcher = new Searcher(config);
+    this.renderer = new Renderer(this.config, this.recorder, canvas);
 
     this._requestId = window.requestAnimationFrame(() => this._update());
     $scope.$on('$routeChangeStart',

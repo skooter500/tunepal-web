@@ -8,10 +8,12 @@ $(function() {
   // Side Navigation fix
   $('.side-nav li a').on('click', function(e) {
     let windowSize = $(window).width();
-    if (windowSize < 992) {
+    if (windowSize <= 992) {
       $('.button-collapse').sideNav('hide');
     }
   });
+
+  $('.drag-target').remove();
 });
 
 let app = angular.module('TunepalApp', ['ngCookies', 'ngRoute']);

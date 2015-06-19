@@ -1,7 +1,21 @@
-html, body, .modal {
+#tunepal-index {
+
+background-color: $primary-background-color;
+
+body, .modal {
   background-color: $primary-background-color;
+}
+
+nav, main, footer {
+  padding-left: 240px;
+
+  @media #{$medium-and-down} {
+    padding-left: 0;
+  }
 }
 
 .container {
   width: 95%;
+}
+
 }

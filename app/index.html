@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="" ng-app="TunepalApp">
+<html lang="" id="tunepal-index" ng-app="TunepalApp">
 <head>
   <meta charset="utf-8">
   <meta name="description" content="">
@@ -42,7 +42,7 @@
   <!-- endbuild -->
 </head>
 
-<body id="tunepal-content" ng-controller="IndexController as index">
+<body ng-controller="IndexController as index">
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
@@ -56,14 +56,23 @@
         <div class="side-nav-toolbar">
           <span>Menu</span>
         </div>
-        <li ng-class="{active: index.isActive('/record')}"><a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a></li>
-        <li ng-class="{active: index.isActive('/my-tunes')}"><a href="/#!/my-tunes"><i class="mdi-image-audiotrack left"></i>My Tunes (TODO)</a></li>
-        <li ng-class="{active: index.isActive('/settings')}"><a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a></li>
+        <li ng-class="{active: index.isActive('/record')}">
+          <a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a>
+        </li>
+        <li ng-class="{active: index.isActive('/recordSearch')}">
+          <a href="/#!/recordSearch"><i class="mdi-image-audiotrack left"></i>Test Tune List (TODO)</a>
+        </li>
+        <li ng-class="{active: index.isActive('/settings')}">
+          <a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a>
+        </li>
+        <li>
+          <a href="/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe (TODO)</a>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main class="container">
+  <main>
     <div ng-view></div>
   </main>
 

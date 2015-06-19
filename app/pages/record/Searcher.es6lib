@@ -1,8 +1,0 @@
-export default class Searcher {
-  get timeSigs() { return this.config.timeSigs; }
-  set timeSigs(value) { this.config.timeSigs = value; }
-
-  constructor(config) {
-    this.config = config;
-  }
-}

@@ -1,192 +1,194 @@
 <div id="settings">
 
-<div class="row">
-  <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-  <div class="col s12 m12 l6">
-    <div class="card">
-      <div class="card-content">
-        <div class="collection">
-          <div class="collection-item card-collection-title">
-            <span class="title">Search</span>
-          </div>
-
-          <div class="divider"></div>
-
-          <a href="#fundamental-sheet" class="collection-item modal-trigger">
-            <span class="title">Fundamental</span>
-            <p>{{settings.config.fundamental}}</p>
-          </a>
-          <div id="fundamental-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">Transcribe from an instrument which is not in concert pitch</span>
+<div class="container">
+  <div class="row">
+    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Search</span>
             </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="fundamental in settings.Config.Fundamentals" ng-click="settings.set('fundamental', fundamental)">
-                  <span class="title">{{fundamental}}</span>
-                  <span class="secondary-content" ng-if="fundamental == settings.config.fundamental"><i class="mdi-action-done"></i></span>
-                </a>
+
+            <div class="divider"></div>
+
+            <a href="#fundamental-sheet" class="collection-item modal-trigger">
+              <span class="title">Fundamental</span>
+              <p>{{settings.config.fundamental}}</p>
+            </a>
+            <div id="fundamental-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">Transcribe from an instrument which is not in concert pitch</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="fundamental in settings.config.Fundamentals" ng-click="settings.set('fundamental', fundamental)">
+                    <span class="title">{{fundamental}}</span>
+                    <span class="secondary-content" ng-if="fundamental == settings.config.fundamental"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <a href="#tunebooks-sheet" class="collection-item modal-trigger">
-            <span class="title">Tune Books</span>
-            <p class="truncate">{{settings.config.tunebooks.selectedShortNames}}</p>
-          </a>
-          <div id="tunebooks-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">Limit your searches to certain tune books</span>
-            </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="tunebook in settings.config.tunebooks.all" ng-click="settings.setTunebooks(tunebook.id)">
-                  <span class="title">{{tunebook.shortName}}</span>
-                  <span class="secondary-content" ng-if="settings.config.tunebooks.isSelected(tunebook.id)"><i class="mdi-action-done"></i></span>
-                </a>
+            <a href="#tunebooks-sheet" class="collection-item modal-trigger">
+              <span class="title">Tune Books</span>
+              <p class="truncate">{{settings.config.tunebooks.selectedShortNames}}</p>
+            </a>
+            <div id="tunebooks-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">Limit your searches to certain tune books</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="tunebook in settings.config.tunebooks.all" ng-click="settings.setTunebooks(tunebook.id)">
+                    <span class="title">{{tunebook.shortName}}</span>
+                    <span class="secondary-content" ng-if="settings.config.tunebooks.isSelected(tunebook.id)"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <a href="#timeSigs-sheet" class="collection-item modal-trigger">
-            <span class="title">Time Signatures</span>
-            <p>{{settings.Config.TimeSignatures[settings.config.timeSigs]}}</p>
-          </a>
-          <div id="timeSigs-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">Limit your searches to certain time signatures</span>
-            </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="(key, name) in settings.Config.TimeSignatures" ng-click="settings.set('timeSigs', key)">
-                  <span class="title">{{name}}</span>
-                  <span class="secondary-content" ng-if="key == settings.config.timeSigs"><i class="mdi-action-done"></i></span>
-                </a>
+            <a href="#timeSigs-sheet" class="collection-item modal-trigger">
+              <span class="title">Time Signatures</span>
+              <p>{{settings.config.TimeSignatures[settings.config.timeSigs]}}</p>
+            </a>
+            <div id="timeSigs-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">Limit your searches to certain time signatures</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="(key, name) in settings.config.TimeSignatures" ng-click="settings.set('timeSigs', key)">
+                    <span class="title">{{name}}</span>
+                    <span class="secondary-content" ng-if="key == settings.config.timeSigs"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <a href="#countdownTime-sheet" class="collection-item modal-trigger">
-            <span class="title">Countdown</span>
-            <p>{{settings.config.countdownTime}} sec</p>
-          </a>
-          <div id="countdownTime-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">Countdown several seconds before recording</span>
-            </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="countdownTime in settings.Config.CountdownTime" ng-click="settings.set('countdownTime', countdownTime)">
-                  <span class="title">{{countdownTime}} Seconds</span>
-                  <span class="secondary-content" ng-if="countdownTime == settings.config.countdownTime"><i class="mdi-action-done"></i></span>
-                </a>
+            <a href="#countdownTime-sheet" class="collection-item modal-trigger">
+              <span class="title">Countdown</span>
+              <p>{{settings.config.countdownTime}} Seconds</p>
+            </a>
+            <div id="countdownTime-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">Countdown several seconds before recording</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="countdownTime in settings.config.CountdownTime" ng-click="settings.set('countdownTime', countdownTime)">
+                    <span class="title">{{countdownTime}} Seconds</span>
+                    <span class="secondary-content" ng-if="countdownTime == settings.config.countdownTime"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="col s12 m12 l6">
-    <div class="card">
-      <div class="card-content">
-        <div class="collection">
-          <div class="collection-item card-collection-title">
-            <span class="title">Playback</span>
-          </div>
-
-          <div class="divider"></div>
-
-          <a href="#melody-sheet" class="collection-item modal-trigger">
-            <span class="title">Melody</span>
-            <p>{{settings.config.melody}}</p>
-          </a>
-          <div id="melody-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">The instrument used to play the melody</span>
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Playback</span>
             </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="instrument in settings.Config.MidiInstruments" ng-click="settings.set('melody', instrument)">
-                  <span class="title">{{instrument}}</span>
-                  <span class="secondary-content" ng-if="instrument == settings.config.melody"><i class="mdi-action-done"></i></span>
-                </a>
+
+            <div class="divider"></div>
+
+            <a href="#melody-sheet" class="collection-item modal-trigger">
+              <span class="title">Melody</span>
+              <p>{{settings.config.melody}}</p>
+            </a>
+            <div id="melody-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">The instrument used to play the melody</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="instrument in settings.config.MidiInstruments" ng-click="settings.set('melody', instrument)">
+                    <span class="title">{{instrument}}</span>
+                    <span class="secondary-content" ng-if="instrument == settings.config.melody"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <a href="#chords-sheet" class="collection-item modal-trigger">
-            <span class="title">Chords</span>
-            <p>{{settings.config.chords}}</p>
-          </a>
-          <div id="chords-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">The instrument used to play chords</span>
-            </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="instrument in settings.Config.MidiInstruments" ng-click="settings.set('chords', instrument)">
-                  <span class="title">{{instrument}}</span>
-                  <span class="secondary-content" ng-if="instrument == settings.config.chords"><i class="mdi-action-done"></i></span>
-                </a>
+            <a href="#chords-sheet" class="collection-item modal-trigger">
+              <span class="title">Chords</span>
+              <p>{{settings.config.chords}}</p>
+            </a>
+            <div id="chords-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">The instrument used to play chords</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="instrument in settings.config.MidiInstruments" ng-click="settings.set('chords', instrument)">
+                    <span class="title">{{instrument}}</span>
+                    <span class="secondary-content" ng-if="instrument == settings.config.chords"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <a href="#playbackSpeed-sheet" class="collection-item modal-trigger">
-            <span class="title">Speed</span>
-            <p>{{settings.config.playbackSpeed}}</p>
-          </a>
-          <div id="playbackSpeed-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">Playback speed</span>
-            </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="playbackSpeed in settings.Config.PlaybackSpeed" ng-click="settings.set('playbackSpeed', playbackSpeed)">
-                  <span class="title">{{playbackSpeed}}</span>
-                  <span class="secondary-content" ng-if="playbackSpeed == settings.config.playbackSpeed"><i class="mdi-action-done"></i></span>
-                </a>
-                <a class="collection-item">
-                  <span class="title">
-                    <div class="input-field">
-                      <input type="text" ng-model="settings.config.playbackSpeed" ng-change="settings.validatePlaybackSpeed()" />
-                      <label class="active">Custom Speed</label>
-                    </div>
-                  </span>
-                  <span class="secondary-content"></span>
-                </a>
+            <a href="#playbackSpeed-sheet" class="collection-item modal-trigger">
+              <span class="title">Speed</span>
+              <p>{{settings.config.playbackSpeed}} &times;</p>
+            </a>
+            <div id="playbackSpeed-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">Playback speed</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="playbackSpeed in settings.config.PlaybackSpeed" ng-click="settings.set('playbackSpeed', playbackSpeed)">
+                    <span class="title">{{playbackSpeed}} &times;</span>
+                    <span class="secondary-content" ng-if="playbackSpeed == settings.config.playbackSpeed"><i class="mdi-action-done"></i></span>
+                  </a>
+                  <a class="collection-item">
+                    <span class="title">
+                      <div class="input-field">
+                        <input type="text" ng-model="settings.config.playbackSpeed" ng-change="settings.validatePlaybackSpeed()" />
+                        <label class="active">Custom Speed</label>
+                      </div>
+                    </span>
+                    <span class="secondary-content"></span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <a href="#transpose-sheet" class="collection-item modal-trigger">
-            <span class="title">Transpose</span>
-            <p>{{settings.config.transpose}} Semitones</p>
-          </a>
-          <div id="transpose-sheet" class="modal modal-fixed-header bottom-sheet">
-            <div class="modal-header">
-              <span class="title">Transpose tune playback</span>
-            </div>
-            <div class="modal-content">
-              <div class="collection">
-                <a class="collection-item" ng-repeat="transpose in settings.Config.Transpose" ng-click="settings.set('transpose', transpose)">
-                  <span class="title">{{transpose}} Semitones</span>
-                  <span class="secondary-content" ng-if="transpose == settings.config.transpose"><i class="mdi-action-done"></i></span>
-                </a>
+            <a href="#transpose-sheet" class="collection-item modal-trigger">
+              <span class="title">Transpose</span>
+              <p>{{settings.config.transpose}} Semitones</p>
+            </a>
+            <div id="transpose-sheet" class="modal modal-fixed-header bottom-sheet">
+              <div class="modal-header">
+                <span class="title">Transpose tune playback</span>
+              </div>
+              <div class="modal-content">
+                <div class="collection">
+                  <a class="collection-item" ng-repeat="transpose in settings.config.Transpose" ng-click="settings.set('transpose', transpose)">
+                    <span class="title">{{transpose}} Semitones</span>
+                    <span class="secondary-content" ng-if="transpose == settings.config.transpose"><i class="mdi-action-done"></i></span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

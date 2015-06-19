@@ -1,12 +1,23 @@
-import Fundamentals from './Fundamentals.es6lib'
-import MidiInstruments from './MidiInstruments.es6lib'
-import TimeSignatures from './TimeSignatures.es6lib'
-import TunebookManager from './TunebookManager.es6lib'
-import Utils from '../Utils.es6lib'
+import Fundamentals from './models/Fundamentals.es6lib'
+import MidiInstruments from './models/MidiInstruments.es6lib'
+import TimeSignatures from './models/TimeSignatures.es6lib'
+import TunebookManager from './models/TunebookManager.es6lib'
+import Utils from './Utils.es6lib'
 
-export default class Config {
+class _Config {
   constructor() {
-    this.tunebooks = new TunebookManager();
+    this.Fundamentals = Fundamentals;
+    this.MidiInstruments = MidiInstruments;
+    this.TimeSignatures = TimeSignatures;
+    this.tunebooks = TunebookManager;
+
+    this.CountdownTime = Utils.makeArray(0, 10);
+    this.PlaybackSpeed = Utils.makeArray(1, 10);
+    this.Transpose = Utils.makeArray(-12, 12);
+
+    this.Properties = Properties;
+
+    this.audioContext = new window.AudioContext();
 
     this._createProperties();
   }
@@ -14,7 +25,7 @@ export default class Config {
   _createProperties() {
     this._settings = [];
 
-    for (let property of Config.Properties) {
+    for (let property of this.Properties) {
       let storedValue = Utils.getObjectFromStorage(property.name);
 
       if (storedValue == null) {
@@ -41,22 +52,18 @@ export default class Config {
   }
 }
 
-Config.Fundamentals = Fundamentals;
-Config.MidiInstruments = MidiInstruments;
-Config.TimeSignatures = TimeSignatures;
-
-Config.CountdownTime = Utils.makeArray(0, 10);
-Config.PlaybackSpeed = Utils.makeArray(1, 10);
-Config.Transpose = Utils.makeArray(-12, 12);
-
-Config.Properties = [
+let Properties = [
   {name: 'fundamental', default: 'D'},
   {name: 'sampleTime', default: 12},
   {name: 'enableSampleRateConversion', default: false},
   {name: 'countdownTime', default: 3},
   {name: 'timeSigs', default: 'all'},
-  {name: 'melody', default: Config.MidiInstruments[0]},
-  {name: 'chords', default: Config.MidiInstruments[0]},
+  {name: 'melody', default: MidiInstruments[0]},
+  {name: 'chords', default: MidiInstruments[0]},
   {name: 'playbackSpeed', default: 5},
   {name: 'transpose', default: 0},
 ];
+
+let Config = new _Config();
+
+export default Config;

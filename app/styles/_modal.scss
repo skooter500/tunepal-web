@@ -1,0 +1,35 @@
+#tunepal-index {
+
+.modal.bottom-sheet {
+  max-height: 70%;
+}
+
+// Modal with fixed header
+.modal.modal-fixed-header {
+  padding: 0;
+  height: 70%;
+
+  .modal-header {
+    color: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    width: 100%;
+    min-height: 54px;
+    @extend .z-depth-1;
+    border-radius: 1px; // workaround to fix the bug that box-shadow not working on ios safari
+    @include flexbox();
+    @include align(center);
+
+    .header {
+      display: block;
+    }
+  }
+
+  .modal-content {
+    padding-top: 12px;
+    max-height: calc(100% - 54px);
+    width: 100%;
+    overflow-y: auto;
+  }
+}
+
+}

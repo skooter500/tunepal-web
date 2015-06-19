@@ -1,18 +1,18 @@
+import Tunebook from './Tunebook.es6lib';
 import Utils from '../Utils.es6lib';
 
-export default class TunebookManager {
+class _TunebookManager {
   constructor() {
+    this.DefaultTunebooks = DefaultTunebooks;
+    this.DefaultSelectedIds = DefaultSelectedIds;
+
     //TODO: fetch tunebooks from server when page loads
-    this._tunebooks = Utils.getObjectFromStorage('tunebooks');
+    this._tunebooks = this._updateTunebooks();
+
     this._selectedIds = Utils.getObjectFromStorage('tunebookSelectedIds');
 
-    if (this._tunebooks == null) {
-      this._tunebooks = this._updateTunebooks();
-      Utils.setObjectToStorage('tunebooks', this._tunebooks);
-    }
-
     if (this._selectedIds == null) {
-      this._selectedIds = TunebookManager.DefaultSelectedIds;
+      this._selectedIds = this.DefaultSelectedIds;
       Utils.setObjectToStorage('tunebookSelectedIds', this._selectedIds);
     }
 
@@ -20,17 +20,17 @@ export default class TunebookManager {
   }
 
   _updateTunebooks() {
-    let rawTunebooks = TunebookManager.DefaultTunebooks; //TODO: read from server
+    let rawTunebooks = this.DefaultTunebooks; //TODO: read from server
     let tunebooks = [];
 
-    for (let tunebook of rawTunebooks) {
-      tunebooks[tunebook.id] = tunebook;
+    for (let rawTunebook of rawTunebooks) {
+      tunebooks[rawTunebook.id] = new Tunebook(rawTunebook);
     }
 
     return tunebooks;
   }
 
-  get selectedIds() {
+  static get selectedIds() {
     return this._selectedIds;
   }
 
@@ -52,6 +52,10 @@ export default class TunebookManager {
 
   get all() {
     return this._tunebooks;
+  }
+
+  getById(id) {
+    return this._tunebooks[id];
   }
 
   isSelected(id) {
@@ -101,9 +105,9 @@ export default class TunebookManager {
   }
 }
 
-TunebookManager.DefaultSelectedIds = [0];
+let DefaultSelectedIds = [0];
 
-TunebookManager.DefaultTunebooks = [
+let DefaultTunebooks = [
   {
     "id": 0,
     "name": "All",
@@ -338,3 +342,7 @@ TunebookManager.DefaultTunebooks = [
     "extra": "Transcribed by Bill Black"
   },
 ];
+
+let TunebookManager = new _TunebookManager();
+
+export default TunebookManager;

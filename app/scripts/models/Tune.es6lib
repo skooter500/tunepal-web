@@ -1,0 +1,17 @@
+import TunebookManager from './TunebookManager.es6lib'
+
+export default class Tune {
+  constructor(id, title, altTitle, tunebookId, keySig, type, confidence) {
+    this.id = id;
+    this.title = title;
+    this.altTitle = altTitle;
+    this.tunebook = TunebookManager.getById(tunebookId);
+    this.keySig = keySig;
+    this.type = type;
+    this.confidence = confidence;
+  }
+
+  get description() {
+    return `${this.type} in ${this.keySig}`;
+  }
+}

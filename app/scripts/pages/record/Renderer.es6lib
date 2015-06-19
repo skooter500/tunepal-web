@@ -1,0 +1,193 @@
+import Recorder from './Recorder.es6lib';
+const LogoPath = '/images/recording_logo.png';
+
+export default class Renderer {
+  get countdownTime() { return this.config.countdownTime; }
+  set countdownTime(value) { this.config.countdownTime = value; }
+
+  constructor(config, recorder, canvas) {
+    this.config = config;
+    this.recorder = recorder;
+    this._canvas = canvas;
+
+    this._logo = new Image();
+    this._logo.addEventListener('load', () => this._updateMetrics());
+    this._logo.src = LogoPath;
+
+    this._canvas.addEventListener('click', () => this._recordClicked());
+
+    this._canvasContext = this._canvas.getContext('2d');
+  }
+
+  _recordClicked() {
+    switch (this.recorder.status) {
+      case Recorder.Status.STOPPED:
+      case Recorder.Status.ANALYSIS_SUCCEEDED:
+        this.recorder.initAsync()
+        .then(() => this._startCountingDown());
+        break;
+      case Recorder.Status.COUNTING_DOWN:
+        this.recorder.stop();
+        clearInterval(this._timer);
+        break;
+      case Recorder.Status.RECORDING:
+        this.recorder.stop();
+        break;
+    }
+  }
+
+  _startCountingDown() {
+    this._timeLeft = this.countdownTime;
+
+    if (this._timeLeft <= 0) {
+      this.recorder.start();
+    }
+    else {
+      this._timer = setInterval(() => this._countdown(), 1000);
+    }
+  }
+
+  _countdown() {
+    this._timeLeft -= 1;
+    if (this._timeLeft <= 0) {
+      clearInterval(this._timer);
+      this.recorder.start();
+    }
+  }
+
+  draw() {
+    this._updateCanvasSize();
+
+    this._canvasContext.save();
+    this._canvasContext.clearRect(0, 0, this._canvas.width, this._canvas.height);
+
+    this._drawLogo();
+    this._drawAmplitude();
+    this._drawProgress();
+    this._drawStatus();
+
+    this._canvasContext.restore();
+  }
+
+  _updateCanvasSize() {
+    const width = this._canvas.offsetWidth;
+    const height = this._canvas.offsetHeight;
+
+    if (this._canvas.width != width || this._canvas.height != height) {
+      this._canvas.width = width;
+      this._canvas.height = height;
+
+      this._updateMetrics();
+    }
+  }
+
+  _updateMetrics() {
+    const width = this._canvas.width;
+    const height = this._canvas.height;
+
+    const diameter = width < height ? width : height;
+
+    this._logoCenter = {
+      x: width * 0.5,
+      y: height * 0.43,
+    };
+
+    // logo
+    const logoRadius = diameter * 0.3;
+    this._logoWidth = logoRadius * 2;
+    this._logoHeight = this._logoWidth * this._logo.height / this._logo.width;
+    this._logoTopLeft = {
+      x: this._logoCenter.x - this._logoWidth / 2,
+      y: this._logoCenter.y - this._logoHeight / 2,
+    };
+
+    // amplitude ring
+    this._ringInnerRadius = diameter * 0.32;
+    this._ringMinWidth = diameter * 0.03;
+    this._ringMaxWidth = diameter * 0.06;
+
+    // progress
+    const progressOuterRadius = this._ringInnerRadius;
+    this._progressWidth = diameter * 0.015;
+    this._progressRadius = progressOuterRadius - this._progressWidth / 2;
+
+    // status
+    this._statusTop = {
+      x: this._logoCenter.x,
+      y: this._logoCenter.y + this._ringInnerRadius + this._ringMaxWidth + diameter * 0.09,
+    };
+  }
+
+  _drawLogo() {
+    this._canvasContext.drawImage(this._logo,
+      this._logoTopLeft.x, this._logoTopLeft.y,
+      this._logoWidth, this._logoHeight);
+  }
+
+  _drawAmplitude() {
+    let width = this._ringMinWidth;
+    let rate = this.recorder.amplitude;
+
+    if (rate) {
+      if (rate > 1) rate = 1;
+      if (rate < 0) rate = 0;
+      width += (this._ringMaxWidth - this._ringMinWidth) * rate;
+    }
+
+    const radius = this._ringInnerRadius + width / 2;
+
+    this._canvasContext.beginPath();
+    this._canvasContext.arc(this._logoCenter.x, this._logoCenter.y,
+      radius, 0, 2 * Math.PI);
+    this._canvasContext.lineWidth = width;
+    this._canvasContext.strokeStyle = 'rgb(176, 210, 13)';
+    this._canvasContext.stroke();
+  }
+
+  _drawProgress() {
+    if (this.recorder.progress > 0) {
+      const angle = 2 * Math.PI * this.recorder.progress;
+      const startingAngle = Math.PI / -2;
+      const endingAngle = startingAngle + angle;
+
+      this._canvasContext.beginPath();
+      this._canvasContext.arc(this._logoCenter.x, this._logoCenter.y,
+        this._progressRadius, startingAngle, endingAngle);
+      this._canvasContext.lineWidth = this._progressWidth;
+      this._canvasContext.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+      this._canvasContext.stroke();
+    }
+  }
+
+  _drawStatus() {
+    let status = this._timeLeft > 0
+      ? `RECORDING IN ${this._timeLeft} SEC...`
+      : this._getRecorderStatusText();
+
+    this._canvasContext.font = '3vh Roboto';
+    this._canvasContext.textBaseline = 'top';
+    this._canvasContext.textAlign = 'center';
+
+    this._canvasContext.fillStyle = 'white';
+    this._canvasContext.fillText(status, this._statusTop.x, this._statusTop.y);
+  }
+
+  _getRecorderStatusText() {
+    switch (this.recorder.status) {
+      case Recorder.Status.STOPPED:
+        return 'TAP TO RECORD';
+      case Recorder.Status.INIT:
+        return 'ACCESSING THE MICROPHONE...';
+      case Recorder.Status.INIT_SUCCEEDED:
+        return 'SUCCEEDED';
+      case Recorder.Status.INIT_FAILED:
+        return 'ERROR: CANNOT ACCESS THE MICROPHONE. TODO: guide users how to allow microphone access';
+      case Recorder.Status.RECORDING:
+        return 'RECORDING... (TAP TO STOP)';
+      case Recorder.Status.ANALYZING:
+        return `ANALYZING... (${'TODO'} %)`;
+      case Recorder.Status.ANALYSIS_SUCCEEDED:
+        return 'SUCCEEDED';
+    }
+  }
+}

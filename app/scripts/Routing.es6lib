@@ -1,21 +1,14 @@
-import Config from './tunepal/config/Config.es6lib';
-import IndexController from './IndexController.es6lib'
-import RecordController from '../pages/record/RecordController.es6lib'
-import SettingsController from '../pages/settings/SettingsController.es6lib'
+import IndexController from './pages/index/IndexController.es6lib'
+import RecordController from './pages/record/RecordController.es6lib'
+import RecordSearchController from './pages/recordSearch/RecordSearchController.es6lib'
+import SettingsController from './pages/settings/SettingsController.es6lib'
 
 export default class Routing {
   constructor(app) {
-    let injectConfig = $cookies => {
-      return this.config ? this.config : this.config = new Config($cookies);
-    };
-
-    let audioContext = new window.AudioContext();
-
     app.controller('IndexController', IndexController);
-
     app.controller('RecordController', RecordController);
-
     app.controller('SettingsController', SettingsController);
+    app.controller('RecordSearchController', RecordSearchController);
 
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
@@ -23,18 +16,16 @@ export default class Routing {
         controller: 'RecordController',
         controllerAs: 'record',
         templateUrl: 'pages/record/record.html',
-        resolve: {
-          config: injectConfig,
-          audioContext: () => audioContext
-        }
+      })
+      .when('/recordSearch', {
+        controller: 'RecordSearchController',
+        controllerAs: 'recordSearch',
+        templateUrl: 'pages/recordSearch/recordSearch.html',
       })
       .when('/settings', {
         controller: 'SettingsController',
         controllerAs: 'settings',
         templateUrl: 'pages/settings/settings.html',
-        resolve: {
-          config: injectConfig
-        }
       })
       .otherwise('/record');
 

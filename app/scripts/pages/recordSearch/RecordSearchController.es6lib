@@ -1,0 +1,21 @@
+import Config from '../../Config.es6lib'
+import Tune from '../../models/Tune.es6lib'
+
+export default class RecordSearchController {
+  constructor($scope) {
+    this.$scope = $scope;  // view model
+    this.config = Config;
+
+    $('.page-title').text('Result');
+
+    this.tunes = this._fetchTunes();
+  }
+
+  _fetchTunes() {
+    let tunes = [];
+    for (let i = 1; i <= 15; i++) {
+      tunes.push(new Tune(i, `Tune Title ${i}`, 'Tune Alt Title ${i}', i, 'D', 'reel', 94.2 - i * 0.3));
+    }
+    return tunes;
+  }
+}

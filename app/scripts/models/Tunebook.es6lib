@@ -1,0 +1,11 @@
+export default class Tunebook {
+  constructor(rawTunebook) {
+    this.id = rawTunebook.id;
+    this.name = rawTunebook.name;
+    this.shortName = rawTunebook.shortName;
+  }
+
+  get logoUrl() {
+    return `http://tunepal.org/test/tunepal/source_icons/s${this.id}.png`;
+  }
+}

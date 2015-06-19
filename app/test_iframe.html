@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tunepal Test iframe</title>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="stylesheet" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <style>
+  .ui-resizable-helper {
+      border: 1px dotted gray;
+  }
+  .resizable {
+      display: block;
+      width: 400px;
+      height: 400px;
+      padding: 10px;
+      border: 2px solid gray;
+      overflow: hidden;
+      position: relative;
+  }
+  iframe {
+      width: 100%;
+      height: 100%;
+  }
+  </style>
+  <script>
+  $(function () {
+    $(".resizable").resizable({
+      animate: false,
+      animateEasing: 'swing',
+      imateDuration: 500
+    });
+  });
+  </script>
+</head>
+<body>
+  <div class="resizable">
+    <iframe src="index.html" width="500" height="500"></iframe>
+  </div>
+</body>
+</html>

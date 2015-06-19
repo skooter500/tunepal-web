@@ -1,5 +1,5 @@
 // This is a promise wrapper of TranscriberWorker
-const WorkerPath = '/scripts/tunepal/transcription/TranscriberWorker.js';
+const WorkerPath = '/scripts/transcription/TranscriberWorker.js';
 
 export default class TranscriberAsync {
   constructor() {

@@ -4,16 +4,18 @@
 @import "../lib/materialize/sass/components/color";
 
 // Variables
-@import "_variables";
+@import "variables";
 
 // global
 @import "../lib/materialize/sass/components/global";
-@import "_global";
-@import "_nav";
-@import "_card";
+@import "global";
+@import "nav";
+@import "sideNav";
+@import "card";
+@import "modal";
 
 // record
-@import "_record";
+@import "record";
 
 // settings
-@import "_settings";
+@import "settings";

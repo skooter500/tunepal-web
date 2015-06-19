@@ -1,4 +1,4 @@
-#tunepal-content {
+#tunepal-index {
 
 .card {
   background-color: $primary-color-light;
@@ -15,22 +15,29 @@
 
 .collection {
   border: none;
+  margin: 0;
 
   .collection-item {
     padding: 10px 20px;
     border-bottom: none;
-    background-color: rgba(0,0,0,0);
     color: $primary-font-color;
 
-    &:not(.active):hover {
-      background-color: rgba(0,0,0,.2);
+    &:hover, &.active {
+      background-color: $hover-background-color-light;
     }
 
     .title {
       font-weight: bold;
+      font-size: 15px;
+    }
+
+    :not(.title) {
+      font-size: 14px;
+      line-height: 1.2rem;
     }
 
     .secondary-content {
+      right: 20px;
       color: rgba(255,255,255,.5);
     }
 
@@ -45,7 +52,20 @@
         font-weight: normal;
       }
     }
+
+    &.avatar {
+      padding-left: 72px;
+      min-height: 0;
+
+      .circle {
+        border-radius: 0;
+      }
+    }
   }
+}
+
+.avatar .divider {
+  margin-left: 72px;
 }
 
 .modal-content {

@@ -1,11 +1,9 @@
-import Config from '../../scripts/tunepal/config/Config.es6lib';
+import Config from '../../Config.es6lib';
 
-export default class App {
-  constructor($scope, config) {
+export default class SettingsController {
+  constructor($scope) {
     this.$scope = $scope;  // view model
-
-    this.config = config;
-    this.Config = Config;
+    this.config = Config;
 
     $('.page-title').text('Settings');
 

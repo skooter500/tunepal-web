@@ -1,0 +1,46 @@
+<div id="recordSearch">
+
+<div class="container">
+  <div class="row">
+    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div ng-repeat="tune in recordSearch.tunes | limitTo : 10 : 0" class="avatar">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.id}}">
+                <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" />
+                <span class="title">{{tune.title}}</span>
+                <p>{{tune.tunebook.shortName}}</p>
+                <p>{{tune.description}}</p>
+                <span class="secondary-content">{{tune.confidence | number: 0}}%</span>
+              </a>
+              <div class="divider" ng-if="!$last"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div ng-repeat="tune in recordSearch.tunes | limitTo : 10 : 10" class="avatar">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.id}}">
+                <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" />
+                <span class="title">{{tune.title}}</span>
+                <p>{{tune.tunebook.shortName}}</p>
+                <p>{{tune.description}}</p>
+                <span class="secondary-content">{{tune.confidence | number: 0}}%</span>
+              </a>
+              <div class="divider" ng-if="!$last"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

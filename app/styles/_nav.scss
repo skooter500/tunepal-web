@@ -1,12 +1,4 @@
-.side-nav-toolbar {
-  height: 64px;
-  padding: 0 16px 0 16px;
-  background-color: $primary-color;
-}
-
-nav, main, footer {
-  padding-left: 240px;
-}
+#tunepal-index {
 
 .nav-wrapper {
   padding-left: 16px;
@@ -17,14 +9,12 @@ nav, main, footer {
     font-size: 24px;
     line-height: 64px;
   }
-}
 
-@media #{$medium-and-down} {
-  nav, main, footer {
-    padding-left: 0;
+  li:hover, li.active {
+    background-color: $hover-background-color-dark;
   }
 
-  .nav-wrapper {
+  @media #{$medium-and-down} {
     padding-left: 0px;
     padding-right: 0px;
 
@@ -42,4 +32,6 @@ nav, main, footer {
       font-size: 20px;
     }
   }
+}
+
 }
