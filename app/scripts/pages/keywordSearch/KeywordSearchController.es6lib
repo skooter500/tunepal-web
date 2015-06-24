@@ -8,11 +8,16 @@ export default class NotesSearchController {
     this.config = Config;
 
     let keyword = $routeParams['keyword'];
-    if (keyword) this._fetchTunes(keyword);
 
     $rootScope.$emit('changeKeyword', keyword);
 
-    $('#keyword').blur();
+    if (keyword) {
+      this._fetchTunes(keyword);
+      $('#keyword').blur();
+    }
+    else {
+      $scope.$on('$routeChangeSuccess', () => $('#keyword').focus());
+    }
   }
 
   _fetchTunes(text) {
