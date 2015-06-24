@@ -18,4 +18,8 @@ nav, main, footer {
   width: 95%;
 }
 
+a[ng-click] {
+  cursor: pointer;
+}
+
 }

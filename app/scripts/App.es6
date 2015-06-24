@@ -1,4 +1,4 @@
-import Routing from './Routing.es6lib'
+import Routing from './Routing.es6lib';
 
 $(function() {
   FastClick.attach(document.body);

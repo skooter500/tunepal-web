@@ -1,0 +1,37 @@
+import Config from '../../Config.es6lib';
+import Tune from '../../models/Tune.es6lib';
+
+export default class NotesSearchController {
+  constructor($scope, $rootScope, $routeParams) {
+    this.$scope = $scope;  // view model
+    this.$routeParams = $routeParams;
+    this.config = Config;
+
+    $rootScope.$emit('changeTitle', 'Result');
+
+    this._fetchTunes();
+    this._calcPages();
+  }
+
+  _fetchTunes() {
+    this.tunes = [];
+
+    for (let i = 1; i <= 15; i++) {
+      this.tunes.push(new Tune(i, `Tune Title ${i}`, 'Tune Alt Title ${i}', i, 'D', 'reel', 94.2 - i * 0.3));
+    }
+  }
+
+  _calcPages() {
+    this.pages = new Array(Math.ceil(this.tunes.length / 10));
+
+    for (let i = 0; i < this.pages.length; i++) {
+      this.pages[i] = {
+        startIndex: i * 10,
+        start: i * 10 + 1,
+        end: (i + 1) * 10,
+      }
+    }
+
+    this.pages[this.pages.length - 1].end = this.tunes.length;
+  }
+}

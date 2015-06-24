@@ -1,0 +1,29 @@
+<div id="keywordSearch">
+
+  <div class="row">
+    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    <div class="col s12 m12 l6" ng-repeat="page in keywordSearch.pages">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Top {{page.start}} - {{page.end}}</span>
+            </div>
+            <div class="divider"></div>
+            <div ng-repeat="tune in keywordSearch.tunes | limitTo : 10 : page.startIndex" class="avatar">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.id}}">
+                <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" />
+                <span class="title">{{tune.title}}</span>
+                <p>{{tune.tunebook.shortName}}</p>
+                <p>{{tune.description}}</p>
+                <span class="secondary-content">{{tune.confidence | number: 1}}%</span>
+              </a>
+              <div class="divider" ng-if="!$last"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

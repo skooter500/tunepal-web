@@ -1,35 +1,63 @@
-import IndexController from './pages/index/IndexController.es6lib'
-import RecordController from './pages/record/RecordController.es6lib'
-import RecordSearchController from './pages/recordSearch/RecordSearchController.es6lib'
-import SettingsController from './pages/settings/SettingsController.es6lib'
+import IndexController from './pages/index/IndexController.es6lib';
+import KeywordSearchController from './pages/keywordSearch/KeywordSearchController.es6lib';
+import NotesSearchController from './pages/notesSearch/NotesSearchController.es6lib';
+import RecordController from './pages/record/RecordController.es6lib';
+import SettingsController from './pages/settings/SettingsController.es6lib';
+import TuneController from './pages/tune/TuneController.es6lib';
 
 export default class Routing {
   constructor(app) {
     app.controller('IndexController', IndexController);
+    app.controller('KeywordSearchController', KeywordSearchController);
+    app.controller('NotesSearchController', NotesSearchController);
     app.controller('RecordController', RecordController);
     app.controller('SettingsController', SettingsController);
-    app.controller('RecordSearchController', RecordSearchController);
+    app.controller('TuneController', TuneController);
 
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
+      .when('/keywordSearch', {
+        controller: 'KeywordSearchController',
+        controllerAs: 'keywordSearch',
+        templateUrl: 'pages/keywordSearch/keywordSearch.html',
+      })
+      .when('/keywordSearch/:keyword', {
+        controller: 'KeywordSearchController',
+        controllerAs: 'keywordSearch',
+        templateUrl: 'pages/keywordSearch/keywordSearch.html',
+      })
+      .when('/notesSearch/:notes', {
+        controller: 'NotesSearchController',
+        controllerAs: 'notesSearch',
+        templateUrl: 'pages/notesSearch/notesSearch.html',
+      })
       .when('/record', {
         controller: 'RecordController',
         controllerAs: 'record',
         templateUrl: 'pages/record/record.html',
-      })
-      .when('/recordSearch', {
-        controller: 'RecordSearchController',
-        controllerAs: 'recordSearch',
-        templateUrl: 'pages/recordSearch/recordSearch.html',
       })
       .when('/settings', {
         controller: 'SettingsController',
         controllerAs: 'settings',
         templateUrl: 'pages/settings/settings.html',
       })
+      .when('/tune/:id', {
+        controller: 'TuneController',
+        controllerAs: 'tune',
+        templateUrl: 'pages/tune/tune.html',
+      })
       .otherwise('/record');
 
       $locationProvider.hashPrefix('!');
     });
   }
+
+  static isRoot(route) {
+    return Routing.Roots.some(element => element == route);
+  }
 }
+
+Routing.Roots = [
+  '/record',
+  '/settings',
+];

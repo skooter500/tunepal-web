@@ -1,8 +1,8 @@
 // import dsp.js from html or use importScripts from web worker
-import FuzzyHistogram from './FuzzyHistogram.es6lib'
-import PitchDetector from './PitchDetector.es6lib'
-import PitchSpeller from './PitchSpeller.es6lib'
-import Utils from '../Utils.es6lib'
+import FuzzyHistogram from './FuzzyHistogram.es6lib';
+import PitchDetector from './PitchDetector.es6lib';
+import PitchSpeller from './PitchSpeller.es6lib';
+import Utils from '../Utils.es6lib';
 
 export default class Transcriber {
   get inputSampleRate() { return this._inputSampleRate; }

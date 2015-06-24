@@ -1,5 +1,5 @@
-import Transcriber from './Transcriber.es6lib'
-import Utils from '../Utils.es6lib'
+import Transcriber from './Transcriber.es6lib';
+import Utils from '../Utils.es6lib';
 const ScriptPaths = [
   '/scripts/3rdparty/dsp.js',
   '/scripts/3rdparty/browser-polyfill.js',
@@ -45,6 +45,9 @@ export default class TranscriberWorker {
           sampleRate: this._transcriber.outputSampleRate,
           numSamples: this._transcriber.numOutputSamples,
         };
+        break;
+      case 'close':
+        self.close();
         break;
     }
 

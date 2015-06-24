@@ -1,11 +1,11 @@
 import Config from '../../Config.es6lib';
 
 export default class SettingsController {
-  constructor($scope) {
+  constructor($scope, $rootScope) {
     this.$scope = $scope;  // view model
     this.config = Config;
 
-    $('.page-title').text('Settings');
+    $rootScope.$emit('changeTitle', 'Settings');
 
     this._initMidiInstruments();
     this.validatePlaybackSpeed();

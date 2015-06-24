@@ -1,9 +1,29 @@
+import Config from '../../Config.es6lib';
+import Routing from '../../Routing.es6lib';
+
 export default class IndexController {
-  constructor($location) {
+  constructor($scope, $rootScope, $location) {
     this.$location = $location;
+    this.config = Config;
+    this.title = 'Record';
+
+    $rootScope.$on('changeTitle', (e, title) => this.title = title);
   }
 
   isActive(route) {
     return route === this.$location.path();
+  }
+
+  get showBackButton() {
+    return !Routing.isRoot(this.$location.path());
+  }
+
+  goBack() {
+    if (history.length == 1) {
+      location.href = '/#!/record';
+    }
+    else {
+      history.back();
+    }
   }
 }

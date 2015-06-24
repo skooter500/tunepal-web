@@ -1,8 +1,8 @@
-import Fundamentals from './models/Fundamentals.es6lib'
-import MidiInstruments from './models/MidiInstruments.es6lib'
-import TimeSignatures from './models/TimeSignatures.es6lib'
-import TunebookManager from './models/TunebookManager.es6lib'
-import Utils from './Utils.es6lib'
+import Fundamentals from './models/Fundamentals.es6lib';
+import MidiInstruments from './models/MidiInstruments.es6lib';
+import TimeSignatures from './models/TimeSignatures.es6lib';
+import TunebookManager from './models/TunebookManager.es6lib';
+import Utils from './Utils.es6lib';
 
 class _Config {
   constructor() {

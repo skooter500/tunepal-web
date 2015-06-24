@@ -46,10 +46,15 @@
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <a href="#" data-activates="left-nav" class="hamburger-button button-collapse"><i class="mdi-navigation-menu"></i></a>
-        <a class="page-title">Record</a>
+        <ul class="left">
+          <li><a data-activates="left-nav" class="hamburger-button button-collapse" ng-show="!index.showBackButton"><i class="mdi-navigation-menu"></i></a></li>
+          <li><a ng-show="index.showBackButton" ng-click="index.goBack()"><i class="mdi-navigation-arrow-back"></i></a></li>
+        </ul>
+
+        <a class="page-title">{{index.title}}</a>
+
         <ul class="right">
-          <li><a href="/#!/search"><i class="mdi-action-search"></i></a></li>
+          <li><a href="/#!/keywordSearch"><i class="mdi-action-search"></i></a></li>
         </ul>
       </div>
       <ul class="side-nav fixed" id="left-nav">
@@ -59,14 +64,17 @@
         <li ng-class="{active: index.isActive('/record')}">
           <a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a>
         </li>
-        <li ng-class="{active: index.isActive('/recordSearch')}">
-          <a href="/#!/recordSearch"><i class="mdi-image-audiotrack left"></i>Test Tune List (TODO)</a>
-        </li>
         <li ng-class="{active: index.isActive('/settings')}">
           <a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a>
         </li>
         <li>
-          <a href="/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe (TODO)</a>
+          <a href="/#!/tune/1"><i class="mdi-image-audiotrack left"></i>Test Tune Page</a>
+        </li>
+        <li>
+          <a href="/#!/notesSearch/DEDGGGGAGFFFDEDAGACAFGGEDEDDDDBAGFGECBCBAGAGFGGG"><i class="mdi-image-audiotrack left"></i>Test Tune List</a>
+        </li>
+        <li>
+          <a href="/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe</a>
         </li>
       </ul>
     </nav>

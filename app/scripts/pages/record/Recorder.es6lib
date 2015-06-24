@@ -49,6 +49,10 @@ export default class Recorder {
     });
   }
 
+  close() {
+    this._transcriber.close();
+  }
+
   _onStream(stream, resolve) {
     this._stream = stream;
     this._bufferSize = 4096;

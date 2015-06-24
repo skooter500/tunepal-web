@@ -1,4 +1,4 @@
-import TunebookManager from './TunebookManager.es6lib'
+import TunebookManager from './TunebookManager.es6lib';
 
 export default class Tune {
   constructor(id, title, altTitle, tunebookId, keySig, type, confidence) {
