@@ -10,7 +10,6 @@ export default class NotesSearchController {
     $rootScope.$emit('changeTitle', 'Result');
 
     this._fetchTunes();
-    this._calcPages();
   }
 
   _fetchTunes() {
@@ -19,6 +18,8 @@ export default class NotesSearchController {
     for (let i = 1; i <= 15; i++) {
       this.tunes.push(new Tune(i, `Tune Title ${i}`, 'Tune Alt Title ${i}', i, 'D', 'reel', 94.2 - i * 0.3));
     }
+
+    this._calcPages();
   }
 
   _calcPages() {

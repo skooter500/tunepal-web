@@ -22,4 +22,36 @@ a[ng-click] {
   cursor: pointer;
 }
 
+.input-form {
+  padding-left: 0;
+  width: 100%;
+
+  input[type=search] {
+    margin: 0;
+    padding-top: calc((#{$navbar-height} - 1.2em) / 2);
+    line-height: normal;
+    width: calc(100% - 7rem);
+    height: inherit;
+    background-color: transparent;
+    color: $primary-font-color;
+    -webkit-appearance: none;
+  }
+
+  i {
+    color: $primary-font-color;
+  }
+}
+
+@media #{$medium-and-down} {
+  .input-form {
+    padding-left: 64px;
+
+    input[type=search] {
+      padding-left: 0;
+      padding-top: calc((#{$navbar-height-mobile} - 1.2em) / 2);
+      width: calc(100% - 3rem);
+    }
+  }
+}
+
 }

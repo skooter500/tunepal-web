@@ -7,18 +7,22 @@ export default class NotesSearchController {
     this.$routeParams = $routeParams;
     this.config = Config;
 
-    $rootScope.$emit('changeTitle', 'Result');
+    let keyword = $routeParams['keyword'];
+    if (keyword) this._fetchTunes(keyword);
 
-    this._fetchTunes();
-    this._calcPages();
+    $rootScope.$emit('changeKeyword', keyword);
+
+    $('#keyword').blur();
   }
 
-  _fetchTunes() {
+  _fetchTunes(text) {
     this.tunes = [];
 
     for (let i = 1; i <= 15; i++) {
       this.tunes.push(new Tune(i, `Tune Title ${i}`, 'Tune Alt Title ${i}', i, 'D', 'reel', 94.2 - i * 0.3));
     }
+
+    this._calcPages();
   }
 
   _calcPages() {

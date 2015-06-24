@@ -3,11 +3,15 @@ import Routing from '../../Routing.es6lib';
 
 export default class IndexController {
   constructor($scope, $rootScope, $location) {
+    this.$rootScope = $rootScope;
     this.$location = $location;
     this.config = Config;
     this.title = 'Record';
+    this.keyword = '';
 
     $rootScope.$on('changeTitle', (e, title) => this.title = title);
+
+    $rootScope.$on('changeKeyword', (e, keyword) => this.keyword = keyword);
   }
 
   isActive(route) {
@@ -25,5 +29,18 @@ export default class IndexController {
     else {
       history.back();
     }
+  }
+
+  get showKeywordSearch() {
+    return this.$location.path().indexOf('/keywordSearch') === 0;
+  }
+
+  searchKeyword() {
+    location.href = `/#!/keywordSearch/${this.keyword}`;
+  }
+
+  clearKeyword() {
+    this.keyword = '';
+    $('#keyword').focus();
   }
 }
