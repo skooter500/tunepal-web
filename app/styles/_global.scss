@@ -22,7 +22,7 @@ a[ng-click] {
   cursor: pointer;
 }
 
-.input-form {
+.search-bar {
   padding-left: 0;
   width: 100%;
 
@@ -43,7 +43,7 @@ a[ng-click] {
 }
 
 @media #{$medium-and-down} {
-  .input-form {
+  .search-bar {
     padding-left: 64px;
 
     input[type=search] {

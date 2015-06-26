@@ -1,0 +1,27 @@
+<div id="tune-page">
+
+  <div id="background-score" ng-show="!tune.showCard">
+  </div>
+
+  <div class="row" ng-show="tune.showCard">
+    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div class="score card-content">
+          <div id="card-score">
+            <div id="score"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div id="card-editor" class="card-content">
+          <textarea id="abc" ng-model="tune.abc"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

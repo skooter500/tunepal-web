@@ -1,5 +1,29 @@
 export default class TuneController {
-  constructor($scope, $rootScope) {
+  constructor($scope, $rootScope, $http) {
     $rootScope.$emit('changeTitle', 'Tune');
+
+    this.showCard = true;
+
+    $http.get('/images/cooleys.abc')
+      .success(data => this._createAbcEditor(data));
+  }
+
+  _createAbcEditor(abc) {
+    this.abc = abc;
+    $('#abc').val(abc);
+    this.abcEditor = new ABCJS.Editor('abc', {
+      paper_id: 'score',
+      onchange: () => this._scaleScore(),
+    });
+    this._scaleScore();
+  }
+
+  _scaleScore() {
+    const score = $('#score');
+    const cardScore = $('#card-score');
+    const cardContent = $('.score.card-content');
+    const scale = cardScore.width() / score.width();
+    cardScore.css('transform', `scale(${scale})`);
+    cardContent.height(cardScore.height() * scale);
   }
 }

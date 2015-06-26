@@ -57,7 +57,7 @@
           <li ng-show="!index.showKeywordSearch"><a href="/#!/keywordSearch"><i class="mdi-action-search"></i></a></li>
         </ul>
 
-        <form class="input-form" ng-submit="index.searchKeyword()" ng-show="index.showKeywordSearch">
+        <form class="search-bar" ng-submit="index.searchKeyword()" ng-show="index.showKeywordSearch">
           <div class="input-field">
             <input id="keyword" type="search" placeholder="Search Keyword" ng-model="index.keyword" required>
             <label for="keyword" class="hide-on-med-and-down"><i class="mdi-action-search"></i></label>
@@ -122,6 +122,10 @@
 
   <!-- build:js scripts/3rdparty/browser-polyfill.js -->
   <script src="scripts/3rdparty/browser-polyfill.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js scripts/3rdparty/abcjs_editor_2.1-min.js -->
+  <script src="scripts/3rdparty/abcjs_editor_2.1-min.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/App.js -->
