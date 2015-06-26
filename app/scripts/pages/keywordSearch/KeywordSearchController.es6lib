@@ -2,7 +2,7 @@ import Config from '../../Config.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
 export default class NotesSearchController {
-  constructor($scope, $rootScope, $routeParams) {
+  constructor($scope, $rootScope, $routeParams, $timeout) {
     this.$scope = $scope;  // view model
     this.$routeParams = $routeParams;
     this.config = Config;
@@ -13,10 +13,9 @@ export default class NotesSearchController {
 
     if (keyword) {
       this._fetchTunes(keyword);
-      $('#keyword').blur();
     }
     else {
-      $scope.$on('$routeChangeSuccess', () => $('#keyword').focus());
+      $timeout(() => $('#keyword').focus());
     }
   }
 

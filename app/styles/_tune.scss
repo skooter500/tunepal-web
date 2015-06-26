@@ -5,7 +5,16 @@
 }
 
 #card-score {
-  transform-origin: top left;
+  @include transform-origin(top left);
+}
+
+#card-editor {
+  margin-top: 0;
+}
+
+#abc {
+  height: calc(100vh - 154px);
+  padding: 0;
 }
 
 }

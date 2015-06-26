@@ -1,8 +1,20 @@
 export default class TuneController {
-  constructor($scope, $rootScope, $http) {
-    $rootScope.$emit('changeTitle', 'Tune');
+  constructor($scope, $rootScope, $http, $timeout) {
+    this.$rootScope = $rootScope;
+    this.title = 'Tune';
 
-    this.showCard = true;
+    this.isPlaying = false;
+    this.isEditing = false;
+
+    $rootScope.$on('edit', () => {
+      this.isEditing = true;
+      $timeout(() => this._scaleScore());
+    });
+
+    $rootScope.$on('save', () => {
+      this.isEditing = false;
+      $timeout(() => this._scaleScore());
+    });
 
     $http.get('/images/cooleys.abc')
       .success(data => this._createAbcEditor(data));
@@ -11,11 +23,17 @@ export default class TuneController {
   _createAbcEditor(abc) {
     this.abc = abc;
     $('#abc').val(abc);
+
     this.abcEditor = new ABCJS.Editor('abc', {
       paper_id: 'score',
       onchange: () => this._scaleScore(),
     });
+
     this._scaleScore();
+
+    this.title = this.abcEditor.tunes[0].metaText.title || this.title;
+    //this.$rootScope.$emit('changeTitle', this.title);
+    this.$rootScope.$emit('changeTitle', 'Test long title. Test long title. Test long title. Test long title. Test long title. Test long title.');
   }
 
   _scaleScore() {
@@ -25,5 +43,9 @@ export default class TuneController {
     const scale = cardScore.width() / score.width();
     cardScore.css('transform', `scale(${scale})`);
     cardContent.height(cardScore.height() * scale);
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
   }
 }

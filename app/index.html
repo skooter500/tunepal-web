@@ -51,13 +51,24 @@
           <li><a class="hide-on-large-only" ng-show="index.showBackButton" ng-click="index.goBack()"><i class="mdi-navigation-arrow-back"></i></a></li>
         </ul>
 
-        <a class="page-title" ng-show="!index.showKeywordSearch">{{index.title}}</a>
+        <a class="page-title truncate" ng-show="!index.isActive('/keywordSearch')">{{index.title}}</a>
 
-        <ul class="right">
-          <li ng-show="!index.showKeywordSearch"><a href="/#!/keywordSearch"><i class="mdi-action-search"></i></a></li>
+        <ul class="right" ng-show="index.isActive('/tune')">
+          <li>
+            <a ng-click="index.togglePlaying()"><i ng-class="{'mdi-av-play-arrow': !index.tune.isPlaying, 'mdi-av-pause': index.tune.isPlaying}"></i></a>
+          </li>
+          <li ng-class="{disabled: !index.tune.isPlaying}">
+            <a ng-click="index.stopPlaying()" ng-class="{disabled: !index.tune.isPlaying}"><i class="mdi-av-stop"></i></a>
+          </li>
+          <li>
+            <a ng-click="index.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !index.tune.isEditing, 'mdi-content-save': index.tune.isEditing}"></i></a>
+          </li>
+          <li>
+            <a ng-click=""><i class="mdi-navigation-more-vert"></i></a>
+          </li>
         </ul>
 
-        <form class="search-bar" ng-submit="index.searchKeyword()" ng-show="index.showKeywordSearch">
+        <form class="search-bar" ng-submit="index.searchKeyword()" ng-show="index.isActive('/keywordSearch')">
           <div class="input-field">
             <input id="keyword" type="search" placeholder="Search Keyword" ng-model="index.keyword" required>
             <label for="keyword" class="hide-on-med-and-down"><i class="mdi-action-search"></i></label>
@@ -71,6 +82,9 @@
         </div>
         <li ng-class="{active: index.isActive('/record')}">
           <a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a>
+        </li>
+        <li ng-class="{active: index.isActive('/keywordSearch')}">
+          <a href="/#!/keywordSearch"><i class="mdi-action-search left"></i>Keyword</a>
         </li>
         <li ng-class="{active: index.isActive('/settings')}">
           <a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a>

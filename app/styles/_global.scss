@@ -18,8 +18,12 @@ nav, main, footer {
   width: 95%;
 }
 
-a[ng-click] {
+a[ng-click]:not(.disabled) {
   cursor: pointer;
+}
+
+a.disabled {
+  color: #b3b3b3;
 }
 
 .search-bar {
