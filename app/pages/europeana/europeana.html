@@ -1,0 +1,29 @@
+<div id="keyword-search-page">
+
+  <div class="row">
+    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    <div class="col s12 m12 l6" ng-repeat="page in europeana.pages">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Top {{page.start}} - {{page.end}}</span>
+            </div>
+            <div class="divider"></div>
+            <div ng-repeat="tune in europeana.result.items | limitTo : 10 : page.startIndex" class="avatar">
+              <a class="collection-item avatar" ng-href="{{tune.guid}}" target="_blank">
+                <img ng-src="{{tune.edmPreview[0]}}" alt="{{tune.title[0]}}" class="circle" />
+                <span class="title">{{tune.title[0]}}</span>
+                <p>{{tune.dataProvider[0]}}</p>
+                <p>{{tune.provider[0]}}</p>
+                <span class="secondary-content">{{tune.score | number: 1}}</span>
+              </a>
+              <div class="divider" ng-if="!$last"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+export default class EuropeanaController {
+  constructor($scope, $rootScope, $routeParams, $http) {
+    const keyword = $routeParams['keyword'];
+
+    const apiKey = 'QNbCgzoWb';
+    const query = keyword;
+    const qf = 'TYPE:SOUND';
+    const start = 1;
+    const maxNumItems = 20;
+    const profile = 'standard';
+
+    const url = `http://www.europeana.eu/api/v2/search.json?wskey=${apiKey}&query=${keyword}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
+
+    $http.get(url)
+    .success(data => {
+      console.log(data);
+      this.result = data;
+      this._calcPages();
+    });
+
+    $rootScope.$emit('changeTitle', 'Europeana Search');
+  }
+
+  _calcPages() {
+    this.pages = new Array(Math.ceil(this.result.items.length / 10));
+
+    for (let i = 0; i < this.pages.length; i++) {
+      this.pages[i] = {
+        startIndex: i * 10,
+        start: i * 10 + 1,
+        end: (i + 1) * 10,
+      }
+    }
+
+    this.pages[this.pages.length - 1].end = this.result.items.length;
+  }
+}
