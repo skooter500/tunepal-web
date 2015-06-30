@@ -12,7 +12,7 @@
             <div class="divider"></div>
             <div ng-repeat="tune in europeana.result.items | limitTo : 10 : page.startIndex" class="avatar">
               <a class="collection-item avatar" ng-href="{{tune.guid}}" target="_blank">
-                <img ng-src="{{tune.edmPreview[0]}}" alt="{{tune.title[0]}}" class="circle" />
+                <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
                 <span class="title">{{tune.title[0]}}</span>
                 <p>{{tune.dataProvider[0]}}</p>
                 <p>{{tune.provider[0]}}</p>
