@@ -6,6 +6,10 @@ export default class TuneController {
     this.isPlaying = false;
     this.isEditing = false;
 
+    $('.dropdown-button').dropdown({
+      constrain_width: false
+    });
+
     $rootScope.$on('edit', () => {
       this.isEditing = true;
       $timeout(() => this._scaleScore());
@@ -33,7 +37,7 @@ export default class TuneController {
 
     this.title = this.abcEditor.tunes[0].metaText.title || this.title;
     //this.$rootScope.$emit('changeTitle', this.title);
-    this.$rootScope.$emit('changeTitle', 'Test long title. Test long title. Test long title. Test long title. Test long title. Test long title.');
+    this.$rootScope.$emit('changeTitle', this.title);
   }
 
   _scaleScore() {

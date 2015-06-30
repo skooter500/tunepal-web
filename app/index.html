@@ -53,6 +53,7 @@
 
         <a class="page-title truncate" ng-show="!index.isActive('/keywordSearch')">{{index.title}}</a>
 
+        <!-- Toolbar for tune page -->
         <ul class="right" ng-show="index.isActive('/tune')">
           <li>
             <a ng-click="index.togglePlaying()"><i ng-class="{'mdi-av-play-arrow': !index.tune.isPlaying, 'mdi-av-pause': index.tune.isPlaying}"></i></a>
@@ -64,7 +65,14 @@
             <a ng-click="index.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !index.tune.isEditing, 'mdi-content-save': index.tune.isEditing}"></i></a>
           </li>
           <li>
-            <a ng-click=""><i class="mdi-navigation-more-vert"></i></a>
+            <a href="#" class="dropdown-button" data-activates="tune-more"><i class="mdi-navigation-more-vert"></i></a>
+            <ul id="tune-more" class="dropdown-content">
+              <li><a href="#!"><i class="left mdi-action-favorite"></i>Add to My Tunes</a></li>
+              <li><a href="#!"><i class="left mdi-action-list"></i>Europeana</a></li>
+              <li><a href="#!"><i class="left mdi-action-list"></i>Discography</a></li>
+              <li><a ng-href="http://www.youtube.com/results?search_query={{index.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a></li>
+              <li><a ng-href="http://www.amazon.com/s/?field-keywords={{index.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a></li>
+            </ul>
           </li>
         </ul>
 

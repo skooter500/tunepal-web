@@ -58,4 +58,22 @@ a.disabled {
   }
 }
 
+.dropdown-content {
+  width: 250px;
+  background-color: $primary-background-color;
+
+  li {
+    line-height: 4rem;
+  }
+
+  li a {
+    padding: 0 20px;
+    color: $primary-font-color;
+  }
+
+  li a i {
+    font-size: 1.5rem;
+  }
+}
+
 }
