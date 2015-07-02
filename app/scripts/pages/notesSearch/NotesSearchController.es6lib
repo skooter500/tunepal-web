@@ -7,8 +7,6 @@ export default class NotesSearchController {
     this.$routeParams = $routeParams;
     this.config = Config;
 
-    $rootScope.$emit('changeTitle', 'Result');
-
     this._fetchTunes();
   }
 

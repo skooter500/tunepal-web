@@ -1,0 +1,64 @@
+#tunepal-index .page-header {
+
+position: fixed;
+top: 0;
+
+nav {
+  top: 0;
+  padding-left: 0;
+  width: calc(100% - 240px);
+  height: $navbar-height;
+  line-height: $navbar-height;
+  z-index: 998;
+
+  @media #{$medium-and-down} {
+    left: 72px;
+    right: 0;
+    width: calc(100% - 72px);
+    height: $navbar-height-mobile;
+    line-height: $navbar-height-mobile;
+  }
+}
+
+ul.left {
+  position: fixed;
+  left: 0;
+  background-color: $primary-color;
+
+  i {
+    width: 2.7rem;
+    text-align: center;
+  }
+}
+
+a.page-title {
+  font-size: 24px;
+
+  @media #{$medium-and-down} {
+    font-size: 20px;
+  }
+}
+
+li:hover, li.active {
+  background-color: $hover-background-color-dark;
+}
+
+li:hover.disabled {
+  background-color: transparent;
+}
+
+ul.right {
+  position: fixed;
+  top: 0;
+  right: 16px;
+
+  @media #{$medium-and-down} {
+    right: 0;
+  }
+
+  li a {
+    padding: 0 10px;
+  }
+}
+
+}

@@ -6,63 +6,9 @@ export default class IndexController {
     this.$rootScope = $rootScope;
     this.$location = $location;
     this.config = Config;
-    this.title = 'Record';
-    this.keyword = '';
-    this.tune = {isPlaying: false, isEditing: false};
-
-    $rootScope.$on('changeTitle', (e, title) => this.title = title);
-
-    $rootScope.$on('changeKeyword', (e, keyword) => this.keyword = keyword);
-  }
-
-  get title() {
-    return this._title;
-  }
-
-  set title(value) {
-    this._title = value;
-    this.titleEncoded = encodeURIComponent(value);
   }
 
   isActive(route) {
     return this.$location.path().indexOf(route) === 0;
-  }
-
-  get showBackButton() {
-    return !Routing.isRoot(this.$location.path());
-  }
-
-  goBack() {
-    if (history.length == 1) {
-      location.href = '/#!/record';
-    }
-    else {
-      history.back();
-    }
-  }
-
-  searchKeyword() {
-    $('#keyword').blur();
-    location.href = `/#!/keywordSearch/${this.keyword}`;
-  }
-
-  clearKeyword() {
-    $('#keyword').focus();
-    this.keyword = '';
-  }
-
-  togglePlaying() {
-    this.tune.isPlaying = !this.tune.isPlaying;
-    this.$rootScope.$emit(this.tune.isPlaying ? 'play' : 'pause');
-  }
-
-  stopPlaying() {
-    this.tune.isPlaying = false;
-    this.$rootScope.$emit('stop');
-  }
-
-  toggleEditing() {
-    this.tune.isEditing = !this.tune.isEditing;
-    this.$rootScope.$emit(this.tune.isEditing ? 'edit' : 'save');
   }
 }

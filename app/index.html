@@ -58,111 +58,83 @@ document.getElementsByTagName('head')[0].appendChild(script);
     <nav>
       <div class="nav-wrapper">
         <ul class="left">
-          <li><a data-activates="left-nav" class="hamburger-button button-collapse" ng-show="!index.showBackButton"><i class="mdi-navigation-menu"></i></a></li>
-          <li><a class="hide-on-large-only" ng-show="index.showBackButton" ng-click="index.goBack()"><i class="mdi-navigation-arrow-back"></i></a></li>
-        </ul>
-
-        <a class="page-title truncate" ng-show="!index.isActive('/keywordSearch')">{{index.title}}</a>
-
-        <!-- Toolbar for tune page -->
-        <ul class="right" ng-show="index.isActive('/tune')">
           <li>
-            <a ng-click="index.togglePlaying()"><i ng-class="{'mdi-av-play-arrow': !index.tune.isPlaying, 'mdi-av-pause': index.tune.isPlaying}"></i></a>
-          </li>
-          <li ng-class="{disabled: !index.tune.isPlaying}">
-            <a ng-click="index.stopPlaying()" ng-class="{disabled: !index.tune.isPlaying}"><i class="mdi-av-stop"></i></a>
-          </li>
-          <li>
-            <a ng-click="index.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !index.tune.isEditing, 'mdi-content-save': index.tune.isEditing}"></i></a>
-          </li>
-          <li>
-            <a href="#" class="dropdown-button" data-activates="tune-more"><i class="mdi-navigation-more-vert"></i></a>
-            <ul id="tune-more" class="dropdown-content">
-              <li><a href="#!"><i class="left mdi-action-favorite"></i>Add to My Tunes</a></li>
-              <li><a ng-href="/#!/europeana/{{index.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a></li>
-              <li><a href="#!"><i class="left mdi-action-list"></i>Discography</a></li>
-              <li><a ng-href="http://www.youtube.com/results?search_query={{index.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a></li>
-              <li><a ng-href="http://www.amazon.com/s/?field-keywords={{index.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a></li>
-            </ul>
+            <a data-activates="left-nav" class="hamburger-button button-collapse"><i class="mdi-navigation-menu"></i></a>
           </li>
         </ul>
-
-        <form class="search-bar" ng-submit="index.searchKeyword()" ng-show="index.isActive('/keywordSearch')">
-          <div class="input-field">
-            <input id="keyword" type="search" placeholder="Search Keyword" ng-model="index.keyword" required>
-            <label for="keyword" class="hide-on-med-and-down"><i class="mdi-action-search"></i></label>
-            <i class="mdi-navigation-close" ng-show="index.keyword.length > 0" ng-click="index.clearKeyword()"></i>
-          </div>
-        </form>
       </div>
-      <ul class="side-nav fixed" id="left-nav">
-        <div class="side-nav-toolbar">
-          <span>Menu</span>
-        </div>
-        <li ng-class="{active: index.isActive('/record')}">
-          <a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a>
-        </li>
-        <li ng-class="{active: index.isActive('/keywordSearch')}">
-          <a href="/#!/keywordSearch"><i class="mdi-action-search left"></i>Keyword</a>
-        </li>
-        <li ng-class="{active: index.isActive('/settings')}">
-          <a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a>
-        </li>
-        <li>
-          <a href="/#!/tune/1"><i class="mdi-image-audiotrack left"></i>Test Tune Page</a>
-        </li>
-        <li>
-          <a href="/#!/notesSearch/DEDGGGGAGFFFDEDAGACAFGGEDEDDDDBAGFGECBCBAGAGFGGG"><i class="mdi-image-audiotrack left"></i>Test Tune List</a>
-        </li>
-        <li>
-          <a href="/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe</a>
-        </li>
-      </ul>
     </nav>
   </header>
 
+  <ul class="side-nav fixed" id="left-nav">
+    <div class="side-nav-toolbar">
+      <span>Menu</span>
+    </div>
+    <li ng-class="{active: index.isActive('/record')}">
+      <a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a>
+    </li>
+    <li ng-class="{active: index.isActive('/keywordSearch')}">
+      <a href="/#!/keywordSearch"><i class="mdi-action-search left"></i>Keyword</a>
+    </li>
+    <li ng-class="{active: index.isActive('/settings')}">
+      <a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a>
+    </li>
+    <li>
+      <a href="/#!/tune/1"><i class="mdi-image-audiotrack left"></i>Test Tune Page</a>
+    </li>
+    <li>
+      <a href="/#!/notesSearch/DEDGGGGAGFFFDEDAGACAFGGEDEDDDDBAGFGECBCBAGAGFGGG"><i class="mdi-image-audiotrack left"></i>Test Tune List</a>
+    </li>
+    <li>
+      <a href="/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe</a>
+    </li>
+  </ul>
+
   <main>
-    <div ng-view></div>
+    <div ng-view>
+    </div>
   </main>
 
-  <!-- Materialize -->
+  <div>
+    <!-- Materialize -->
 
-  <!-- build:js https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-  <!-- endbuild -->
+    <!-- build:js https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js lib/materialize/js/materialize.js -->
-  <script src="lib/materialize/js/materialize.js"></script>
-  <!-- endbuild -->
+    <!-- build:js lib/materialize/js/materialize.js -->
+    <script src="lib/materialize/js/materialize.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
-  <!-- endbuild -->
+    <!-- build:js https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+    <!-- endbuild -->
 
-  <!-- AngularJS -->
+    <!-- AngularJS -->
 
-  <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
-  <!-- endbuild -->
+    <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.min.js -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
-  <!-- endbuild -->
+    <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.min.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.min.js -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
-  <!-- endbuild -->
+    <!-- build:js https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.min.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js scripts/3rdparty/browser-polyfill.js -->
-  <script src="scripts/3rdparty/browser-polyfill.js"></script>
-  <!-- endbuild -->
+    <!-- build:js scripts/3rdparty/browser-polyfill.js -->
+    <script src="scripts/3rdparty/browser-polyfill.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js scripts/3rdparty/abcjs_editor_2.1-min.js -->
-  <script src="scripts/3rdparty/abcjs_editor_2.1-min.js"></script>
-  <!-- endbuild -->
+    <!-- build:js scripts/3rdparty/abcjs_editor_2.1-min.js -->
+    <script src="scripts/3rdparty/abcjs_editor_2.1-min.js"></script>
+    <!-- endbuild -->
 
-  <!-- build:js scripts/App.js -->
-  <script src="scripts/App.js"></script>
-  <!-- endbuild -->
+    <!-- build:js scripts/App.js -->
+    <script src="scripts/App.js"></script>
+    <!-- endbuild -->
+  </div>
 </body>
 </html>

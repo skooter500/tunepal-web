@@ -1,5 +1,10 @@
 #tune-page {
 
+a.page-title {
+  // (width of one button + padding) * number of buttons
+  padding-right: calc((2rem + 20px) * 4);
+}
+
 .score.card-content {
   background-color: white;
 }

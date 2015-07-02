@@ -9,8 +9,6 @@ export default class RecordController {
     this.config = Config;
     this.audioContext = this.config.audioContext;
 
-    $rootScope.$emit('changeTitle', 'Record');
-
     this.recorder = new Recorder(this.config, this.audioContext);
     this.recorder.onTranscribed = result => this.onTranscribed(result);
 

@@ -26,38 +26,6 @@ a.disabled {
   color: #b3b3b3;
 }
 
-.search-bar {
-  padding-left: 0;
-  width: 100%;
-
-  input[type=search] {
-    margin: 0;
-    padding-top: calc((#{$navbar-height} - 1.2em) / 2);
-    line-height: normal;
-    width: calc(100% - 7rem);
-    height: inherit;
-    background-color: transparent;
-    color: $primary-font-color;
-    -webkit-appearance: none;
-  }
-
-  i {
-    color: $primary-font-color;
-  }
-}
-
-@media #{$medium-and-down} {
-  .search-bar {
-    padding-left: 64px;
-
-    input[type=search] {
-      padding-left: 0;
-      padding-top: calc((#{$navbar-height-mobile} - 1.2em) / 2);
-      width: calc(100% - 3rem);
-    }
-  }
-}
-
 .dropdown-content {
   width: 250px;
   background-color: $primary-background-color;

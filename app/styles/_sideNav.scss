@@ -2,9 +2,12 @@
 
 .side-nav {
   .side-nav-toolbar {
-    height: 64px;
+    height: $navbar-height;
+    line-height: $navbar-height;
     padding: 0 16px 0 16px;
     background-color: $primary-color;
+    color: $primary-font-color;
+    font-size: 1.2rem;
   }
 
   li:hover, li.active {
@@ -13,6 +16,7 @@
 
   a {
     color: $primary-font-color;
+    font-size: 1.2rem;
   }
 }
 

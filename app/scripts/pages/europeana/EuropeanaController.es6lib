@@ -17,8 +17,6 @@ export default class EuropeanaController {
       this.result = data;
       this._calcPages();
     });
-
-    $rootScope.$emit('changeTitle', 'Europeana Search');
   }
 
   _calcPages() {

@@ -1,23 +1,16 @@
 export default class TuneController {
   constructor($scope, $rootScope, $http, $timeout) {
     this.$rootScope = $rootScope;
-    this.title = 'Tune';
+    this.$timeout = $timeout;
 
+    this.title = 'Tune';
     this.isPlaying = false;
     this.isEditing = false;
 
-    $('.dropdown-button').dropdown({
-      constrain_width: false
-    });
-
-    $rootScope.$on('edit', () => {
-      this.isEditing = true;
-      $timeout(() => this._scaleScore());
-    });
-
-    $rootScope.$on('save', () => {
-      this.isEditing = false;
-      $timeout(() => this._scaleScore());
+    $timeout(() => {
+      $('.dropdown-button').dropdown({
+        constrain_width: false
+      });
     });
 
     $http.get('/images/cooleys.abc')
@@ -36,8 +29,7 @@ export default class TuneController {
     this._scaleScore();
 
     this.title = this.abcEditor.tunes[0].metaText.title || this.title;
-    //this.$rootScope.$emit('changeTitle', this.title);
-    this.$rootScope.$emit('changeTitle', this.title);
+    this.titleEncoded = encodeURIComponent(this.title);
   }
 
   _scaleScore() {
@@ -49,7 +41,28 @@ export default class TuneController {
     cardContent.height(cardScore.height() * scale);
   }
 
-  toggleEdit() {
+  goBack() {
+    if (history.length == 1) {
+      location.href = '/#!/record';
+    }
+    else {
+      history.back();
+    }
+  }
+
+  togglePlaying() {
+    this.isPlaying = !this.isPlaying;
+    this.$rootScope.$emit(this.isPlaying ? 'play' : 'pause');
+  }
+
+  stopPlaying() {
+    this.isPlaying = false;
+    this.$rootScope.$emit('stop');
+  }
+
+  toggleEditing() {
     this.isEditing = !this.isEditing;
+
+    this.$timeout(() => this._scaleScore());
   }
 }

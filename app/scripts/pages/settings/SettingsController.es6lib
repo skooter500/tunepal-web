@@ -5,8 +5,6 @@ export default class SettingsController {
     this.$scope = $scope;  // view model
     this.config = Config;
 
-    $rootScope.$emit('changeTitle', 'Settings');
-
     this._initMidiInstruments();
     this.validatePlaybackSpeed();
     this._initPopupOptions();

@@ -1,4 +1,41 @@
+<!doctype html>
 <div id="tune-page">
+
+  <header class="navbar-fixed page-header">
+    <nav>
+      <div class="nav-wrapper">
+        <ul class="left">
+          <li>
+            <a class="hide-on-large-only" ng-click="tune.goBack()"><i class="mdi-navigation-arrow-back"></i></a>
+          </li>
+        </ul>
+
+        <a class="page-title truncate">{{tune.title}}</a>
+
+        <ul class="right">
+          <li>
+            <a ng-click="tune.togglePlaying()"><i ng-class="{'mdi-av-play-arrow': !tune.isPlaying, 'mdi-av-pause': tune.isPlaying}"></i></a>
+          </li>
+          <li ng-class="{disabled: !tune.isPlaying}">
+            <a ng-click="tune.stopPlaying()" ng-class="{disabled: !tune.isPlaying}"><i class="mdi-av-stop"></i></a>
+          </li>
+          <li>
+            <a ng-click="tune.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !tune.isEditing, 'mdi-content-save': tune.isEditing}"></i></a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="tune-more"><i class="mdi-navigation-more-vert"></i></a>
+            <ul id="tune-more" class="dropdown-content">
+              <li><a href="#!"><i class="left mdi-action-favorite"></i>Add to My Tunes</a></li>
+              <li><a ng-href="/#!/europeana/{{tune.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a></li>
+              <li><a href="#!"><i class="left mdi-action-list"></i>Discography</a></li>
+              <li><a ng-href="http://www.youtube.com/results?search_query={{tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a></li>
+              <li><a ng-href="http://www.amazon.com/s/?field-keywords={{tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->

@@ -58,13 +58,4 @@ export default class Routing {
       $locationProvider.hashPrefix('!');
     });
   }
-
-  static isRoot(route) {
-    return Routing.Roots.some(element => element == route);
-  }
 }
-
-Routing.Roots = [
-  '/record',
-  '/settings',
-];

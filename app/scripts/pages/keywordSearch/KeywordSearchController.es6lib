@@ -7,11 +7,9 @@ export default class NotesSearchController {
     this.$routeParams = $routeParams;
     this.config = Config;
 
-    let keyword = $routeParams['keyword'];
+    this.keyword = $routeParams['keyword'];
 
-    $rootScope.$emit('changeKeyword', keyword);
-
-    if (keyword) {
+    if (this.keyword) {
       this._fetchTunes(keyword);
     }
     else {
@@ -41,5 +39,15 @@ export default class NotesSearchController {
     }
 
     this.pages[this.pages.length - 1].end = this.tunes.length;
+  }
+
+  searchKeyword() {
+    $('#keyword').blur();
+    location.href = `/#!/keywordSearch/${this.keyword}`;
+  }
+
+  clearKeyword() {
+    $('#keyword').focus();
+    this.keyword = '';
   }
 }
