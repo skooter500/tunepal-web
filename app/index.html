@@ -31,8 +31,19 @@
   <!-- Tile icon for Win8 (144x144) -->
   <meta name="msapplication-TileImage" content="images/tunepal_icon_144x144.png">
 
+  <!-- Remote debug using Vorlon.js -->
+  <!-- build:remove -->
+  <script>
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'http://' + location.hostname + ':1337/vorlon.js';
+
+document.getElementsByTagName('head')[0].appendChild(script);
+  </script>
+  <!-- endbuild -->
+
   <!-- Materialize -->
-  <!-- build:css lib/materialize/css/materialize.css -->
+  <!-- build:css lib/materialize/css/materialize-tunepal.css -->
   <link rel="stylesheet" href="lib/materialize/css/materialize.css">
   <!-- endbuild -->
 
