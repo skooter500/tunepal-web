@@ -30,7 +30,7 @@ class _TunebookManager {
     return tunebooks;
   }
 
-  static get selectedIds() {
+  get selectedIds() {
     return this._selectedIds;
   }
 

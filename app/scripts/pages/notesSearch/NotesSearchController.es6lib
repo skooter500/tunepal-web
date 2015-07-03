@@ -14,7 +14,7 @@ export default class NotesSearchController {
     this.tunes = [];
 
     for (let i = 1; i <= 15; i++) {
-      this.tunes.push(new Tune(i, `Tune Title ${i}`, 'Tune Alt Title ${i}', i, 'D', 'reel', 94.2 - i * 0.3));
+      this.tunes.push(new Tune(i, `Tune Title ${i}`, i, 'D', 'reel', 94.2 - i * 0.3));
     }
 
     this._calcPages();

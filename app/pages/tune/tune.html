@@ -10,7 +10,7 @@
           </li>
         </ul>
 
-        <a class="page-title truncate">{{tune.title}}</a>
+        <a class="page-title truncate">{{tune.tune.title}}</a>
 
         <ul class="right">
           <li>
@@ -26,10 +26,10 @@
             <a href="#" class="dropdown-button" data-activates="tune-more"><i class="mdi-navigation-more-vert"></i></a>
             <ul id="tune-more" class="dropdown-content">
               <li><a href="#!"><i class="left mdi-action-favorite"></i>Add to My Tunes</a></li>
-              <li><a ng-href="/#!/europeana/{{tune.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a></li>
+              <li><a ng-href="/#!/europeana/{{tune.tune.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a></li>
               <li><a href="#!"><i class="left mdi-action-list"></i>Discography</a></li>
-              <li><a ng-href="http://www.youtube.com/results?search_query={{tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a></li>
-              <li><a ng-href="http://www.amazon.com/s/?field-keywords={{tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a></li>
+              <li><a ng-href="http://www.youtube.com/results?search_query={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a></li>
+              <li><a ng-href="http://www.amazon.com/s/?field-keywords={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a></li>
             </ul>
           </li>
         </ul>
@@ -52,7 +52,7 @@
     <div class="col s12 m12 l6" ng-show="tune.isEditing">
       <div class="card">
         <div id="card-editor" class="card-content input-field">
-          <textarea id="abc" class="materialize-textarea" ng-model="tune.abc"></textarea>
+          <textarea id="abc" class="materialize-textarea" ng-model="tune.tune.notation"></textarea>
         </div>
       </div>
     </div>

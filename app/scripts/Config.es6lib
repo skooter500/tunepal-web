@@ -14,6 +14,7 @@ class _Config {
     this.CountdownTime = Utils.makeArray(0, 10);
     this.PlaybackSpeed = Utils.makeArray(1, 10);
     this.Transpose = Utils.makeArray(-12, 12);
+    this.ApiDomain = 'http://desolate-bastion-1462.herokuapp.com';
 
     this.Properties = Properties;
 
@@ -50,6 +51,17 @@ class _Config {
       });
     }
   }
+
+  formatDate(timestamp) {
+    var year = timestamp.getFullYear();
+    var month = timestamp.getMonth() + 1;
+    var day = timestamp.getDate();
+    var hours = timestamp.getHours();
+    var minutes = timestamp.getMinutes();
+    var seconds = timestamp.getSeconds();
+    return year + "-" + month + "-" + day + "%20"
+        + hours + "%3A" + minutes + "%3A" + seconds;
+  };
 }
 
 let Properties = [

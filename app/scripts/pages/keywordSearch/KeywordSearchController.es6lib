@@ -2,29 +2,49 @@ import Config from '../../Config.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
 export default class NotesSearchController {
-  constructor($scope, $rootScope, $routeParams, $timeout) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout) {
     this.$scope = $scope;  // view model
     this.$routeParams = $routeParams;
+    this.$http = $http;
     this.config = Config;
 
     this.keyword = $routeParams['keyword'];
 
     if (this.keyword) {
-      this._fetchTunes(keyword);
+      this._fetchTunes();
     }
     else {
       $timeout(() => $('#keyword').focus());
     }
   }
 
-  _fetchTunes(text) {
-    this.tunes = [];
+  _fetchTunes() {
+    //const sources = this.config.tunebooks.selectedIds.join();//TODO
+    const sources = 1;
+    const latitude = 1; //TODO
+    const longitude = 2;
+    const client = 'tunepal.org';
+    const localTimestamp = this.config.formatDate(new Date());
 
-    for (let i = 1; i <= 15; i++) {
-      this.tunes.push(new Tune(i, `Tune Title ${i}`, 'Tune Alt Title ${i}', i, 'D', 'reel', 94.2 - i * 0.3));
-    }
+    const url = `${this.config.ApiDomain}/api/keywordSearch`
+    + `?q=${this.keyword}`
+    + `&sources=${sources}`
+    + `&latitude=${latitude}`
+    + `&longitude=${longitude}`
+    + `&client=${client}`
+    + `&key_sigs=${this.config.timeSigs}`
+    + `&local_tstamp=${localTimestamp}`;
 
-    this._calcPages();
+    this.$http.get(url)
+    .success(data => {
+      this.tunes = [];
+
+      for (const i of data) {
+        this.tunes.push(new Tune(i.tunepalid, i.title, i.sourceId, i.keySignature, i.tuneType, i.confidence));
+      }
+
+      this._calcPages();
+    });
   }
 
   _calcPages() {

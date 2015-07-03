@@ -4,6 +4,10 @@
   background-color: $primary-color-light;
   color: $primary-font-color;
 
+  .card-content {
+    padding: 0;
+  }
+
   .divider {
     margin: 0 20px;
   }

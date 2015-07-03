@@ -1,9 +1,11 @@
+import Config from '../../Config.es6lib';
+
 export default class TuneController {
-  constructor($scope, $rootScope, $http, $timeout) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout) {
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
+    this.config = Config;
 
-    this.title = 'Tune';
     this.isPlaying = false;
     this.isEditing = false;
 
@@ -13,13 +15,18 @@ export default class TuneController {
       });
     });
 
-    $http.get('/images/cooleys.abc')
-      .success(data => this._createAbcEditor(data));
+    this.tunepalId = $routeParams['id'];
+    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
+
+    $http.get(url)
+    .success(data => {
+      this.tune = data;
+      this._createAbcEditor();
+    });
   }
 
-  _createAbcEditor(abc) {
-    this.abc = abc;
-    $('#abc').val(abc);
+  _createAbcEditor() {
+    $('#abc').val(this.tune.notation);
 
     this.abcEditor = new ABCJS.Editor('abc', {
       paper_id: 'score',
@@ -28,8 +35,7 @@ export default class TuneController {
 
     this._scaleScore();
 
-    this.title = this.abcEditor.tunes[0].metaText.title || this.title;
-    this.titleEncoded = encodeURIComponent(this.title);
+    this.tune.titleEncoded = encodeURIComponent(this.tune.title);
   }
 
   _scaleScore() {
