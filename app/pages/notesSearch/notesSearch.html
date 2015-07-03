@@ -11,7 +11,23 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 l6" ng-repeat="page in notesSearch.pages">
+    <div class="col s12 m12 center preloader-div" ng-show="!notesSearch.loaded">
+      <div class="preloader-wrapper big active center">
+        <div class="spinner-layer spinner-green-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m12 l6" ng-repeat="page in notesSearch.pages" ng-show="notesSearch.loaded">
       <div class="card">
         <div class="card-content">
           <div class="collection">

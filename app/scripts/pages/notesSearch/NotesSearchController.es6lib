@@ -8,8 +8,9 @@ export default class NotesSearchController {
     this.$http = $http;
     this.config = Config;
 
-    this.notes = $routeParams['notes'];
+    this.loaded = false;
 
+    this.notes = $routeParams['notes'];
     this._fetchTunes();
   }
 
@@ -39,6 +40,8 @@ export default class NotesSearchController {
       }
 
       this._calcPages();
+
+      this.loaded = true;
     });
   }
 

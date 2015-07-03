@@ -9,6 +9,8 @@ export default class NotesSearchController {
     this.config = Config;
 
     this.keyword = $routeParams['keyword'];
+    this.loading = this.keyword != null;
+    this.loaded = false;
 
     if (this.keyword) {
       this._fetchTunes();
@@ -44,6 +46,9 @@ export default class NotesSearchController {
       }
 
       this._calcPages();
+
+      this.loading = false;
+      this.loaded = true;
     });
   }
 

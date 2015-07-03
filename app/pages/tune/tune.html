@@ -25,11 +25,18 @@
           <li>
             <a href="#" class="dropdown-button" data-activates="tune-more"><i class="mdi-navigation-more-vert"></i></a>
             <ul id="tune-more" class="dropdown-content">
-              <li><a href="#!"><i class="left mdi-action-favorite"></i>Add to My Tunes</a></li>
-              <li><a ng-href="/#!/europeana/{{tune.tune.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a></li>
-              <li><a href="#!"><i class="left mdi-action-list"></i>Discography</a></li>
-              <li><a ng-href="http://www.youtube.com/results?search_query={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a></li>
-              <li><a ng-href="http://www.amazon.com/s/?field-keywords={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a></li>
+              <li>
+                <a ng-href="/#!/europeana/{{tune.tune.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a>
+              </li>
+              <li>
+                <a href="/#!/discography"><i class="left mdi-action-list"></i>Discography (TODO)</a>
+              </li>
+              <li>
+                <a ng-href="http://www.youtube.com/results?search_query={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a>
+              </li>
+              <li>
+                <a ng-href="http://www.amazon.com/s/?field-keywords={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -39,7 +46,23 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12" ng-class="{l6: tune.isEditing, l12: !tune.isEditing}">
+    <div class="col s12 m12 center preloader-div" ng-show="!tune.loaded">
+      <div class="preloader-wrapper big active center">
+        <div class="spinner-layer spinner-green-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m12" ng-class="{l6: tune.isEditing, l12: !tune.isEditing}" ng-show="tune.loaded">
       <div class="card">
         <div class="score card-content">
           <div id="card-score">

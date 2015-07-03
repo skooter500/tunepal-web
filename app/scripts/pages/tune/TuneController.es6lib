@@ -6,6 +6,7 @@ export default class TuneController {
     this.$timeout = $timeout;
     this.config = Config;
 
+    this.loaded = false;
     this.isPlaying = false;
     this.isEditing = false;
 
@@ -21,7 +22,8 @@ export default class TuneController {
     $http.get(url)
     .success(data => {
       this.tune = data;
-      this._createAbcEditor();
+      this.loaded = true;
+      this.$timeout(() => this._createAbcEditor());
     });
   }
 
