@@ -10,12 +10,6 @@ export default class TuneController {
     this.isPlaying = false;
     this.isEditing = false;
 
-    $timeout(() => {
-      $('.dropdown-button').dropdown({
-        constrain_width: false
-      });
-    });
-
     this.tunepalId = $routeParams['id'];
     const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
 
@@ -25,6 +19,14 @@ export default class TuneController {
       this.loaded = true;
       this.$timeout(() => this._createAbcEditor());
     });
+
+    $timeout(() => {
+      $('.dropdown-button').dropdown({
+        constrain_width: false
+      });
+    });
+
+    $(window).resize(() => this._resizeScore());
   }
 
   _createAbcEditor() {
@@ -32,15 +34,15 @@ export default class TuneController {
 
     this.abcEditor = new ABCJS.Editor('abc', {
       paper_id: 'score',
-      onchange: () => this._scaleScore(),
+      onchange: () => this._resizeScore(),
     });
 
-    this._scaleScore();
+    this._resizeScore();
 
     this.tune.titleEncoded = encodeURIComponent(this.tune.title);
   }
 
-  _scaleScore() {
+  _resizeScore() {
     const score = $('#score');
     const cardScore = $('#card-score');
     const cardContent = $('.score.card-content');
@@ -71,6 +73,15 @@ export default class TuneController {
   toggleEditing() {
     this.isEditing = !this.isEditing;
 
-    this.$timeout(() => this._scaleScore());
+    this.$timeout(() => {
+      this._resizeScore();
+
+      // scroll to active element
+      const scrollTop = this.isEditing
+        ? $('#card-editor').offset().top - $('#card-score').offset().top
+        : 0;
+
+      $("html, body").animate({scrollTop: scrollTop}, 500);
+    });
   }
 }

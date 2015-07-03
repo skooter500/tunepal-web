@@ -22,12 +22,12 @@ export default class SettingsController {
     // scroll to the first selected item when modal is popping up
     $('.modal-trigger').each((i, trigger) => {
       $(trigger).click(() => {
-        let modal = $(trigger.hash);
-        let content = modal.find('.modal-content');
-        let current = content.find('.secondary-content').parent();
+        const modal = $(trigger.hash);
+        const content = modal.find('.modal-content');
+        const current = content.find('.secondary-content').parent();
         if (current == null) return;
 
-        let scrollTop = current[0].offsetTop + current.outerHeight() - content.height() / 2;
+        const scrollTop = current[0].offsetTop + current.outerHeight() - content.height() / 2;
         content.animate({scrollTop: scrollTop}, 500);
       });
     });
