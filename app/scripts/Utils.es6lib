@@ -88,6 +88,17 @@ export default class Utils {
       );
     }
   }
+
+  static joinSet(set) {
+    let s = '';
+    let i = 0;
+    for (const item of set) {
+      if (i != 0) s += ',';
+      s += item;
+      i++;
+    }
+    return s;
+  }
 }
 
 Array.prototype.last = (Array.prototype.last

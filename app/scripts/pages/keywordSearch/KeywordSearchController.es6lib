@@ -1,4 +1,5 @@
 import Config from '../../Config.es6lib';
+import Utils from '../../Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
 export default class NotesSearchController {
@@ -21,8 +22,7 @@ export default class NotesSearchController {
   }
 
   _fetchTunes() {
-    //const sources = this.config.tunebooks.selectedIds.join();//TODO
-    const sources = 1;
+    const sources = Utils.joinSet(this.config.tunebooks.selectedIds);
     const latitude = 1; //TODO
     const longitude = 2;
     const client = 'tunepal.org';
