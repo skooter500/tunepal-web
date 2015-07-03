@@ -32,7 +32,7 @@ export default class RecordController {
   }
 
   onTranscribed(result) {
-    this.$scope.$apply(() => this.result = result);
+    location.href = `/#!/notesSearch/${result.transcription}`;
   }
 
   playSignal() {
