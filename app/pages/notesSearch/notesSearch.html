@@ -35,7 +35,7 @@
               <span class="title">Top {{page.start}} - {{page.end}}</span>
             </div>
             <div class="divider"></div>
-            <div ng-repeat="tune in notesSearch.tunes | limitTo : 10 : page.startIndex" class="avatar">
+            <div ng-repeat="tune in notesSearch.tunes | limitTo : notesSearch.pageSize : page.startIndex" class="avatar">
               <a class="collection-item avatar" ng-href="/#!/tune/{{tune.id}}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" />
                 <span class="title">{{tune.title}}</span>

@@ -62,12 +62,10 @@ export default class TuneController {
 
   togglePlaying() {
     this.isPlaying = !this.isPlaying;
-    this.$rootScope.$emit(this.isPlaying ? 'play' : 'pause');
   }
 
   stopPlaying() {
     this.isPlaying = false;
-    this.$rootScope.$emit('stop');
   }
 
   toggleEditing() {
