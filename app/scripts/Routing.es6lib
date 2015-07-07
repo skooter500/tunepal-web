@@ -48,7 +48,7 @@ export default class Routing {
         controllerAs: 'settings',
         templateUrl: 'pages/settings/settings.html',
       })
-      .when('/tune/:id', {
+      .when('/tune/:tunepalId', {
         controller: 'TuneController',
         controllerAs: 'tune',
         templateUrl: 'pages/tune/tune.html',

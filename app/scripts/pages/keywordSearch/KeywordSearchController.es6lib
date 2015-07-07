@@ -38,11 +38,11 @@ export default class NotesSearchController {
     + `&local_tstamp=${localTimestamp}`;
 
     this.$http.get(url)
-    .success(data => {
+    .success(rawTunes => {
       this.tunes = [];
 
-      for (const i of data) {
-        this.tunes.push(new Tune(i.tunepalid, i.title, i.sourceId, i.keySignature, i.tuneType, i.confidence));
+      for (const rawTune of rawTunes) {
+        this.tunes.push(new Tune(rawTune));
       }
 
       this._calcPages();

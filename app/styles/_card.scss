@@ -37,8 +37,10 @@
     }
 
     .secondary-content {
+      top: 10px;
       right: 20px;
       color: rgba(255,255,255,.5);
+      text-align: right;
     }
 
     &.card-collection-title {
@@ -69,9 +71,6 @@
   margin-left: 72px;
 }
 
-.modal-content {
-  padding: 0;
-}
 .modal {
   .secondary-content i {
     color: $secondary-color;

@@ -1,6 +1,7 @@
 #tunepal-index {
 
 background-color: $primary-background-color;
+color: $primary-font-color;
 
 body, .modal {
   background-color: $primary-background-color;
@@ -46,6 +47,14 @@ a.disabled {
 
 .preloader-div {
   padding-top: 40px;
+}
+
+.highlight {
+  color: $secondary-color;
+}
+
+.lowlight {
+  color: #b3b3b3;
 }
 
 }

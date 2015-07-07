@@ -9,6 +9,22 @@
     </nav>
   </header>
 
+  <div id="confidence-popup" class="modal">
+    <div class="modal-content">
+      <p ng-repeat="tune in notesSearch.tunes | limitTo : 1">
+        Tunepal thinks its called
+        <a ng-href="/#!/tune/{{tune.tunepalId}}">
+          <span class="highlight">{{tune.title}}</span>
+          <span ng-if="tune.altTitle">or <span class="highlight">{{tune.altTitle}}</span></span>
+        </a>
+        with <span class="highlight">{{tune.confidence * 100 | number: 1}}%</span> confidence
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+    </div>
+  </div>
+
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
     <div class="col s12 m12 center preloader-div" ng-show="!notesSearch.loaded">
@@ -36,12 +52,14 @@
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in notesSearch.tunes | limitTo : notesSearch.pageSize : page.startIndex" class="avatar">
-              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.id}}">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalId}}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" />
-                <span class="title">{{tune.title}}</span>
-                <p>{{tune.tunebook.shortName}}</p>
-                <p>{{tune.description}}</p>
-                <span class="secondary-content">{{tune.confidence * 100 | number: 1}}%</span>
+                <span class="title truncate">{{tune.title}}</span>
+                <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>
+                <span class="secondary-content">
+                  {{tune.confidence * 100 | number: 1}}%
+                  <p>{{tune.tuneType}} in {{tune.keySignature}}</p>
+                </span>
               </a>
               <div class="divider" ng-if="!$last"></div>
             </div>

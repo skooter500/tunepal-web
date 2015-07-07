@@ -4,6 +4,13 @@
   max-height: 70%;
 }
 
+.modal-footer {
+  background-color: $primary-color;
+  a {
+    color: $primary-font-color;
+  }
+}
+
 // Modal with fixed header
 .modal.modal-fixed-header {
   padding: 0;

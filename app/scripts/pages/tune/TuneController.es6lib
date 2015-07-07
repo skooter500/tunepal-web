@@ -10,7 +10,7 @@ export default class TuneController {
     this.isPlaying = false;
     this.isEditing = false;
 
-    this.tunepalId = $routeParams['id'];
+    this.tunepalId = $routeParams['tunepalId'];
     const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
 
     $http.get(url)
