@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="FileImportApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Tunepal.js Test</title>
+
+  <link href="file_import.css" rel="stylesheet" />
+</head>
+<body ng-controller="FileImportController as file">
+  <div class="block">
+    <div class="block">Read audio from:</div>
+
+    <div class="block" ng-repeat="sample in file.samples">
+      <label>
+        <input type="radio" name="source" ng-model="file.source" ng-value="sample.url" />
+        <span>{{sample.url}}</span>
+      </label>
+    </div>
+
+    <div class="block">
+      <label>
+        <input type="radio" name="source" ng-model="file.source" ng-value="file.customUrl" />
+        <span>From URL</span>
+      </label>
+      <div>
+        <input type="text" ng-model="file.customUrl" />
+      </div>
+    </div>
+
+    <div class="block">
+      <label>
+        <input type="radio" name="source" ng-model="file.source" value="local" />
+        <span>From local file</span>
+      </label>
+      <div><input type="file" myfile="file.file" /></div>
+    </div>
+  </div>
+  <hr/>
+  <div class="block">
+    <label><input type="checkbox" ng-model="file.enableSampleRateConversion">Enable Sample Rate Conversion</label>
+  </div>
+  <div class="block">
+    <button ng-click="file.readAudio()">Start Analyzing</button>
+  </div>
+  <div class="block">
+    <audio id="audio" controls="controls"></audio>
+  </div>
+  <div class="block">
+    <div>Status: <span>{{file.status}}</span></div>
+    <div>Transcription: <span>{{file.transcription}}</span></div>
+    <div>Input Sample Rate: <span>{{file.sampleRate}}</span> (this is set by the sound card at the os level)</div>
+    <div>Sample Rate After Conversion: <span>{{file.convertedSampleRate}}</span></div>
+    <div>Duration: <span>{{file.duration}}</span></div>
+  </div>
+  <div class="block">
+    <div>
+      <button ng-click="file.playSignal()">{{file.signalPlayer ? 'Stop' : 'Play'}}</button> raw signal.
+    </div>
+    <div>
+      <button ng-click="file.playResampledSignal()">{{file.resampledPlayer ? 'Stop' : 'Play'}}</button> raw signal, re-sampled at 22050Hz.
+    </div>
+    <div>
+      <button ng-click="file.downloadSignal()">Download</button> raw signal. (Format: array of 32bits floats, each between -1.0 and 1.0, little-endian)
+    </div>
+    <div>
+      <button ng-click="file.downloadResampledSignal()">Download</button> raw signal, re-sampled at 22050Hz. (Format: array of 32bits floats, each between -32767.0 and 32768.0, little-endian)
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+  <script src="/scripts/3rdparty/browser-polyfill.js"></script>
+  <script src="/scripts/3rdparty/dsp.js"></script>
+  <script src="/scripts/3rdparty/FileSaver-babc6d9d8f.js"></script>
+  <script src="FileImportController.js"></script>
+</body>
+</html>

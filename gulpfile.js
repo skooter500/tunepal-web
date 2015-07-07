@@ -13,13 +13,16 @@ var glob = require('glob');
 var through = require('through2');
 var transform = require('vinyl-transform');
 
+var htmlFiles = ['app/index.html', 'app/{pages,tests}/**/*.html'];
+var es6Files = ['app/{scripts,tests}/**/*.{es6,es6lib}'];
+
 function swallowError(err) {
   console.log(err.toString());
   this.emit('end');
 }
 
 gulp.task('html', function() {
-  return gulp.src(['app/index.html', 'app/pages/**/*.html'])
+  return gulp.src(htmlFiles)
   .pipe($.htmlhint())
   .pipe($.htmlhint.reporter())
   .pipe($.size({title: 'materialize-fonts'}));
@@ -114,7 +117,7 @@ gulp.task('styles', function () {
 
 // Build ECMAScript 6
 gulp.task('es6', function () {
-  return gulp.src(['app/**/*.es6'])
+  return gulp.src(es6Files)
     .pipe($.plumber({
       errorHandler: swallowError
     }))
@@ -153,11 +156,11 @@ gulp.task('serve', ['build'], function () {
     }
   });
 
-  gulp.watch(['app/index.html', 'app/pages/**/*.html'], ['html', reload]);
-  gulp.watch(['app/{pages,scripts}/**/*.{es6,es6lib}'], ['es6', reload]);
+  gulp.watch(htmlFiles, ['html', reload]);
+  gulp.watch(es6Files, ['es6', reload]);
   gulp.watch(['app/styles/_variables.scss'], ['materialize-styles', 'styles', reload]);
   gulp.watch(['app/styles/materialize.scss'], ['materialize-styles', reload]);
-  gulp.watch(['app/styles/**/*.scss', '!app/styles/{_variables,materialize}.scss'], ['styles', reload]);
+  gulp.watch(['app/{styles,tests}/**/*.scss', '!app/styles/{_variables,materialize}.scss'], ['styles', reload]);
 });
 
 // Build and serve the output from the dist build
