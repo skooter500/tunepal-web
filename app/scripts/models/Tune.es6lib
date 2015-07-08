@@ -6,7 +6,7 @@ export default class Tune {
     this.altTitle = rawTune.altTitle;
     this.x = rawTune.x;
     this.id = rawTune.id;
-    this.tunepalId = rawTune.tunepalId;
+    this.tunepalId = rawTune.tunepalid;
     this.tunebook = TunebookManager.getById(rawTune.sourceId);
     this.tuneType = rawTune.tuneType;
     this.keySignature = rawTune.keySignature;
