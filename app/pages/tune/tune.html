@@ -14,20 +14,22 @@
 
         <ul class="right">
           <li>
-            <a ng-click="tune.togglePlaying()"><i ng-class="{'mdi-av-play-arrow': !tune.isPlaying, 'mdi-av-pause': tune.isPlaying}"></i></a>
+            <a class="tooltipped" data-tooltip="{{tune.isPlaying ? 'Pause' : 'Play'}}" ng-click="tune.togglePlaying()">
+              <i ng-class="{'mdi-av-play-arrow': !tune.isPlaying, 'mdi-av-pause': tune.isPlaying}"></i>
+            </a>
           </li>
           <li ng-class="{disabled: !tune.isPlaying}">
-            <a ng-click="tune.stopPlaying()" ng-class="{disabled: !tune.isPlaying}"><i class="mdi-av-stop"></i></a>
+            <a class="tooltipped" data-tooltip="Stop" ng-click="tune.stopPlaying()" ng-class="{disabled: !tune.isPlaying}"><i class="mdi-av-stop"></i></a>
           </li>
           <li>
-            <a ng-click="tune.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !tune.isEditing, 'mdi-content-save': tune.isEditing}"></i></a>
+            <a class="tooltipped" data-tooltip="{{tune.isEditing ? 'Save' : 'Edit'}}" ng-click="tune.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !tune.isEditing, 'mdi-content-save': tune.isEditing}"></i></a>
           </li>
           <li>
-            <a href="#" class="dropdown-button" data-activates="tune-more"><i class="mdi-navigation-more-vert"></i></a>
+            <a class="tooltipped" data-tooltip="Europeana Search" ng-href="/#!/europeana/{{tune.tune.titleEncoded}}"><i class="mdi-action-list"></i></a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button tooltipped" data-activates="tune-more" data-tooltip="More"><i class="mdi-navigation-more-vert"></i></a>
             <ul id="tune-more" class="dropdown-content">
-              <li>
-                <a ng-href="/#!/europeana/{{tune.tune.titleEncoded}}"><i class="left mdi-action-list"></i>Europeana</a>
-              </li>
               <li>
                 <a href="/#!/discography"><i class="left mdi-action-list"></i>Discography (TODO)</a>
               </li>

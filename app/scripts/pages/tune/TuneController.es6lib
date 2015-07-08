@@ -22,7 +22,12 @@ export default class TuneController {
 
     $timeout(() => {
       $('.dropdown-button').dropdown({
-        constrain_width: false
+        constrain_width: false,
+      });
+
+      $('.tooltipped').tooltip({
+        position: 'bottom',
+        delay: 50,
       });
     });
 
