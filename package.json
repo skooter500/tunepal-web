@@ -34,6 +34,7 @@
     "gulp-useref": "^1.2.0",
     "gulp-util": "^3.0.5",
     "merge-stream": "^0.1.7",
+    "require-dir": "^0.3.0",
     "run-sequence": "^1.1.0",
     "through2": "^0.6.5",
     "vinyl-transform": "^1.0.0"

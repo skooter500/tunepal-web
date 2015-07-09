@@ -2,7 +2,7 @@
 <html ng-app="FileImportApp">
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Tunepal.js Test</title>
+  <title>Tunepal.js Test File Import</title>
 
   <link href="file_import.css" rel="stylesheet" />
 </head>
@@ -10,14 +10,14 @@
   <div class="block">
     <div class="block">Read audio from:</div>
 
-    <div class="block" ng-repeat="sample in file.samples">
+    <div ng-repeat="sample in file.samples">
       <label>
-        <input type="radio" name="source" ng-model="file.source" ng-value="sample.url" />
+        <input type="radio" name="source" ng-model="file.source" ng-value="sample.url" ng-change="file.realNotes = sample.transcription" />
         <span>{{sample.url}}</span>
       </label>
     </div>
 
-    <div class="block">
+    <div>
       <label>
         <input type="radio" name="source" ng-model="file.source" ng-value="file.customUrl" />
         <span>From URL</span>
@@ -48,6 +48,7 @@
   <div class="block">
     <div>Status: <span>{{file.status}}</span></div>
     <div>Transcription: <span>{{file.transcription}}</span></div>
+    <div>Real Notes&nbsp;&nbsp;&nbsp;: <span>{{file.realNotes || 'N/A'}}</span></div>
     <div>Input Sample Rate: <span>{{file.sampleRate}}</span> (this is set by the sound card at the os level)</div>
     <div>Sample Rate After Conversion: <span>{{file.convertedSampleRate}}</span></div>
     <div>Duration: <span>{{file.duration}}</span></div>

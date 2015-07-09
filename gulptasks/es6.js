@@ -1,0 +1,23 @@
+'use strict';
+
+var gulp = require('gulp');
+var $ = require('gulp-load-plugins')();
+var path = require('path');
+var swallowError = require('./swallow-error');
+
+// Build ECMAScript 6
+gulp.task('es6', function () {
+  return gulp.src(['app/{scripts,tests}/**/*.es6'])
+    .pipe($.plumber({
+      errorHandler: swallowError
+    }))
+    .pipe($.es6ModuleTranspiler())
+    .pipe($.babel())
+    .pipe($.rename(function (filePath) {
+      filePath.dirname = filePath.dirname.replace('app' + path.sep, '');
+      filePath.basename = filePath.basename.replace('.es6', '');
+      filePath.extname = '.js';
+    }))
+    .pipe(gulp.dest('.tmp'))
+    .pipe($.size({title: 'es6'}));
+});

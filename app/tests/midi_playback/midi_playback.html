@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="MidiPlaybackApp">
+<head lang="en" >
+  <meta charset="UTF-8">
+  <title>Tunepal.js Test Midi Playback</title>
+
+  <link href="midi_playback.css" rel="stylesheet" />
+</head>
+<body ng-controller="MidiPlaybackController as midi">
+  <div class="block">
+    <div class="block">Read audio from:</div>
+
+    <div ng-repeat="sample in midi.samples">
+      <label>
+        <input type="radio" name="source" ng-model="midi.source" ng-value="sample.url" />
+        <span>{{sample.url}}</span>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        <input type="radio" name="source" ng-model="midi.source" ng-value="midi.customUrl" />
+        <span>From URL</span>
+      </label>
+      <div>
+        <input type="text" ng-model="midi.customUrl" />
+      </div>
+    </div>
+
+    <div>
+      <label>
+        <input type="radio" name="source" ng-model="midi.source" value="local" />
+        <span>From local file</span>
+      </label>
+      <div><input type="file" myfile="midi.file" /></div>
+    </div>
+  </div>
+  <hr/>
+  <div class="block">
+    <button ng-click="midi.readAudio()" ng-disabled="!midi.midiPluginReady">Load Midi</button>
+  </div>
+  <div class="block">
+    <button ng-click="midi.play()" ng-disabled="!midi.midiPlayerReady">Play</button>
+    <button ng-click="midi.pause()" ng-disabled="!midi.midiPlayerReady">Pause</button>
+    <button ng-click="midi.resume()" ng-disabled="!midi.midiPlayerReady">Resume</button>
+    <button ng-click="midi.stop()" ng-disabled="!midi.midiPlayerReady">Stop</button>
+  </div>
+  <div class="block">
+    <span id="currentTime"></span>
+    / <span id="endTime"></span>
+  </div>
+  <div class="block">
+    <div>Status: <span>{{midi.status}}</span></div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+  <script src="/scripts/3rdparty/browser-polyfill.js"></script>
+  <script src="/lib/MIDI.js/js/MIDI.js"></script>
+  <script src="MidiPlaybackController.js"></script>
+</body>
+</html>

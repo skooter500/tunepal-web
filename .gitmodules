@@ -2,3 +2,7 @@
 	path = app/lib/materialize
 	url = git@github.com:chrisxue815/materialize.git
 	branch = master
+[submodule "app/lib/MIDI.js"]
+	path = app/lib/MIDI.js
+	url = git@github.com:chrisxue815/MIDI.js.git
+	branch = master

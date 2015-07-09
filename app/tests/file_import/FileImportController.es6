@@ -15,10 +15,7 @@ export default class FileImportController {
     ];
 
     this.source = this.samples[1].url;
-  }
-
-  readLocalFile(e) {
-    this.file = e.target.files[0];
+    this.realNotes = this.samples[1].transcription;
   }
 
   readAudio() {
@@ -28,7 +25,7 @@ export default class FileImportController {
     .then(this.apply(url => {
       $('audio').attr('src', url);
 
-      var request = new XMLHttpRequest();
+      const request = new XMLHttpRequest();
       request.open('GET', url, true);
       request.responseType = 'arraybuffer';
       request.onload = this.apply(() => this._analyzeAudio(request.response));
@@ -41,7 +38,7 @@ export default class FileImportController {
     return new Promise((resolve, reject) => {
       switch (this.source) {
         case 'local':
-          let reader = new FileReader();
+          const reader = new FileReader();
           reader.onload = e => resolve(e.target.result);
           reader.readAsDataURL(this.file);
           break;
@@ -65,14 +62,14 @@ export default class FileImportController {
     this._audio = audio;
     this._signal = audio.getChannelData(0);
 
-    let transcriber = new TranscriberAsync();
-    let initParams = {
+    const transcriber = new TranscriberAsync();
+    const initParams = {
       inputSampleRate: audio.sampleRate,
       sampleTime: audio.duration,
       fundamental: 'D',
       enableSampleRateConversion: this.enableSampleRateConversion,
     };
-    let transcribeParams = {
+    const transcribeParams = {
       signal: this._signal,
       midi: false,
     };
@@ -131,20 +128,20 @@ export default class FileImportController {
   }
 
   downloadSignal() {
-    let blob = new Blob([this._signal], {type: 'application/octet-stream'});
+    const blob = new Blob([this._signal], {type: 'application/octet-stream'});
     saveAs(blob, 'happy-birthday-insignal.bin');
   }
 
   downloadResampledSignal() {
-    let blob = new Blob([this._resampledSignal], {type: 'application/octet-stream'});
+    const blob = new Blob([this._resampledSignal], {type: 'application/octet-stream'});
     saveAs(blob, 'happy-birthday-outsignal.bin');
   }
 
   // apply() is used to execute an expression in angular from outside of the angular framework.
   // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
   apply(func, that = this) {
-    let wrap = function() {
-      let args = arguments;
+    const wrap = function() {
+      const args = arguments;
       return this.$scope.$apply(() => func.apply(that, args));
     };
     return wrap.bind(this);
