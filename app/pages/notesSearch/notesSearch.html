@@ -57,7 +57,7 @@
                 <span class="title truncate">{{tune.title}}</span>
                 <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>
                 <span class="secondary-content">
-                  {{tune.confidence * 100 | number: 1}}%
+                  <p class="confidence">{{tune.confidence * 100 | number: 1}}%</p>
                   <p>{{tune.tuneType}} in {{tune.keySignature}}</p>
                 </span>
               </a>
