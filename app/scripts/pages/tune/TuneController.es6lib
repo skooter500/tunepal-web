@@ -142,6 +142,7 @@ export default class TuneController {
   }
 
   showAddThis() {
-    $('#at4m-sb')[0].click();
+    const addThisButton = document.getElementById('at4m-sb');
+    addThisButton.click();
   }
 }
