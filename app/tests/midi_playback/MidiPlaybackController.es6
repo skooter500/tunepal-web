@@ -1,4 +1,4 @@
-import Utils from '../../scripts/Utils.es6lib';
+import Utils from '../../scripts/utils/Utils.es6lib';
 
 export default class MidiPlaybackController {
   constructor($scope) {

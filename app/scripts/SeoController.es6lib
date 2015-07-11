@@ -1,0 +1,16 @@
+import SearchParams from './utils/SearchParams.es6lib';
+
+export default class SeoController {
+  constructor() {
+    const params = new SearchParams();
+    this._route = params.get('_escaped_fragment_');
+  }
+
+  get enabled() {
+    return this._route != null;
+  }
+
+  navigate() {
+    location.href = `/#!${this._route}`;
+  }
+}

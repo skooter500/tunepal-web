@@ -1,5 +1,5 @@
 import Config from '../../Config.es6lib';
-import Utils from '../../Utils.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
 export default class NotesSearchController {

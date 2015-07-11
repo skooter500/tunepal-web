@@ -1,4 +1,5 @@
 import Routing from './Routing.es6lib';
+import SeoController from './SeoController.es6lib';
 
 $(function() {
   FastClick.attach(document.body);
@@ -7,7 +8,7 @@ $(function() {
 
   // Side Navigation fix
   $('.side-nav li a').on('click', function(e) {
-    let windowSize = $(window).width();
+    const windowSize = $(window).width();
     if (windowSize <= 992) {
       $('.button-collapse').sideNav('hide');
     }
@@ -16,6 +17,12 @@ $(function() {
   $('.drag-target').remove();
 });
 
-let app = angular.module('TunepalApp', ['ngCookies', 'ngRoute']);
+const seo = new SeoController();
 
-let routing = new Routing(app);
+if (seo.enabled) {
+  seo.navigate();
+}
+else {
+  window.tunepalApp = angular.module('TunepalApp', ['ngCookies', 'ngRoute']);
+  window.tunepalRouting = new Routing(window.tunepalApp);
+}

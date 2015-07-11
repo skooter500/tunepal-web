@@ -34,11 +34,13 @@
   <!-- Remote debug using Vorlon.js -->
   <!-- build:remove -->
   <script>
+if (false) {
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.src = 'http://' + location.hostname + ':1337/vorlon.js';
 
 document.getElementsByTagName('head')[0].appendChild(script);
+}
   </script>
   <!-- endbuild -->
 

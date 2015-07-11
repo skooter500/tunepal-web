@@ -140,4 +140,8 @@ export default class TuneController {
       return new Blob([uInt8Array], {type: contentType});
     }
   }
+
+  showAddThis() {
+    $('#at4m-sb')[0].click();
+  }
 }

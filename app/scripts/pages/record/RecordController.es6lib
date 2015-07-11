@@ -1,7 +1,7 @@
 import Recorder from './Recorder.es6lib';
 import Renderer from './Renderer.es6lib';
 import Config from '../../Config.es6lib';
-import Utils from '../../Utils.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 
 export default class RecordController {
   constructor($scope, $rootScope) {

@@ -1,5 +1,5 @@
 import Tunebook from './Tunebook.es6lib';
-import Utils from '../Utils.es6lib';
+import Utils from '../utils/Utils.es6lib';
 
 class _TunebookManager {
   constructor() {
@@ -11,7 +11,7 @@ class _TunebookManager {
 
     this._selectedIds = Utils.getObjectFromStorage('tunebookSelectedIds');
 
-    if (this._selectedIds == null) {
+    if (this._selectedIds === null) {
       this._selectedIds = this.DefaultSelectedIds;
       Utils.setObjectToStorage('tunebookSelectedIds', this._selectedIds);
     }
@@ -20,10 +20,10 @@ class _TunebookManager {
   }
 
   _updateTunebooks() {
-    let rawTunebooks = this.DefaultTunebooks; //TODO: read from server
-    let tunebooks = [];
+    const rawTunebooks = this.DefaultTunebooks; //TODO: read from server
+    const tunebooks = [];
 
-    for (let rawTunebook of rawTunebooks) {
+    for (const rawTunebook of rawTunebooks) {
       tunebooks[rawTunebook.id] = new Tunebook(rawTunebook);
     }
 
@@ -35,13 +35,13 @@ class _TunebookManager {
   }
 
   get selectedShortNames() {
-    if (this._selectedIds.size == 0) {
+    if (this._selectedIds.size === 0) {
       return 'None';
     }
     else {
       let names = '';
       let i = 0;
-      for (let id of this._selectedIds) {
+      for (const id of this._selectedIds) {
         if (i != 0) names += ', ';
         names += this._tunebooks[id].shortName;
         i++
@@ -70,7 +70,7 @@ class _TunebookManager {
     }
     else {
       this._selectedIds.add(id);
-      if (this._selectedIds.size == this._tunebooks.length - 1) {
+      if (this._selectedIds.size === this._tunebooks.length - 1) {
         this._selectedIds = new Set([0]);
       }
     }
@@ -86,7 +86,7 @@ class _TunebookManager {
     }
     else if (this._selectedIds.has(0)) {
       this._selectedIds = new Set();
-      for (let tunebook of this._tunebooks) {
+      for (const tunebook of this._tunebooks) {
         if (tunebook.id != id && tunebook.id != 0) {
           this._selectedIds.add(tunebook.id);
         }
@@ -105,9 +105,9 @@ class _TunebookManager {
   }
 }
 
-let DefaultSelectedIds = [0];
+const DefaultSelectedIds = [0];
 
-let DefaultTunebooks = [
+const DefaultTunebooks = [
   {
     "id": 0,
     "name": "All",
@@ -343,6 +343,6 @@ let DefaultTunebooks = [
   },
 ];
 
-let TunebookManager = new _TunebookManager();
+const TunebookManager = new _TunebookManager();
 
 export default TunebookManager;

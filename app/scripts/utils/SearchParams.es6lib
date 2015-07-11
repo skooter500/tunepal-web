@@ -1,0 +1,19 @@
+export default class SearchParams {
+  constructor() {
+    this.params = [];
+    const query = location.search.substring(1);
+    const fragments = query.split('&');
+    for (const fragment of fragments) {
+      const pair = fragment.split('=');
+      this.params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    }
+  }
+
+  has(key) {
+    return typeof this.params[key] === 'undefined';
+  }
+
+  get(key) {
+    return this.params[key];
+  }
+}

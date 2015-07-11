@@ -1,4 +1,4 @@
-import Utils from '../../Utils.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 import TranscriberAsync from '../../transcription/TranscriberAsync.es6lib';
 
 export default class Recorder {
