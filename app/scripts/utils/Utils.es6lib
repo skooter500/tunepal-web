@@ -1,14 +1,22 @@
-export default class Utils {
-  static getObjectFromStorage(key) {
+import DateUtils from './DateUtils.es6lib'
+import ViewUtils from './ViewUtils.es6lib'
+
+class _Utils {
+  constructor() {
+    this.date = DateUtils;
+    this.view = ViewUtils;
+  }
+
+  getObjectFromStorage(key) {
     let value = localStorage.getItem(key);
     return value && JSON.parse(value);
   }
 
-  static setObjectToStorage(key, value) {
+  setObjectToStorage(key, value) {
     localStorage.setItem(key, JSON.stringify((value)));
   }
 
-  static makeArray(start = 0, end = 10, step = 1) {
+  makeArray(start = 0, end = 10, step = 1) {
     let array = [];
     for (let i = start; i <= end; i += step) {
       array.push(i);
@@ -16,7 +24,7 @@ export default class Utils {
     return array;
   }
 
-  static defineProperty(className, ...names) {
+  defineProperty(className, ...names) {
     for (name of names) {
       Object.defineProperty(className, name, {
         get: function() { return this[`_${name}`]; },
@@ -25,7 +33,7 @@ export default class Utils {
     }
   }
 
-  static createEnum(names) {
+  createEnum(names) {
     let enumClass = {};
     for (let i = 0; i < names.length; i++) {
       enumClass[names[i]] = i + 1;
@@ -33,7 +41,7 @@ export default class Utils {
     return enumClass;
   }
 
-  static createPolyfills() {
+  createPolyfills() {
     if (typeof navigator !== 'undefined') {
       navigator.getUserMedia = (navigator.getUserMedia
         || navigator.webkitGetUserMedia
@@ -89,7 +97,7 @@ export default class Utils {
     }
   }
 
-  static joinSet(set) {
+  joinSet(set) {
     let s = '';
     let i = 0;
     for (const item of set) {
@@ -107,4 +115,6 @@ Array.prototype.last = (Array.prototype.last
   }
 );
 
+const Utils = new _Utils();
 Utils.createPolyfills();
+export default Utils;

@@ -7,6 +7,7 @@ export default class RecordController {
   constructor($scope, $rootScope) {
     this.$scope = $scope;  // view model
     this.config = Config;
+    this.utils = Utils;
     this.audioContext = this.config.audioContext;
 
     this.recorder = new Recorder(this.config, this.audioContext);

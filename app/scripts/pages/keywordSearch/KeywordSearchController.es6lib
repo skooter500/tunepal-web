@@ -8,6 +8,7 @@ export default class NotesSearchController {
     this.$routeParams = $routeParams;
     this.$http = $http;
     this.config = Config;
+    this.utils = Utils;
 
     this.keyword = $routeParams['keyword'];
     this.loading = this.keyword != null;
@@ -26,7 +27,7 @@ export default class NotesSearchController {
     const latitude = 1; //TODO
     const longitude = 2;
     const client = 'tunepal.org';
-    const localTimestamp = this.config.formatDate(new Date());
+    const localTimestamp = Utils.date.format(new Date());
 
     const url = `${this.config.ApiDomain}/api/keywordSearch`
     + `?q=${this.keyword}`

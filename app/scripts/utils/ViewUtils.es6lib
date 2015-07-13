@@ -1,0 +1,8 @@
+class _ViewUtils {
+  showSideNav() {
+    $('.hamburger-button').sideNav('show');
+  }
+}
+
+const ViewUtils = new _ViewUtils();
+export default ViewUtils;

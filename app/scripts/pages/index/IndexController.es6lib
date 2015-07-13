@@ -1,11 +1,13 @@
 import Config from '../../Config.es6lib';
 import Routing from '../../Routing.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 
 export default class IndexController {
   constructor($scope, $rootScope, $location) {
     this.$rootScope = $rootScope;
     this.$location = $location;
     this.config = Config;
+    this.utils = Utils;
   }
 
   isActive(route) {

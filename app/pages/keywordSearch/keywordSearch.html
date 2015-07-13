@@ -1,16 +1,23 @@
 <!doctype html>
-<div id="keyword-search-page">
+<div id="keyword-search-page" class="page">
 
   <header class="navbar-fixed page-header">
     <nav>
       <div class="nav-wrapper">
-        <form class="search-bar" ng-submit="keywordSearch.searchKeyword()">
-          <div class="input-field">
-            <input id="keyword" type="search" placeholder="Search Keyword" ng-model="keywordSearch.keyword" required>
-            <label for="keyword" class="hide-on-med-and-down"><i class="mdi-action-search"></i></label>
-            <i class="mdi-navigation-close" ng-show="keywordSearch.keyword.length > 0" ng-click="keywordSearch.clearKeyword()"></i>
-          </div>
-        </form>
+        <ul class="left">
+          <li>
+            <a class="button-collapse" ng-click="keywordSearch.utils.view.showSideNav()"><i class="mdi-navigation-menu"></i></a>
+          </li>
+        </ul>
+        <div class="page-title">
+          <form class="search-bar" ng-submit="keywordSearch.searchKeyword()">
+            <div class="input-field">
+              <input id="keyword" type="search" placeholder="Search Keyword" ng-model="keywordSearch.keyword" required>
+              <label for="keyword" class="hide-on-med-and-down"><i class="mdi-action-search"></i></label>
+              <i class="mdi-navigation-close" ng-show="keywordSearch.keyword.length > 0" ng-click="keywordSearch.clearKeyword()"></i>
+            </div>
+          </form>
+        </div>
       </div>
     </nav>
   </header>

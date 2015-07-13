@@ -1,10 +1,12 @@
 import Config from '../../Config.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 
 export default class TuneController {
   constructor($scope, $rootScope, $routeParams, $http, $timeout) {
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
     this.config = Config;
+    this.utils = Utils;
 
     this.loaded = false;
     this.isPlaying = false;

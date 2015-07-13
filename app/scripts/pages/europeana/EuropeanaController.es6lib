@@ -1,5 +1,9 @@
+import Utils from '../../utils/Utils.es6lib';
+
 export default class EuropeanaController {
   constructor($scope, $rootScope, $routeParams, $http) {
+    this.utils = Utils;
+
     const keyword = $routeParams['keyword'];
 
     const apiKey = 'QNbCgzoWb';

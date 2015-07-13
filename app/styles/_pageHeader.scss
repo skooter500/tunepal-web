@@ -10,11 +10,10 @@ nav {
   height: $navbar-height;
   line-height: $navbar-height;
   z-index: 998;
+  background-color: $primary-color;
 
   @media #{$medium-and-down} {
-    left: 72px;
-    right: 0;
-    width: calc(100% - 72px);
+    width: 100%;
     height: $navbar-height-mobile;
     line-height: $navbar-height-mobile;
   }
@@ -23,18 +22,22 @@ nav {
 ul.left {
   position: fixed;
   left: 0;
-  background-color: $primary-color;
 
   i {
     width: 2.7rem;
     text-align: center;
   }
+
+  a {
+    padding: 0 10px;
+  }
 }
 
-a.page-title {
+.page-title {
   font-size: 24px;
 
   @media #{$medium-and-down} {
+    padding-left: 58px;
     font-size: 20px;
   }
 }
