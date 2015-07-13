@@ -147,4 +147,10 @@ export default class TuneController {
     const addThisButton = document.getElementById('at4m-sb');
     addThisButton.click();
   }
+
+  toggleToolbar() {
+    if (Utils.view.isMobile) {
+      $('.page-header nav').fadeToggle();
+    }
+  }
 }
