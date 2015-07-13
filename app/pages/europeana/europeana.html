@@ -9,7 +9,7 @@
             <a class="button-collapse" ng-click="europeana.utils.view.showSideNav()"><i class="mdi-navigation-menu"></i></a>
           </li>
         </ul>
-        <a class="page-title truncate">Europeana Search</a>
+        <a class="page-title truncate">Europeana Search: {{europeana.keyword}}</a>
       </div>
     </nav>
   </header>
@@ -27,9 +27,9 @@
             <div ng-repeat="tune in europeana.result.items | limitTo : 10 : page.startIndex" class="avatar">
               <a class="collection-item avatar" ng-href="{{tune.guid}}" target="_blank">
                 <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
-                <span class="title">{{tune.title[0]}}</span>
-                <p>{{tune.dataProvider[0]}}</p>
-                <p>{{tune.provider[0]}}</p>
+                <span class="title truncate">{{tune.title[0]}}</span>
+                <p class="truncate">{{tune.dataProvider[0]}}</p>
+                <p class="truncate">{{tune.provider[0]}}</p>
                 <span class="secondary-content">{{tune.score | number: 1}}</span>
               </a>
               <div class="divider" ng-if="!$last"></div>

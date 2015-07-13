@@ -4,16 +4,16 @@ export default class EuropeanaController {
   constructor($scope, $rootScope, $routeParams, $http) {
     this.utils = Utils;
 
-    const keyword = $routeParams['keyword'];
+    this.keyword = $routeParams['keyword'];
 
     const apiKey = 'QNbCgzoWb';
-    const query = keyword;
+    const query = this.keyword;
     const qf = 'TYPE:SOUND';
     const start = 1;
     const maxNumItems = 20;
     const profile = 'standard';
 
-    const url = `http://www.europeana.eu/api/v2/search.json?wskey=${apiKey}&query=${keyword}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
+    const url = `http://www.europeana.eu/api/v2/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
     $http.get(url)
     .success(data => {
