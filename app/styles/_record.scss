@@ -1,6 +1,6 @@
 #tunepal-index #record-page {
 
-.canvas {
+.canvasContainer {
   position: fixed;
   top: $navbar-height;
   width: calc(100% - 240px);
@@ -11,6 +11,12 @@
     width: 100%;
     height: calc(100% - #{$navbar-height-mobile});
   }
+}
+
+.canvas {
+  display: block;
+  margin: auto;
+  cursor: pointer;
 }
 
 }

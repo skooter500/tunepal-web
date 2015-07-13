@@ -13,10 +13,10 @@ export default class RecordController {
     this.recorder = new Recorder(this.config, this.audioContext);
     this.recorder.onTranscribed = result => this.onTranscribed(result);
 
-    let canvas = document.getElementById('canvas');
+    let canvas = $('#canvas')[0];
     let container = canvas.parentNode;
 
-    this.renderer = new Renderer(this.config, this.recorder, canvas);
+    this.renderer = new Renderer(this.config, this.recorder, canvas, container);
 
     this._requestId = window.requestAnimationFrame(() => this._update());
 

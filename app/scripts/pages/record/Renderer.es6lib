@@ -5,10 +5,11 @@ export default class Renderer {
   get countdownTime() { return this.config.countdownTime; }
   set countdownTime(value) { this.config.countdownTime = value; }
 
-  constructor(config, recorder, canvas) {
+  constructor(config, recorder, canvas, container) {
     this.config = config;
     this.recorder = recorder;
     this._canvas = canvas;
+    this._container = container;
 
     this._logo = new Image();
     this._logo.addEventListener('load', () => this._updateMetrics());
@@ -70,30 +71,27 @@ export default class Renderer {
   }
 
   _updateCanvasSize() {
-    const width = this._canvas.offsetWidth;
-    const height = this._canvas.offsetHeight;
+    const width = this._container.offsetWidth;
+    const height = this._container.offsetHeight;
 
-    if (this._canvas.width != width || this._canvas.height != height) {
-      this._canvas.width = width;
-      this._canvas.height = height;
+    this._diameter = width < height ? width : height;
+
+    if (this._canvas.width != this._diameter || this._canvas.height != this._diameter) {
+      this._canvas.width = this._diameter;
+      this._canvas.height = this._diameter;
 
       this._updateMetrics();
     }
   }
 
   _updateMetrics() {
-    const width = this._canvas.width;
-    const height = this._canvas.height;
-
-    const diameter = width < height ? width : height;
-
     this._logoCenter = {
-      x: width * 0.5,
-      y: height * 0.43,
+      x: this._diameter * 0.5,
+      y: this._diameter * 0.4,
     };
 
     // logo
-    const logoRadius = diameter * 0.3;
+    const logoRadius = this._diameter * 0.3;
     this._logoWidth = logoRadius * 2;
     this._logoHeight = this._logoWidth * this._logo.height / this._logo.width;
     this._logoTopLeft = {
@@ -102,19 +100,19 @@ export default class Renderer {
     };
 
     // amplitude ring
-    this._ringInnerRadius = diameter * 0.32;
-    this._ringMinWidth = diameter * 0.03;
-    this._ringMaxWidth = diameter * 0.06;
+    this._ringInnerRadius = this._diameter * 0.32;
+    this._ringMinWidth = this._diameter * 0.03;
+    this._ringMaxWidth = this._diameter * 0.06;
 
     // progress
     const progressOuterRadius = this._ringInnerRadius;
-    this._progressWidth = diameter * 0.015;
+    this._progressWidth = this._diameter * 0.015;
     this._progressRadius = progressOuterRadius - this._progressWidth / 2;
 
     // status
     this._statusTop = {
       x: this._logoCenter.x,
-      y: this._logoCenter.y + this._ringInnerRadius + this._ringMaxWidth + diameter * 0.09,
+      y: this._logoCenter.y + this._ringInnerRadius + this._ringMaxWidth + this._diameter * 0.09,
     };
   }
 
