@@ -24,7 +24,7 @@ export default class MidiPlaybackController {
     this.status = 'Initializing MIDI.js...';
 
     MIDI.loadPlugin({
-      soundfontUrl: '../../lib/MIDI.js/soundfont/',
+      soundfontUrl: '../../lib/midi.js/soundfont/',
       instrument: "acoustic_grand_piano",
       onsuccess: this.apply(() => {
         this.midiPluginReady = true;
