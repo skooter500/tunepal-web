@@ -20,7 +20,7 @@
         Tunepal thinks its called
         <a ng-href="/#!/tune/{{tune.tunepalId}}">
           <span class="highlight">{{tune.title}}</span>
-          <span ng-if="tune.altTitle">or <span class="highlight">{{tune.altTitle}}</span></span>
+          <span ng-if="tune.altTitle">(<span class="highlight">{{tune.altTitle}}</span>)</span>
         </a>
         with <span class="highlight">{{tune.confidence * 100 | number: 1}}%</span> confidence
       </p>
@@ -32,7 +32,7 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center preloader-div" ng-show="!notesSearch.loaded">
+    <div class="col s12 m12 center preloader-div" ng-show="notesSearch.showLoading">
       <div class="preloader-wrapper big active center">
         <div class="spinner-layer spinner-green-only">
           <div class="circle-clipper left">
@@ -48,7 +48,11 @@
       </div>
     </div>
 
-    <div class="col s12 m12 l6" ng-repeat="page in notesSearch.pages" ng-show="notesSearch.loaded">
+    <div class="col s12 m12 l12 center" ng-show="notesSearch.showNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
+
+    <div class="col s12 m12 l6" ng-repeat="page in notesSearch.pages" ng-show="notesSearch.showResults">
       <div class="card">
         <div class="card-content">
           <div class="collection">

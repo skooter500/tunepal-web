@@ -24,7 +24,7 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center preloader-div" ng-show="keywordSearch.loading">
+    <div class="col s12 m12 l12 center preloader-div" ng-show="keywordSearch.showLoading">
       <div class="preloader-wrapper big active center">
         <div class="spinner-layer spinner-green-only">
           <div class="circle-clipper left">
@@ -40,7 +40,11 @@
       </div>
     </div>
 
-    <div class="col s12 m12 l6" ng-repeat="page in keywordSearch.pages" ng-show="keywordSearch.loaded">
+    <div class="col s12 m12 l12 center" ng-show="keywordSearch.showNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
+
+    <div class="col s12 m12 l6" ng-repeat="page in keywordSearch.pages" ng-show="keywordSearch.showResults">
       <div class="card">
         <div class="card-content">
           <div class="collection">

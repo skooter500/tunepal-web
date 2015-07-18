@@ -11,7 +11,7 @@ $primary-font-color: #fff !default;
 $secondary-color: color("teal", "lighten-2") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
-$link-color: color("light-blue", "darken-1") !default;
+$link-color: $secondary-color !default;
 
 /*** Badges ***/
 $badge-bg-color: $secondary-color !default;

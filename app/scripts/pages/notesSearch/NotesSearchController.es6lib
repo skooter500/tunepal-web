@@ -10,7 +10,9 @@ export default class NotesSearchController {
     this.config = Config;
     this.utils = Utils;
 
-    this.loaded = false;
+    this.showLoading = true;
+    this.showResults = false;
+    this.showNoResults = false;
 
     this.notes = $routeParams['notes'];
     this._fetchTunes();
@@ -34,17 +36,22 @@ export default class NotesSearchController {
 
     this.$http.get(url)
     .success(rawTunes => {
-      this.tunes = [];
+      if (rawTunes.length === 0) {
+        this.showNoResults = true;
+      }
+      else {
+        this.tunes = [];
 
-      for (const rawTune of rawTunes) {
-        this.tunes.push(new Tune(rawTune));
+        for (const rawTune of rawTunes) {
+          this.tunes.push(new Tune(rawTune));
+        }
+
+        this._calcPages();
+        this.showResults = true;
+        $('#confidence-popup').openModal();
       }
 
-      this._calcPages();
-
-      this.loaded = true;
-
-      $('#confidence-popup').openModal();
+      this.showLoading = false;
     });
   }
 

@@ -1,5 +1,15 @@
 #tunepal-index #notes-search-page {
-  .collection-item >.secondary-content > .confidence {
-    line-height: 1.5rem;
-  }
+
+.collection-item >.secondary-content > .confidence {
+  line-height: 1.5rem;
+}
+
+.highlight {
+  color: $secondary-color;
+}
+
+.lowlight {
+  color: #b3b3b3;
+}
+
 }

@@ -1,4 +1,5 @@
 import Config from '../../Config.es6lib';
+import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class TuneController {
@@ -16,8 +17,8 @@ export default class TuneController {
     const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
 
     $http.get(url)
-    .success(data => {
-      this.tune = data;
+    .success(rawTune => {
+      this.tune = new Tune(rawTune);
       this.loaded = true;
       this.$timeout(() => this._createAbcEditor());
     });

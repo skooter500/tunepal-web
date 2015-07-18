@@ -11,8 +11,9 @@ export default class NotesSearchController {
     this.utils = Utils;
 
     this.keyword = $routeParams['keyword'];
-    this.loading = this.keyword != null;
-    this.loaded = false;
+    this.showLoading = this.keyword != null;
+    this.showResults = false;
+    this.showNoResults = false;
 
     if (this.keyword) {
       this._fetchTunes();
@@ -23,6 +24,8 @@ export default class NotesSearchController {
   }
 
   _fetchTunes() {
+    //TODO: keyword search fails with single quotes
+    const q = encodeURIComponent(this.keyword);
     const sources = Utils.joinSet(this.config.tunebooks.selectedIds);
     const latitude = 1; //TODO
     const longitude = 2;
@@ -30,7 +33,7 @@ export default class NotesSearchController {
     const localTimestamp = Utils.date.format(new Date());
 
     const url = `${this.config.ApiDomain}/api/keywordSearch`
-    + `?q=${this.keyword}`
+    + `?q=${q}`
     + `&sources=${sources}`
     + `&latitude=${latitude}`
     + `&longitude=${longitude}`
@@ -40,16 +43,21 @@ export default class NotesSearchController {
 
     this.$http.get(url)
     .success(rawTunes => {
-      this.tunes = [];
+      if (rawTunes.length === 0) {
+        this.showNoResults = true;
+      }
+      else {
+        this.tunes = [];
 
-      for (const rawTune of rawTunes) {
-        this.tunes.push(new Tune(rawTune));
+        for (const rawTune of rawTunes) {
+          this.tunes.push(new Tune(rawTune));
+        }
+
+        this._calcPages();
+        this.showResults = true;
       }
 
-      this._calcPages();
-
-      this.loading = false;
-      this.loaded = true;
+      this.showLoading = false;
     });
   }
 
