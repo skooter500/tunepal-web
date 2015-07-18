@@ -91,6 +91,14 @@ export default class MidiPlaybackController {
           reader.onload = e => resolve(e.target.result);
           reader.readAsDataURL(this.file);
           break;
+		case 'abc2midi':
+			var abcC = document.getElementById("abc").value;
+			console.log("ABC: " + abcC);
+			var midi = abc2midi(abcC);
+			var b64encoded = btoa(String.fromCharCode.apply(null, midi));
+			var midiUrl = "data:application/octet-stream;base64," + b64encoded;
+			resolve(midiUrl);
+			break;
         default:
           resolve(this.source);
           break;

@@ -9,7 +9,16 @@
 <body ng-controller="MidiPlaybackController as midi">
   <div class="block">
     <div class="block">Read audio from:</div>
-
+	<div>
+      <label>
+        <input type="radio" name="source" ng-model="midi.source" value="abc2midi" />
+        <span>From ABC</span>
+      </label>
+      <div>
+	  <textarea id="abc" rows = "10" cols="80">
+	  </textarea>
+	  </div>
+    </div> 
     <div ng-repeat="sample in midi.samples">
       <label>
         <input type="radio" name="source" ng-model="midi.source" ng-value="sample.url" />
@@ -35,6 +44,8 @@
       <div><input type="file" myfile="midi.file" /></div>
     </div>
   </div>
+  
+  
   <hr/>
   <div class="block">
     <button ng-click="midi.readAudio()" ng-disabled="!midi.midiPluginReady">Load Midi</button>
@@ -52,11 +63,17 @@
   <div class="block">
     <div>Status: <span>{{midi.status}}</span></div>
   </div>
+  
+  <script>
+  var abcContents = "X:1\nT:Jimmy Ward's Jig\nR:jig\nD:Matt Molloy: Heathery Breeze\nZ:id:hn-jig-103\nM:6/8\nK:G\n~G3 GAB|AGE GED|~G3 AGE|GED DEF|~G3 GAB|AGE GAB|cBA BGE|1 DED DEF:|2 DED D2B||\n|:cBA BAG|~A3 AGE|BcA BGE|EDE GAB|c2c BAG|ABA ABc|dcA AGE|1 GED D2B:|2 GED DEF||\n\n"
+  document.getElementById("abc").value = abcContents;
+  </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
   <script src="/scripts/3rdparty/browser-polyfill.js"></script>
   <script src="/lib/MIDI.js/js/MIDI.js"></script>
+  <script src="/lib/abc2midi/abc2midi.js"></script>
   <script src="MidiPlaybackController.js"></script>
 </body>
 </html>

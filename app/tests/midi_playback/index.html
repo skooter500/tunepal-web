@@ -1,0 +1,25 @@
+<html>
+<head>
+<script src = "abc2midi.js"></script>
+</head>
+<body>
+<form>
+Filename:<br>
+<input type="text" id="fileName"/><br>
+ABC:<br>
+<textarea id="abc" rows = "10" cols="80">
+</textarea>
+<br>
+<input type="button" value="Download MIDI" id="downloadMidi" onclick="downloadMidiFromAbc(document.getElementById('abc').innerHTML, document.getElementById('fileName').value)"/>
+</form>
+<script>
+var abcContents = "X:1\nT:Jimmy Ward's Jig\nR:jig\nD:Matt Molloy: Heathery Breeze\nZ:id:hn-jig-103\nM:6/8\nK:G\n~G3 GAB|AGE GED|~G3 AGE|GED DEF|~G3 GAB|AGE GAB|cBA BGE|1 DED DEF:|2 DED D2B||\n|:cBA BAG|~A3 AGE|BcA BGE|EDE GAB|c2c BAG|ABA ABc|dcA AGE|1 GED D2B:|2 GED DEF||\n\n"
+
+var fileName = "out.mid";
+
+document.getElementById("abc").innerHTML = abcContents;
+document.getElementById("fileName").value = fileName;
+
+</script>
+</body>
+</html>
