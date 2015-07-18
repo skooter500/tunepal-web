@@ -1,7 +1,7 @@
 import Utils from '../../scripts/utils/Utils.es6lib';
 
 export default class MidiPlaybackController {
-  constructor($scope) {
+  constructor($scope, $http) {
     this.$scope = $scope;
 
     this._audioContext = new window.AudioContext();
@@ -15,6 +15,9 @@ export default class MidiPlaybackController {
     this.midiPlayerReady = false;
 
     this._initMidi();
+
+    $http.get('test.abc')
+    .success(abc => this.abc = abc);
   }
 
   _initMidi() {
@@ -87,18 +90,17 @@ export default class MidiPlaybackController {
     return new Promise((resolve, reject) => {
       switch (this.source) {
         case 'local':
-          let reader = new FileReader();
+          const reader = new FileReader();
           reader.onload = e => resolve(e.target.result);
           reader.readAsDataURL(this.file);
           break;
-		case 'abc2midi':
-			var abcC = document.getElementById("abc").value;
-			console.log("ABC: " + abcC);
-			var midi = abc2midi(abcC);
-			var b64encoded = btoa(String.fromCharCode.apply(null, midi));
-			var midiUrl = "data:application/octet-stream;base64," + b64encoded;
-			resolve(midiUrl);
-			break;
+        case 'abc2midi':
+          console.log(`ABC: ${this.abc}`);
+          const midi = abc2midi(this.abc);
+          const b64encoded = btoa(String.fromCharCode.apply(null, midi));
+          const midiUrl = `data:application/octet-stream;base64,${b64encoded}`;
+          resolve(midiUrl);
+          break;
         default:
           resolve(this.source);
           break;
@@ -109,8 +111,8 @@ export default class MidiPlaybackController {
   // apply() is used to execute an expression in angular from outside of the angular framework.
   // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
   apply(func, that = this) {
-    let wrap = function() {
-      let args = arguments;
+    const wrap = function() {
+      const args = arguments;
       return this.$scope.$apply(() => func.apply(that, args));
     };
     return wrap.bind(this);
