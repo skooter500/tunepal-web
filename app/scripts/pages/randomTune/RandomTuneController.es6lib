@@ -12,7 +12,7 @@ export default class RandomTuneController {
     $http.get(url)
     .success(rawTune => {
       const tune = new Tune(rawTune);
-      Utils.tuneCache[tune.tunepalId] = tune;
+      Utils.tuneCache = tune;
       location.replace(`/#!/tune/${tune.tunepalId}`);
     });
   }

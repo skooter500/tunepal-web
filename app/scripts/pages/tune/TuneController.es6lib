@@ -15,16 +15,15 @@ export default class TuneController {
     this.isEditing = false;
 
     this.tunepalId = $routeParams['tunepalId'];
-    this.tune = Utils.tuneCache[this.tunepalId];
 
-    if (this.tune) {
+    if (Utils.tuneCache && Utils.tuneCache.tunepalId === this.tunepalId) {
+      this.tune = Utils.tuneCache;
       this._initTune();
     }
     else {
       this._fetchTune();
     }
 
-    this._fetchTune();
     this._initUi();
   }
 

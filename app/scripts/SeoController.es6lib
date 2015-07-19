@@ -11,6 +11,6 @@ export default class SeoController {
   }
 
   navigate() {
-    location.href = `/#!${this._route}`;
+    location.replace(`/#!${this._route}`);
   }
 }
