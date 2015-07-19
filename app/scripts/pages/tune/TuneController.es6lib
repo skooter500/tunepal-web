@@ -21,6 +21,7 @@ export default class TuneController {
       this.tune = new Tune(rawTune);
       this.loaded = true;
       this.$timeout(() => this._createAbcEditor());
+      document.title = `Tunepal.org / Tune / ${this.tune.title}`;
     });
 
     $timeout(() => {

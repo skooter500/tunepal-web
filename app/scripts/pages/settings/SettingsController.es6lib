@@ -10,6 +10,8 @@ export default class SettingsController {
     this._initMidiInstruments();
     this.validatePlaybackSpeed();
     this._initPopupOptions();
+
+    document.title = 'Tunepal.org / Settings';
   }
 
   _initPopupOptions() {

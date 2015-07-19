@@ -17,9 +17,11 @@ export default class NotesSearchController {
 
     if (this.keyword) {
       this._fetchTunes();
+      document.title = `Tunepal.org / Keyword Search / ${this.keyword}`;
     }
     else {
       $timeout(() => $('#keyword').focus());
+      document.title = 'Tunepal.org / Keyword Search';
     }
   }
 

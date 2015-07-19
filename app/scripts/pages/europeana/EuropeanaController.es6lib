@@ -21,6 +21,8 @@ export default class EuropeanaController {
       this.result = data;
       this._calcPages();
     });
+
+    document.title = `Tunepal.org / Europeana Search / ${this.keyword}`;
   }
 
   _calcPages() {

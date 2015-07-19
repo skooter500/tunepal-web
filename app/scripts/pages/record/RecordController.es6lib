@@ -24,6 +24,8 @@ export default class RecordController {
       window.cancelAnimationFrame(this._requestId);
       this.recorder.close();
     });
+
+    document.title = 'Tunepal.org / Record';
   }
 
   _update() {
