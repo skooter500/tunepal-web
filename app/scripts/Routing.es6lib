@@ -1,4 +1,5 @@
 import EuropeanaController from './pages/europeana/EuropeanaController.es6lib';
+import HomeController from './pages/home/HomeController.es6lib';
 import IndexController from './pages/index/IndexController.es6lib';
 import KeywordSearchController from './pages/keywordSearch/KeywordSearchController.es6lib';
 import NotesSearchController from './pages/notesSearch/NotesSearchController.es6lib';
@@ -9,6 +10,7 @@ import TuneController from './pages/tune/TuneController.es6lib';
 export default class Routing {
   constructor(app) {
     app.controller('EuropeanaController', EuropeanaController);
+    app.controller('HomeController', HomeController);
     app.controller('IndexController', IndexController);
     app.controller('KeywordSearchController', KeywordSearchController);
     app.controller('NotesSearchController', NotesSearchController);
@@ -22,6 +24,11 @@ export default class Routing {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',
         templateUrl: 'pages/europeana/europeana.html',
+      })
+      .when('/home', {
+        controller: 'HomeController',
+        controllerAs: 'home',
+        templateUrl: 'pages/home/home.html',
       })
       .when('/keywordSearch', {
         controller: 'KeywordSearchController',
@@ -53,7 +60,7 @@ export default class Routing {
         controllerAs: 'tune',
         templateUrl: 'pages/tune/tune.html',
       })
-      .otherwise('/record');
+      .otherwise('/home');
 
       $locationProvider.hashPrefix('!');
     });

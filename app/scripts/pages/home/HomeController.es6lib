@@ -1,0 +1,11 @@
+import Config from '../../Config.es6lib';
+import Utils from '../../utils/Utils.es6lib';
+
+export default class HomeController {
+  constructor($scope, $rootScope, $location) {
+    this.$rootScope = $rootScope;
+    this.$location = $location;
+    this.config = Config;
+    this.utils = Utils;
+  }
+}
