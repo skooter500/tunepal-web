@@ -5,6 +5,7 @@ class _Utils {
   constructor() {
     this.date = DateUtils;
     this.view = ViewUtils;
+    this.tuneCache = [];
   }
 
   getObjectFromStorage(key) {

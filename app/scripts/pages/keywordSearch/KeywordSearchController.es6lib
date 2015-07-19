@@ -26,7 +26,6 @@ export default class NotesSearchController {
   }
 
   _fetchTunes() {
-    //TODO: keyword search fails with single quotes
     const q = encodeURIComponent(this.keyword);
     const sources = Utils.joinSet(this.config.tunebooks.selectedIds);
     const latitude = 1; //TODO

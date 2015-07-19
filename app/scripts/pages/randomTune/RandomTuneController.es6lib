@@ -1,0 +1,19 @@
+import Config from '../../Config.es6lib';
+import Tune from '../../models/Tune.es6lib';
+import Utils from '../../utils/Utils.es6lib';
+
+export default class RandomTuneController {
+  constructor($http) {
+    this.config = Config;
+    this.utils = Utils;
+
+    const url = `${this.config.ApiDomain}/api/RandomTune`;
+
+    $http.get(url)
+    .success(rawTune => {
+      const tune = new Tune(rawTune);
+      Utils.tuneCache[tune.tunepalId] = tune;
+      location.href = `/#!/tune/${tune.tunepalId}`;
+    });
+  }
+}

@@ -6,6 +6,7 @@ export default class TuneController {
   constructor($scope, $rootScope, $routeParams, $http, $timeout) {
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
+    this.$http = $http;
     this.config = Config;
     this.utils = Utils;
 
@@ -14,17 +15,37 @@ export default class TuneController {
     this.isEditing = false;
 
     this.tunepalId = $routeParams['tunepalId'];
+    this.tune = Utils.tuneCache[this.tunepalId];
+
+    if (this.tune) {
+      this._initTune();
+    }
+    else {
+      this._fetchTune();
+    }
+
+    this._fetchTune();
+    this._initUi();
+  }
+
+  _fetchTune() {
     const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
 
-    $http.get(url)
+    this.$http.get(url)
     .success(rawTune => {
       this.tune = new Tune(rawTune);
-      this.loaded = true;
-      this.$timeout(() => this._createAbcEditor());
-      document.title = `Tunepal.org / Tune / ${this.tune.title}`;
+      this._initTune();
     });
+  }
 
-    $timeout(() => {
+  _initTune() {
+    this.loaded = true;
+    this.$timeout(() => this._createAbcEditor());
+    document.title = `Tunepal.org / Tune / ${this.tune.title}`;
+  }
+
+  _initUi() {
+    this.$timeout(() => {
       $('.dropdown-button').dropdown({
         constrain_width: false,
       });

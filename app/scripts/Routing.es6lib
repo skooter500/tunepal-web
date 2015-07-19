@@ -3,6 +3,7 @@ import HomeController from './pages/home/HomeController.es6lib';
 import IndexController from './pages/index/IndexController.es6lib';
 import KeywordSearchController from './pages/keywordSearch/KeywordSearchController.es6lib';
 import NotesSearchController from './pages/notesSearch/NotesSearchController.es6lib';
+import RandomTuneController from './pages/randomTune/RandomTuneController.es6lib';
 import RecordController from './pages/record/RecordController.es6lib';
 import SettingsController from './pages/settings/SettingsController.es6lib';
 import TuneController from './pages/tune/TuneController.es6lib';
@@ -14,6 +15,7 @@ export default class Routing {
     app.controller('IndexController', IndexController);
     app.controller('KeywordSearchController', KeywordSearchController);
     app.controller('NotesSearchController', NotesSearchController);
+    app.controller('RandomTuneController', RandomTuneController);
     app.controller('RecordController', RecordController);
     app.controller('SettingsController', SettingsController);
     app.controller('TuneController', TuneController);
@@ -44,6 +46,10 @@ export default class Routing {
         controller: 'NotesSearchController',
         controllerAs: 'notesSearch',
         templateUrl: 'pages/notesSearch/notesSearch.html',
+      })
+      .when('/randomTune', {
+        controller: 'RandomTuneController',
+        template: '',
       })
       .when('/record', {
         controller: 'RecordController',
