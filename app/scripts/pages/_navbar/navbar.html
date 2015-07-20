@@ -3,8 +3,11 @@
   <nav>
     <div class="nav-wrapper">
       <ul class="left">
-        <li>
+        <li ng-if="!goBack">
           <a class="button-collapse" ng-click="navbar.utils.view.showSideNav()"><i class="mdi-navigation-menu"></i></a>
+        </li>
+        <li ng-if="goBack">
+          <a class="hide-on-large-only" ng-click="navbar.utils.view.goBack()"><i class="mdi-navigation-arrow-back"></i></a>
         </li>
       </ul>
       <a class="page-title truncate">{{title}}</a>

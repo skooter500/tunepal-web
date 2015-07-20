@@ -98,15 +98,6 @@ export default class TuneController {
     cardContent.height(cardScore.height() * scale);
   }
 
-  goBack() {
-    if (history.length == 1) {
-      location.replace('/#!/record');
-    }
-    else {
-      history.back();
-    }
-  }
-
   togglePlaying() {
     this.isPlaying = !this.isPlaying;
   }

@@ -6,6 +6,7 @@ export default class Directive {
       return {
         scope: {
           title: '@',
+          goBack: '@',
         },
         controller: NavbarController,
         controllerAs: 'navbar',

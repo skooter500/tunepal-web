@@ -6,6 +6,15 @@ class _ViewUtils {
   get isMobile() {
     return $(window).width() <= 992;
   }
+
+  goBack() {
+    if (history.length == 1) {
+      location.replace('/#!/record');
+    }
+    else {
+      history.back();
+    }
+  }
 }
 
 const ViewUtils = new _ViewUtils();
