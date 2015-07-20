@@ -15,6 +15,8 @@ class _Config {
     this.PlaybackSpeed = Utils.makeArray(1, 10);
     this.Transpose = Utils.makeArray(-12, 12);
     this.ApiDomain = 'http://desolate-bastion-1462.herokuapp.com';
+    this.EuropeanaApiDomain = 'http://www.europeana.eu/api/v2';
+    this.EuropeanaApiKey = 'QNbCgzoWb';
 
     this.Properties = Properties;
 

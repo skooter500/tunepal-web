@@ -16,7 +16,7 @@ export default class TuneController {
     this.isEditing = false;
 
     this.tunepalId = $routeParams['tunepalId'];
-    this.europeanaLink = $routeParams['europeanaLink'];
+    this.europeanaIdEncoded = $routeParams['europeanaIdEncoded'];
 
     if (Utils.tuneCache && Utils.tuneCache.tunepalId === this.tunepalId) {
       this.tune = Utils.tuneCache;
@@ -33,7 +33,7 @@ export default class TuneController {
       });
     }
 
-    if (this.europeanaLink) {
+    if (this.europeanaIdEncoded) {
       this._initEuropeana();
     }
 
@@ -47,9 +47,13 @@ export default class TuneController {
   }
 
   _initEuropeana() {
-    this.europeanaLink = decodeURIComponent(this.europeanaLink);
+    this.europeanaId = decodeURIComponent(this.europeanaIdEncoded);
+    const apiDomain = this.config.EuropeanaApiDomain;
+    const apiKey = this.config.EuropeanaApiKey;
 
-    this.$http.get(this.europeanaLink)
+    const url = `${apiDomain}/record/${this.europeanaId}.json?wskey=${apiKey}`;
+
+    this.$http.get(url)
     .success(europeana => {
       this.europeana = europeana.object;
 
