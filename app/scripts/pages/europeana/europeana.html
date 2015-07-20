@@ -5,7 +5,27 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 l6" ng-repeat="page in europeana.pages">
+    <div class="col s12 m12 l12 center preloader-div" ng-show="europeana.showLoading">
+      <div class="preloader-wrapper big active center">
+        <div class="spinner-layer spinner-green-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m12 l12 center" ng-show="europeana.showNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
+
+    <div class="col s12 m12 l6" ng-repeat="page in europeana.pages" ng-show="europeana.showResults">
       <div class="card">
         <div class="card-content">
           <div class="collection">

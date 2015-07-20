@@ -10,6 +10,10 @@ export default class EuropeanaController {
     this.$timeout = $timeout;
     this.$location = $location;
 
+    this.showLoading = true;
+    this.showNoResults = false;
+    this.showResults = false;
+
     this.tunepalId = $routeParams['tunepalId'];
 
     if (Utils.tuneCache && Utils.tuneCache.tunepalId === this.tunepalId) {
@@ -42,8 +46,17 @@ export default class EuropeanaController {
     this.$http.get(url)
     .success(data => {
       this.result = data;
-      this._calcPages();
-      this._initUi();
+
+      if (data.items && data.items.length > 0) {
+        this._calcPages();
+        this._initUi();
+        this.showResults = true;
+      }
+      else {
+        this.showNoResults = true;
+      }
+
+      this.showLoading = false;
     });
 
     document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
