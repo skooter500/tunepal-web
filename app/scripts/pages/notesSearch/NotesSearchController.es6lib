@@ -75,6 +75,5 @@ export default class NotesSearchController {
 
   _initUi() {
     $('#confidence-popup').openModal();
-    this.$timeout(() => this.utils.view.initTooltips());
   }
 }
