@@ -65,14 +65,8 @@ export default class TuneController {
 
   _initUi() {
     this.$timeout(() => {
-      $('.dropdown-button').dropdown({
-        constrain_width: false,
-      });
-
-      $('.tooltipped').tooltip({
-        position: 'bottom',
-        delay: 50,
-      });
+      this.utils.view.initDropdown();
+      this.utils.view.initTooltips();
     });
 
     $(window).resize(() => this._resizeScore());

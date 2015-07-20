@@ -89,11 +89,6 @@ export default class EuropeanaController {
   }
 
   _initUi() {
-    this.$timeout(() => {
-      $('.tooltipped').tooltip({
-        position: 'bottom',
-        delay: 50,
-      });
-    });
+    this.$timeout(() => this.utils.view.initTooltips());
   }
 }
