@@ -35,11 +35,18 @@ export default class EuropeanaController {
   _search() {
     const apiDomain = this.config.EuropeanaApiDomain;
     const apiKey = this.config.EuropeanaApiKey;
-    const query = this.tune.titleEncoded;
     const qf = 'TYPE:SOUND';
     const start = 1;
     const maxNumItems = 20;
     const profile = 'standard';
+
+    let query = `"${this.tune.title}"`;
+
+    if (this.tune.altTitle) {
+      query += ` OR "${this.tune.altTitle}"`;
+    }
+
+    query = encodeURIComponent(query);
 
     const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
