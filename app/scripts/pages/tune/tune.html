@@ -57,20 +57,8 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center preloader-div" ng-show="!tune.loaded">
-      <div class="preloader-wrapper big active center">
-        <div class="spinner-layer spinner-green-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
+    <div class="col s12 m12 center" ng-show="!tune.loaded">
+      <tp-preloader></tp-preloader>
     </div>
 
     <div class="col s12 m12 l12" ng-show="tune.europeana">
@@ -78,7 +66,7 @@
         <div class="card-content">
           <div class="collection">
             <div class="avatar">
-              <div class="collection-item avatar" ng-href="{{tune.europeana.guid}}" target="_blank">
+              <div class="collection-item avatar">
                 <img ng-src="{{tune.europeana.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.europeana.title[0]}}" class="circle" />
                 <span class="title truncate">{{tune.europeana.title[0]}}</span>
                 <p class="truncate">{{tune.europeana.aggregations[0].edmDataProvider.def[0]}}</p>

@@ -13,5 +13,11 @@ export default class Directive {
         templateUrl: 'scripts/pages/_navbar/navbar.html',
       };
     });
+
+    app.directive('tpPreloader', () => {
+      return {
+        templateUrl: 'scripts/pages/_preloader/preloader.html',
+      };
+    });
   }
 }

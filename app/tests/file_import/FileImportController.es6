@@ -139,12 +139,8 @@ export default class FileImportController {
 
   // apply() is used to execute an expression in angular from outside of the angular framework.
   // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
-  apply(func, that = this) {
-    const wrap = function() {
-      const args = arguments;
-      return this.$scope.$apply(() => func.apply(that, args));
-    };
-    return wrap.bind(this);
+  apply(func) {
+    return this.$scope.$apply.bind(this.$scope, func);
   }
 }
 

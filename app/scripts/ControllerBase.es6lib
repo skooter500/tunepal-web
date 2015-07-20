@@ -1,0 +1,9 @@
+export default class ControllerBase {
+  constructor($scope) {
+    this.$scope = $scope; // view model
+  }
+
+  apply(func) {
+    return this.$scope.$apply.bind(this.$scope, func);
+  }
+}
