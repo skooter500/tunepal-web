@@ -5,6 +5,7 @@ export default class Tune {
     if (rawTune.title) {
       const tmp = rawTune.title.replace(/, The$/, '');
       this.title = tmp.length === rawTune.title.length ? tmp : `The ${tmp}`;
+      this.titleEncoded = encodeURIComponent(this.title);
     }
 
     if (rawTune.altTitle) {

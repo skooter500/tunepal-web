@@ -1,13 +1,34 @@
+import Config from '../../Config.es6lib';
+import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class EuropeanaController {
   constructor($scope, $rootScope, $routeParams, $http) {
+    this.config = Config;
     this.utils = Utils;
+    this.$http = $http;
 
-    this.keyword = $routeParams['keyword'];
+    this.tunepalId = $routeParams['tunepalId'];
 
+    if (Utils.tuneCache && Utils.tuneCache.tunepalId === this.tunepalId) {
+      this.tune = Utils.tuneCache;
+      this._search();
+    }
+    else {
+      const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
+
+      this.$http.get(url)
+      .success(rawTune => {
+        this.tune = new Tune(rawTune);
+        Utils.tuneCache = this.tune;
+        this._search();
+      });
+    }
+  }
+
+  _search() {
     const apiKey = 'QNbCgzoWb';
-    const query = this.keyword;
+    const query = this.tune.titleEncoded;
     const qf = 'TYPE:SOUND';
     const start = 1;
     const maxNumItems = 20;
@@ -15,14 +36,14 @@ export default class EuropeanaController {
 
     const url = `http://www.europeana.eu/api/v2/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
-    $http.get(url)
+    this.$http.get(url)
     .success(data => {
       console.log(data);
       this.result = data;
       this._calcPages();
     });
 
-    document.title = `Tunepal.org / Europeana Search / ${this.keyword}`;
+    document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
   }
 
   _calcPages() {
@@ -37,5 +58,10 @@ export default class EuropeanaController {
     }
 
     this.pages[this.pages.length - 1].end = this.result.items.length;
+  }
+
+  link(tune) {
+    const linkEncoded = encodeURIComponent(tune.link);
+    location.href = `/#!/tune/${this.tune.tunepalId}/${linkEncoded}`;
   }
 }

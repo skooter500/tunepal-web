@@ -22,7 +22,7 @@ export default class Routing {
 
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
-      .when('/europeana/:keyword', {
+      .when('/europeana/:tunepalId', {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',
         templateUrl: 'scripts/pages/europeana/europeana.html',
@@ -32,12 +32,7 @@ export default class Routing {
         controllerAs: 'home',
         templateUrl: 'scripts/pages/home/home.html',
       })
-      .when('/keywordSearch', {
-        controller: 'KeywordSearchController',
-        controllerAs: 'keywordSearch',
-        templateUrl: 'scripts/pages/keywordSearch/keywordSearch.html',
-      })
-      .when('/keywordSearch/:keyword', {
+      .when('/keywordSearch/:keyword?', {
         controller: 'KeywordSearchController',
         controllerAs: 'keywordSearch',
         templateUrl: 'scripts/pages/keywordSearch/keywordSearch.html',
@@ -62,7 +57,7 @@ export default class Routing {
         controllerAs: 'settings',
         templateUrl: 'scripts/pages/settings/settings.html',
       })
-      .when('/tune/:tunepalId', {
+      .when('/tune/:tunepalId/:europeanaLink*?', {
         controller: 'TuneController',
         controllerAs: 'tune',
         templateUrl: 'scripts/pages/tune/tune.html',

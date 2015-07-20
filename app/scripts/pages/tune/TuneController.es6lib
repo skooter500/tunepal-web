@@ -3,10 +3,11 @@ import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class TuneController {
-  constructor($scope, $rootScope, $routeParams, $http, $timeout) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $sce) {
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
     this.$http = $http;
+    this.$sce = $sce;
     this.config = Config;
     this.utils = Utils;
 
@@ -15,32 +16,48 @@ export default class TuneController {
     this.isEditing = false;
 
     this.tunepalId = $routeParams['tunepalId'];
+    this.europeanaLink = $routeParams['europeanaLink'];
 
     if (Utils.tuneCache && Utils.tuneCache.tunepalId === this.tunepalId) {
       this.tune = Utils.tuneCache;
       this._initTune();
     }
     else {
-      this._fetchTune();
+      const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
+
+      this.$http.get(url)
+      .success(rawTune => {
+        this.tune = new Tune(rawTune);
+        Utils.tuneCache = this.tune;
+        this._initTune();
+      });
+    }
+
+    if (this.europeanaLink) {
+      this._initEuropeana();
     }
 
     this._initUi();
-  }
-
-  _fetchTune() {
-    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
-
-    this.$http.get(url)
-    .success(rawTune => {
-      this.tune = new Tune(rawTune);
-      this._initTune();
-    });
   }
 
   _initTune() {
     this.loaded = true;
     this.$timeout(() => this._createAbcEditor());
     document.title = `Tunepal.org / Tune / ${this.tune.title}`;
+  }
+
+  _initEuropeana() {
+    this.europeanaLink = decodeURIComponent(this.europeanaLink);
+
+    this.$http.get(this.europeanaLink)
+    .success(europeana => {
+      this.europeana = europeana.object;
+
+      const soundUrl = this.europeana.aggregations[0].edmIsShownBy;
+      if (soundUrl) {
+        this.europeanaSoundUrl = this.$sce.trustAsResourceUrl(soundUrl);
+      }
+    });
   }
 
   _initUi() {
@@ -67,8 +84,6 @@ export default class TuneController {
     });
 
     this._resizeScore();
-
-    this.tune.titleEncoded = encodeURIComponent(this.tune.title);
   }
 
   _resizeScore() {

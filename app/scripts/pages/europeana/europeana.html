@@ -1,5 +1,5 @@
 <!doctype html>
-<div id="keyword-search-page" class="page">
+<div id="europeana-page" class="page">
 
   <tp-navbar title="Europeana Search: {{europeana.keyword}}"></tp-navbar>
 
@@ -14,13 +14,15 @@
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in europeana.result.items | limitTo : 10 : page.startIndex" class="avatar">
-              <a class="collection-item avatar" ng-href="{{tune.guid}}" target="_blank">
+              <div class="collection-item avatar" ng-href="{{tune.guid}}" target="_blank">
                 <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
                 <span class="title truncate">{{tune.title[0]}}</span>
                 <p class="truncate">{{tune.dataProvider[0]}}</p>
                 <p class="truncate">{{tune.provider[0]}}</p>
-                <span class="secondary-content">{{tune.score | number: 1}}</span>
-              </a>
+                <a class="secondary-content waves-effect waves-light btn-flat" ng-click="europeana.link(tune)">
+                  <i class="mdi-content-send"></i>
+                </a>
+              </div>
               <div class="divider" ng-if="!$last"></div>
             </div>
           </div>
