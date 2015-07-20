@@ -25,47 +25,47 @@ export default class Routing {
       .when('/europeana/:keyword', {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',
-        templateUrl: 'pages/europeana/europeana.html',
+        templateUrl: 'scripts/pages/europeana/europeana.html',
       })
       .when('/home', {
         controller: 'HomeController',
         controllerAs: 'home',
-        templateUrl: 'pages/home/home.html',
+        templateUrl: 'scripts/pages/home/home.html',
       })
       .when('/keywordSearch', {
         controller: 'KeywordSearchController',
         controllerAs: 'keywordSearch',
-        templateUrl: 'pages/keywordSearch/keywordSearch.html',
+        templateUrl: 'scripts/pages/keywordSearch/keywordSearch.html',
       })
       .when('/keywordSearch/:keyword', {
         controller: 'KeywordSearchController',
         controllerAs: 'keywordSearch',
-        templateUrl: 'pages/keywordSearch/keywordSearch.html',
+        templateUrl: 'scripts/pages/keywordSearch/keywordSearch.html',
       })
       .when('/notesSearch/:notes', {
         controller: 'NotesSearchController',
         controllerAs: 'notesSearch',
-        templateUrl: 'pages/notesSearch/notesSearch.html',
+        templateUrl: 'scripts/pages/notesSearch/notesSearch.html',
       })
       .when('/randomTune', {
         controller: 'RandomTuneController',
         controllerAs: 'randomTune',
-        templateUrl: 'pages/randomTune/randomTune.html',
+        templateUrl: 'scripts/pages/randomTune/randomTune.html',
       })
       .when('/record', {
         controller: 'RecordController',
         controllerAs: 'record',
-        templateUrl: 'pages/record/record.html',
+        templateUrl: 'scripts/pages/record/record.html',
       })
       .when('/settings', {
         controller: 'SettingsController',
         controllerAs: 'settings',
-        templateUrl: 'pages/settings/settings.html',
+        templateUrl: 'scripts/pages/settings/settings.html',
       })
       .when('/tune/:tunepalId', {
         controller: 'TuneController',
         controllerAs: 'tune',
-        templateUrl: 'pages/tune/tune.html',
+        templateUrl: 'scripts/pages/tune/tune.html',
       })
       .otherwise('/home');
 

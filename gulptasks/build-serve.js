@@ -22,7 +22,7 @@ gulp.task('serve', ['build'], function () {
     }
   });
 
-  gulp.watch(['app/index.html', 'app/{pages,tests}/**/*.html'], ['html', reload]);
+  gulp.watch(['app/index.html', 'app/{scripts/pages,tests}/**/*.html'], ['html', reload]);
   gulp.watch(['app/{scripts,tests}/**/*.{es6,es6lib}'], ['es6', reload]);
   gulp.watch(['app/styles/_variables.scss'], ['materialize-styles', 'styles', reload]);
   gulp.watch(['app/styles/materialize.scss'], ['materialize-styles', reload]);

@@ -9,7 +9,7 @@ export default class Directive {
         },
         controller: NavbarController,
         controllerAs: 'navbar',
-        templateUrl: 'pages/_navbar/navbar.html',
+        templateUrl: 'scripts/pages/_navbar/navbar.html',
       };
     });
   }
