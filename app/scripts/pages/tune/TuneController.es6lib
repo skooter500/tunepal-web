@@ -2,6 +2,7 @@ import Config from '../../Config.es6lib';
 import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
+
 export default class TuneController {
   constructor($scope, $rootScope, $routeParams, $http, $timeout, $sce) {
     this.$rootScope = $rootScope;
@@ -36,10 +37,33 @@ export default class TuneController {
     if (this.europeanaIdEncoded) {
       this._initEuropeana();
     }
-
+	
+	// MIDI Playback
+	this._audioContext = new window.AudioContext();
+    this.midiPluginReady = false;
+    this.midiPlayerReady = false;
+	this._initMidi();
+	
     this._initUi();
   }
+  
+  _initMidi() {
+    console.log("Initializing MIDI.js...");
 
+    MIDI.loadPlugin({
+      soundfontUrl: '../../../lib/midi.js/soundfont/',
+      instrument: "acoustic_grand_piano",
+      onsuccess: this.apply(() => {
+        this.midiPluginReady = true;
+        console.log("Midi.js ready");
+      }),
+      onprogress: this.apply((state, percent) => {
+        percent *= 100;
+        console.log("Initializing MIDI.js (${percent.toFixed(2)}%)...");
+      }),
+    });
+  }
+  
   _initTune() {
     this.loaded = true;
     this.$timeout(() => this._createAbcEditor());
@@ -107,9 +131,60 @@ export default class TuneController {
       history.back();
     }
   }
+  
+	_getAudioUrlAsync() {
+		return new Promise((resolve, reject) => {
+			console.log(`ABC: ${this.tune.notation}`);
+			this.midi = abc2midi(this.tune.notation);
+			const b64encoded = btoa(String.fromCharCode.apply(null, this.midi));
+			this.midiUrl = `data:application/octet-stream;base64,${b64encoded}`;
+			resolve(this.midiUrl);
+		});
+	}
 
   togglePlaying() {
     this.isPlaying = !this.isPlaying;
+	
+	if (!this.midi)
+	{
+		this._getAudioUrlAsync()
+		.then(url => {
+		  MIDI.Player.setAnimation(data => {
+			let now = data.now < data.end ? data.now : data.end;
+			now = now.toFixed(2);
+			let end = data.end.toFixed(2);
+			//$('#currentTime').text(now);
+			//$('#endTime').text(end);
+		  });
+
+		  const onsuccess = this.apply(() => {
+			console.log("Sound being generated with ${MIDI.api} ${JSON.stringify(MIDI.supports)}");
+			this.midiPlayerReady = true;
+			MIDI.Player.start();
+		  });
+
+		  const onprogress = this.apply((stats, percent) => {
+			percent *= 100;
+			console.log("Reading audio file (${percent.toFixed(2)}%)...");
+		  });
+
+		  const onerror = this.apply(e => {
+			console.log("Error: ${e.message}\n${e.stack}");
+		  });
+
+		  console.log("MIDI URL: " + url);
+		  MIDI.Player.loadFile(url, onsuccess, onprogress, onerror);
+		});		
+	}
+	if (this.isPlaying)
+	{
+		
+		MIDI.Player.resume();
+	}
+	else
+	{
+		MIDI.Player.pause();
+	}
   }
 
   stopPlaying() {
@@ -193,5 +268,15 @@ export default class TuneController {
     if (Utils.view.isMobile) {
       $('.page-header nav').fadeToggle();
     }
+  }
+  
+  // apply() is used to execute an expression in angular from outside of the angular framework.
+  // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
+  apply(func, that = this) {
+    const wrap = function() {
+      const args = arguments;
+      return this.$scope.$apply(() => func.apply(that, args));
+    };
+    return wrap.bind(this);
   }
 }
