@@ -11,6 +11,7 @@ export default class TuneController {
     this.$sce = $sce;
     this.config = Config;
     this.utils = Utils;
+	this.$scope = $scope;
 
     this.loaded = false;
     this.isPlaying = false;
@@ -153,14 +154,14 @@ export default class TuneController {
 		  });
 
 		  const onsuccess = this.apply(() => {
-			console.log("Sound being generated with ${MIDI.api} ${JSON.stringify(MIDI.supports)}");
+			console.log(`Sound being generated with ${MIDI.api} ${JSON.stringify(MIDI.supports)}`);
 			this.midiPlayerReady = true;
 			MIDI.Player.start();
 		  });
 
 		  const onprogress = this.apply((stats, percent) => {
 			percent *= 100;
-			console.log("Reading audio file (${percent.toFixed(2)}%)...");
+			console.log(`Reading audio file (${percent.toFixed(2)}%)...`);
 		  });
 
 		  const onerror = this.apply(e => {
@@ -183,7 +184,7 @@ export default class TuneController {
 
   stopPlaying() {
     this.isPlaying = false;
-	MIDI.Player.stopPlaying();
+	MIDI.Player.stop();
   }
 
   toggleEditing() {
@@ -267,11 +268,7 @@ export default class TuneController {
   
   // apply() is used to execute an expression in angular from outside of the angular framework.
   // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
-  apply(func, that = this) {
-    const wrap = function() {
-      const args = arguments;
-      return this.$scope.$apply(() => func.apply(that, args));
-    };
-    return wrap.bind(this);
+  apply(func) {
+    return this.$scope.$apply.bind(this.$scope, func);
   }
 }
