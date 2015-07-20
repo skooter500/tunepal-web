@@ -36,14 +36,17 @@ gulp.task('minify', ['minify-search'], function () {
   //TODO
   //var images = gulp.src(['app/images/**/*'])
 
-  var dsp = gulp.src(['app/scripts/3rdparty/dsp.js'])
+  var libs = gulp.src(['app/lib/**/*.js', '!app/lib/{materialize,midi.js}/**/*'])
     .pipe($.uglify())
-    .pipe(gulp.dest('www/scripts/3rdparty'));
+    .pipe(gulp.dest('www/lib'));
+
+  var abc2midiMem = gulp.src(['app/lib/abc2midi/abc2midi.js.mem'])
+    .pipe(gulp.dest('www/lib/abc2midi'));
 
   var transcriber = gulp.src(['.tmp/scripts/transcription/TranscriberWorker.js'])
     .pipe($.uglify())
     .pipe(gulp.dest('www/scripts/transcription'));
 
-  return merge(dsp, transcriber)
+  return merge(libs, abc2midiMem, transcriber)
     .pipe($.size({title: 'minify'}));
 });

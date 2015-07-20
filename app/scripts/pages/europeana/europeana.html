@@ -1,11 +1,19 @@
 <!doctype html>
 <div id="europeana-page" class="page">
 
-  <tp-navbar title="Europeana Search: {{europeana.keyword}}"></tp-navbar>
+  <tp-navbar title="Europeana Search: {{europeana.tune.title}}" go-back="{{true}}"></tp-navbar>
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 l6" ng-repeat="page in europeana.pages">
+    <div class="col s12 m12 l12 center" ng-show="europeana.showLoading">
+      <tp-preloader></tp-preloader>
+    </div>
+
+    <div class="col s12 m12 l12 center" ng-show="europeana.showNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
+
+    <div class="col s12 m12 l6" ng-repeat="page in europeana.pages" ng-show="europeana.showResults">
       <div class="card">
         <div class="card-content">
           <div class="collection">
@@ -14,14 +22,15 @@
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in europeana.result.items | limitTo : 10 : page.startIndex" class="avatar">
-              <div class="collection-item avatar" ng-href="{{tune.guid}}" target="_blank">
+              <div class="collection-item avatar">
                 <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
                 <span class="title truncate">{{tune.title[0]}}</span>
                 <p class="truncate">{{tune.dataProvider[0]}}</p>
                 <p class="truncate">{{tune.provider[0]}}</p>
-                <a class="secondary-content waves-effect waves-light btn-flat" ng-click="europeana.link(tune)">
-                  <i class="mdi-content-send"></i>
-                </a>
+                <span class="secondary-content">
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.guid}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Link to tune page" ng-click="europeana.link(tune)"><i class="mdi-content-send"></i></a>
+                </span>
               </div>
               <div class="divider" ng-if="!$last"></div>
             </div>

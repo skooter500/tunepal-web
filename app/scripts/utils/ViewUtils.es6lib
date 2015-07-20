@@ -6,6 +6,28 @@ class _ViewUtils {
   get isMobile() {
     return $(window).width() <= 992;
   }
+
+  goBack() {
+    if (history.length == 1) {
+      location.replace('/#!/record');
+    }
+    else {
+      history.back();
+    }
+  }
+
+  initDropdown() {
+    $('.dropdown-button').dropdown({
+      constrain_width: false,
+    });
+  }
+
+  initTooltips() {
+    $('.tooltipped').tooltip({
+      position: 'bottom',
+      delay: 50,
+    });
+  }
 }
 
 const ViewUtils = new _ViewUtils();

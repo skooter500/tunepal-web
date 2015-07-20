@@ -27,19 +27,19 @@ gulp.task('midi-js', function () {
     'js/util/dom_request_script.js',
   ];
 
-  return gulp.src(jsFiles, {cwd: 'app/lib/MIDI.js'})
+  return gulp.src(jsFiles, {cwd: 'app/lib/midi.js'})
     .pipe($.plumber({
       errorHandler: swallowError
     }))
     .pipe($.concat('MIDI.js'))
-    .pipe(gulp.dest('.tmp/lib/MIDI.js/js'))
+    .pipe(gulp.dest('.tmp/lib/midi.js/js'))
     .pipe($.size({title: 'midi-js'}));
 });
 
 // Copy MIDI sound fonts to tmp
 gulp.task('midi-soundfonts', function () {
-  return gulp.src('examples/soundfont/**/*', {cwd: 'app/lib/MIDI.js'})
-    .pipe(gulp.dest('.tmp/lib/MIDI.js/soundfont'))
+  return gulp.src('examples/soundfont/**/*', {cwd: 'app/lib/midi.js'})
+    .pipe(gulp.dest('.tmp/lib/midi.js/soundfont'))
     .pipe($.size({title: 'midi-soundfonts'}));
 });
 

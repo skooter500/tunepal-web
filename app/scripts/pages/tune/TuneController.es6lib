@@ -65,9 +65,10 @@ export default class TuneController {
   }
   
   _initTune() {
-    this.loaded = true;
+    this._initUi();
     this.$timeout(() => this._createAbcEditor());
     document.title = `Tunepal.org / Tune / ${this.tune.title}`;
+    this.loaded = true;
   }
 
   _initEuropeana() {
@@ -90,14 +91,8 @@ export default class TuneController {
 
   _initUi() {
     this.$timeout(() => {
-      $('.dropdown-button').dropdown({
-        constrain_width: false,
-      });
-
-      $('.tooltipped').tooltip({
-        position: 'bottom',
-        delay: 50,
-      });
+      this.utils.view.initDropdown();
+      this.utils.view.initTooltips();
     });
 
     $(window).resize(() => this._resizeScore());
@@ -177,8 +172,7 @@ export default class TuneController {
 		});		
 	}
 	if (this.isPlaying)
-	{
-		
+	{		
 		MIDI.Player.resume();
 	}
 	else
@@ -189,6 +183,7 @@ export default class TuneController {
 
   stopPlaying() {
     this.isPlaying = false;
+	MIDI.Player.stopPlaying();
   }
 
   toggleEditing() {

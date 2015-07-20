@@ -1,11 +1,13 @@
+import ControllerBase from '../../ControllerBase.es6lib';
 import Recorder from './Recorder.es6lib';
 import Renderer from './Renderer.es6lib';
 import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
-export default class RecordController {
-  constructor($scope, $rootScope) {
-    this.$scope = $scope;  // view model
+export default class RecordController extends ControllerBase {
+  constructor($scope, $rootScope, $location) {
+    super($scope);
+    this.$location = $location;
     this.config = Config;
     this.utils = Utils;
     this.audioContext = this.config.audioContext;
@@ -35,6 +37,10 @@ export default class RecordController {
   }
 
   onTranscribed(result) {
+    // When the code is executed in angular scope, use $location.url('/someLocation')
+    // to prevent navigation breaking history
+    // Otherwise use location.href = '/#!/someLocation'
+    //   or $scope.$apply(() => $location.url('/someLocation'))
     location.href = `/#!/notesSearch/${result.transcription}`;
   }
 
@@ -55,15 +61,5 @@ export default class RecordController {
       this.signalPlayer.onended = this.apply(() => this.signalPlayer = null);
       this.signalPlayer.start(0, 0, this._audio.duration);
     }
-  }
-
-  // apply() is used to execute an expression in angular from outside of the angular framework.
-  // See https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply
-  apply(func, that = this) {
-    let wrap = function() {
-      let args = arguments;
-      return this.$scope.$apply(() => func.apply(that, args));
-    };
-    return wrap.bind(this);
   }
 }

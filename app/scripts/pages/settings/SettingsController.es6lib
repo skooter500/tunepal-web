@@ -1,11 +1,16 @@
+import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
-export default class SettingsController {
-  constructor($scope, $rootScope) {
-    this.$scope = $scope;  // view model
+export default class SettingsController extends ControllerBase {
+  constructor($scope, $rootScope, $http) {
+    super($scope);
+    this.$http = $http;
     this.config = Config;
     this.utils = Utils;
+
+    this.showLoading = true;
+    this.showTunebooks = false;
 
     this._initMidiInstruments();
     this.validatePlaybackSpeed();
@@ -21,7 +26,12 @@ export default class SettingsController {
     }
 
     // bind modal triggers to their modals
-    $('.modal-trigger').leanModal();
+    $('.modal-trigger').leanModal({
+      complete: () => {
+        this.showLoading = true;
+        this.showTunebooks = false;
+      }
+    });
 
     // scroll to the first selected item when modal is popping up
     $('.modal-trigger').each((i, trigger) => {
@@ -70,5 +80,13 @@ export default class SettingsController {
     else {
       input.removeClass('invalid').addClass('valid');
     }
+  }
+
+  updateTunebooks() {
+    this.config.tunebooks.updateTunebooks(this.$http)
+    .then(this.apply(() => {
+      this.showLoading = false;
+      this.showTunebooks = true;
+    }));
   }
 }

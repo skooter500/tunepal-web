@@ -8,6 +8,10 @@ export default class IndexController {
     this.$location = $location;
     this.config = Config;
     this.utils = Utils;
+
+    $rootScope.$on('$routeChangeStart', () => {
+      $('.material-tooltip').remove();
+    });
   }
 
   isActive(route) {

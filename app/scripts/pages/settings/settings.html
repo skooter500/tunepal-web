@@ -35,7 +35,7 @@
 
             <div class="divider"></div>
 
-            <a href="#tunebooks-sheet" class="collection-item modal-trigger">
+            <a href="#tunebooks-sheet" class="collection-item modal-trigger" ng-click="settings.updateTunebooks()">
               <span class="title">Tune Books</span>
               <p class="truncate">{{settings.config.tunebooks.selectedShortNames}}</p>
             </a>
@@ -44,7 +44,8 @@
                 <span class="title">Limit your searches to certain tune books</span>
               </div>
               <div class="modal-content">
-                <div class="collection">
+                <tp-preloader class="center" ng-show="settings.showLoading"></tp-preloader>
+                <div class="collection" ng-show="settings.showTunebooks">
                   <a class="collection-item" ng-repeat="tunebook in settings.config.tunebooks.all" ng-click="settings.setTunebooks(tunebook.id)">
                     <span class="title">{{tunebook.shortName}}</span>
                     <span class="secondary-content" ng-if="settings.config.tunebooks.isSelected(tunebook.id)"><i class="mdi-action-done"></i></span>

@@ -6,10 +6,17 @@ export default class Directive {
       return {
         scope: {
           title: '@',
+          goBack: '@',
         },
         controller: NavbarController,
         controllerAs: 'navbar',
         templateUrl: 'scripts/pages/_navbar/navbar.html',
+      };
+    });
+
+    app.directive('tpPreloader', () => {
+      return {
+        templateUrl: 'scripts/pages/_preloader/preloader.html',
       };
     });
   }

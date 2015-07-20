@@ -3,10 +3,16 @@ import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class EuropeanaController {
-  constructor($scope, $rootScope, $routeParams, $http) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
     this.config = Config;
     this.utils = Utils;
     this.$http = $http;
+    this.$timeout = $timeout;
+    this.$location = $location;
+
+    this.showLoading = true;
+    this.showNoResults = false;
+    this.showResults = false;
 
     this.tunepalId = $routeParams['tunepalId'];
 
@@ -29,19 +35,35 @@ export default class EuropeanaController {
   _search() {
     const apiDomain = this.config.EuropeanaApiDomain;
     const apiKey = this.config.EuropeanaApiKey;
-    const query = this.tune.titleEncoded;
     const qf = 'TYPE:SOUND';
     const start = 1;
     const maxNumItems = 20;
     const profile = 'standard';
 
+    let query = `"${this.tune.title}"`;
+
+    if (this.tune.altTitle) {
+      query += ` OR "${this.tune.altTitle}"`;
+    }
+
+    query = encodeURIComponent(query);
+
     const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
     this.$http.get(url)
     .success(data => {
-      console.log(data);
       this.result = data;
-      this._calcPages();
+
+      if (data.items && data.items.length > 0) {
+        this._calcPages();
+        this._initUi();
+        this.showResults = true;
+      }
+      else {
+        this.showNoResults = true;
+      }
+
+      this.showLoading = false;
     });
 
     document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
@@ -63,6 +85,10 @@ export default class EuropeanaController {
 
   link(tune) {
     const europeanaIdEncoded = encodeURIComponent(tune.id);
-    location.href = `/#!/tune/${this.tune.tunepalId}${europeanaIdEncoded}`;
+    this.$location.url(`/tune/${this.tune.tunepalId}${europeanaIdEncoded}`);
+  }
+
+  _initUi() {
+    this.$timeout(() => this.utils.view.initTooltips());
   }
 }

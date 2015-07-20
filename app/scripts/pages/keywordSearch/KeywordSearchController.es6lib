@@ -3,10 +3,12 @@ import Utils from '../../utils/Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
 export default class NotesSearchController {
-  constructor($scope, $rootScope, $routeParams, $http, $timeout) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
     this.$scope = $scope;  // view model
     this.$routeParams = $routeParams;
     this.$http = $http;
+    this.$timeout = $timeout;
+    this.$location = $location;
     this.config = Config;
     this.utils = Utils;
 
@@ -55,6 +57,7 @@ export default class NotesSearchController {
         }
 
         this._calcPages();
+        this._initUi();
         this.showResults = true;
       }
 
@@ -77,9 +80,12 @@ export default class NotesSearchController {
     this.pages[this.pages.length - 1].end = this.tunes.length;
   }
 
+  _initUi() {
+  }
+
   searchKeyword() {
     $('#keyword').blur();
-    location.href = `/#!/keywordSearch/${this.keyword}`;
+    this.$location.url(`/keywordSearch/${this.keyword}`);
   }
 
   clearKeyword() {

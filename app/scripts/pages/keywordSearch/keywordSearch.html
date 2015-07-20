@@ -24,20 +24,8 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 l12 center preloader-div" ng-show="keywordSearch.showLoading">
-      <div class="preloader-wrapper big active center">
-        <div class="spinner-layer spinner-green-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
+    <div class="col s12 m12 l12 center" ng-show="keywordSearch.showLoading">
+      <tp-preloader></tp-preloader>
     </div>
 
     <div class="col s12 m12 l12 center" ng-show="keywordSearch.showNoResults">
@@ -54,7 +42,7 @@
             <div class="divider"></div>
             <div ng-repeat="tune in keywordSearch.tunes | limitTo : keywordSearch.pageSize : page.startIndex" class="avatar">
               <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalId}}">
-                <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" />
+                <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tune.title}}</span>
                 <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>
                 <span class="secondary-content">

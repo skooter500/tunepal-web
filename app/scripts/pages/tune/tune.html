@@ -7,7 +7,7 @@
         <div class="shadow"></div>
         <ul class="left">
           <li>
-            <a class="hide-on-large-only" ng-click="tune.goBack()"><i class="mdi-navigation-arrow-back"></i></a>
+            <a class="hide-on-large-only" ng-click="tune.utils.view.goBack()"><i class="mdi-navigation-arrow-back"></i></a>
           </li>
         </ul>
 
@@ -26,7 +26,7 @@
             <a class="tooltipped" data-tooltip="{{tune.isEditing ? 'Save' : 'Edit'}}" ng-click="tune.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !tune.isEditing, 'mdi-content-save': tune.isEditing}"></i></a>
           </li>
           <li>
-            <a class="tooltipped" data-tooltip="Europeana Search" ng-href="/#!/europeana/{{tune.tunepalId}}"><i class="mdi-action-list"></i></a>
+            <a class="tooltipped" data-tooltip="Europeana search" ng-href="/#!/europeana/{{tune.tunepalId}}"><i class="mdi-action-list"></i></a>
           </li>
           <li>
             <a href="#" class="dropdown-button tooltipped" data-activates="tune-more" data-tooltip="More"><i class="mdi-navigation-more-vert"></i></a>
@@ -57,17 +57,27 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center preloader-div" ng-show="!tune.loaded">
-      <div class="preloader-wrapper big active center">
-        <div class="spinner-layer spinner-green-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
+    <div class="col s12 m12 center" ng-show="!tune.loaded">
+      <tp-preloader></tp-preloader>
+    </div>
+
+    <div class="col s12 m12 l12" ng-show="tune.europeana">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="avatar">
+              <div class="collection-item avatar">
+                <img ng-src="{{tune.europeana.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.europeana.title[0]}}" class="circle" />
+                <span class="title truncate">{{tune.europeana.title[0]}}</span>
+                <p class="truncate">{{tune.europeana.aggregations[0].edmDataProvider.def[0]}}</p>
+                <p class="truncate">{{tune.europeana.aggregations[0].edmProvider.def[0]}}</p>
+                <span class="secondary-content">
+                  <audio controls ng-src="{{tune.europeanaSoundUrl}}" ng-if="tune.europeanaSoundUrl"></audio>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.europeana.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Unlink" ng-click="tune.europeana = null"><i class="mdi-navigation-close"></i></a>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,27 +97,6 @@
       <div class="card">
         <div id="card-editor" class="card-content input-field">
           <textarea id="abc" class="materialize-textarea" ng-model="tune.tune.notation"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s12 m12 l12" ng-show="tune.europeana">
-      <div class="card">
-        <div class="card-content">
-          <div class="collection">
-            <div class="avatar">
-              <div class="collection-item avatar" ng-href="{{tune.europeana.guid}}" target="_blank">
-                <img ng-src="{{tune.europeana.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.europeana.title[0]}}" class="circle" />
-                <span class="title truncate">{{tune.europeana.title[0]}}</span>
-                <p class="truncate">{{tune.europeana.aggregations[0].edmDataProvider.def[0]}}</p>
-                <p class="truncate">{{tune.europeana.aggregations[0].edmProvider.def[0]}}</p>
-                <span class="secondary-content">
-                  <audio controls ng-src="{{tune.europeanaSoundUrl}}" ng-if="tune.europeanaSoundUrl"></audio>
-                  <span ng-if="!tune.europeanaSoundUrl">No sound file available.</span>
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
