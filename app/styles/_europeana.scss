@@ -1,10 +1,19 @@
-#tunepal-index #europeana-page {
+#tunepal-index #europeana-page, #tunepal-index #tune-page {
   .secondary-content {
-    padding: 9px 10px;
-    top: 20px;
+    padding-top: 11px;
+
+    audio {
+      vertical-align: middle;
+      padding: 0 0.5rem;
+    }
+
+    a {
+      padding: 0 0.5rem;
+    }
 
     i {
       font-size: 2rem;
+      line-height: 36px;
       color: $secondary-color;
     }
   }

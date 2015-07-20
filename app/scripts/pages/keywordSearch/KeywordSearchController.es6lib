@@ -3,10 +3,11 @@ import Utils from '../../utils/Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
 export default class NotesSearchController {
-  constructor($scope, $rootScope, $routeParams, $http, $timeout) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
     this.$scope = $scope;  // view model
     this.$routeParams = $routeParams;
     this.$http = $http;
+    this.$location = $location;
     this.config = Config;
     this.utils = Utils;
 
@@ -79,7 +80,7 @@ export default class NotesSearchController {
 
   searchKeyword() {
     $('#keyword').blur();
-    location.href = `/#!/keywordSearch/${this.keyword}`;
+    this.$location.url(`/keywordSearch/${this.keyword}`);
   }
 
   clearKeyword() {

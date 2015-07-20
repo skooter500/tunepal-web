@@ -4,8 +4,9 @@ import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class RecordController {
-  constructor($scope, $rootScope) {
+  constructor($scope, $rootScope, $location) {
     this.$scope = $scope;  // view model
+    this.$location = $location;
     this.config = Config;
     this.utils = Utils;
     this.audioContext = this.config.audioContext;
@@ -35,7 +36,7 @@ export default class RecordController {
   }
 
   onTranscribed(result) {
-    location.href = `/#!/notesSearch/${result.transcription}`;
+    this.$location.url(`/notesSearch/${result.transcription}`);
   }
 
   playSignal() {

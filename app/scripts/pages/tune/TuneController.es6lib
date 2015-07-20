@@ -36,14 +36,13 @@ export default class TuneController {
     if (this.europeanaIdEncoded) {
       this._initEuropeana();
     }
-
-    this._initUi();
   }
 
   _initTune() {
-    this.loaded = true;
+    this._initUi();
     this.$timeout(() => this._createAbcEditor());
     document.title = `Tunepal.org / Tune / ${this.tune.title}`;
+    this.loaded = true;
   }
 
   _initEuropeana() {
@@ -101,7 +100,7 @@ export default class TuneController {
 
   goBack() {
     if (history.length == 1) {
-      location.href = '/#!/record';
+      location.replace('/#!/record');
     }
     else {
       history.back();

@@ -3,10 +3,12 @@ import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class EuropeanaController {
-  constructor($scope, $rootScope, $routeParams, $http) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
     this.config = Config;
     this.utils = Utils;
     this.$http = $http;
+    this.$timeout = $timeout;
+    this.$location = $location;
 
     this.tunepalId = $routeParams['tunepalId'];
 
@@ -39,9 +41,9 @@ export default class EuropeanaController {
 
     this.$http.get(url)
     .success(data => {
-      console.log(data);
       this.result = data;
       this._calcPages();
+      this._initUi();
     });
 
     document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
@@ -63,6 +65,15 @@ export default class EuropeanaController {
 
   link(tune) {
     const europeanaIdEncoded = encodeURIComponent(tune.id);
-    location.href = `/#!/tune/${this.tune.tunepalId}${europeanaIdEncoded}`;
+    this.$location.url(`/tune/${this.tune.tunepalId}${europeanaIdEncoded}`);
+  }
+
+  _initUi() {
+    this.$timeout(() => {
+      $('.tooltipped').tooltip({
+        position: 'bottom',
+        delay: 50,
+      });
+    });
   }
 }
