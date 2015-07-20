@@ -1,5 +1,17 @@
+import Directive from './Directive.es6lib';
 import Routing from './Routing.es6lib';
 import SeoController from './SeoController.es6lib';
+
+const seo = new SeoController();
+
+if (seo.enabled) {
+  seo.navigate();
+}
+else {
+  const app = angular.module('TunepalApp', ['ngCookies', 'ngRoute']);
+  const routing = new Routing(app);
+  const directive = new Directive(app);
+}
 
 $(function() {
   FastClick.attach(document.body);
@@ -16,13 +28,3 @@ $(function() {
 
   $('.drag-target').remove();
 });
-
-const seo = new SeoController();
-
-if (seo.enabled) {
-  seo.navigate();
-}
-else {
-  window.tunepalApp = angular.module('TunepalApp', ['ngCookies', 'ngRoute']);
-  window.tunepalRouting = new Routing(window.tunepalApp);
-}

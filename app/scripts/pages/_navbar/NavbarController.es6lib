@@ -1,0 +1,7 @@
+import Utils from '../../utils/Utils.es6lib';
+
+export default class NavbarController {
+  constructor() {
+    this.utils = Utils;
+  }
+}

@@ -1,0 +1,16 @@
+import NavbarController from './pages/_navbar/NavbarController.es6lib';
+
+export default class Directive {
+  constructor(app) {
+    app.directive('tpNavbar', () => {
+      return {
+        scope: {
+          title: '@',
+        },
+        controller: NavbarController,
+        controllerAs: 'navbar',
+        templateUrl: 'pages/_navbar/navbar.html',
+      };
+    });
+  }
+}
