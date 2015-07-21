@@ -1,8 +1,10 @@
+import BlobUtils from './BlobUtils.es6lib'
 import DateUtils from './DateUtils.es6lib'
 import ViewUtils from './ViewUtils.es6lib'
 
 class _Utils {
   constructor() {
+    this.blob = BlobUtils;
     this.date = DateUtils;
     this.view = ViewUtils;
     this.tuneCache = null;

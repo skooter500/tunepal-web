@@ -1,4 +1,5 @@
 import ControllerBase from '../../ControllerBase.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 
 export default class MidiPlayer extends ControllerBase {
   constructor($scope) {
@@ -9,8 +10,8 @@ export default class MidiPlayer extends ControllerBase {
     this.isStopped = true;
   }
 
-  initAsync(abc) {
-    this.abc = abc;
+  initAsync(tune) {
+    this.tune = tune;
     console.log('Initializing MIDI.js...');
 
     this._initPluginAsync()
@@ -31,10 +32,10 @@ export default class MidiPlayer extends ControllerBase {
 
   _generateMidiAsync() {
     return new Promise((resolve, reject) => {
-      console.log(`ABC: ${this.abc}`);
-      this._midi = abc2midi(this.abc);
+      console.log(`ABC: ${this.tune.notation}`);
+      this._midi = abc2midi(this.tune.notation);
       const b64encoded = btoa(String.fromCharCode.apply(null, this._midi));
-      this._midiUrl = `data:application/octet-stream;base64,${b64encoded}`;
+      this._midiUrl = `data:audio/midi;base64,${b64encoded}`;
       resolve(this._midiUrl);
     });
   }
@@ -91,5 +92,10 @@ export default class MidiPlayer extends ControllerBase {
     this.isPlaying = false;
     this.isStopped = true;
     MIDI.Player.stop();
+  }
+
+  download() {
+    const blob = Utils.blob.dataURLToBlob(this._midiUrl);
+    saveAs(blob, `${this.tune.title}.midi`);
   }
 }
