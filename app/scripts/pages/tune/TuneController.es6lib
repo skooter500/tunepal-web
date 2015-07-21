@@ -17,6 +17,10 @@ export default class TuneController extends ControllerBase {
     this.loaded = false;
     this.isEditing = false;
 
+    // MIDI Playback
+    this.midi = new MidiPlayer(this.$scope);
+    this.$scope.$watchCollection('midi', () => {});
+
     this.tunepalId = $routeParams['tunepalId'];
     this.europeanaIdEncoded = $routeParams['europeanaIdEncoded'];
 
@@ -31,10 +35,6 @@ export default class TuneController extends ControllerBase {
     if (this.europeanaIdEncoded) {
       this._initEuropeana();
     }
-
-    // MIDI Playback
-    this.midi = new MidiPlayer(this.$scope);
-    this.$scope.$watchCollection('midi', () => {});
 
     this._initUi();
   }
