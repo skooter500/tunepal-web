@@ -2,6 +2,7 @@ import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
+import MidiPlayer from './MidiPlayer.es6lib';
 
 export default class TuneController extends ControllerBase {
   constructor($scope, $rootScope, $routeParams, $http, $timeout, $sce) {
@@ -14,7 +15,7 @@ export default class TuneController extends ControllerBase {
     this.utils = Utils;
 
     this.loaded = false;
-    this._isPlaying = false;
+    this.isPlaying = false;
     this.isEditing = false;
 
     this.tunepalId = $routeParams['tunepalId'];
@@ -25,14 +26,7 @@ export default class TuneController extends ControllerBase {
       this._initTune();
     }
     else {
-      const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
-
-      this.$http.get(url)
-      .success(rawTune => {
-        this.tune = new Tune(rawTune);
-        Utils.tuneCache = this.tune;
-        this._initTune();
-      });
+      this._fetchTune();
     }
 
     if (this.europeanaIdEncoded) {
@@ -40,32 +34,26 @@ export default class TuneController extends ControllerBase {
     }
 
     // MIDI Playback
-    this._audioContext = this.config.audioContext;
-    this._midiPluginReady = false;
-    this._midiPlayerReady = false;
-    this._initMidiPlayer();
+    this.midi = new MidiPlayer(this.$scope);
+    this.$scope.$watchCollection('midi', () => {});
 
     this._initUi();
   }
 
-  _initMidiPlayer() {
-    console.log('Initializing MIDI.js...');
+  _fetchTune() {
+    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
 
-    MIDI.loadPlugin({
-      soundfontUrl: '../../../lib/midi.js/soundfont/',
-      instrument: 'acoustic_grand_piano',
-      onsuccess: this.apply(() => {
-        this._midiPluginReady = true;
-        console.log('Midi.js ready');
-      }),
-      onprogress: this.apply((state, percent) => {
-        percent *= 100;
-        console.log(`Initializing MIDI.js (${percent.toFixed(2)}%)...`);
-      }),
+    this.$http.get(url)
+    .success(rawTune => {
+      this.tune = new Tune(rawTune);
+      Utils.tuneCache = this.tune;
+      this._initTune();
     });
   }
 
   _initTune() {
+    this.midi.initAsync(this.tune.notation);
+
     this._initUi();
     this.$timeout(() => this._createAbcEditor());
     document.title = `Tunepal.org / Tune / ${this.tune.title}`;
@@ -117,74 +105,6 @@ export default class TuneController extends ControllerBase {
     const scale = cardScore.width() / score.width();
     cardScore.css('transform', `scale(${scale})`);
     cardContent.height(cardScore.height() * scale);
-  }
-
-  goBack() {
-    if (history.length == 1) {
-      location.href = '/#!/record';
-    }
-    else {
-      history.back();
-    }
-  }
-
-  _getAudioUrlAsync() {
-    return new Promise((resolve, reject) => {
-      console.log(`ABC: ${this.tune.notation}`);
-      this._midi = abc2midi(this.tune.notation);
-      const b64encoded = btoa(String.fromCharCode.apply(null, this._midi));
-      this._midiUrl = `data:application/octet-stream;base64,${b64encoded}`;
-      resolve(this._midiUrl);
-    });
-  }
-
-  togglePlaying() {
-    this._isPlaying = !this._isPlaying;
-
-    if (!this._midi) {
-      this._getAudioUrlAsync()
-      .then(url => this._playMidiUrl(url));
-    }
-
-    if (this._isPlaying) {
-      MIDI.Player.resume();
-    }
-    else {
-      MIDI.Player.pause();
-    }
-  }
-
-  _playMidiUrl(url) {
-    MIDI.Player.setAnimation(data => {
-      let now = data.now < data.end ? data.now : data.end;
-      now = now.toFixed(2);
-      let end = data.end.toFixed(2);
-      //$('#currentTime').text(now);
-      //$('#endTime').text(end);
-    });
-
-    const onsuccess = this.apply(() => {
-      console.log(`Sound being generated with ${MIDI.api} ${JSON.stringify(MIDI.supports)}`);
-      this._midiPlayerReady = true;
-      MIDI.Player.start();
-    });
-
-    const onprogress = this.apply((stats, percent) => {
-      percent *= 100;
-      console.log(`Reading audio file (${percent.toFixed(2)}%)...`);
-    });
-
-    const onerror = this.apply(e => {
-      console.log(`Error: ${e.message}\n${e.stack}`);
-    });
-
-    console.log('MIDI URL: ' + url);
-    MIDI.Player.loadFile(url, onsuccess, onprogress, onerror);
-  }
-
-  stopPlaying() {
-    this._isPlaying = false;
-    MIDI.Player.stop();
   }
 
   toggleEditing() {

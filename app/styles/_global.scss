@@ -31,7 +31,7 @@ a[ng-click]:not(.disabled) {
   cursor: pointer;
 }
 
-a.disabled {
+a.disabled, .disabled a {
   color: #b3b3b3;
 }
 

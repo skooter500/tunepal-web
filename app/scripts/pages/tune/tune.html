@@ -14,13 +14,18 @@
         <a class="page-title truncate hide-on-med-and-down">{{tune.tune.title}}</a>
 
         <ul class="right">
-          <li>
-            <a class="tooltipped" data-tooltip="{{tune.isPlaying ? 'Pause' : 'Play'}}" ng-click="tune.togglePlaying()">
-              <i ng-class="{'mdi-av-play-arrow': !tune.isPlaying, 'mdi-av-pause': tune.isPlaying}"></i>
+          <li ng-show="!tune.midi.isPlaying" ng-class="{disabled: !tune.midi.ready}">
+            <a class="tooltipped" data-tooltip="Play" ng-click="tune.midi.togglePlaying()">
+              <i ng-class="tune.midi.isPlaying ? 'mdi-av-pause' : 'mdi-av-play-arrow'"></i>
             </a>
           </li>
-          <li ng-class="{disabled: !tune.isPlaying}">
-            <a class="tooltipped" data-tooltip="Stop" ng-click="tune.stopPlaying()" ng-class="{disabled: !tune.isPlaying}"><i class="mdi-av-stop"></i></a>
+          <li ng-show="tune.midi.isPlaying" ng-class="{disabled: !tune.midi.ready}">
+            <a class="tooltipped" data-tooltip="Pause" ng-click="tune.midi.togglePlaying()">
+              <i ng-class="tune.midi.isPlaying ? 'mdi-av-pause' : 'mdi-av-play-arrow'"></i>
+            </a>
+          </li>
+          <li ng-class="{disabled: tune.midi.isStopped}">
+            <a class="tooltipped" data-tooltip="Stop" ng-click="tune.midi.stopPlaying()"><i class="mdi-av-stop"></i></a>
           </li>
           <li>
             <a class="tooltipped" data-tooltip="{{tune.isEditing ? 'Save' : 'Edit'}}" ng-click="tune.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !tune.isEditing, 'mdi-content-save': tune.isEditing}"></i></a>
