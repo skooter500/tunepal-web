@@ -3,7 +3,16 @@ export default class ControllerBase {
     this.$scope = $scope; // view model
   }
 
-  apply(func) {
+  apply(func, that = this) {
+    const wrap = function() {
+      const args = arguments;
+      return this.$scope.$apply(() => func.apply(that, args));
+    };
+    return wrap.bind(this);
+  }
+
+  // a failed implementation of apply :(
+  applyFailed(func) {
     return this.$scope.$apply.bind(this.$scope, func);
   }
 }
