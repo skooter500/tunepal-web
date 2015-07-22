@@ -62,11 +62,6 @@ export default class Routing {
         controllerAs: 'tune',
         templateUrl: 'scripts/pages/tune/tune.html',
       })
-      .when('/tune/:tunepalId/:europeanaIdEncoded*', {
-        controller: 'TuneController',
-        controllerAs: 'tune',
-        templateUrl: 'scripts/pages/tune/tune.html',
-      })
       .otherwise('/home');
 
       $locationProvider.hashPrefix('!');

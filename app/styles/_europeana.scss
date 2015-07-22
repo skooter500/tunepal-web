@@ -1,6 +1,25 @@
 #tunepal-index #europeana-page, #tunepal-index #tune-page {
-  .secondary-content {
-    padding-top: 11px;
+  .card-collection-title .secondary-content {
+    position: absolute;
+    top: 0;
+
+    a {
+      padding: 0 0.5rem;
+    }
+
+    i {
+      font-size: 2rem;
+      line-height: 42px;
+      color: $primary-font-color;
+    }
+  }
+
+  .card-collection-title .preloader-div {
+    padding-top: 0;
+  }
+
+  .avatar .secondary-content {
+    top: 21px;
 
     audio {
       vertical-align: middle;
@@ -14,7 +33,7 @@
     i {
       font-size: 2rem;
       line-height: 36px;
-      color: $secondary-color;
+      color: $primary-font-color;
     }
   }
 }

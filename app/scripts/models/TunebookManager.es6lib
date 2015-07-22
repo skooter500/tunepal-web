@@ -7,20 +7,20 @@ class _TunebookManager {
     this.DefaultTunebooks = DefaultTunebooks;
     this.DefaultSelectedIds = DefaultSelectedIds;
 
-    let rawTunebooks = Utils.getObjectFromStorage('tunebooks');
+    let rawTunebooks = Utils.localStorage.getItem('tunebooks');
 
     if (rawTunebooks === null) {
       rawTunebooks = this.DefaultTunebooks;
-      Utils.setObjectToStorage('tunebooks', rawTunebooks);
+      Utils.localStorage.setItem('tunebooks', rawTunebooks);
     }
 
     this._tunebooks = this._initTunebooks(rawTunebooks);
 
-    this._selectedIds = Utils.getObjectFromStorage('tunebookSelectedIds');
+    this._selectedIds = Utils.localStorage.getItem('tunebookSelectedIds');
 
     if (this._selectedIds === null) {
       this._selectedIds = this.DefaultSelectedIds;
-      Utils.setObjectToStorage('tunebookSelectedIds', this._selectedIds);
+      Utils.localStorage.setItem('tunebookSelectedIds', this._selectedIds);
     }
 
     this._selectedIds = new Set(this._selectedIds);
@@ -43,7 +43,7 @@ class _TunebookManager {
       $http.get(url)
       .success(tunebooks => {
         this._tunebooks = this._initTunebooks(tunebooks);
-        Utils.setObjectToStorage('tunebooks', tunebooks);
+        Utils.localStorage.setItem('tunebooks', tunebooks);
         resolve();
       });
     });
@@ -94,7 +94,7 @@ class _TunebookManager {
       }
     }
 
-    Utils.setObjectToStorage('tunebookSelectedIds', this._selectedIds);
+    Utils.localStorage.setItem('tunebookSelectedIds', this._selectedIds);
   }
 
   deselect(id) {
@@ -115,7 +115,7 @@ class _TunebookManager {
       this._selectedIds.delete(id);
     }
 
-    Utils.setObjectToStorage('tunebookSelectedIds', this._selectedIds);
+    Utils.localStorage.setItem('tunebookSelectedIds', this._selectedIds);
   }
 
   toggle(id) {

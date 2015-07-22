@@ -1,0 +1,45 @@
+import Config from '../Config.es6lib';
+import Utils from '../utils/Utils.es6lib';
+
+class _Europeana {
+  searchAsync($http, tune, start = 1, maxNumItems = 20) {
+    return new Promise((resolve, reject) => {
+      const apiDomain = Config.EuropeanaApiDomain;
+      const apiKey = Config.EuropeanaApiKey;
+      const qf = 'TYPE:SOUND';
+      const profile = 'standard';
+
+      let query = `"${tune.title}"`;
+
+      if (tune.altTitle) {
+        query += ` OR "${tune.altTitle}"`;
+      }
+
+      query = encodeURIComponent(query);
+
+      const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
+
+      $http.get(url)
+      .success(data => {
+        Utils.cache.europeana = data;
+        resolve(data)
+      });
+    });
+  }
+
+  fetchRecordAsync($http, europeanaId) {
+    return new Promise((resolve, reject) => {
+      const apiDomain = Config.EuropeanaApiDomain;
+      const apiKey = Config.EuropeanaApiKey;
+
+      const url = `${apiDomain}/record/${europeanaId}.json?wskey=${apiKey}`;
+
+      $http.get(url)
+      .success(result => resolve(result));
+    });
+  }
+}
+
+const Europeana = new _Europeana();
+
+export default Europeana;

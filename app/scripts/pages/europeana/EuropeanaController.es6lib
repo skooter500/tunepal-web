@@ -1,4 +1,5 @@
 import Config from '../../Config.es6lib';
+import Europeana from '../../models/Europeana.es6lib';
 import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
@@ -14,63 +15,58 @@ export default class EuropeanaController {
     this.showNoResults = false;
     this.showResults = false;
 
-    this.tunepalId = $routeParams['tunepalId'];
+    const tunepalId = $routeParams['tunepalId'];
 
-    if (Utils.tuneCache && Utils.tuneCache.tunepalId === this.tunepalId) {
-      this.tune = Utils.tuneCache;
+    if (Utils.cache.tune && Utils.cache.tune.tunepalId === tunepalId) {
+      this.tune = Utils.cache.tune;
       this._search();
     }
     else {
-      const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
+      const url = `${this.config.ApiDomain}/api/Tunes/${tunepalId}`;
 
       this.$http.get(url)
       .success(rawTune => {
         this.tune = new Tune(rawTune);
-        Utils.tuneCache = this.tune;
+        Utils.cache.tune = this.tune;
         this._search();
       });
     }
   }
 
   _search() {
-    const apiDomain = this.config.EuropeanaApiDomain;
-    const apiKey = this.config.EuropeanaApiKey;
-    const qf = 'TYPE:SOUND';
-    const start = 1;
-    const maxNumItems = 20;
-    const profile = 'standard';
+    this._europeanaIdsDb = Utils.localStorage.getItem('europeanaIds');
+    this._europeanaIdsDb = this._europeanaIdsDb || {};
+    this._europeanaIds = this._europeanaIdsDb[this.tune.tunepalId];
 
-    let query = `"${this.tune.title}"`;
-
-    if (this.tune.altTitle) {
-      query += ` OR "${this.tune.altTitle}"`;
+    if (Utils.cache.europeana && this.tune.tunepalId === Utils.cache.europeana.id) {
+      this._initResults(Utils.cache.europeana.results);
     }
-
-    query = encodeURIComponent(query);
-
-    const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
-
-    this.$http.get(url)
-    .success(data => {
-      this.result = data;
-
-      if (data.items && data.items.length > 0) {
-        this._calcPages();
-        this._initUi();
-        this.showResults = true;
-      }
-      else {
-        this.showNoResults = true;
-      }
-
-      this.showLoading = false;
-    });
+    else {
+      Europeana.searchAsync(this.$http, this.tune)
+      .then(results => this._initResults(results));
+    }
 
     document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
   }
 
+  _initResults(results) {
+    this.results = results;
+    Utils.cache.europeana = {id: this.tune.tunepalId, results: results};
+
+    if (results.items && results.items.length > 0) {
+      this._calcPages();
+      this._initUi();
+      this.showResults = true;
+    }
+    else {
+      this.showNoResults = true;
+    }
+
+    this.showLoading = false;
+  }
+
   _calcPages() {
-    this.pages = new Array(Math.ceil(this.result.items.length / 10));
+    this.pages = new Array(Math.ceil(this.results.items.length / 10));
 
     for (let i = 0; i < this.pages.length; i++) {
       this.pages[i] = {
@@ -80,12 +76,24 @@ export default class EuropeanaController {
       }
     }
 
-    this.pages[this.pages.length - 1].end = this.result.items.length;
+    this.pages[this.pages.length - 1].end = this.results.items.length;
   }
 
   link(tune) {
-    const europeanaIdEncoded = encodeURIComponent(tune.id);
-    this.$location.url(`/tune/${this.tune.tunepalId}${europeanaIdEncoded}`);
+    const index = this._europeanaIds.indexOf(tune.id);
+    if (index === -1) {
+      this._europeanaIds.push(tune.id);
+      Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
+    }
+    this.$location.url(`/tune/${this.tune.tunepalId}`);
+  }
+
+  unlink(tune) {
+    const index = this._europeanaIds.indexOf(tune.id);
+    if (index > -1) {
+      this._europeanaIds.splice(index, 1);
+      Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
+    }
   }
 
   _initUi() {

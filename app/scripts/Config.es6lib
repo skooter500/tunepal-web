@@ -29,11 +29,11 @@ class _Config {
     this._settings = [];
 
     for (let property of this.Properties) {
-      let storedValue = Utils.getObjectFromStorage(property.name);
+      let storedValue = Utils.localStorage.getItem(property.name);
 
       if (storedValue == null) {
         storedValue = property.default;
-        Utils.setObjectToStorage(property.name, storedValue);
+        Utils.localStorage.setItem(property.name, storedValue);
       }
 
       this._settings[property.name] = storedValue;
@@ -48,7 +48,7 @@ class _Config {
           }
 
           this._settings[property.name] = value;
-          Utils.setObjectToStorage(property.name, value);
+          Utils.localStorage.setItem(property.name, value);
         },
       });
     }

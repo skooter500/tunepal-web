@@ -1,22 +1,18 @@
 import BlobUtils from './BlobUtils.es6lib'
+import CacheUtils from './CacheUtils.es6lib'
 import DateUtils from './DateUtils.es6lib'
+import LocalStorageUtils from './LocalStorageUtils.es6lib'
 import ViewUtils from './ViewUtils.es6lib'
 
 class _Utils {
   constructor() {
     this.blob = BlobUtils;
+    this.cache = CacheUtils;
     this.date = DateUtils;
+    this.localStorage = LocalStorageUtils;
     this.view = ViewUtils;
     this.tuneCache = null;
-  }
-
-  getObjectFromStorage(key) {
-    let value = localStorage.getItem(key);
-    return value && JSON.parse(value);
-  }
-
-  setObjectToStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify((value)));
+    this.europeanaCache = null;
   }
 
   makeArray(start = 0, end = 10, step = 1) {

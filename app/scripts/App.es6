@@ -8,7 +8,7 @@ if (seo.enabled) {
   seo.navigate();
 }
 else {
-  const app = angular.module('TunepalApp', ['ngCookies', 'ngRoute']);
+  const app = angular.module('TunepalApp', ['ngCookies', 'ngRoute', 'LocalForageModule']);
   const routing = new Routing(app);
   const directive = new Directive(app);
 }

@@ -1,0 +1,10 @@
+class _CacheUtils {
+  constructor() {
+    this.tune = null
+    this.europeana = null;
+  }
+}
+
+const CacheUtils = new _CacheUtils();
+
+export default CacheUtils;

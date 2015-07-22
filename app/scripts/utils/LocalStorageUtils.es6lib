@@ -1,0 +1,14 @@
+class _LocalStorageUtils {
+  getItem(key) {
+    let value = localStorage.getItem(key);
+    return value && JSON.parse(value);
+  }
+
+  setItem(key, value) {
+    localStorage.setItem(key, JSON.stringify((value)));
+  }
+}
+
+const LocalStorageUtils = new _LocalStorageUtils();
+
+export default LocalStorageUtils;

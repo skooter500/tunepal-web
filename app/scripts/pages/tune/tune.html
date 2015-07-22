@@ -62,33 +62,46 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center" ng-show="!tune.loaded">
+    <div class="col s12 m12 center" ng-if="!tune.showTune">
       <tp-preloader></tp-preloader>
     </div>
 
-    <div class="col s12 m12 l12" ng-show="tune.europeana">
+    <div class="col s12 m12 l12" ng-if="tune.showTune">
       <div class="card">
         <div class="card-content">
           <div class="collection">
-            <div class="avatar">
+            <div class="collection-item card-collection-title">
+              <span class="title">Europeana Tunes</span>
+              <span class="secondary-content">
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalId}}"><i class="mdi-content-add"></i></a>
+              </span>
+            </div>
+            <div class="divider"></div>
+
+            <div class="center" ng-if="tune.showTune && !tune.showEuropeana">
+              <tp-preloader size="small"></tp-preloader>
+            </div>
+
+            <div class="avatar" ng-repeat="europeanaTune in tune.europeanaTunes" ng-if="tune.showEuropeana">
               <div class="collection-item avatar">
-                <img ng-src="{{tune.europeana.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.europeana.title[0]}}" class="circle" />
-                <span class="title truncate">{{tune.europeana.title[0]}}</span>
-                <p class="truncate">{{tune.europeana.aggregations[0].edmDataProvider.def[0]}}</p>
-                <p class="truncate">{{tune.europeana.aggregations[0].edmProvider.def[0]}}</p>
+                <img ng-src="{{europeanaTune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{europeanaTune.title[0]}}" class="circle" />
+                <span class="title truncate">{{europeanaTune.title[0] || '&nbsp;'}}</span>
+                <p class="truncate">{{europeanaTune.aggregations[0].edmDataProvider.def[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{europeanaTune.aggregations[0].edmProvider.def[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
-                  <audio controls ng-src="{{tune.europeanaSoundUrl}}" ng-if="tune.europeanaSoundUrl"></audio>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.europeana.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Unlink" ng-click="tune.europeana = null"><i class="mdi-navigation-close"></i></a>
+                  <audio controls ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Unlink" ng-click="tune.unlinkEuropeanaTune($index)"><i class="mdi-navigation-close"></i></a>
                 </span>
               </div>
+              <div class="divider" ng-if="!$last"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col s12 m12" ng-class="{l6: tune.isEditing, l12: !tune.isEditing}" ng-show="tune.loaded">
+    <div class="col s12 m12" ng-class="{l6: tune.isEditing, l12: !tune.isEditing}" ng-if="tune.showTune">
       <div class="card">
         <div class="score card-content">
           <div id="card-score">
