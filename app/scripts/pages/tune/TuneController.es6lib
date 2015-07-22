@@ -69,7 +69,9 @@ export default class TuneController extends ControllerBase {
     else {
       Europeana.searchAsync(this.$http, this.tune)
       .then(results => {
-        this._europeanaIds = results.items.slice(0, numDefaultTunes).map(item => item.id);
+        this._europeanaIds = results.items
+          ? results.items.slice(0, numDefaultTunes).map(item => item.id)
+          : [];
         this._europeanaIdsDb[this.tune.tunepalId] = this._europeanaIds;
         Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
         this._initEuropeanaTunes();

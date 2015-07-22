@@ -1,10 +1,12 @@
+import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Europeana from '../../models/Europeana.es6lib';
 import Tune from '../../models/Tune.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
-export default class EuropeanaController {
+export default class EuropeanaController extends ControllerBase {
   constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
+    super($scope);
     this.config = Config;
     this.utils = Utils;
     this.$http = $http;
@@ -43,7 +45,7 @@ export default class EuropeanaController {
     }
     else {
       Europeana.searchAsync(this.$http, this.tune)
-      .then(results => this._initResults(results));
+      .then(this.apply(results => this._initResults(results)));
     }
 
     document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
