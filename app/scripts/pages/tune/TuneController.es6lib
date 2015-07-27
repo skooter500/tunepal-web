@@ -37,6 +37,10 @@ export default class TuneController extends ControllerBase {
     }
 
     this._initUi();
+
+    $scope.$on('$routeChangeStart', () => {
+      this.midi.stopPlaying();
+    });
   }
 
   _fetchTune() {
