@@ -1,5 +1,4 @@
 export default class PreloaderController {
   constructor() {
-    this.size = 'big';
   }
 }

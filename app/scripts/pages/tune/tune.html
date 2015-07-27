@@ -68,15 +68,19 @@
         <div class="card-content">
           <div class="collection">
             <div class="collection-item card-collection-title">
-              <span class="title">Europeana Tunes</span>
+              <span class="title">Archive Recordings</span>
               <span class="secondary-content">
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalId}}"><i class="mdi-content-add"></i></a>
               </span>
             </div>
             <div class="divider"></div>
 
-            <div class="center" ng-if="tune.showTune && !tune.showEuropeana">
+            <div class="center" ng-if="tune.showEuropeanaPreloader">
               <tp-preloader size="small"></tp-preloader>
+            </div>
+
+            <div class="collection-item center" ng-if="tune.showNoRecordings">
+              <p>No recordings found for "{{tune.tune.title}}"</p>
             </div>
 
             <div class="avatar" ng-repeat="europeanaTune in tune.europeanaTunes" ng-if="tune.showEuropeana">
