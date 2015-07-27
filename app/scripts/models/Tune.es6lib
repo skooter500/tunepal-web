@@ -16,6 +16,7 @@ export default class Tune {
     this.x = rawTune.x;
     this.id = rawTune.id;
     this.tunepalId = rawTune.tunepalid;
+    this.tunepalIdEncoded = encodeURIComponent(this.tunepalId);
     this.tunebook = TunebookManager.getById(rawTune.sourceId);
     this.tuneType = rawTune.tuneType;
     this.keySignature = rawTune.keySignature;

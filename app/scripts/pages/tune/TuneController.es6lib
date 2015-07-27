@@ -26,6 +26,7 @@ export default class TuneController extends ControllerBase {
     this.$scope.$watchCollection('midi', () => {});
 
     this.tunepalId = $routeParams['tunepalId'];
+    this.tunepalIdEncoded = encodeURIComponent(this.tunepalId);
 
     if (Utils.cache.tune && Utils.cache.tune.tunepalId === this.tunepalId) {
       this.tune = Utils.cache.tune;
@@ -39,7 +40,7 @@ export default class TuneController extends ControllerBase {
   }
 
   _fetchTune() {
-    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
+    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalIdEncoded}`;
 
     this.$http.get(url)
     .success(rawTune => {
