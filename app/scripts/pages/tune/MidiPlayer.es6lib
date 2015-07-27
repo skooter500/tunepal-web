@@ -66,6 +66,7 @@ export default class MidiPlayer extends ControllerBase {
           this.$scope.$apply(() => {
             this.isPlaying = false;
             this.isStopped = true;
+            MIDI.Player.stop();
           });
         }
       });
