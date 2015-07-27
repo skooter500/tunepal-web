@@ -20,7 +20,7 @@ export default class EuropeanaController extends ControllerBase {
     const tunepalId = $routeParams['tunepalId'];
     const tunepalIdEncoded = encodeURIComponent(tunepalId);
 
-    if (Utils.cache.tune && Utils.cache.tune.tunepalId === tunepalId) {
+    if (Utils.cache.tune.tunepalId === tunepalId) {
       this.tune = Utils.cache.tune;
       this._search();
     }
@@ -41,7 +41,7 @@ export default class EuropeanaController extends ControllerBase {
     this._europeanaIdsDb = this._europeanaIdsDb || {};
     this._europeanaIds = this._europeanaIdsDb[this.tune.tunepalId];
 
-    if (Utils.cache.europeana && this.tune.tunepalId === Utils.cache.europeana.id) {
+    if (Utils.cache.europeana.id === this.tune.tunepalId) {
       this._initResults(Utils.cache.europeana.results);
     }
     else {
@@ -54,7 +54,6 @@ export default class EuropeanaController extends ControllerBase {
 
   _initResults(results) {
     this.results = results;
-    Utils.cache.europeana = {id: this.tune.tunepalId, results: results};
 
     if (results.items && results.items.length > 0) {
       this._calcPages();

@@ -28,7 +28,7 @@ export default class TuneController extends ControllerBase {
     this.tunepalId = $routeParams['tunepalId'];
     this.tunepalIdEncoded = encodeURIComponent(this.tunepalId);
 
-    if (Utils.cache.tune && Utils.cache.tune.tunepalId === this.tunepalId) {
+    if (Utils.cache.tune.tunepalId === this.tunepalId) {
       this.tune = Utils.cache.tune;
       this._initTune();
     }

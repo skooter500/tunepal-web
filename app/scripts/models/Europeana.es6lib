@@ -21,8 +21,8 @@ class _Europeana {
 
       $http.get(url)
       .success(data => {
-        Utils.cache.europeana = data;
-        resolve(data)
+        Utils.cache.europeana = {id: tune.tunepalId, results: data};
+        resolve(data);
       });
     });
   }
