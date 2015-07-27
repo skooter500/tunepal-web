@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<div id="discography-page" class="page">
+
+  <tp-navbar title="Discography: {{discography.keyword}}" go-back="{{true}}"></tp-navbar>
+
+  <div class="row">
+    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    <div class="col s12 m12 l12 center" ng-show="discography.showLoading">
+      <tp-preloader></tp-preloader>
+    </div>
+
+    <div class="col s12 m12 l12 center" ng-show="discography.showNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
+
+    <div class="col s12 m12 l6" ng-repeat="page in discography.pages" ng-show="discography.showResults">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">{{page.start}} - {{page.end}}</span>
+            </div>
+            <div class="divider"></div>
+            <div ng-repeat="tune in discography.tunes | limitTo : discography.pageSize : page.startIndex">
+              <a class="collection-item" ng-href="http://www.amazon.com/s/?field-keywords={{tune.queryEncoded}}" target="_blank">
+                <span class="title truncate">{{tune.title}}</span>
+                <p class="truncate">{{tune.artist || '&nbsp;'}}</p>
+              </a>
+              <div class="divider" ng-if="!$last"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

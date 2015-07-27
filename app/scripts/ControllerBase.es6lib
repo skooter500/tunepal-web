@@ -15,4 +15,19 @@ export default class ControllerBase {
   applyFailed(func) {
     return this.$scope.$apply.bind(this.$scope, func);
   }
+
+  _calcPages(results, pageSize = 10) {
+    this.pageSize = pageSize;
+    this.pages = new Array(Math.ceil(results.length / pageSize));
+
+    for (let i = 0; i < this.pages.length; i++) {
+      this.pages[i] = {
+        startIndex: i * pageSize,
+        start: i * pageSize + 1,
+        end: (i + 1) * pageSize,
+      }
+    }
+
+    this.pages[this.pages.length - 1].end = results.length;
+  }
 }
