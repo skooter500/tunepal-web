@@ -6,18 +6,17 @@ class _Europeana {
     return new Promise((resolve, reject) => {
       const apiDomain = Config.EuropeanaApiDomain;
       const apiKey = Config.EuropeanaApiKey;
-      const qf = 'TYPE:SOUND';
       const profile = 'standard';
+      const qfSound = encodeURIComponent('TYPE:SOUND');
+      const query = this._getQuery(tune.title, tune.altTitle);
 
-      let query = `"${tune.title}"`;
+      const providers = [
+        'Comhaltas Traditional Music Archive',
+        'Irish Traditional Music Archive',
+      ];
+      const qfProvider = this._getProviders(providers);
 
-      if (tune.altTitle) {
-        query += ` OR "${tune.altTitle}"`;
-      }
-
-      query = encodeURIComponent(query);
-
-      const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qf}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
+      const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qfSound}&qf=${qfProvider}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
       $http.get(url)
       .success(data => {
@@ -25,6 +24,36 @@ class _Europeana {
         resolve(data);
       });
     });
+  }
+
+  _getQuery(...keywords) {
+    if (keywords.length === 0) {
+      return '';
+    }
+
+    let query = keywords[0] || '';
+
+    for (let i = 1; i < keywords.length; i++) {
+      if (keywords[i]) {
+        query += query.length > 0 ? ` OR "${keywords[i]}"` : `"${keywords[i]}"`;
+      }
+    }
+
+    return encodeURIComponent(query);
+  }
+
+  _getProviders(providers) {
+    if (providers.length === 0) {
+      return '';
+    }
+
+    let query = `DATA_PROVIDER:"${providers[0]}"`;
+
+    for (let i = 1; i < providers.length; i++) {
+      query += ` OR "${providers[i]}"`;
+    }
+
+    return encodeURIComponent(query);
   }
 
   fetchRecordAsync($http, europeanaId) {
