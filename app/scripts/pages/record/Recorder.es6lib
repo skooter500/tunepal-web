@@ -24,6 +24,8 @@ export default class Recorder {
   constructor(config, audioContext) {
     this.config = config;
 
+	console.log("1");
+	
     this._status = Recorder.Status.STOPPED;
     this._audioContext = audioContext;
 
@@ -41,6 +43,7 @@ export default class Recorder {
       }
       else {
         this._status = Recorder.Status.INIT;
+
         navigator.getUserMedia({audio: true},
           stream => this._onStream(stream, resolve),
           error => this._onStreamError(error, reject)
@@ -57,9 +60,9 @@ export default class Recorder {
     this._stream = stream;
     this._bufferSize = 4096;
 
-    this._input = this._audioContext.createMediaStreamSource(stream);
+	this._input = this._audioContext.createMediaStreamSource(stream);
     this._processor = this._audioContext.createScriptProcessor(this._bufferSize, 1, 1);
-
+	
     this._processor.onaudioprocess = e => this._update(e);
 
     this._input.connect(this._processor);
@@ -70,6 +73,7 @@ export default class Recorder {
   }
 
   _onStreamError(error, reject) {
+	console.log("ERROR: " + error);
     this._status = Recorder.Status.INIT_FAILED;
     reject(error);
   }

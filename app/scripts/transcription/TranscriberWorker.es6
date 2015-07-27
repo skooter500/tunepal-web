@@ -14,29 +14,6 @@ export default class TranscriberWorker {
 
     self.addEventListener('message', e => this.onMessage(e));
 	
-	/*
-	let signal = new Float32Array();
-	signal[0] = 5;
-	signal[1] = 10;
-	*/
-	
-	let signal = [5.0, 10.0];
-	
-	let transcription = transcribeTest1(
-				signal
-				,100
-				,200				
-				,false
-				);
-	
-	/*
-	let transcription = transcribeTest(
-				100
-				,200				
-				,false
-				);
-	*/
-	console.log("transcription " + transcription);
   }
 
   onMessage(e) {
@@ -63,6 +40,7 @@ export default class TranscriberWorker {
         let signal = typeof msg.signal !== 'undefined' ? msg.signal : this._mergeSignal();
         let midi = typeof msg.midi !== 'undefined' ? msg.midi : false;
 
+		console.log("Native transcribe");
 		//let transcription = this._transcriber.transcribe(signal, midi);
         let transcription = transcribe(
 				signal
@@ -70,6 +48,7 @@ export default class TranscriberWorker {
 				,this._transcriber.sampleTime				
 				,false
 				);
+		console.log("Transcription:" + transcription);
 		
 		
         resultMsg = {
