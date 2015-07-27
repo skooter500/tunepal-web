@@ -18,7 +18,13 @@ export default class NotesSearchController {
     this.showNoResults = false;
 
     if (this.keyword) {
-      this._fetchTunes();
+      if (Utils.cache.keywordSearch.keyword === this.keyword) {
+        this.tunes = Utils.cache.keywordSearch.results;
+        this._initTunes();
+      }
+      else {
+        this._fetchTunes();
+      }
       document.title = `Tunepal.org > Keyword Search > ${this.keyword}`;
     }
     else {
@@ -46,23 +52,29 @@ export default class NotesSearchController {
 
     this.$http.get(url)
     .success(rawTunes => {
-      if (rawTunes.length === 0) {
-        this.showNoResults = true;
-      }
-      else {
-        this.tunes = [];
+      this.tunes = [];
 
-        for (const rawTune of rawTunes) {
-          this.tunes.push(new Tune(rawTune));
-        }
-
-        this._calcPages();
-        this._initUi();
-        this.showResults = true;
+      for (const rawTune of rawTunes) {
+        this.tunes.push(new Tune(rawTune));
       }
 
-      this.showLoading = false;
+      Utils.cache.keywordSearch = {keyword: this.keyword, results: this.tunes};
+
+      this._initTunes();
     });
+  }
+
+  _initTunes() {
+    if (this.tunes.length === 0) {
+      this.showNoResults = true;
+    }
+    else {
+      this._calcPages();
+      this._initUi();
+      this.showResults = true;
+    }
+
+    this.showLoading = false;
   }
 
   _calcPages() {
