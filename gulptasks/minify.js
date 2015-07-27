@@ -36,10 +36,14 @@ gulp.task('minify', ['minify-search'], function () {
   //TODO
   //var images = gulp.src(['app/images/**/*'])
 
+  var dsp = gulp.src(['app/lib/dsp.js/dsp.js'])
+    .pipe($.uglify())
+    .pipe(gulp.dest('www/lib/dsp.js'));
+
   var transcriber = gulp.src(['.tmp/scripts/transcription/TranscriberWorker.js'])
     .pipe($.uglify())
     .pipe(gulp.dest('www/scripts/transcription'));
 
-  return merge(transcriber)
+  return merge(dsp, transcriber)
     .pipe($.size({title: 'minify'}));
 });

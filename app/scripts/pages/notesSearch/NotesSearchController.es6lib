@@ -1,10 +1,11 @@
+import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
 
-export default class NotesSearchController {
+export default class NotesSearchController extends ControllerBase {
   constructor($scope, $rootScope, $routeParams, $http, $timeout) {
-    this.$scope = $scope;  // view model
+    super($scope);
     this.$routeParams = $routeParams;
     this.$http = $http;
     this.$timeout = $timeout;
@@ -16,9 +17,18 @@ export default class NotesSearchController {
     this.showNoResults = false;
 
     this.notes = $routeParams['notes'];
-    this._fetchTunes();
 
-    document.title = 'Tunepal.org / Notes Search';
+    if (Utils.cache.notesSearch.notes === this.notes) {
+      this.tunes = Utils.cache.notesSearch.results;
+      this.showConfidencePopup = false;
+      this._initTunes();
+    }
+    else {
+      this.showConfidencePopup = true;
+      this._fetchTunes();
+    }
+
+    document.title = 'Tunepal.org > Notes Search';
   }
 
   _fetchTunes() {
@@ -39,41 +49,34 @@ export default class NotesSearchController {
 
     this.$http.get(url)
     .success(rawTunes => {
-      if (rawTunes.length === 0) {
-        this.showNoResults = true;
-      }
-      else {
-        this.tunes = [];
+      this.tunes = [];
 
-        for (const rawTune of rawTunes) {
-          this.tunes.push(new Tune(rawTune));
-        }
-
-        this._calcPages();
-        this._initUi();
-        this.showResults = true;
+      for (const rawTune of rawTunes) {
+        this.tunes.push(new Tune(rawTune));
       }
 
-      this.showLoading = false;
+      Utils.cache.notesSearch = {notes: this.notes, results: this.tunes};
+
+      this._initTunes();
     });
   }
 
-  _calcPages() {
-    this.pageSize = 10;
-    this.pages = new Array(Math.ceil(this.tunes.length / this.pageSize));
-
-    for (let i = 0; i < this.pages.length; i++) {
-      this.pages[i] = {
-        startIndex: i * this.pageSize,
-        start: i * this.pageSize + 1,
-        end: (i + 1) * this.pageSize,
-      }
+  _initTunes() {
+    if (this.tunes.length === 0) {
+      this.showNoResults = true;
+    }
+    else {
+      this._calcPages(this.tunes);
+      this._initUi();
+      this.showResults = true;
     }
 
-    this.pages[this.pages.length - 1].end = this.tunes.length;
+    this.showLoading = false;
   }
 
   _initUi() {
-    $('#confidence-popup').openModal();
+    if (this.showConfidencePopup) {
+      $('#confidence-popup').openModal();
+    }
   }
 }

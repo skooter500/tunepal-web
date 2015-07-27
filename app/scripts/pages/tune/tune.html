@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <div id="tune-page" class="page">
 
   <header class="navbar-fixed page-header">
@@ -34,13 +34,16 @@
             <a href="#" class="dropdown-button tooltipped" data-activates="tune-more" data-tooltip="More"><i class="mdi-navigation-more-vert"></i></a>
             <ul id="tune-more" class="dropdown-content">
               <li>
-                <a href="/#!/discography"><i class="left mdi-action-list"></i>Discography (TODO)</a>
+                <a ng-href="/#!/discography/{{tune.tune.titleEncoded}}"><i class="left mdi-action-list"></i>Discography</a>
               </li>
               <li>
                 <a ng-href="http://www.youtube.com/results?search_query={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a>
               </li>
               <li>
                 <a ng-href="http://www.amazon.com/s/?field-keywords={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a>
+              </li>
+              <li>
+                <a ng-href="https://thesession.org/search?where=&q={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Search thesession.org</a>
               </li>
               <li>
                 <a ng-click="tune.midi.download()"><i class="left mdi-image-audiotrack"></i>Download Midi</a>
@@ -68,15 +71,20 @@
         <div class="card-content">
           <div class="collection">
             <div class="collection-item card-collection-title">
-              <span class="title">Europeana Tunes</span>
+              <span class="title">Archive Recordings</span>
               <span class="secondary-content">
-                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalId}}"><i class="mdi-content-add"></i></a>
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{tune.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-content-add"></i></a>
               </span>
             </div>
             <div class="divider"></div>
 
-            <div class="center" ng-if="tune.showTune && !tune.showEuropeana">
+            <div class="center" ng-if="tune.showEuropeanaPreloader">
               <tp-preloader size="small"></tp-preloader>
+            </div>
+
+            <div class="collection-item center" ng-if="tune.showNoRecordings">
+              <p>No recordings found for "{{tune.tune.title}}"</p>
             </div>
 
             <div class="avatar" ng-repeat="europeanaTune in tune.europeanaTunes" ng-if="tune.showEuropeana">
@@ -87,7 +95,7 @@
                 <p class="truncate">{{europeanaTune.aggregations[0].edmProvider.def[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
                   <audio controls ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                   <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Unlink" ng-click="tune.unlinkEuropeanaTune($index)"><i class="mdi-navigation-close"></i></a>
                 </span>
               </div>

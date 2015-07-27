@@ -17,6 +17,8 @@ export default class TuneController extends ControllerBase {
 
     this.showTune = false;
     this.showEuropeana = false;
+    this.showEuropeanaPreloader = false;
+    this.showNoRecordings = false;
     this.isEditing = false;
 
     // MIDI Playback
@@ -24,8 +26,9 @@ export default class TuneController extends ControllerBase {
     this.$scope.$watchCollection('midi', () => {});
 
     this.tunepalId = $routeParams['tunepalId'];
+    this.tunepalIdEncoded = encodeURIComponent(this.tunepalId);
 
-    if (Utils.cache.tune && Utils.cache.tune.tunepalId === this.tunepalId) {
+    if (Utils.cache.tune.tunepalId === this.tunepalId) {
       this.tune = Utils.cache.tune;
       this._initTune();
     }
@@ -34,10 +37,14 @@ export default class TuneController extends ControllerBase {
     }
 
     this._initUi();
+
+    $scope.$on('$routeChangeStart', () => {
+      this.midi.stopPlaying();
+    });
   }
 
   _fetchTune() {
-    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalId}`;
+    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalIdEncoded}`;
 
     this.$http.get(url)
     .success(rawTune => {
@@ -48,16 +55,19 @@ export default class TuneController extends ControllerBase {
   }
 
   _initTune() {
-    this._initEuropeana();
     this.midi.initAsync(this.tune);
-
     this._initUi();
     this.$timeout(() => this._createAbcEditor());
-    document.title = `Tunepal.org / Tune / ${this.tune.title}`;
+    document.title = `Tunepal.org > Tune > ${this.tune.title}`;
     this.showTune = true;
+
+    this.showEuropeanaPreloader = true;
+    this._initEuropeana();
   }
 
   _initEuropeana() {
+    this.europeanaPortalUrl = Europeana.getPortalUrl(this.tune);
+
     const numDefaultTunes = 5;
     this._europeanaIdsDb = Utils.localStorage.getItem('europeanaIds');
     this._europeanaIdsDb = this._europeanaIdsDb || {};
@@ -80,6 +90,12 @@ export default class TuneController extends ControllerBase {
   }
 
   _initEuropeanaTunes() {
+    if (this._europeanaIds.length === 0) {
+      this.showEuropeanaPreloader = false;
+      this.showNoRecordings = true;
+      return;
+    }
+
     const numThreads = 2;
     const europeanaTunes = new Array(this._europeanaIds.length);
     let cur = 0;
@@ -92,6 +108,7 @@ export default class TuneController extends ControllerBase {
             this.europeanaTunes = europeanaTunes;
             this.$timeout(() => this.utils.view.initTooltips());
             this.showEuropeana = true;
+            this.showEuropeanaPreloader = false;
           });
         }
         return;

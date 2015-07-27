@@ -16,6 +16,7 @@ class _Config {
     this.Transpose = Utils.makeArray(-12, 12);
     this.ApiDomain = 'http://desolate-bastion-1462.herokuapp.com';
     this.EuropeanaApiDomain = 'http://www.europeana.eu/api/v2';
+    this.EuropeanaPortalDomain = 'http://www.europeana.eu/portal/search.html';
     this.EuropeanaApiKey = 'QNbCgzoWb';
 
     this.Properties = Properties;

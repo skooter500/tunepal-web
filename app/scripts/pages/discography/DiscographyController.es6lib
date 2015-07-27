@@ -1,0 +1,41 @@
+import ControllerBase from '../../ControllerBase.es6lib';
+import Config from '../../Config.es6lib';
+
+export default class DiscographyController extends ControllerBase {
+  constructor($scope, $routeParams, $http) {
+    super($scope);
+    this.$routeParams = $routeParams;
+    this.$http = $http;
+
+    this.showLoading = true;
+    this.showNoResults = false;
+    this.showResults = false;
+
+    this.keyword = $routeParams['keyword'];
+
+    this._fetchTunes();
+  }
+
+  _fetchTunes() {
+    const q = encodeURIComponent(this.keyword);
+
+    const url = `${Config.ApiDomain}/api/Discography?q=${q}`;
+
+    this.$http.get(url)
+    .success(tunes => {
+      if (tunes.length === 0) {
+        this.showNoResults = true;
+      }
+      else {
+        for (const tune of tunes) {
+          tune.queryEncoded = encodeURIComponent(`${tune.title} ${tune.artist}`);
+        }
+
+        this.tunes = tunes;
+        this._calcPages(this.tunes);
+        this.showResults = true;
+      }
+      this.showLoading = false;
+    });
+  }
+}

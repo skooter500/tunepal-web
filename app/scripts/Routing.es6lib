@@ -1,3 +1,4 @@
+import DiscographyController from './pages/discography/DiscographyController.es6lib';
 import EuropeanaController from './pages/europeana/EuropeanaController.es6lib';
 import HomeController from './pages/home/HomeController.es6lib';
 import IndexController from './pages/index/IndexController.es6lib';
@@ -10,6 +11,7 @@ import TuneController from './pages/tune/TuneController.es6lib';
 
 export default class Routing {
   constructor(app) {
+    app.controller('DiscographyController', DiscographyController);
     app.controller('EuropeanaController', EuropeanaController);
     app.controller('HomeController', HomeController);
     app.controller('IndexController', IndexController);
@@ -22,6 +24,11 @@ export default class Routing {
 
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
+      .when('/discography/:keyword', {
+        controller: 'DiscographyController',
+        controllerAs: 'discography',
+        templateUrl: 'scripts/pages/discography/discography.html',
+      })
       .when('/europeana/:tunepalId', {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <div id="keyword-search-page" class="page">
 
   <header class="navbar-fixed page-header">
@@ -41,7 +41,7 @@
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in keywordSearch.tunes | limitTo : keywordSearch.pageSize : page.startIndex" class="avatar">
-              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalId}}">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tune.title}}</span>
                 <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>

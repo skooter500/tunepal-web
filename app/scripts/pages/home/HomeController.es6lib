@@ -1,11 +1,15 @@
+import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
-export default class HomeController {
+export default class HomeController extends ControllerBase {
   constructor($scope, $rootScope, $location) {
+    super($scope);
     this.$rootScope = $rootScope;
     this.$location = $location;
     this.config = Config;
     this.utils = Utils;
+
+    document.title = 'Tunepal.org';
   }
 }

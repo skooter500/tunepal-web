@@ -18,13 +18,14 @@ export default class EuropeanaController extends ControllerBase {
     this.showResults = false;
 
     const tunepalId = $routeParams['tunepalId'];
+    const tunepalIdEncoded = encodeURIComponent(tunepalId);
 
-    if (Utils.cache.tune && Utils.cache.tune.tunepalId === tunepalId) {
+    if (Utils.cache.tune.tunepalId === tunepalId) {
       this.tune = Utils.cache.tune;
       this._search();
     }
     else {
-      const url = `${this.config.ApiDomain}/api/Tunes/${tunepalId}`;
+      const url = `${this.config.ApiDomain}/api/Tunes/${tunepalIdEncoded}`;
 
       this.$http.get(url)
       .success(rawTune => {
@@ -40,7 +41,7 @@ export default class EuropeanaController extends ControllerBase {
     this._europeanaIdsDb = this._europeanaIdsDb || {};
     this._europeanaIds = this._europeanaIdsDb[this.tune.tunepalId];
 
-    if (Utils.cache.europeana && this.tune.tunepalId === Utils.cache.europeana.id) {
+    if (Utils.cache.europeana.id === this.tune.tunepalId) {
       this._initResults(Utils.cache.europeana.results);
     }
     else {
@@ -48,15 +49,14 @@ export default class EuropeanaController extends ControllerBase {
       .then(this.apply(results => this._initResults(results)));
     }
 
-    document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
+    document.title = `Tunepal.org > Europeana Search > ${this.tune.title}`;
   }
 
   _initResults(results) {
     this.results = results;
-    Utils.cache.europeana = {id: this.tune.tunepalId, results: results};
 
     if (results.items && results.items.length > 0) {
-      this._calcPages();
+      this._calcPages(this.results.items);
       this._initUi();
       this.showResults = true;
     }
@@ -67,27 +67,13 @@ export default class EuropeanaController extends ControllerBase {
     this.showLoading = false;
   }
 
-  _calcPages() {
-    this.pages = new Array(Math.ceil(this.results.items.length / 10));
-
-    for (let i = 0; i < this.pages.length; i++) {
-      this.pages[i] = {
-        startIndex: i * 10,
-        start: i * 10 + 1,
-        end: (i + 1) * 10,
-      }
-    }
-
-    this.pages[this.pages.length - 1].end = this.results.items.length;
-  }
-
   link(tune) {
     const index = this._europeanaIds.indexOf(tune.id);
     if (index === -1) {
       this._europeanaIds.push(tune.id);
       Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
     }
-    this.$location.url(`/tune/${this.tune.tunepalId}`);
+    this.$location.url(`/tune/${this.tune.tunepalIdEncoded}`);
   }
 
   unlink(tune) {

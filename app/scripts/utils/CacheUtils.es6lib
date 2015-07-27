@@ -1,7 +1,9 @@
 class _CacheUtils {
   constructor() {
-    this.tune = null
-    this.europeana = null;
+    this.europeana = {};
+    this.keywordSearch = {};
+    this.notesSearch = {};
+    this.tune = {};
   }
 }
 
