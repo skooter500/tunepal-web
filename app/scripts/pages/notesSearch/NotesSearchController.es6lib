@@ -18,7 +18,7 @@ export default class NotesSearchController {
     this.notes = $routeParams['notes'];
     this._fetchTunes();
 
-    document.title = 'Tunepal.org / Notes Search';
+    document.title = 'Tunepal.org > Notes Search';
   }
 
   _fetchTunes() {

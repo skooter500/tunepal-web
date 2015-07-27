@@ -49,7 +49,7 @@ export default class EuropeanaController extends ControllerBase {
       .then(this.apply(results => this._initResults(results)));
     }
 
-    document.title = `Tunepal.org / Europeana Search / ${this.tune.title}`;
+    document.title = `Tunepal.org > Europeana Search > ${this.tune.title}`;
   }
 
   _initResults(results) {

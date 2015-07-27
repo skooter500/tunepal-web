@@ -7,5 +7,7 @@ export default class HomeController {
     this.$location = $location;
     this.config = Config;
     this.utils = Utils;
+
+    document.title = 'Tunepal.org';
   }
 }

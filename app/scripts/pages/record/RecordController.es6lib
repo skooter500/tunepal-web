@@ -27,7 +27,7 @@ export default class RecordController extends ControllerBase {
       this.recorder.close();
     });
 
-    document.title = 'Tunepal.org / Record';
+    document.title = 'Tunepal.org > Record';
   }
 
   _update() {

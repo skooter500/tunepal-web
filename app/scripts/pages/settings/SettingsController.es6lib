@@ -16,7 +16,7 @@ export default class SettingsController extends ControllerBase {
     this.validatePlaybackSpeed();
     this._initPopupOptions();
 
-    document.title = 'Tunepal.org / Settings';
+    document.title = 'Tunepal.org > Settings';
   }
 
   _initPopupOptions() {
