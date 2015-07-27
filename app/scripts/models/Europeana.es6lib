@@ -2,19 +2,22 @@ import Config from '../Config.es6lib';
 import Utils from '../utils/Utils.es6lib';
 
 class _Europeana {
+  constructor() {
+    const providers = [
+      'Comhaltas Traditional Music Archive',
+      'Irish Traditional Music Archive',
+    ];
+    this._qfProvider = this._getProviders(providers);
+  }
+
   searchAsync($http, tune, start = 1, maxNumItems = 20) {
     return new Promise((resolve, reject) => {
       const apiDomain = Config.EuropeanaApiDomain;
       const apiKey = Config.EuropeanaApiKey;
       const profile = 'standard';
       const qfSound = encodeURIComponent('TYPE:SOUND');
+      const qfProvider = this._qfProvider;
       const query = this._getQuery(tune.title, tune.altTitle);
-
-      const providers = [
-        'Comhaltas Traditional Music Archive',
-        'Irish Traditional Music Archive',
-      ];
-      const qfProvider = this._getProviders(providers);
 
       const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qfSound}&qf=${qfProvider}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
@@ -66,6 +69,15 @@ class _Europeana {
       $http.get(url)
       .success(result => resolve(result));
     });
+  }
+
+  getPortalUrl(tune) {
+    const domain = Config.EuropeanaPortalDomain;
+    const query = this._getQuery(tune.title, tune.altTitle);
+    const qfSound = encodeURIComponent('TYPE:SOUND');
+    const qfProviders = this._qfProvider;
+
+    return `${domain}?query=${query}&qf=${qfSound}&qf=${qfProviders}`;
   }
 }
 

@@ -43,6 +43,9 @@
                 <a ng-href="http://www.amazon.com/s/?field-keywords={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Amazon</a>
               </li>
               <li>
+                <a ng-href="https://thesession.org/search?where=&q={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Search thesession.org</a>
+              </li>
+              <li>
                 <a ng-click="tune.midi.download()"><i class="left mdi-image-audiotrack"></i>Download Midi</a>
                 <div id="hiddenMidi" class="hide"></div>
               </li>
@@ -70,6 +73,7 @@
             <div class="collection-item card-collection-title">
               <span class="title">Archive Recordings</span>
               <span class="secondary-content">
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{tune.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-content-add"></i></a>
               </span>
             </div>
@@ -91,7 +95,7 @@
                 <p class="truncate">{{europeanaTune.aggregations[0].edmProvider.def[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
                   <audio controls ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                   <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Unlink" ng-click="tune.unlinkEuropeanaTune($index)"><i class="mdi-navigation-close"></i></a>
                 </span>
               </div>
