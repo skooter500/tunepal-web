@@ -16,7 +16,16 @@ export default class NotesSearchController {
     this.showNoResults = false;
 
     this.notes = $routeParams['notes'];
-    this._fetchTunes();
+
+    if (Utils.cache.notesSearch.notes === this.notes) {
+      this.tunes = Utils.cache.notesSearch.results;
+      this.showConfidencePopup = false;
+      this._initTunes();
+    }
+    else {
+      this.showConfidencePopup = true;
+      this._fetchTunes();
+    }
 
     document.title = 'Tunepal.org > Notes Search';
   }
@@ -39,23 +48,29 @@ export default class NotesSearchController {
 
     this.$http.get(url)
     .success(rawTunes => {
-      if (rawTunes.length === 0) {
-        this.showNoResults = true;
-      }
-      else {
-        this.tunes = [];
+      this.tunes = [];
 
-        for (const rawTune of rawTunes) {
-          this.tunes.push(new Tune(rawTune));
-        }
-
-        this._calcPages();
-        this._initUi();
-        this.showResults = true;
+      for (const rawTune of rawTunes) {
+        this.tunes.push(new Tune(rawTune));
       }
 
-      this.showLoading = false;
+      Utils.cache.notesSearch = {notes: this.notes, results: this.tunes};
+
+      this._initTunes();
     });
+  }
+
+  _initTunes() {
+    if (this.tunes.length === 0) {
+      this.showNoResults = true;
+    }
+    else {
+      this._calcPages();
+      this._initUi();
+      this.showResults = true;
+    }
+
+    this.showLoading = false;
   }
 
   _calcPages() {
@@ -74,6 +89,8 @@ export default class NotesSearchController {
   }
 
   _initUi() {
-    $('#confidence-popup').openModal();
+    if (this.showConfidencePopup) {
+      $('#confidence-popup').openModal();
+    }
   }
 }
