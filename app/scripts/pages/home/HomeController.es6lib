@@ -1,15 +1,52 @@
 import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
+import Tune from '../../models/Tune.es6lib';
 
 export default class HomeController extends ControllerBase {
-  constructor($scope, $rootScope, $location) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
     super($scope);
-    this.$rootScope = $rootScope;
+    this.$routeParams = $routeParams;
+    this.$http = $http;
+    this.$timeout = $timeout;
     this.$location = $location;
-    this.config = Config;
+	this.config = Config;
     this.utils = Utils;
-
+	
     document.title = 'Tunepal.org';
+	
+	console.log("Home controller constructor");
+	
+	this._fetchDownloads();	
+  }
+  
+  _fetchDownloads() {   
+    const url = `${this.config.ApiDomain}/api/downloads`;
+
+    this.$http.get(url)
+    .success(rawTunes => {
+      this.tunes = [];
+
+      for (const rawTune of rawTunes) {
+        this.tunes.push(new Tune(rawTune));
+      }
+      this._initTunes();
+    });
+  }
+  
+  _initTunes() {
+    if (this.tunes.length === 0) {
+      this.showNoResults = true;
+    }
+    else {
+      this._calcPages(this.tunes);
+      this._initUi();
+      this.showResults = true;
+    }
+
+    this.showLoading = false;
+  }
+
+  _initUi() {
   }
 }
