@@ -59,13 +59,6 @@ class _Europeana {
     return keyword;
   }
 
-  _testCleanupQuery() {
-    //TODO: automated front-end testing
-    if (this._cleanupQuery('ABC DEF reel polka the At I A., | {} HIJ') !== 'ABC DEF HIJ') {
-      console.log('assert failed');
-    }
-  }
-
   _getProviders(providers) {
     if (providers.length === 0) {
       return '';
@@ -105,3 +98,12 @@ class _Europeana {
 const Europeana = new _Europeana();
 
 export default Europeana;
+
+//TODO: automated front-end testing
+if (Config.isTesting) {
+  (function testCleanupQuery() {
+    const a = Europeana._cleanupQuery('ABC DEF reel polka the At I A., | {} HIJ');
+    const b = 'ABC DEF HIJ';
+    console.assert(a === b, a, '!==', b);
+  })();
+}
