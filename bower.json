@@ -15,5 +15,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "angular-localforage": "~1.2.3"
+  }
 }
