@@ -3,6 +3,15 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var merge = require('merge-stream');
+var through = require('through2');
+var fs = require('fs');
+
+var readOriginalFile = through.obj(function (file, enc, cb) {
+  fs.readFile(file.path, {encoding: enc}, function(err, data) {
+    file.contents = new Buffer(data);
+    cb(err, file);
+  });
+});
 
 // Search and minify html, js, css
 gulp.task('minify-search', function () {
@@ -11,11 +20,13 @@ gulp.task('minify-search', function () {
   return gulp.src(['app/**/*.html', '!app/lib/materialize/**/*.html'])
     .pipe(assets)
     .pipe($.debug())
+    // Copy minified files
+    .pipe($.if('**/*.min.js', readOriginalFile))
     // Remove console, alert, and debugger statements from code
-    .pipe($.if('*.js', $.stripDebug()))
+    .pipe($.if(['**/*.js', '!**/*.min.js'], $.stripDebug()))
     // Concatenate And Minify JavaScript
     .pipe($.if('**/App.js', $.uglify({mangle: false})))
-    .pipe($.if(['**/*.js', '!**/App.js'], $.uglify({mangle: true})))
+    .pipe($.if(['**/*.js', '!**/App.js', '!**/*.min.js'], $.uglify({mangle: true})))
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.cssmin()))
