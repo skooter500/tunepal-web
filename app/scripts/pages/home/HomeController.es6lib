@@ -10,17 +10,17 @@ export default class HomeController extends ControllerBase {
     this.$http = $http;
     this.$timeout = $timeout;
     this.$location = $location;
-	this.config = Config;
+    this.config = Config;
     this.utils = Utils;
-	
+
     document.title = 'Tunepal.org';
-	
-	console.log("Home controller constructor");
-	
-	this._fetchDownloads();	
+
+    console.log('Home controller constructor');
+
+    this._fetchDownloads();
   }
-  
-  _fetchDownloads() {   
+
+  _fetchDownloads() {
     const url = `${this.config.ApiDomain}/api/downloads`;
 
     this.$http.get(url)
@@ -33,7 +33,7 @@ export default class HomeController extends ControllerBase {
       this._initTunes();
     });
   }
-  
+
   _initTunes() {
     if (this.tunes.length === 0) {
       this.showNoResults = true;
