@@ -23,6 +23,8 @@ class _Config {
 
     this.audioContext = new window.AudioContext();
 
+    this.isTesting = true;
+
     this._createProperties();
   }
 

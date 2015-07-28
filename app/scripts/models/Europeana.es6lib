@@ -34,15 +34,29 @@ class _Europeana {
       return '';
     }
 
-    let query = keywords[0] || '';
+    let query = this._cleanupQuery(keywords[0]);
 
     for (let i = 1; i < keywords.length; i++) {
       if (keywords[i]) {
-        query += query.length > 0 ? ` OR "${keywords[i]}"` : `"${keywords[i]}"`;
+        const keyword = this._cleanupQuery(keywords[i]);
+        query += query.length > 0 ? ` OR "${keyword}"` : `"${keyword}"`;
       }
     }
 
     return encodeURIComponent(query);
+  }
+
+  _cleanupQuery(keyword) {
+    if (!keyword) {
+      return '';
+    }
+
+    keyword = keyword.replace(
+      /\b(reel|jig|hornpipe|polka|waltz|mazurka|THE|AT|AND|OF|TO|BUT|SO|FOR|AN|I|IN|ON|YOUR|A|WITH)\b|[\u2000-\u206F\u2E00-\u2E7F\\'!"#\$%&\(\)\*\+,\-\.\/:;<=>\?@\[\]\^_`\{\|\}~]/gi,
+      '');
+    keyword = keyword.replace(/(\s)+/g, ' ');
+
+    return keyword;
   }
 
   _getProviders(providers) {
@@ -84,3 +98,12 @@ class _Europeana {
 const Europeana = new _Europeana();
 
 export default Europeana;
+
+//TODO: automated front-end testing
+if (Config.isTesting) {
+  (function testCleanupQuery() {
+    const a = Europeana._cleanupQuery('ABC DEF reel polka the At I A., | {} HIJ');
+    const b = 'ABC DEF HIJ';
+    console.assert(a === b, a, '!==', b);
+  })();
+}
