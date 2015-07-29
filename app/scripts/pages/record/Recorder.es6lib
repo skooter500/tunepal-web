@@ -138,7 +138,6 @@ Recorder.Status = Utils.createEnum([
   'INIT',
   'INIT_SUCCEEDED',
   'INIT_FAILED',
-  'COUNTING_DOWN',
   'RECORDING',
   'ANALYZING',
   'ANALYSIS_SUCCEEDED',

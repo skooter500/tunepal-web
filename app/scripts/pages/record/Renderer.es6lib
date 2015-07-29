@@ -21,15 +21,18 @@ export default class Renderer {
   }
 
   _recordClicked() {
+    if (this._timeLeft > 0) {
+      this._timeLeft = 0;
+      this.recorder.stop();
+      clearInterval(this._timer);
+      return;
+    }
+
     switch (this.recorder.status) {
       case Recorder.Status.STOPPED:
       case Recorder.Status.ANALYSIS_SUCCEEDED:
         this.recorder.initAsync()
         .then(() => this._startCountingDown());
-        break;
-      case Recorder.Status.COUNTING_DOWN:
-        this.recorder.stop();
-        clearInterval(this._timer);
         break;
       case Recorder.Status.RECORDING:
         this.recorder.stop();
