@@ -29,6 +29,10 @@ export default class Tune {
   }
 
   static _convertSpecialChars(text) {
+    if (!text) {
+      return text;
+    }
+
     const specialChars = [
       ['À', /\{?(\\`A|&Agrave;|\\u00c0)\}?/g],
       ['à', /\{?(\\`a|&agrave;|\\u00e0)\}?/g],

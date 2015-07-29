@@ -2,6 +2,7 @@ import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
+import Tunebook from '../../models/Tunebook.es6lib';
 
 export default class HomeController extends ControllerBase {
   constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
@@ -10,17 +11,43 @@ export default class HomeController extends ControllerBase {
     this.$http = $http;
     this.$timeout = $timeout;
     this.$location = $location;
-	this.config = Config;
+    this.config = Config;
     this.utils = Utils;
-	
+
     document.title = 'Tunepal.org';
-	
-	console.log("Home controller constructor");
-	
-	this._fetchDownloads();	
+
+    console.log('Home controller constructor');
+
+    this._fetchDownloads();
+    this._fetchTunebooks();
   }
   
-  _fetchDownloads() {   
+  _fetchTunebooks() {
+    const url = `${this.config.ApiDomain}/api/Sources`;
+
+    this.$http.get(url)
+    .success(rawTunebooks => {
+      this.tunebooks = [];
+
+      for (const rawTunebook of rawTunebooks) {
+        this.tunebooks.push(new Tunebook(rawTunebook));
+      }
+      this._initTunebooks();
+    });
+  }
+  
+  _initTunebooks() {
+    if (this.tunebooks.length === 0) {
+      this.showNoTunebooksResults = true;
+    }
+    else {
+      this.showTunebooksResults = true;
+    }
+
+    this.showTunebooksLoading = false;
+  }
+
+  _fetchDownloads() {
     const url = `${this.config.ApiDomain}/api/downloads`;
 
     this.$http.get(url)
@@ -34,6 +61,8 @@ export default class HomeController extends ControllerBase {
     });
   }
   
+  
+
   _initTunes() {
     if (this.tunes.length === 0) {
       this.showNoResults = true;
