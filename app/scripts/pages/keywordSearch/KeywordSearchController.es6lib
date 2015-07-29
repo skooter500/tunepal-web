@@ -17,7 +17,6 @@ export default class KeywordSearchController extends ControllerBase {
     this.utils = Utils;
 
     this.keyword = $routeParams['keyword'];
-    this.selectedTunepalId = $routeParams['selectedTunepalId'];
 
     this.showLoading = this.keyword != null;
     this.showResults = false;
@@ -94,36 +93,12 @@ export default class KeywordSearchController extends ControllerBase {
   _initEuropeana() {
     this.showEuropeanaLoading = true;
 
-    if (this.selectedTunepalId) {
-      this.selectedTune = this.tunes.find(tune => tune.tunepalId === this.selectedTunepalId);
+    const tune = {title: this.keyword};
 
-      if (this.selectedTune) {
-        this._searchEuropeana();
-      }
-      else {
-        TunepalApi.fetchTuneAsync(this.$http, encodeURIComponent(selectedTunepalId))
-        .then(tune => {
-          this.selectedTune = tune;
-          this._searchEuropeana();
-        });
-      }
-    }
-    else {
-      this.selectedTune = this.tunes[0];
-      this._searchEuropeana();
-    }
-  }
+    this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(tune);
 
-  _searchEuropeana() {
-    this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(this.selectedTune);
-
-    if (Utils.cache.europeana.id === this.selectedTune.tunepalId) {
-      this._initEuropeanaResults(Utils.cache.europeana.results);
-    }
-    else {
-      EuropeanaApi.searchAsync(this.$http, this.selectedTune)
-      .then(this.apply(results => this._initEuropeanaResults(results)));
-    }
+    EuropeanaApi.searchAsync(this.$http, tune)
+    .then(this.apply(results => this._initEuropeanaResults(results)));
   }
 
   _initEuropeanaResults(results) {
