@@ -1,6 +1,6 @@
 #tunepal-index #notes-search-page {
 
-.collection-item >.secondary-content > .confidence {
+.collection-item > .secondary-content > .confidence {
   line-height: 1.5rem;
 }
 
@@ -10,6 +10,67 @@
 
 .lowlight {
   color: #b3b3b3;
+}
+
+.europeana .card {
+  @media #{$large-and-up} {
+    position: fixed;
+    right: 0;
+    width: calc((100% - 240px) / 2);
+    height: calc(100% - #{$navbar-height} - 20px);
+    overflow-y: auto;
+  }
+
+  .message {
+    padding-top: 0;
+  }
+}
+
+.tune-container {
+  position: relative;
+}
+
+.tune .secondary-content {
+  margin-right: 45px;
+}
+
+.arrow {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+}
+
+a.btn-flat {
+  padding: 0 0.5rem;
+  color: $primary-font-color;
+
+  i {
+    font-size: 2rem;
+    line-height: 36px;
+  }
+}
+
+.europeana-tune .secondary-content {
+  top: 21px;
+}
+
+audio {
+  margin-top: 10px;
+}
+
+.card-collection-title .secondary-content {
+  position: absolute;
+  top: 0;
+
+  a {
+    padding: 0 0.5rem;
+  }
+
+  i {
+    font-size: 2rem;
+    line-height: 42px;
+    color: $primary-font-color;
+  }
 }
 
 }

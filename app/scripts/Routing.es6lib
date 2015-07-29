@@ -39,12 +39,12 @@ export default class Routing {
         controllerAs: 'home',
         templateUrl: 'scripts/pages/home/home.html',
       })
-      .when('/keywordSearch/:keyword?', {
+      .when('/keywordSearch/:keyword?/:selectedTunepalId?', {
         controller: 'KeywordSearchController',
         controllerAs: 'keywordSearch',
         templateUrl: 'scripts/pages/keywordSearch/keywordSearch.html',
       })
-      .when('/notesSearch/:notes', {
+      .when('/notesSearch/:notes/:selectedTunepalId?', {
         controller: 'NotesSearchController',
         controllerAs: 'notesSearch',
         templateUrl: 'scripts/pages/notesSearch/notesSearch.html',

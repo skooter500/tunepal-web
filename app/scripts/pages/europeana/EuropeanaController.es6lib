@@ -1,7 +1,8 @@
 import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
-import Europeana from '../../models/Europeana.es6lib';
+import EuropeanaApi from '../../models/EuropeanaApi.es6lib';
 import Tune from '../../models/Tune.es6lib';
+import TunepalApi from '../../models/TunepalApi.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class EuropeanaController extends ControllerBase {
@@ -25,12 +26,9 @@ export default class EuropeanaController extends ControllerBase {
       this._search();
     }
     else {
-      const url = `${this.config.ApiDomain}/api/Tunes/${tunepalIdEncoded}`;
-
-      this.$http.get(url)
-      .success(rawTune => {
-        this.tune = new Tune(rawTune);
-        Utils.cache.tune = this.tune;
+      TunepalApi.fetchTuneAsync(this.$http, tunepalIdEncoded)
+      .then(tune => {
+        this.tune = tune;
         this._search();
       });
     }
@@ -45,7 +43,7 @@ export default class EuropeanaController extends ControllerBase {
       this._initResults(Utils.cache.europeana.results);
     }
     else {
-      Europeana.searchAsync(this.$http, this.tune)
+      EuropeanaApi.searchAsync(this.$http, this.tune)
       .then(this.apply(results => this._initResults(results)));
     }
 
@@ -55,8 +53,9 @@ export default class EuropeanaController extends ControllerBase {
   _initResults(results) {
     this.results = results;
 
-    if (results.items && results.items.length > 0) {
-      this._calcPages(this.results.items);
+    if (results && results.items && results.items.length > 0) {
+      this.pageSize = 10;
+      this.pages = this._calcPages(this.results.items, this.pageSize);
       this._initUi();
       this.showResults = true;
     }

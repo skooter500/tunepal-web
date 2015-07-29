@@ -33,6 +33,14 @@ class _TunebookManager {
       tunebooks[rawTunebook.id] = new Tunebook(rawTunebook);
     }
 
+    if (!tunebooks[0]) {
+      tunebooks[0] = new Tunebook({
+        id: 0,
+        fullName: 'All',
+        shortName: 'All',
+      });
+    }
+
     return tunebooks;
   }
 

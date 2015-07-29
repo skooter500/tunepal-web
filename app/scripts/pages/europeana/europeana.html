@@ -18,7 +18,7 @@
         <div class="card-content">
           <div class="collection">
             <div class="collection-item card-collection-title">
-              <span class="title">Top {{page.start}} - {{page.end}}</span>
+              <span class="title">{{page.start}} - {{page.end}}</span>
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in europeana.results.items | limitTo : 10 : page.startIndex" class="avatar">

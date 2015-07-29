@@ -79,15 +79,15 @@
             </div>
             <div class="divider"></div>
 
-            <div class="center" ng-if="tune.showEuropeanaPreloader">
+            <div class="center" ng-if="tune.showEuropeanaLoading">
               <tp-preloader size="small"></tp-preloader>
             </div>
 
-            <div class="collection-item center" ng-if="tune.showNoRecordings">
+            <div class="collection-item center" ng-if="tune.showEuropeanaNoResults">
               <p>No recordings found for "{{tune.tune.title}}"</p>
             </div>
 
-            <div class="avatar" ng-repeat="europeanaTune in tune.europeanaTunes" ng-if="tune.showEuropeana">
+            <div class="avatar" ng-repeat="europeanaTune in tune.europeanaTunes" ng-if="tune.showEuropeanaResults">
               <div class="collection-item avatar">
                 <img ng-src="{{europeanaTune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{europeanaTune.title[0]}}" class="circle" />
                 <span class="title truncate">{{europeanaTune.title[0] || '&nbsp;'}}</span>

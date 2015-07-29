@@ -29,16 +29,16 @@
       <h5 class="message">No Results</h5>
     </div>
 
-    <div class="col s12 m12 l6" ng-repeat="page in notesSearch.pages" ng-show="notesSearch.showResults">
+    <div class="col s12 m12 l6" ng-show="notesSearch.showResults">
       <div class="card">
         <div class="card-content">
-          <div class="collection">
+          <div class="collection" ng-repeat="page in notesSearch.pages">
             <div class="collection-item card-collection-title">
               <span class="title">Top {{page.start}} - {{page.end}}</span>
             </div>
             <div class="divider"></div>
-            <div ng-repeat="tune in notesSearch.tunes | limitTo : notesSearch.pageSize : page.startIndex" class="avatar">
-              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
+            <div ng-repeat="tune in notesSearch.tunes | limitTo : notesSearch.pageSize : page.startIndex" class="avatar tune-container">
+              <a class="collection-item avatar tune" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}" ng-class="{active: notesSearch.selectedTune === tune}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tune.title}}</span>
                 <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>
@@ -47,6 +47,54 @@
                   <p>{{tune.tuneType}} in {{tune.keySignature}}</p>
                 </span>
               </a>
+              <span class="arrow">
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show archive recordings" ng-click="notesSearch.select(tune)"><i class="mdi-navigation-arrow-forward"></i></a>
+              </span>
+              <div class="divider" ng-if="!$last"></div>
+            </div>
+            <div class="divider" ng-if="!$last"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m12 l6 europeana" ng-show="notesSearch.showResults">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Archive Recordings</span>
+              <span class="secondary-content">
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{notesSearch.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+              </span>
+            </div>
+            <div class="divider"></div>
+          </div>
+
+          <div class="center" ng-show="notesSearch.showEuropeanaLoading">
+            <tp-preloader></tp-preloader>
+          </div>
+
+          <div class="center" ng-show="notesSearch.showEuropeanaNoResults">
+            <h5 class="message">No Results</h5>
+          </div>
+
+          <div class="collection" ng-repeat="page in notesSearch.europeanaPages" ng-show="notesSearch.showEuropeanaResults">
+            <div class="collection-item card-collection-title">
+              <span class="title">{{page.start}} - {{page.end}}</span>
+            </div>
+            <div class="divider"></div>
+            <div ng-repeat="tune in notesSearch.europeanaTunes | limitTo : 10 : page.startIndex" class="avatar">
+              <div class="collection-item avatar europeana-tune">
+                <img ng-src="{{tune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
+                <span class="title truncate">{{tune.title[0] || '&nbsp;'}}</span>
+                <p class="truncate">{{tune.aggregations[0].edmDataProvider.def[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{tune.aggregations[0].edmProvider.def[0] || '&nbsp;'}}</p>
+                <audio controls ng-src="{{tune.tpSoundUrl}}" ng-if="tune.tpSoundUrl"></audio>
+                <span class="secondary-content">
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                </span>
+              </div>
               <div class="divider" ng-if="!$last"></div>
             </div>
           </div>

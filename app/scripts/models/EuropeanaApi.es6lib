@@ -1,7 +1,7 @@
 import Config from '../Config.es6lib';
 import Utils from '../utils/Utils.es6lib';
 
-class _Europeana {
+class _EuropeanaApi {
   constructor() {
     const providers = [
       'Comhaltas Traditional Music Archive',
@@ -34,12 +34,12 @@ class _Europeana {
       return '';
     }
 
-    let query = this._cleanupQuery(keywords[0]);
+    let query = `(${this._cleanupQuery(keywords[0])})`;
 
     for (let i = 1; i < keywords.length; i++) {
       if (keywords[i]) {
         const keyword = this._cleanupQuery(keywords[i]);
-        query += query.length > 0 ? ` OR "${keyword}"` : `"${keyword}"`;
+        query += query.length > 0 ? ` OR (${keyword})` : `(${keyword})`;
       }
     }
 
@@ -55,6 +55,7 @@ class _Europeana {
       /\b(reel|jig|hornpipe|polka|waltz|mazurka|THE|AT|AND|OF|TO|BUT|SO|FOR|AN|I|IN|ON|YOUR|A|WITH)\b|[\u2000-\u206F\u2E00-\u2E7F\\'!"#\$%&\(\)\*\+,\-\.\/:;<=>\?@\[\]\^_`\{\|\}~]/gi,
       '');
     keyword = keyword.replace(/(\s)+/g, ' ');
+    keyword = keyword.trim();
 
     return keyword;
   }
@@ -95,14 +96,14 @@ class _Europeana {
   }
 }
 
-const Europeana = new _Europeana();
+const EuropeanaApi = new _EuropeanaApi();
 
-export default Europeana;
+export default EuropeanaApi;
 
 //TODO: automated front-end testing
 if (Config.isTesting) {
   (function testCleanupQuery() {
-    const a = Europeana._cleanupQuery('ABC DEF reel polka the At I A., | {} HIJ');
+    const a = EuropeanaApi._cleanupQuery('ABC DEF reel polka the At I A., | {} HIJ');
     const b = 'ABC DEF HIJ';
     console.assert(a === b, a, '!==', b);
   })();

@@ -1,0 +1,25 @@
+import Config from '../Config.es6lib';
+import Tune from './Tune.es6lib';
+import Utils from '../utils/Utils.es6lib';
+
+class _TunepalApi {
+  constructor() {
+  }
+
+  fetchTuneAsync($http, tunepalIdEncoded) {
+    return new Promise((resolve, reject) => {
+      const url = `${Config.ApiDomain}/api/Tunes/${tunepalIdEncoded}`;
+
+      $http.get(url)
+      .success(rawTune => {
+        const tune = new Tune(rawTune);
+        Utils.cache.tune = tune;
+        resolve(tune);
+      });
+    });
+  }
+}
+
+const TunepalApi = new _TunepalApi();
+
+export default TunepalApi;

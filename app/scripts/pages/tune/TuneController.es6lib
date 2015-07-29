@@ -1,7 +1,8 @@
 import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
-import Europeana from '../../models/Europeana.es6lib';
+import EuropeanaApi from '../../models/EuropeanaApi.es6lib';
 import Tune from '../../models/Tune.es6lib';
+import TunepalApi from '../../models/TunepalApi.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 import MidiPlayer from './MidiPlayer.es6lib';
 
@@ -16,9 +17,9 @@ export default class TuneController extends ControllerBase {
     this.utils = Utils;
 
     this.showTune = false;
-    this.showEuropeana = false;
-    this.showEuropeanaPreloader = false;
-    this.showNoRecordings = false;
+    this.showEuropeanaResults = false;
+    this.showEuropeanaLoading = false;
+    this.showEuropeanaNoResults = false;
     this.isEditing = false;
 
     // MIDI Playback
@@ -33,24 +34,17 @@ export default class TuneController extends ControllerBase {
       this._initTune();
     }
     else {
-      this._fetchTune();
+      TunepalApi.fetchTuneAsync(this.$http, this.tunepalIdEncoded)
+      .then(tune => {
+        this.tune = tune;
+        this._initTune();
+      });
     }
 
     this._initUi();
 
     $scope.$on('$routeChangeStart', () => {
       this.midi.stopPlaying();
-    });
-  }
-
-  _fetchTune() {
-    const url = `${this.config.ApiDomain}/api/Tunes/${this.tunepalIdEncoded}`;
-
-    this.$http.get(url)
-    .success(rawTune => {
-      this.tune = new Tune(rawTune);
-      Utils.cache.tune = this.tune;
-      this._initTune();
     });
   }
 
@@ -61,12 +55,12 @@ export default class TuneController extends ControllerBase {
     document.title = `Tunepal.org > Tune > ${this.tune.title}`;
     this.showTune = true;
 
-    this.showEuropeanaPreloader = true;
+    this.showEuropeanaLoading = true;
     this._initEuropeana();
   }
 
   _initEuropeana() {
-    this.europeanaPortalUrl = Europeana.getPortalUrl(this.tune);
+    this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(this.tune);
 
     const numDefaultTunes = 5;
     this._europeanaIdsDb = Utils.localStorage.getItem('europeanaIds');
@@ -77,7 +71,7 @@ export default class TuneController extends ControllerBase {
       this._initEuropeanaTunes();
     }
     else {
-      Europeana.searchAsync(this.$http, this.tune)
+      EuropeanaApi.searchAsync(this.$http, this.tune)
       .then(results => {
         this._europeanaIds = results.items
           ? results.items.slice(0, numDefaultTunes).map(item => item.id)
@@ -91,13 +85,13 @@ export default class TuneController extends ControllerBase {
 
   _initEuropeanaTunes() {
     if (this._europeanaIds.length === 0) {
-      this.showEuropeanaPreloader = false;
-      this.showNoRecordings = true;
+      this.showEuropeanaLoading = false;
+      this.showEuropeanaNoResults = true;
       return;
     }
 
     const numThreads = 2;
-    const europeanaTunes = new Array(this._europeanaIds.length);
+    this.europeanaTunes = new Array(this._europeanaIds.length);
     let cur = 0;
     let numFinished = 0;
 
@@ -105,10 +99,9 @@ export default class TuneController extends ControllerBase {
       if (cur >= this._europeanaIds.length) {
         if (numFinished >= this._europeanaIds.length) {
           this.$scope.$apply(() => {
-            this.europeanaTunes = europeanaTunes;
             this.$timeout(() => this.utils.view.initTooltips());
-            this.showEuropeana = true;
-            this.showEuropeanaPreloader = false;
+            this.showEuropeanaResults = true;
+            this.showEuropeanaLoading = false;
           });
         }
         return;
@@ -116,9 +109,9 @@ export default class TuneController extends ControllerBase {
 
       const id = cur;
       const europeanaId = this._europeanaIds[cur++];
-      Europeana.fetchRecordAsync(this.$http, europeanaId)
+      EuropeanaApi.fetchRecordAsync(this.$http, europeanaId)
       .then(result => {
-        europeanaTunes[id] = result.object;
+        this.europeanaTunes[id] = result.object;
 
         const soundUrl = result.object.aggregations[0].edmIsShownBy;
         if (soundUrl) {

@@ -1,22 +1,30 @@
 import ControllerBase from '../../ControllerBase.es6lib';
 import Config from '../../Config.es6lib';
-import Utils from '../../utils/Utils.es6lib';
+import EuropeanaApi from '../../models/EuropeanaApi.es6lib';
 import Tune from '../../models/Tune.es6lib';
+import TunepalApi from '../../models/TunepalApi.es6lib';
+import Utils from '../../utils/Utils.es6lib';
 
 export default class NotesSearchController extends ControllerBase {
-  constructor($scope, $rootScope, $routeParams, $http, $timeout) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location, $sce) {
     super($scope);
     this.$routeParams = $routeParams;
     this.$http = $http;
     this.$timeout = $timeout;
+    this.$location = $location;
+    this.$sce = $sce;
     this.config = Config;
     this.utils = Utils;
+
+    this.notes = $routeParams['notes'];
+    this.selectedTunepalId = $routeParams['selectedTunepalId'];
 
     this.showLoading = true;
     this.showResults = false;
     this.showNoResults = false;
-
-    this.notes = $routeParams['notes'];
+    this.showEuropeanaLoading = false;
+    this.showEuropeanaResults = false;
+    this.showEuropeanaNoResults = false;
 
     if (Utils.cache.notesSearch.notes === this.notes) {
       this.tunes = Utils.cache.notesSearch.results;
@@ -66,9 +74,11 @@ export default class NotesSearchController extends ControllerBase {
       this.showNoResults = true;
     }
     else {
-      this._calcPages(this.tunes);
+      this.pageSize = 10;
+      this.pages = this._calcPages(this.tunes, this.pageSize);
       this._initUi();
       this.showResults = true;
+      this._initEuropeana();
     }
 
     this.showLoading = false;
@@ -78,5 +88,97 @@ export default class NotesSearchController extends ControllerBase {
     if (this.showConfidencePopup) {
       $('#confidence-popup').openModal();
     }
+  }
+
+  _initEuropeana() {
+    this.showEuropeanaLoading = true;
+
+    if (this.selectedTunepalId) {
+      this.selectedTune = this.tunes.find(tune => tune.tunepalId === this.selectedTunepalId);
+
+      if (this.selectedTune) {
+        this._searchEuropeana();
+      }
+      else {
+        TunepalApi.fetchTuneAsync(this.$http, encodeURIComponent(selectedTunepalId))
+        .then(tune => {
+          this.selectedTune = tune;
+          this._searchEuropeana();
+        });
+      }
+    }
+    else {
+      this.selectedTune = this.tunes[0];
+      this._searchEuropeana();
+    }
+  }
+
+  _searchEuropeana() {
+    this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(this.selectedTune);
+
+    if (Utils.cache.europeana.id === this.selectedTune.tunepalId) {
+      this._initEuropeanaResults(Utils.cache.europeana.results);
+    }
+    else {
+      EuropeanaApi.searchAsync(this.$http, this.selectedTune)
+      .then(this.apply(results => this._initEuropeanaResults(results)));
+    }
+  }
+
+  _initEuropeanaResults(results) {
+    this._europeanaIds = results.items
+      ? results.items.map(item => item.id)
+      : [];
+
+    if (this._europeanaIds.length === 0) {
+      this.showEuropeanaLoading = false;
+      this.showEuropeanaNoResults = true;
+      return;
+    }
+
+    const numThreads = 2;
+    this.europeanaTunes = new Array(this._europeanaIds.length);
+    let cur = 0;
+    let numFinished = 0;
+
+    const fetchRecordAsync = () => {
+      if (cur >= this._europeanaIds.length) {
+        if (numFinished >= this._europeanaIds.length) {
+          this.$scope.$apply(() => {
+            this.europeanaPageSize = 10;
+            this.europeanaPages = this._calcPages(this.europeanaTunes, this.europeanaPageSize);
+            this.$timeout(() => this.utils.view.initTooltips());
+            this.showEuropeanaResults = true;
+            this.showEuropeanaLoading = false;
+          });
+        }
+        return;
+      }
+
+      const id = cur;
+      const europeanaId = this._europeanaIds[cur++];
+      EuropeanaApi.fetchRecordAsync(this.$http, europeanaId)
+      .then(result => {
+        this.europeanaTunes[id] = result.object;
+
+        const soundUrl = result.object.aggregations[0].edmIsShownBy;
+        if (soundUrl) {
+          result.object.tpSoundUrl = this.$sce.trustAsResourceUrl(soundUrl);
+        }
+      })
+      .then(() => {
+        numFinished++;
+        fetchRecordAsync();
+      });
+    };
+
+    for (let i = 0; i < numThreads; i++) {
+      fetchRecordAsync();
+    }
+  }
+
+  select(tune) {
+    this.$location.url(`/notesSearch/${this.notes}/${tune.tunepalIdEncoded}`);
+    this.$location.replace();
   }
 }
