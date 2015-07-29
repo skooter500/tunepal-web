@@ -29,15 +29,7 @@
       -->
     </div>
 
-    <div class="col s12 m12 l12 center" ng-show="home.showLoading">
-      <tp-preloader></tp-preloader>
-    </div>
-
-    <div class="col s12 m12 l12 center" ng-show="home.showNoResults">
-      <h5 class="message">No Results</h5>
-    </div>
-
-    <div class="col s12 m12 l12" ng-show="home.showResults">
+    <div class="col s12 m12 l6">
       <div class="card">
         <div class="card-content">
           <div class="collection">
@@ -45,7 +37,16 @@
               <span class="title">Last 10 tunes downloaded</span>
             </div>
             <div class="divider"></div>
-            <div ng-repeat="tune in home.tunes" class="avatar">
+
+            <div class="center" ng-if="home.showLoading">
+              <tp-preloader></tp-preloader>
+            </div>
+
+            <div class="center" ng-if="home.showNoResults">
+              <h5 class="message">No Results</h5>
+            </div>
+
+            <div class="avatar" ng-repeat="tune in home.tunes" ng-if="home.showResults">
               <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tune.title}}</span>
@@ -61,15 +62,7 @@
       </div>
     </div>
 
-    <div class="col s12 m12 l12 center" ng-show="home.showTunebooksLoading">
-      <tp-preloader></tp-preloader>
-    </div>
-
-    <div class="col s12 m12 l12 center" ng-show="home.showTunebooksNoResults">
-      <h5 class="message">No Results</h5>
-    </div>
-
-    <div class="col s12 m12 l12" ng-show="home.showTunebooksResults">
+    <div class="col s12 m12 l6">
       <div class="card">
         <div class="card-content">
           <div class="collection">
@@ -77,7 +70,16 @@
               <span class="title">Tunebooks in Tunepal</span>
             </div>
             <div class="divider"></div>
-            <div ng-repeat="tunebook in home.tunebooks" class="avatar">
+
+            <div class="center" ng-if="home.showTunebooksLoading">
+              <tp-preloader></tp-preloader>
+            </div>
+
+            <div class="center" ng-if="home.showTunebooksNoResults">
+              <h5 class="message">No Results</h5>
+            </div>
+
+            <div class="avatar" ng-repeat="tunebook in home.tunebooks" ng-if="home.showTunebooksResults">
               <div class="collection-item avatar">
                 <img ng-src="{{tunebook.logoUrl}}" alt="{{tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tunebook.fullName}}</span>

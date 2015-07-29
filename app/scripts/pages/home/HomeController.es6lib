@@ -14,6 +14,13 @@ export default class HomeController extends ControllerBase {
     this.config = Config;
     this.utils = Utils;
 
+    this.showLoading = true;
+    this.showNoResults = false;
+    this.showResults = false;
+    this.showTunebooksLoading = true;
+    this.showTunebooksNoResults = false;
+    this.showTunebooksResults = false;
+
     document.title = 'Tunepal.org';
 
     console.log('Home controller constructor');
