@@ -21,7 +21,7 @@ export default class HomeController extends ControllerBase {
     this._fetchDownloads();
     this._fetchTunebooks();
   }
-  
+
   _fetchTunebooks() {
     const url = `${this.config.ApiDomain}/api/Sources`;
 
@@ -35,7 +35,7 @@ export default class HomeController extends ControllerBase {
       this._initTunebooks();
     });
   }
-  
+
   _initTunebooks() {
     if (this.tunebooks.length === 0) {
       this.showNoTunebooksResults = true;
@@ -60,8 +60,6 @@ export default class HomeController extends ControllerBase {
       this._initTunes();
     });
   }
-  
-  
 
   _initTunes() {
     if (this.tunes.length === 0) {

@@ -5,7 +5,7 @@ export default class Tunebook {
     this.shortName = rawTunebook.shortName;
     this.url = rawTunebook.url;
     this.extra = rawTunebook.extra;
-	this.count = rawTunebook.count
+    this.count = rawTunebook.count
   }
 
   get logoUrl() {

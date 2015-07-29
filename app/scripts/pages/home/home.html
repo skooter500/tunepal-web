@@ -6,122 +6,107 @@
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
     <div class="col s12 m12 l12">
-	<p>
-	Welcome to Tunepal!
-	</p>
-	<p>
-	Tunepal is a search-by-playing search engine for traditional Irish, Welsh, Scottish, Breton, American marching band and Canadian tunes.<br/>
-	By playing a 12 second extract from a traditional tune on an an instrument such as the flute or fiddle you can:
-	</p>
-	<ul>
-		<li>
-			- Retrieve score matches from a database of over 24,000 music scores 
-		</li>
-		<li>
-			- View and playback, share and download the score 
-		</li>
-		<li>
-			- Find and play other recordings of the tune from a collection of over 30 million recordings
-		</li>
-	</ul>
-	<!--
-	<p><span style='text-align:center; display: block;'><iframe class='youtube-player' type='text/html' width='960' height='570' src='http://www.youtube.com/embed/Zgp7YLrwodY?version=3&#038;rel=1&#038;fs=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' frameborder='0' allowfullscreen='true'></iframe></span></p>
-	-->
-	
-	<div class="row">
-    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+      <p>
+        Welcome to Tunepal!
+      </p>
+      <p>
+        Tunepal is a search-by-playing search engine for traditional Irish, Welsh, Scottish, Breton, American marching band and Canadian tunes.<br/>
+        By playing a 12 second extract from a traditional tune on an an instrument such as the flute or fiddle you can:
+      </p>
+      <ul>
+        <li>
+          - Retrieve score matches from a database of over 24,000 music scores
+        </li>
+        <li>
+          - View and playback, share and download the score
+        </li>
+        <li>
+          - Find and play other recordings of the tune from a collection of over 30 million recordings
+        </li>
+      </ul>
+      <!--
+      <p><span style='text-align:center; display: block;'><iframe class='youtube-player' type='text/html' width='960' height='570' src='http://www.youtube.com/embed/Zgp7YLrwodY?version=3&#038;rel=1&#038;fs=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' frameborder='0' allowfullscreen='true'></iframe></span></p>
+      -->
+    </div>
+
     <div class="col s12 m12 l12 center" ng-show="home.showLoading">
       <tp-preloader></tp-preloader>
     </div>
-      <div class="row">
-        <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-        <div class="col s12 m12 l12 center" ng-show="home.showLoading">
-          <tp-preloader></tp-preloader>
-        </div>
 
-        <div class="col s12 m12 l12 center" ng-show="home.showNoResults">
-          <h5 class="message">No Results</h5>
-        </div>
+    <div class="col s12 m12 l12 center" ng-show="home.showNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
 
-        <div class="card" ng-show="home.showResults">
-          <div class="card-content">
-            <div class="collection">
-              <div class="collection-item card-collection-title">
-                <span class="title">Last 10 tunes downloaded</span>
-              </div>
-              <div class="divider"></div>
-              <div ng-repeat="tune in home.tunes" class="avatar">
-                <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
-                  <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
-                  <span class="title truncate">{{tune.title}}</span>
-                  <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>
-                  <span class="secondary-content">
-                    <p>{{tune.tuneType}} in {{tune.keySignature}}</p>
-                  </span>
-                </a>
-                <div class="divider" ng-if="!$last"></div>
-              </div>
+    <div class="col s12 m12 l12" ng-show="home.showResults">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Last 10 tunes downloaded</span>
+            </div>
+            <div class="divider"></div>
+            <div ng-repeat="tune in home.tunes" class="avatar">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
+                <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
+                <span class="title truncate">{{tune.title}}</span>
+                <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>
+                <span class="secondary-content">
+                  <p>{{tune.tuneType}} in {{tune.keySignature}}</p>
+                </span>
+              </a>
+              <div class="divider" ng-if="!$last"></div>
             </div>
           </div>
         </div>
       </div>
-	
-	<div class="row">
-    <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
+    </div>
+
     <div class="col s12 m12 l12 center" ng-show="home.showTunebooksLoading">
       <tp-preloader></tp-preloader>
     </div>
-      <div class="row">
-        <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-        <div class="col s12 m12 l12 center" ng-show="home.showTunebooksLoading">
-          <tp-preloader></tp-preloader>
-        </div>
 
-        <div class="col s12 m12 l12 center" ng-show="home.showTunebooksNoResults">
-          <h5 class="message">No Results</h5>
-        </div>
+    <div class="col s12 m12 l12 center" ng-show="home.showTunebooksNoResults">
+      <h5 class="message">No Results</h5>
+    </div>
 
-        <div class="card" ng-show="home.showTunebooksResults">
-          <div class="card-content">
-            <div class="collection">
-              <div class="collection-item card-collection-title">
-                <span class="title">Tunebooks in Tunepal</span>
+    <div class="col s12 m12 l12" ng-show="home.showTunebooksResults">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Tunebooks in Tunepal</span>
+            </div>
+            <div class="divider"></div>
+            <div ng-repeat="tunebook in home.tunebooks" class="avatar">
+              <div class="collection-item avatar">
+                <img ng-src="{{tunebook.logoUrl}}" alt="{{tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
+                <span class="title truncate">{{tunebook.fullName}}</span>
+                <p class="truncate">{{tunebook.extra || '&nbsp;'}}</p>
+                <span class="secondary-content">
+                  <p>{{tunebook.count}} tunes</p>
+                </span>
               </div>
-              <div class="divider"></div>
-              <div ng-repeat="tunebook in home.tunebooks" class="avatar">
-				<div class="collection-item avatar">
-                  <img ng-src="{{tunebook.logoUrl}}" alt="{{tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
-                  <span class="title truncate">{{tunebook.fullName}}</span>
-                  <p class="truncate">{{tunebook.extra || '&nbsp;'}}</p>
-                  <span class="secondary-content">
-                    <p>{{tunebook.count}} tunes</p>
-                  </span>
-                </div>
-				<div class="divider" ng-if="!$last"></div>
-              </div>
+              <div class="divider" ng-if="!$last"></div>
             </div>
           </div>
         </div>
       </div>
-	
-	
-	
-
-      <!--
-      <p>Test pages:</p>
-      <ul>
-        <li>
-          <a href="/tests/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe</a>
-        </li>
-        <li>
-          <a href="/tests/file_import/file_import.html"><i class="mdi-action-settings left"></i>Test Accuracy</a>
-        </li>
-        <li>
-          <a href="/tests/midi_playback/midi_playback.html"><i class="mdi-action-settings left"></i>Test Midi</a>
-        </li>
-      </ul>
-      -->
     </div>
   </div>
+
+  <!--
+  <p>Test pages:</p>
+  <ul>
+    <li>
+      <a href="/tests/test_iframe.html"><i class="mdi-action-settings left"></i>Test iframe</a>
+    </li>
+    <li>
+      <a href="/tests/file_import/file_import.html"><i class="mdi-action-settings left"></i>Test Accuracy</a>
+    </li>
+    <li>
+      <a href="/tests/midi_playback/midi_playback.html"><i class="mdi-action-settings left"></i>Test Midi</a>
+    </li>
+  </ul>
+  -->
 
 </div>
