@@ -60,9 +60,9 @@
     </nav>
   </header>
 
-  <div class="row">
+  <div class="row last-row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center" ng-if="!tune.showTune">
+    <div class="col s12 m12 l12 center" ng-if="!tune.showTune">
       <tp-preloader></tp-preloader>
     </div>
 
@@ -106,20 +106,20 @@
       </div>
     </div>
 
-    <div class="col s12 m12" ng-class="{l6: tune.isEditing, l12: !tune.isEditing}" ng-if="tune.showTune">
+    <div class="col" ng-class="tune.isEditing && tune.isLandscape ? 's6' : 's12'" ng-if="tune.showTune">
       <div class="card">
-        <div class="score card-content">
+        <div class="score card-content" ng-click="tune.toggleToolbar()">
           <div id="card-score">
-            <div id="score" ng-click="tune.toggleToolbar()"></div>
+            <div id="score"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col s12 m12 l6" ng-show="tune.isEditing">
+    <div class="col" ng-class="tune.isEditing && tune.isLandscape ? 's6' : 's12'" ng-show="tune.isEditing">
       <div class="card">
         <div id="card-editor" class="card-content input-field">
-          <textarea id="abc" class="materialize-textarea" ng-model="tune.tune.notation"></textarea>
+          <textarea id="abc" ng-class="{portrait: !tune.isLandscape}" ng-model="tune.tune.notation"></textarea>
         </div>
       </div>
     </div>

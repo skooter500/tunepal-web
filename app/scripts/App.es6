@@ -20,8 +20,8 @@ $(function() {
 
   // Side Navigation fix
   $('.side-nav li a').on('click', function(e) {
-    const windowSize = $(window).width();
-    if (windowSize <= 992) {
+    const windowWidth = $(window).width();
+    if (windowWidth <= 992) {
       $('.button-collapse').sideNav('hide');
     }
   });

@@ -135,7 +135,23 @@ export default class TuneController extends ControllerBase {
       this.utils.view.initTooltips();
     });
 
-    $(window).resize(() => this._resizeScore());
+    $(window).resize(this.apply(() => {
+      this._changeLayout();
+      this._resizeScore();
+    }));
+
+    this._changeLayout();
+  }
+
+  _changeLayout() {
+    const windowWidth = $(window).width();
+    const windowHeight = $(window).height();
+
+    // For info about "240" below, see _global.scss:
+    // nav, main, footer { padding-left: 240px; }
+    this.isLandscape = windowWidth <= 992
+      ? windowWidth > windowHeight
+      : windowWidth - 240 > windowHeight;
   }
 
   _createAbcEditor() {
@@ -150,12 +166,28 @@ export default class TuneController extends ControllerBase {
   }
 
   _resizeScore() {
-    const score = $('#score');
-    const cardScore = $('#card-score');
     const cardContent = $('.score.card-content');
-    const scale = cardScore.width() / score.width();
-    cardScore.css('transform', `scale(${scale})`);
-    cardContent.height(cardScore.height() * scale);
+    const cardScore = $('#card-score');
+    const score = $('#score');
+
+    const windowWidth = $(window).width();
+    const windowHeight = $(window).height();
+    let scale = cardScore.width() / score.width();
+
+    if (!this.isEditing || this.isLandscape) {
+      cardScore.css('transform', `scale(${scale})`);
+      cardContent.height(cardScore.height() * scale);
+    }
+    else {
+      const halfHeight = windowWidth <= 992 ? windowHeight / 2 : (windowHeight - 64) / 2;
+      let cardContentHeight = cardScore.height() * scale;
+      if (cardContentHeight > halfHeight) {
+        cardContentHeight = halfHeight;
+        scale = cardContentHeight / score.height();
+      }
+      cardScore.css('transform', `scale(${scale})`);
+      cardContent.height(cardContentHeight);
+    }
   }
 
   toggleEditing() {
@@ -164,12 +196,11 @@ export default class TuneController extends ControllerBase {
     this.$timeout(() => {
       this._resizeScore();
 
-      // scroll to active element
-      const scrollTop = this.isEditing
-        ? $('#card-editor').offset().top - $('#card-score').offset().top
-        : 0;
-
-      $('html, body').animate({scrollTop: scrollTop}, 500);
+      if (this.isEditing) {
+        // scroll to active element
+        const scrollTop = $('#card-score').offset().top;
+        $('html, body').animate({scrollTop: scrollTop}, 500);
+      }
     });
   }
 

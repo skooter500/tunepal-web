@@ -22,6 +22,10 @@ a.page-title {
   padding-right: calc((2rem + 20px) * 5);
 }
 
+.last-row {
+  margin-bottom: 0;
+}
+
 .score.card-content {
   background-color: white;
 }
@@ -36,8 +40,16 @@ a.page-title {
 }
 
 #abc {
-  height: calc(100vh - 154px);
+  height: calc(100vh - 124px);
   padding: 0;
+  border: none;
+  font-family: monospace;
+
+  &.portrait {
+    overflow-y: auto;
+    height: calc(50vh - 80px);
+    margin-bottom: 0;
+  }
 }
 
 }
