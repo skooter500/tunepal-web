@@ -16,8 +16,10 @@ export default class KeywordSearchController extends ControllerBase {
     this.config = Config;
     this.utils = Utils;
 
-    this.keyword = $routeParams['keyword'];
-    this.selectedTunepalId = $routeParams['selectedTunepalId'];
+    this.keywordEncoded = $routeParams['keywordEncoded'];
+    this.keyword = this.keywordEncoded && decodeURIComponent(this.keywordEncoded);
+    this.selectedTunepalIdEncoded = $routeParams['selectedTunepalIdEncoded'];
+    this.selectedTunepalId = this.selectedTunepalIdEncoded && decodeURIComponent(this.selectedTunepalIdEncoded);
 
     this.showLoading = this.keyword != null;
     this.showResults = false;
@@ -43,7 +45,7 @@ export default class KeywordSearchController extends ControllerBase {
   }
 
   _fetchTunes() {
-    const q = encodeURIComponent(this.keyword);
+    const q = this.keywordEncoded;
     const sources = Utils.joinSet(this.config.tunebooks.selectedIds);
     const latitude = 1; //TODO
     const longitude = 2;
@@ -101,7 +103,7 @@ export default class KeywordSearchController extends ControllerBase {
         this._searchEuropeana();
       }
       else {
-        TunepalApi.fetchTuneAsync(this.$http, encodeURIComponent(selectedTunepalId))
+        TunepalApi.fetchTuneAsync(this.$http, this.selectedTunepalIdEncoded)
         .then(tune => {
           this.selectedTune = tune;
           this._searchEuropeana();
@@ -180,7 +182,7 @@ export default class KeywordSearchController extends ControllerBase {
 
   searchKeyword() {
     $('#keyword').blur();
-    this.$location.url(`/keywordSearch/${encodeURIComponent(this.keyword)}`);
+    this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}`);
   }
 
   clearKeyword() {
@@ -189,7 +191,7 @@ export default class KeywordSearchController extends ControllerBase {
   }
 
   select(tune) {
-    this.$location.url(`/keywordSearch/${encodeURIComponent(this.keyword)}/${tune.tunepalIdEncoded}`);
+    this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}/${encodeURIComponent(tune.tunepalIdEncoded)}`);
     this.$location.replace();
   }
 }

@@ -17,7 +17,8 @@ export default class NotesSearchController extends ControllerBase {
     this.utils = Utils;
 
     this.notes = $routeParams['notes'];
-    this.selectedTunepalId = $routeParams['selectedTunepalId'];
+    this.selectedTunepalIdEncoded = $routeParams['selectedTunepalIdEncoded'];
+    this.selectedTunepalId = this.selectedTunepalIdEncoded && decodeURIComponent(this.selectedTunepalIdEncoded);
 
     this.showLoading = true;
     this.showResults = false;
@@ -100,7 +101,7 @@ export default class NotesSearchController extends ControllerBase {
         this._searchEuropeana();
       }
       else {
-        TunepalApi.fetchTuneAsync(this.$http, encodeURIComponent(selectedTunepalId))
+        TunepalApi.fetchTuneAsync(this.$http, this.selectedTunepalIdEncoded)
         .then(tune => {
           this.selectedTune = tune;
           this._searchEuropeana();
@@ -178,7 +179,7 @@ export default class NotesSearchController extends ControllerBase {
   }
 
   select(tune) {
-    this.$location.url(`/notesSearch/${this.notes}/${tune.tunepalIdEncoded}`);
+    this.$location.url(`/notesSearch/${this.notes}/${encodeURIComponent(tune.tunepalIdEncoded)}`);
     this.$location.replace();
   }
 }

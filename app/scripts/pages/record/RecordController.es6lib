@@ -37,11 +37,9 @@ export default class RecordController extends ControllerBase {
   }
 
   onTranscribed(result) {
-    // When the code is executed in angular scope, use $location.url('/someLocation')
-    // to prevent navigation breaking history
-    // Otherwise use location.href = '/#!/someLocation'
-    //   or $scope.$apply(() => $location.url('/someLocation'))
-    location.href = `/#!/notesSearch/${result.transcription}`;
+    this.$scope.$apply(() => {
+      this.$location.url(`/notesSearch/${result.transcription}`);
+    });
   }
 
   playSignal() {

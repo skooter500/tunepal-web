@@ -11,13 +11,14 @@ export default class DiscographyController extends ControllerBase {
     this.showNoResults = false;
     this.showResults = false;
 
-    this.keyword = $routeParams['keyword'];
+    this.keywordEncoded = $routeParams['keywordEncoded'];
+    this.keyword = decodeURIComponent(this.keywordEncoded);
 
     this._fetchTunes();
   }
 
   _fetchTunes() {
-    const q = encodeURIComponent(this.keyword);
+    const q = this.keywordEncoded;
     const url = `${Config.ApiDomain}/api/Discography?q=${q}`;
 
     this.$http.get(url)

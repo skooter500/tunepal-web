@@ -24,12 +24,12 @@ export default class Routing {
 
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
-      .when('/discography/:keyword', {
+      .when('/discography/:keywordEncoded', {
         controller: 'DiscographyController',
         controllerAs: 'discography',
         templateUrl: 'scripts/pages/discography/discography.html',
       })
-      .when('/europeana/:tunepalId', {
+      .when('/europeana/:tunepalIdEncoded', {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',
         templateUrl: 'scripts/pages/europeana/europeana.html',
@@ -39,12 +39,12 @@ export default class Routing {
         controllerAs: 'home',
         templateUrl: 'scripts/pages/home/home.html',
       })
-      .when('/keywordSearch/:keyword?/:selectedTunepalId?', {
+      .when('/keywordSearch/:keywordEncoded?/:selectedTunepalIdEncoded?', {
         controller: 'KeywordSearchController',
         controllerAs: 'keywordSearch',
         templateUrl: 'scripts/pages/keywordSearch/keywordSearch.html',
       })
-      .when('/notesSearch/:notes/:selectedTunepalId?', {
+      .when('/notesSearch/:notes/:selectedTunepalIdEncoded?', {
         controller: 'NotesSearchController',
         controllerAs: 'notesSearch',
         templateUrl: 'scripts/pages/notesSearch/notesSearch.html',
@@ -64,7 +64,7 @@ export default class Routing {
         controllerAs: 'settings',
         templateUrl: 'scripts/pages/settings/settings.html',
       })
-      .when('/tune/:tunepalId', {
+      .when('/tune/:tunepalIdEncoded', {
         controller: 'TuneController',
         controllerAs: 'tune',
         templateUrl: 'scripts/pages/tune/tune.html',

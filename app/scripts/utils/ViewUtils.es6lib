@@ -16,6 +16,10 @@ class _ViewUtils {
     }
   }
 
+  encode(component) {
+    return encodeURIComponent(encodeURIComponent(component));
+  }
+
   initDropdown() {
     $('.dropdown-button').dropdown({
       constrain_width: false,

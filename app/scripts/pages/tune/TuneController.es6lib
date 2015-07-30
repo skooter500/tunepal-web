@@ -26,8 +26,8 @@ export default class TuneController extends ControllerBase {
     this.midi = new MidiPlayer(this.$scope);
     this.$scope.$watchCollection('midi', () => {});
 
-    this.tunepalId = $routeParams['tunepalId'];
-    this.tunepalIdEncoded = encodeURIComponent(this.tunepalId);
+    this.tunepalIdEncoded = $routeParams['tunepalIdEncoded'];
+    this.tunepalId = decodeURIComponent(this.tunepalIdEncoded);
 
     if (Utils.cache.tune.tunepalId === this.tunepalId) {
       this.tune = Utils.cache.tune;

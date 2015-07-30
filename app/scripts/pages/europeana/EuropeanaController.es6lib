@@ -18,8 +18,8 @@ export default class EuropeanaController extends ControllerBase {
     this.showNoResults = false;
     this.showResults = false;
 
-    const tunepalId = $routeParams['tunepalId'];
-    const tunepalIdEncoded = encodeURIComponent(tunepalId);
+    const tunepalIdEncoded = $routeParams['tunepalIdEncoded'];
+    const tunepalId = decodeURIComponent(tunepalIdEncoded);
 
     if (Utils.cache.tune.tunepalId === tunepalId) {
       this.tune = Utils.cache.tune;
@@ -72,7 +72,7 @@ export default class EuropeanaController extends ControllerBase {
       this._europeanaIds.push(tune.id);
       Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
     }
-    this.$location.url(`/tune/${this.tune.tunepalIdEncoded}`);
+    this.$location.url(`/tune/${encodeURIComponent(this.tune.tunepalIdEncoded)}`);
   }
 
   unlink(tune) {
