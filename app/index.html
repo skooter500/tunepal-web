@@ -72,9 +72,6 @@ document.getElementsByTagName('head')[0].appendChild(script);
     <div class="side-nav-toolbar">
       <span>Menu</span>
     </div>
-    <li ng-class="{active: index.isActive('/home')}">
-      <a href="/#!/home"><i class="mdi-action-home left"></i>Home</a>
-    </li>
     <li ng-class="{active: index.isActive('/record')}">
       <a href="/#!/record"><i class="mdi-av-mic left"></i>Record</a>
     </li>
@@ -86,6 +83,9 @@ document.getElementsByTagName('head')[0].appendChild(script);
     </li>
     <li ng-class="{active: index.isActive('/settings')}">
       <a href="/#!/settings"><i class="mdi-action-settings left"></i>Settings</a>
+    </li>
+    <li ng-class="{active: index.isActive('/about')}">
+      <a href="/#!/about"><i class="mdi-action-home left"></i>About</a>
     </li>
   </ul>
 

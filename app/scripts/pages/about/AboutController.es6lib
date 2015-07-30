@@ -4,7 +4,7 @@ import Utils from '../../utils/Utils.es6lib';
 import Tune from '../../models/Tune.es6lib';
 import Tunebook from '../../models/Tunebook.es6lib';
 
-export default class HomeController extends ControllerBase {
+export default class AboutController extends ControllerBase {
   constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
     super($scope);
     this.$routeParams = $routeParams;
@@ -22,8 +22,6 @@ export default class HomeController extends ControllerBase {
     this.showTunebooksResults = false;
 
     document.title = 'Tunepal.org';
-
-    console.log('Home controller constructor');
 
     this._fetchDownloads();
     this._fetchTunebooks();

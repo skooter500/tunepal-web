@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<div id="home-page" class="page">
+<div id="about-page" class="page">
 
-  <tp-navbar title="Home"></tp-navbar>
+  <tp-navbar title="About"></tp-navbar>
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
@@ -38,15 +38,15 @@
             </div>
             <div class="divider"></div>
 
-            <div class="center" ng-if="home.showLoading">
+            <div class="center" ng-if="about.showLoading">
               <tp-preloader></tp-preloader>
             </div>
 
-            <div class="center" ng-if="home.showNoResults">
+            <div class="center" ng-if="about.showNoResults">
               <h5 class="message">No Results</h5>
             </div>
 
-            <div class="avatar" ng-repeat="tune in home.tunes" ng-if="home.showResults">
+            <div class="avatar" ng-repeat="tune in about.tunes" ng-if="about.showResults">
               <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tune.title}}</span>
@@ -71,15 +71,15 @@
             </div>
             <div class="divider"></div>
 
-            <div class="center" ng-if="home.showTunebooksLoading">
+            <div class="center" ng-if="about.showTunebooksLoading">
               <tp-preloader></tp-preloader>
             </div>
 
-            <div class="center" ng-if="home.showTunebooksNoResults">
+            <div class="center" ng-if="about.showTunebooksNoResults">
               <h5 class="message">No Results</h5>
             </div>
 
-            <div class="avatar" ng-repeat="tunebook in home.tunebooks" ng-if="home.showTunebooksResults">
+            <div class="avatar" ng-repeat="tunebook in about.tunebooks" ng-if="about.showTunebooksResults">
               <div class="collection-item avatar">
                 <img ng-src="{{tunebook.logoUrl}}" alt="{{tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tunebook.fullName}}</span>

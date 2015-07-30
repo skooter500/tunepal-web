@@ -1,6 +1,6 @@
+import AboutController from './pages/about/AboutController.es6lib';
 import DiscographyController from './pages/discography/DiscographyController.es6lib';
 import EuropeanaController from './pages/europeana/EuropeanaController.es6lib';
-import HomeController from './pages/home/HomeController.es6lib';
 import IndexController from './pages/index/IndexController.es6lib';
 import KeywordSearchController from './pages/keywordSearch/KeywordSearchController.es6lib';
 import NotesSearchController from './pages/notesSearch/NotesSearchController.es6lib';
@@ -11,9 +11,9 @@ import TuneController from './pages/tune/TuneController.es6lib';
 
 export default class Routing {
   constructor(app) {
+    app.controller('AboutController', AboutController);
     app.controller('DiscographyController', DiscographyController);
     app.controller('EuropeanaController', EuropeanaController);
-    app.controller('HomeController', HomeController);
     app.controller('IndexController', IndexController);
     app.controller('KeywordSearchController', KeywordSearchController);
     app.controller('NotesSearchController', NotesSearchController);
@@ -24,6 +24,11 @@ export default class Routing {
 
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
+      .when('/about', {
+        controller: 'AboutController',
+        controllerAs: 'about',
+        templateUrl: 'scripts/pages/about/about.html',
+      })
       .when('/discography/:keywordEncoded', {
         controller: 'DiscographyController',
         controllerAs: 'discography',
@@ -33,11 +38,6 @@ export default class Routing {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',
         templateUrl: 'scripts/pages/europeana/europeana.html',
-      })
-      .when('/home', {
-        controller: 'HomeController',
-        controllerAs: 'home',
-        templateUrl: 'scripts/pages/home/home.html',
       })
       .when('/keywordSearch/:keywordEncoded?/:selectedTunepalIdEncoded?', {
         controller: 'KeywordSearchController',
@@ -69,7 +69,7 @@ export default class Routing {
         controllerAs: 'tune',
         templateUrl: 'scripts/pages/tune/tune.html',
       })
-      .otherwise('/home');
+      .otherwise('/record');
 
       $locationProvider.hashPrefix('!');
     });
