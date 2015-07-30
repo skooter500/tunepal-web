@@ -91,7 +91,7 @@ export default class TuneController extends ControllerBase {
     }
 
     const numThreads = 2;
-    this.europeanaTunes = new Array(this._europeanaIds.length);
+    const europeanaTunes = new Array(this._europeanaIds.length);
     let cur = 0;
     let numFinished = 0;
 
@@ -99,6 +99,7 @@ export default class TuneController extends ControllerBase {
       if (cur >= this._europeanaIds.length) {
         if (numFinished >= this._europeanaIds.length) {
           this.$scope.$apply(() => {
+            this.europeanaTunes = europeanaTunes;
             this.$timeout(() => this.utils.view.initTooltips());
             this.showEuropeanaResults = true;
             this.showEuropeanaLoading = false;
@@ -111,7 +112,7 @@ export default class TuneController extends ControllerBase {
       const europeanaId = this._europeanaIds[cur++];
       EuropeanaApi.fetchRecordAsync(this.$http, europeanaId)
       .then(result => {
-        this.europeanaTunes[id] = result.object;
+        europeanaTunes[id] = result.object;
 
         const soundUrl = result.object.aggregations[0].edmIsShownBy;
         if (soundUrl) {

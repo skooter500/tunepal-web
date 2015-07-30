@@ -138,7 +138,7 @@ export default class NotesSearchController extends ControllerBase {
     }
 
     const numThreads = 2;
-    this.europeanaTunes = new Array(this._europeanaIds.length);
+    const europeanaTunes = new Array(this._europeanaIds.length);
     let cur = 0;
     let numFinished = 0;
 
@@ -147,7 +147,8 @@ export default class NotesSearchController extends ControllerBase {
         if (numFinished >= this._europeanaIds.length) {
           this.$scope.$apply(() => {
             this.europeanaPageSize = 10;
-            this.europeanaPages = this._calcPages(this.europeanaTunes, this.europeanaPageSize);
+            this.europeanaPages = this._calcPages(europeanaTunes, this.europeanaPageSize);
+            this.europeanaTunes = europeanaTunes;
             this.$timeout(() => this.utils.view.initTooltips());
             this.showEuropeanaResults = true;
             this.showEuropeanaLoading = false;
@@ -160,7 +161,7 @@ export default class NotesSearchController extends ControllerBase {
       const europeanaId = this._europeanaIds[cur++];
       EuropeanaApi.fetchRecordAsync(this.$http, europeanaId)
       .then(result => {
-        this.europeanaTunes[id] = result.object;
+        europeanaTunes[id] = result.object;
 
         const soundUrl = result.object.aggregations[0].edmIsShownBy;
         if (soundUrl) {
