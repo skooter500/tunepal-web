@@ -1,0 +1,19 @@
+import ControllerBase from '../../ControllerBase.es6lib';
+import Config from '../../Config.es6lib';
+import Utils from '../../utils/Utils.es6lib';
+import Tune from '../../models/Tune.es6lib';
+import Tunebook from '../../models/Tunebook.es6lib';
+
+export default class HelpController extends ControllerBase {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
+    super($scope);
+    this.$routeParams = $routeParams;
+    this.$http = $http;
+    this.$timeout = $timeout;
+    this.$location = $location;
+    this.config = Config;
+    this.utils = Utils;
+
+    document.title = 'Tunepal.org > Help';
+  }
+}

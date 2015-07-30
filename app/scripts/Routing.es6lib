@@ -1,6 +1,7 @@
 import AboutController from './pages/about/AboutController.es6lib';
 import DiscographyController from './pages/discography/DiscographyController.es6lib';
 import EuropeanaController from './pages/europeana/EuropeanaController.es6lib';
+import HelpController from './pages/help/HelpController.es6lib';
 import IndexController from './pages/index/IndexController.es6lib';
 import KeywordSearchController from './pages/keywordSearch/KeywordSearchController.es6lib';
 import NotesSearchController from './pages/notesSearch/NotesSearchController.es6lib';
@@ -14,6 +15,7 @@ export default class Routing {
     app.controller('AboutController', AboutController);
     app.controller('DiscographyController', DiscographyController);
     app.controller('EuropeanaController', EuropeanaController);
+    app.controller('HelpController', HelpController);
     app.controller('IndexController', IndexController);
     app.controller('KeywordSearchController', KeywordSearchController);
     app.controller('NotesSearchController', NotesSearchController);
@@ -38,6 +40,11 @@ export default class Routing {
         controller: 'EuropeanaController',
         controllerAs: 'europeana',
         templateUrl: 'scripts/pages/europeana/europeana.html',
+      })
+      .when('/help', {
+        controller: 'HelpController',
+        controllerAs: 'help',
+        templateUrl: 'scripts/pages/help/help.html',
       })
       .when('/keywordSearch/:keywordEncoded?/:selectedTunepalIdEncoded?', {
         controller: 'KeywordSearchController',

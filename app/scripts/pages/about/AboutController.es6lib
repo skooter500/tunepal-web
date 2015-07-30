@@ -21,7 +21,7 @@ export default class AboutController extends ControllerBase {
     this.showTunebooksNoResults = false;
     this.showTunebooksResults = false;
 
-    document.title = 'Tunepal.org';
+    document.title = 'Tunepal.org > About';
 
     this._fetchDownloads();
     this._fetchTunebooks();
