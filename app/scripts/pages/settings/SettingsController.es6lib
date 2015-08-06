@@ -20,9 +20,8 @@ export default class SettingsController extends ControllerBase {
   }
 
   _initPopupOptions() {
-    // if screen is medium or up
-    if ($(window).width() > 600) {
-      $('.bottom-sheet').removeClass('bottom-sheet')
+    if (Utils.view.isLarge) {
+      $('.modal').removeClass('bottom-sheet');
     }
 
     // bind modal triggers to their modals

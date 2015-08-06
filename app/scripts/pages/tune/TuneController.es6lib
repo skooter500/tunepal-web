@@ -175,12 +175,17 @@ export default class TuneController extends ControllerBase {
     else {
       // The "64" below is the pixels of navbar, see _variables.scss:
       // $navbar-height: 64px !default;
-      const halfHeight = Utils.view.isMobile ? windowHeight / 2 : (windowHeight - 64) / 2;
+      const halfHeight = Utils.view.isMediumOrDown
+        ? windowHeight / 2
+        : (windowHeight - 64) / 2;
+
       let cardContentHeight = cardScore.height() * scale;
+
       if (cardContentHeight > halfHeight) {
         cardContentHeight = halfHeight;
         scale = cardContentHeight / score.height();
       }
+
       cardScore.css('transform', `scale(${scale})`);
       cardContent.height(cardContentHeight);
     }
@@ -206,7 +211,7 @@ export default class TuneController extends ControllerBase {
   }
 
   toggleToolbar() {
-    if (Utils.view.isMobile) {
+    if (Utils.view.isMediumOrDown) {
       $('.page-header nav').fadeToggle();
     }
   }

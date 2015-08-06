@@ -21,8 +21,7 @@ $(function() {
 
   // Side Navigation fix
   $('.side-nav li a').on('click', function(e) {
-    const windowWidth = $(window).width();
-    if (windowWidth <= Utils.view.mediumScreen) {
+    if (Utils.view.isMediumOrDown) {
       $('.button-collapse').sideNav('hide');
     }
   });

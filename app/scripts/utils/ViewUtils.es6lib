@@ -5,16 +5,24 @@ class _ViewUtils {
     this.largeScreen = 1200;
   }
 
-  showSideNav() {
-    $('.hamburger-button').sideNav('show');
+  get isSmall() {
+    return $(window).width() <= this.smallScreen;
   }
 
-  get isMobile() {
-    return $(window).width() <= this.mediumScreen;
+  get isMedium() {
+    return $(window).width() > this.smallScreen && $(window).width() <= this.mediumScreen;
   }
 
-  get isDesktop() {
+  get isLarge() {
     return $(window).width() > this.mediumScreen;
+  }
+
+  get isMediumOrUp() {
+    return $(window).width() > this.smallScreen;
+  }
+
+  get isMediumOrDown() {
+    return $(window).width() <= this.mediumScreen;
   }
 
   // The "240" below is the pixels of sizeNav, see _global.scss:
@@ -29,6 +37,10 @@ class _ViewUtils {
 
   get isPortrait() {
     return !this.isLandscape;
+  }
+
+  showSideNav() {
+    $('.hamburger-button').sideNav('show');
   }
 
   goBack() {
