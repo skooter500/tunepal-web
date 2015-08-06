@@ -221,4 +221,9 @@ export default class TuneController extends ControllerBase {
     Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
     this.europeanaTunes.splice(index, 1);
   }
+
+  downloadAbc() {
+    const blob = new Blob([this.tune.notation], {type: 'text/vnd.abc'});
+    saveAs(blob, `${this.tune.title}.abc`);
+  }
 }
