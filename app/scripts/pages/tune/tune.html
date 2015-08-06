@@ -91,8 +91,8 @@
               <div class="collection-item avatar">
                 <img ng-src="{{europeanaTune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{europeanaTune.title[0]}}" class="circle" />
                 <span class="title truncate">{{europeanaTune.title[0] || '&nbsp;'}}</span>
-                <p class="truncate">{{europeanaTune.aggregations[0].edmDataProvider.def[0] || '&nbsp;'}}</p>
-                <p class="truncate">{{europeanaTune.aggregations[0].edmProvider.def[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{europeanaTune.proxies[0].dcCreator.def[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{europeanaTune.year[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
                   <audio controls ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
                   <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>

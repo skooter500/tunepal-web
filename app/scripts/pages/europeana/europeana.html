@@ -25,8 +25,8 @@
               <div class="collection-item avatar">
                 <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
                 <span class="title truncate">{{tune.title[0] || '&nbsp;'}}</span>
-                <p class="truncate">{{tune.dataProvider[0] || '&nbsp;'}}</p>
-                <p class="truncate">{{tune.provider[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{tune.dcCreator[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
                   <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.guid}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                   <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Link to tune page" ng-click="europeana.link(tune)"><i class="mdi-content-send"></i></a>
