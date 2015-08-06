@@ -111,7 +111,7 @@ export default class KeywordSearchController extends ControllerBase {
       }
     }
     else {
-      this.selectedTune = this.tunes[0];
+      this.selectedTune = new Tune({tunepalid: this.keyword, title: this.keyword});
       this._searchEuropeana();
     }
   }
@@ -192,7 +192,12 @@ export default class KeywordSearchController extends ControllerBase {
   }
 
   select(tune) {
-    this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}/${encodeURIComponent(tune.tunepalIdEncoded)}`);
+    if (this.selectedTune.tunepalId === tune.tunepalId) {
+      this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}`);
+    }
+    else {
+      this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}/${encodeURIComponent(tune.tunepalIdEncoded)}`);
+    }
     this.$location.replace();
   }
 }
