@@ -35,10 +35,6 @@ export default class EuropeanaController extends ControllerBase {
   }
 
   _search() {
-    this._europeanaIdsDb = Utils.localStorage.getItem('europeanaIds');
-    this._europeanaIdsDb = this._europeanaIdsDb || {};
-    this._europeanaIds = this._europeanaIdsDb[this.tune.tunepalId];
-
     if (Utils.cache.europeana.id === this.tune.tunepalId) {
       this._initResults(Utils.cache.europeana.results);
     }
@@ -64,23 +60,6 @@ export default class EuropeanaController extends ControllerBase {
     }
 
     this.showLoading = false;
-  }
-
-  link(tune) {
-    const index = this._europeanaIds.indexOf(tune.id);
-    if (index === -1) {
-      this._europeanaIds.push(tune.id);
-      Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
-    }
-    this.$location.url(`/tune/${encodeURIComponent(this.tune.tunepalIdEncoded)}`);
-  }
-
-  unlink(tune) {
-    const index = this._europeanaIds.indexOf(tune.id);
-    if (index > -1) {
-      this._europeanaIds.splice(index, 1);
-      Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
-    }
   }
 
   _initUi() {

@@ -63,24 +63,14 @@ export default class TuneController extends ControllerBase {
     this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(this.tune);
 
     const numDefaultTunes = 5;
-    this._europeanaIdsDb = Utils.localStorage.getItem('europeanaIds');
-    this._europeanaIdsDb = this._europeanaIdsDb || {};
-    this._europeanaIds = this._europeanaIdsDb[this.tune.tunepalId];
 
-    if (this._europeanaIds) {
+    EuropeanaApi.searchAsync(this.$http, this.tune)
+    .then(results => {
+      this._europeanaIds = results.items
+        ? results.items.slice(0, numDefaultTunes).map(item => item.id)
+        : [];
       this._initEuropeanaTunes();
-    }
-    else {
-      EuropeanaApi.searchAsync(this.$http, this.tune)
-      .then(results => {
-        this._europeanaIds = results.items
-          ? results.items.slice(0, numDefaultTunes).map(item => item.id)
-          : [];
-        this._europeanaIdsDb[this.tune.tunepalId] = this._europeanaIds;
-        Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
-        this._initEuropeanaTunes();
-      });
-    }
+    });
   }
 
   _initEuropeanaTunes() {
@@ -214,12 +204,6 @@ export default class TuneController extends ControllerBase {
     if (Utils.view.isMediumOrDown) {
       $('.page-header nav').fadeToggle();
     }
-  }
-
-  unlinkEuropeanaTune(index) {
-    this._europeanaIds.splice(index, 1);
-    Utils.localStorage.setItem('europeanaIds', this._europeanaIdsDb);
-    this.europeanaTunes.splice(index, 1);
   }
 
   downloadAbc() {

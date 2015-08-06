@@ -76,7 +76,7 @@
               <span class="title">Archive Recordings</span>
               <span class="secondary-content">
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{tune.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
-                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-content-add"></i></a>
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Add tune" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-navigation-more-horiz"></i></a>
               </span>
             </div>
             <div class="divider"></div>
@@ -98,7 +98,6 @@
                 <span class="secondary-content">
                   <audio controls ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
                   <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{europeanaTune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Unlink" ng-click="tune.unlinkEuropeanaTune($index)"><i class="mdi-navigation-close"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>
