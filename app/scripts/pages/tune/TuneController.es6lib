@@ -145,14 +145,7 @@ export default class TuneController extends ControllerBase {
   }
 
   _changeLayout() {
-    const windowWidth = $(window).width();
-    const windowHeight = $(window).height();
-
-    // For info about "240" below, see _global.scss:
-    // nav, main, footer { padding-left: 240px; }
-    this.isLandscape = windowWidth <= 992
-      ? windowWidth > windowHeight
-      : windowWidth - 240 > windowHeight;
+    this.isLandscape = Utils.view.isLandscape;
   }
 
   _createAbcEditor() {
@@ -180,7 +173,9 @@ export default class TuneController extends ControllerBase {
       cardContent.height(cardScore.height() * scale);
     }
     else {
-      const halfHeight = windowWidth <= 992 ? windowHeight / 2 : (windowHeight - 64) / 2;
+      // The "64" below is the pixels of navbar, see _variables.scss:
+      // $navbar-height: 64px !default;
+      const halfHeight = Utils.view.isMobile ? windowHeight / 2 : (windowHeight - 64) / 2;
       let cardContentHeight = cardScore.height() * scale;
       if (cardContentHeight > halfHeight) {
         cardContentHeight = halfHeight;

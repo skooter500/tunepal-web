@@ -1,6 +1,7 @@
 import Directive from './Directive.es6lib';
 import Routing from './Routing.es6lib';
 import SeoController from './SeoController.es6lib';
+import Utils from './utils/Utils.es6lib';
 
 const seo = new SeoController();
 
@@ -21,7 +22,7 @@ $(function() {
   // Side Navigation fix
   $('.side-nav li a').on('click', function(e) {
     const windowWidth = $(window).width();
-    if (windowWidth <= 992) {
+    if (windowWidth <= Utils.view.mediumScreen) {
       $('.button-collapse').sideNav('hide');
     }
   });
