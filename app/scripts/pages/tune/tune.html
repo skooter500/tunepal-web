@@ -28,7 +28,9 @@
             <a class="tooltipped" data-tooltip="Stop" ng-click="tune.midi.stopPlaying()"><i class="mdi-av-stop"></i></a>
           </li>
           <li>
-            <a class="tooltipped" data-tooltip="{{tune.isEditing ? 'Save' : 'Edit'}}" ng-click="tune.toggleEditing()"><i ng-class="{'mdi-editor-mode-edit': !tune.isEditing, 'mdi-content-save': tune.isEditing}"></i></a>
+            <a class="tooltipped" data-tooltip="{{tune.isEditing ? 'Save' : 'Edit'}}" ng-click="tune.toggleEditing()">
+              <i ng-class="tune.isEditing ? 'mdi-content-save' : 'tpi-abc'"></i>
+            </a>
           </li>
           <li>
             <a href="#" class="dropdown-button tooltipped" data-activates="tune-more" data-tooltip="More"><i class="mdi-navigation-more-vert"></i></a>

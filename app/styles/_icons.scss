@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Tunepal-Icons';
+  src:url('../fonts/Tunepal-Icons.eot?-gff4ve');
+  src:url('../fonts/Tunepal-Icons.eot?#iefix-gff4ve') format('embedded-opentype'),
+    url('../fonts/Tunepal-Icons.ttf?-gff4ve') format('truetype'),
+    url('../fonts/Tunepal-Icons.woff?-gff4ve') format('woff'),
+    url('../fonts/Tunepal-Icons.svg?-gff4ve#Tunepal-Icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="tpi-"], [class*=" tpi-"] {
+  font-family: 'Tunepal-Icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tpi-abc:before {
+  content: "\e600";
+}
