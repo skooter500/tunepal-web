@@ -11,6 +11,9 @@ gulp.task('copy', function () {
   var assets = gulp.src(['app/assets/**/*'])
     .pipe(gulp.dest('www/assets'));
 
+  var fonts = gulp.src(['app/fonts/**/*'])
+    .pipe(gulp.dest('www/fonts'));
+
   var images = gulp.src(['app/images/**/*'])
     .pipe(gulp.dest('www/images'));
 
@@ -20,7 +23,7 @@ gulp.task('copy', function () {
   var tmpFiles = gulp.src(['.tmp/**/*'])
     .pipe(gulp.dest('www'));
 
-  return merge(assets, images, rootFiles, tmpFiles)
+  return merge(assets, fonts, images, rootFiles, tmpFiles)
     .pipe($.size({title: 'copy'}));
 });
 
