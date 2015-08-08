@@ -1,3 +1,17 @@
+#tunepal-index {
+  #at4m-mobile-container {
+    color: black;
+  }
+
+  #at4m-dock {
+    display: none;
+  }
+
+  .at4m-dock-toggle {
+    display: none;
+  }
+}
+
 #tunepal-index #tune-page {
 
 a.page-title {
@@ -35,18 +49,8 @@ a.page-title {
   }
 }
 
+audio.hide-on-med-and-up {
+  margin-top: 10px;
 }
 
-#tunepal-index {
-  #at4m-mobile-container {
-    color: black;
-  }
-
-  #at4m-dock {
-    display: none;
-  }
-
-  .at4m-dock-toggle {
-    display: none;
-  }
 }
