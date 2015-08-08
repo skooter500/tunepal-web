@@ -1,22 +1,5 @@
 #tunepal-index #tune-page {
 
-@media #{$medium-and-down} {
-  padding-top: 0;
-
-  .page-header nav {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  .shadow {
-    box-shadow: 0 0 112px 30px black;
-  }
-
-  .preloader-div {
-    padding-top: $navbar-height-mobile;
-  }
-}
-
 a.page-title {
   // (width of one button + padding) * number of buttons
   padding-right: calc((2rem + 20px) * 5);

@@ -1,7 +1,15 @@
 #tunepal-index .page-header {
 
-position: fixed;
 top: 0;
+width: 100%;
+
+&.navbar {
+  position: absolute;
+}
+
+&.navbar-fixed {
+  position: fixed;
+}
 
 nav {
   top: 0;
@@ -20,7 +28,6 @@ nav {
 }
 
 ul.left {
-  position: fixed;
   left: 0;
 
   i {
@@ -37,7 +44,8 @@ ul.left {
   font-size: 24px;
 
   @media #{$medium-and-down} {
-    padding-left: 58px;
+    position: absolute;
+    left: 58px;
     font-size: 20px;
   }
 }
@@ -51,7 +59,7 @@ li:hover.disabled {
 }
 
 ul.right {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 16px;
 
