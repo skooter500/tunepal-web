@@ -7,3 +7,8 @@ var $ = require('gulp-load-plugins')();
 gulp.task('deploy', $.shell.task([
   'appcfg.py update www'
 ]));
+
+// Deploy to GAE production application
+gulp.task('deploy:dist', $.shell.task([
+  'appcfg.py update www --application=tunepal-js'
+]));
