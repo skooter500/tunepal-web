@@ -20,6 +20,13 @@
       padding-right: 10px;
     }
   }
+
+  i {
+    @media #{$medium-and-down} {
+      height: $navbar-height-mobile;
+      line-height: $navbar-height-mobile;
+    }
+  }
 }
 
 }
