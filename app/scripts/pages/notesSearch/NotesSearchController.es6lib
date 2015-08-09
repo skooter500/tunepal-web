@@ -142,7 +142,7 @@ export default class NotesSearchController extends ControllerBase {
   }
 
   select(tune) {
-    this.$location.url(`/notesSearch/${this.notes}/${encodeURIComponent(tune.tunepalIdEncoded)}`);
+    this.$location.url(`/notesSearch/${this.notes}/${tune.tunepalIdDoubleEncoded}`);
     this.$location.replace();
   }
 }

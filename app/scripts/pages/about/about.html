@@ -47,7 +47,7 @@
             </div>
 
             <div class="avatar" ng-repeat="tune in about.tunes" ng-if="about.showResults">
-              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
+              <a class="collection-item avatar" ng-href="/#!/tune/{{tune.tunepalIdDoubleEncoded}}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" alt="{{tune.tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tune.title}}</span>
                 <p class="truncate">{{tune.altTitle || '&nbsp;'}}</p>

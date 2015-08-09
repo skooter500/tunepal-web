@@ -145,7 +145,7 @@ export default class KeywordSearchController extends ControllerBase {
 
   searchKeyword() {
     $('#keyword').blur();
-    this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}`);
+    this.$location.url(`/keywordSearch/${Utils.view.doubleEncode(this.keyword)}`);
   }
 
   clearKeyword() {
@@ -155,10 +155,10 @@ export default class KeywordSearchController extends ControllerBase {
 
   select(tune) {
     if (this.selectedTune.tunepalId === tune.tunepalId) {
-      this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}`);
+      this.$location.url(`/keywordSearch/${Utils.view.doubleEncode(this.keyword)}`);
     }
     else {
-      this.$location.url(`/keywordSearch/${Utils.view.encode(this.keyword)}/${encodeURIComponent(tune.tunepalIdEncoded)}`);
+      this.$location.url(`/keywordSearch/${Utils.view.doubleEncode(this.keyword)}/${tune.tunepalIdDoubleEncoded}`);
     }
     this.$location.replace();
   }

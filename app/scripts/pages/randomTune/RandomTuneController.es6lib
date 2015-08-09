@@ -15,7 +15,7 @@ export default class RandomTuneController extends ControllerBase {
     .success(rawTune => {
       const tune = new Tune(rawTune);
       Utils.cache.tune = tune;
-      $location.url(`/tune/${encodeURIComponent(tune.tunepalIdEncoded)}`);
+      $location.url(`/tune/${tune.tunepalIdDoubleEncoded}`);
       $location.replace();
     });
   }

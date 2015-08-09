@@ -52,7 +52,7 @@ class _ViewUtils {
     }
   }
 
-  encode(component) {
+  doubleEncode(component) {
     return encodeURIComponent(encodeURIComponent(component));
   }
 

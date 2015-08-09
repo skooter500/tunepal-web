@@ -7,7 +7,7 @@
     <div class="modal-content">
       <p ng-repeat="tune in notesSearch.tunes | limitTo : 1">
         Tunepal thinks its called
-        <a ng-href="/#!/tune/{{tune.tunepalIdEncoded}}">
+        <a ng-href="/#!/tune/{{tune.tunepalIdDoubleEncoded}}">
           <span class="highlight">{{tune.title}}</span>
           <span ng-if="tune.altTitle">(<span class="highlight">{{tune.altTitle}}</span>)</span>
         </a>
@@ -38,7 +38,7 @@
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in notesSearch.tunes | limitTo : notesSearch.pageSize : page.startIndex" class="avatar tune-container">
-              <a class="collection-item avatar tune" ng-href="/#!/tune/{{tune.tunepalIdEncoded}}" ng-class="{active: notesSearch.selectedTune === tune}">
+              <a class="collection-item avatar tune" ng-href="/#!/tune/{{tune.tunepalIdDoubleEncoded}}" ng-class="{active: notesSearch.selectedTune === tune}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" class="circle" alt="{{tune.tunebook.shortName}}" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate" title="{{tune.title}}">{{tune.title}}</span>
                 <p class="truncate" title="{{tune.altTitle}}">{{tune.altTitle || '&nbsp;'}}</p>

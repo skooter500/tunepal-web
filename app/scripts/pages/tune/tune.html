@@ -35,7 +35,7 @@
             <a href="#" class="dropdown-button tooltipped" data-activates="tune-more" data-tooltip="More"><i class="mdi-navigation-more-vert"></i></a>
             <ul id="tune-more" class="dropdown-content">
               <li>
-                <a ng-href="/#!/discography/{{tune.tune.titleEncoded}}"><i class="left mdi-action-list"></i>Discography</a>
+                <a ng-href="/#!/discography/{{tune.tune.tunepalIdDoubleEncoded}}"><i class="left mdi-action-list"></i>Discography</a>
               </li>
               <li>
                 <a ng-href="http://www.youtube.com/results?search_query={{tune.tune.titleEncoded}}" target="_blank"><i class="left mdi-action-list"></i>Youtube</a>
@@ -82,7 +82,7 @@
               <span class="title">Archive Recordings <span ng-if="tune.europeana.items.length > 0">({{tune.europeana.items.length}} of {{tune.europeana.totalResults}})</span></span>
               <span class="secondary-content">
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Search in Europeana" ng-href="{{tune.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
-                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="More tunes" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-navigation-more-horiz"></i></a>
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="More tunes" ng-href="/#!/europeana/{{tune.tunepalIdDoubleEncoded}}"><i class="mdi-navigation-more-horiz"></i></a>
               </span>
             </div>
             <div class="divider"></div>
