@@ -69,7 +69,7 @@
       <tp-preloader></tp-preloader>
     </div>
 
-    <div class="col s12 m12 l12 center midi-preloader" ng-if="!tune.midi.ready">
+    <div class="col s12 m12 l12 center midi-preloader" ng-if="tune.showTune && !tune.midi.ready">
       <tp-preloader></tp-preloader>
       Generating MIDI... It might take a while on mobile.
     </div>

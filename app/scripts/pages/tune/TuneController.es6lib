@@ -23,7 +23,7 @@ export default class TuneController extends ControllerBase {
     this.isEditing = false;
 
     // MIDI Playback
-    this.midi = new MidiPlayer(this.$scope);
+    this.midi = new MidiPlayer(this.$scope, this.$timeout);
     this.$scope.$watchCollection('midi', () => {});
 
     this.tunepalIdEncoded = $routeParams['tunepalIdEncoded'];

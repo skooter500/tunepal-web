@@ -2,8 +2,9 @@ import ControllerBase from '../../ControllerBase.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class MidiPlayer extends ControllerBase {
-  constructor($scope) {
+  constructor($scope, $timeout) {
     super($scope);
+    this.$timeout = $timeout;
 
     this.ready = false;
     this.isPlaying = false;
@@ -17,7 +18,10 @@ export default class MidiPlayer extends ControllerBase {
     this._initPluginAsync()
     .then(() => this._generateMidiAsync())
     .then(() => this._loadMidiAsync())
-    .then(this.apply(() => this.ready = true));
+    .then(this.apply(() => {
+      this.ready = true;
+      this.$timeout(() => Utils.view.initTooltips());
+    }));
   }
 
   _initPluginAsync() {
