@@ -57,4 +57,40 @@ audio.hide-on-med-and-up {
   margin-top: 10px;
 }
 
+nav {
+  .preloader-div {
+    width: 50px;
+    padding-top: 8px;
+    text-align: center;
+
+    @media #{$medium-and-down} {
+      width: 48px;
+    }
+  }
+
+  .preloader-wrapper {
+    width: 24px;
+    height: 24px;
+
+    @media #{$medium-and-down} {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+.midi-preloader {
+  padding-top: 10px;
+
+  .preloader-div {
+    display: inline;
+    margin-top: 10px;
+  }
+
+  .preloader-wrapper {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
 }

@@ -13,17 +13,17 @@
         <a class="page-title truncate">{{tune.tune.title}}</a>
 
         <ul class="right">
-          <li ng-show="!tune.midi.isPlaying" ng-class="{disabled: !tune.midi.ready}">
+          <li ng-if="tune.midi.ready" ng-show="!tune.midi.isPlaying">
             <a class="tooltipped" data-tooltip="Play" ng-click="tune.midi.togglePlaying()">
-              <i ng-class="tune.midi.isPlaying ? 'mdi-av-pause' : 'mdi-av-play-arrow'"></i>
+              <i class="mdi-av-play-arrow"></i>
             </a>
           </li>
-          <li ng-show="tune.midi.isPlaying" ng-class="{disabled: !tune.midi.ready}">
+          <li ng-if="tune.midi.ready" ng-show="tune.midi.isPlaying">
             <a class="tooltipped" data-tooltip="Pause" ng-click="tune.midi.togglePlaying()">
-              <i ng-class="tune.midi.isPlaying ? 'mdi-av-pause' : 'mdi-av-play-arrow'"></i>
+              <i class="mdi-av-pause"></i>
             </a>
           </li>
-          <li ng-class="{disabled: tune.midi.isStopped}">
+          <li ng-if="tune.midi.ready" ng-class="{disabled: tune.midi.isStopped}">
             <a class="tooltipped" data-tooltip="Stop" ng-click="tune.midi.stopPlaying()"><i class="mdi-av-stop"></i></a>
           </li>
           <li>
@@ -67,6 +67,11 @@
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
     <div class="col s12 m12 l12 center" ng-if="!tune.showTune">
       <tp-preloader></tp-preloader>
+    </div>
+
+    <div class="col s12 m12 l12 center midi-preloader" ng-if="!tune.midi.ready">
+      <tp-preloader></tp-preloader>
+      Generating MIDI... It might take a while on mobile.
     </div>
 
     <div class="col s12 m12 l12" ng-if="tune.showTune">
