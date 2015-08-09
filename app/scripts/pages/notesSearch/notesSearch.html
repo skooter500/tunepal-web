@@ -65,7 +65,7 @@
             <div class="collection-item card-collection-title">
               <span class="title">Archive Recordings</span>
               <span class="secondary-content">
-                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Show in Europeana" ng-href="{{notesSearch.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Search in Europeana" ng-href="{{notesSearch.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
               </span>
             </div>
             <div class="divider"></div>
@@ -86,13 +86,13 @@
             <div class="divider"></div>
             <div ng-repeat="tune in notesSearch.europeanaTunes | limitTo : 10 : page.startIndex" class="avatar">
               <div class="collection-item avatar europeana-tune">
-                <img ng-src="{{tune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" class="circle" alt="{{tune.title[0]}}" title="{{tune.title[0]}}" />
+                <img ng-src="{{tune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" class="circle" alt="{{tune.aggregations[0].edmDataProvider.def[0]}}" title="{{tune.aggregations[0].edmDataProvider.def[0]}}" />
                 <span class="title truncate" title="{{tune.title[0]}}">{{tune.title[0] || '&nbsp;'}}</span>
                 <p class="truncate" title="{{tune.proxies[0].dcContributor.def[0]}}">{{tune.proxies[0].dcContributor.def[0] || '&nbsp;'}}</p>
                 <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
                 <audio controls ng-src="{{tune.tpSoundUrl}}" ng-if="tune.tpSoundUrl"></audio>
                 <span class="secondary-content">
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.europeanaAggregation.edmLandingPage}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{tune.aggregations[0].edmIsShownAt}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>

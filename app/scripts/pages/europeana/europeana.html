@@ -23,12 +23,12 @@
             <div class="divider"></div>
             <div ng-repeat="tune in europeana.results.items | limitTo : 10 : page.startIndex" class="avatar">
               <div class="collection-item avatar">
-                <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" class="circle" alt="{{tune.title[0]}}" title="{{tune.title[0]}}" />
+                <img ng-src="{{tune.edmPreview[0] || 'http://europeana.eu/Logo.jpg'}}" class="circle" alt="{{tune.dataProvider[0]}}" title="{{tune.dataProvider[0]}}" />
                 <span class="title truncate" title="{{tune.title[0]}}">{{tune.title[0] || '&nbsp;'}}</span>
                 <p class="truncate" title="{{tune.dcContributor[0]}}">{{tune.dcContributor[0] || '&nbsp;'}}</p>
                 <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Open Europeana in new tab" ng-href="{{tune.guid}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.dataProvider[0]}}" ng-href="{{tune.edmIsShownAt[0]}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>
