@@ -14,7 +14,7 @@ class _EuropeanaApi {
     return new Promise((resolve, reject) => {
       const apiDomain = Config.EuropeanaApiDomain;
       const apiKey = Config.EuropeanaApiKey;
-      const profile = 'standard';
+      const profile = 'portal';
       const qfSound = encodeURIComponent('TYPE:SOUND');
       const qfProvider = this._qfProvider;
       const query = this._getQuery(tune.title, tune.altTitle);

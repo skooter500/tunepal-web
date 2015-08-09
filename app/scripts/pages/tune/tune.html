@@ -94,7 +94,7 @@
               <div class="collection-item avatar">
                 <img ng-src="{{europeanaTune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{europeanaTune.title[0]}}" class="circle" />
                 <span class="title truncate">{{europeanaTune.title[0] || '&nbsp;'}}</span>
-                <p class="truncate">{{europeanaTune.proxies[0].dcCreator.def[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{europeanaTune.proxies[0].dcContributor.def[0] || '&nbsp;'}}</p>
                 <p class="truncate">{{europeanaTune.year[0] || '&nbsp;'}}</p>
                 <audio controls class="hide-on-med-and-up" ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
                 <span class="secondary-content">

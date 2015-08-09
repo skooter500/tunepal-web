@@ -90,7 +90,7 @@
               <div class="collection-item avatar europeana-tune">
                 <img ng-src="{{tune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" alt="{{tune.title[0]}}" class="circle" />
                 <span class="title truncate">{{tune.title[0] || '&nbsp;'}}</span>
-                <p class="truncate">{{tune.proxies[0].dcCreator.def[0] || '&nbsp;'}}</p>
+                <p class="truncate">{{tune.proxies[0].dcContributor.def[0] || '&nbsp;'}}</p>
                 <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
                 <audio controls ng-src="{{tune.tpSoundUrl}}" ng-if="tune.tpSoundUrl"></audio>
                 <span class="secondary-content">
