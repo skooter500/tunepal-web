@@ -19,6 +19,10 @@ export default class ControllerBase {
   _calcPages(results, pageSize) {
     const pages = new Array(Math.ceil(results.length / pageSize));
 
+    if (pages.length <= 0) {
+      return pages;
+    }
+
     for (let i = 0; i < pages.length; i++) {
       pages[i] = {
         startIndex: i * pageSize,

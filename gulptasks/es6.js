@@ -12,7 +12,7 @@ gulp.task('es6', function () {
       errorHandler: swallowError
     }))
     .pipe($.es6ModuleTranspiler())
-    .pipe($.babel())
+    .pipe($.babel({compact: false}))
     .pipe($.rename(function (filePath) {
       filePath.dirname = filePath.dirname.replace('app' + path.sep, '');
       filePath.basename = filePath.basename.replace('.es6', '');

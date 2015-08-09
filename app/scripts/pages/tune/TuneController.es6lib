@@ -56,69 +56,22 @@ export default class TuneController extends ControllerBase {
     this.showTune = true;
 
     this.showEuropeanaLoading = true;
-    this._initEuropeana();
-  }
-
-  _initEuropeana() {
     this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(this.tune);
 
-    this.numDefaultTunes = 5;
-
-    EuropeanaApi.searchAsync(this.$http, this.tune)
-    .then(results => {
-      this.totalNumEuropeanaTunes = results.totalResults;
-      this._europeanaIds = results.items
-        ? results.items.slice(0, this.numDefaultTunes).map(item => item.id)
-        : [];
-
-      this._initEuropeanaTunes();
-    });
+    EuropeanaApi.searchFetchAsync(this.$http, this.tune, this.$sce, 1, 5)
+    .then(results => this._initEuropeanaResults(results));
   }
 
-  _initEuropeanaTunes() {
-    if (this._europeanaIds.length === 0) {
+  _initEuropeanaResults(results) {
+    if (results.items.length > 0) {
+      this.europeana = results;
+      this.showEuropeanaResults = true;
+      this.showEuropeanaLoading = false;
+      this.$timeout(() => this.utils.view.initTooltips());
+    }
+    else {
       this.showEuropeanaLoading = false;
       this.showEuropeanaNoResults = true;
-      return;
-    }
-
-    const numThreads = 2;
-    const europeanaTunes = new Array(this._europeanaIds.length);
-    let cur = 0;
-    let numFinished = 0;
-
-    const fetchRecordAsync = () => {
-      if (cur >= this._europeanaIds.length) {
-        if (numFinished >= this._europeanaIds.length) {
-          this.$scope.$apply(() => {
-            this.europeanaTunes = europeanaTunes;
-            this.$timeout(() => this.utils.view.initTooltips());
-            this.showEuropeanaResults = true;
-            this.showEuropeanaLoading = false;
-          });
-        }
-        return;
-      }
-
-      const id = cur;
-      const europeanaId = this._europeanaIds[cur++];
-      EuropeanaApi.fetchRecordAsync(this.$http, europeanaId)
-      .then(result => {
-        europeanaTunes[id] = result.object;
-
-        const soundUrl = result.object.aggregations[0].edmIsShownBy;
-        if (soundUrl) {
-          result.object.tpSoundUrl = this.$sce.trustAsResourceUrl(soundUrl);
-        }
-      })
-      .then(() => {
-        numFinished++;
-        fetchRecordAsync();
-      });
-    };
-
-    for (let i = 0; i < numThreads; i++) {
-      fetchRecordAsync();
     }
   }
 

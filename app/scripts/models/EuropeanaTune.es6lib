@@ -1,0 +1,33 @@
+export default class EuropeanaTune {
+  static fromSearch(rawTune) {
+    const tune = new EuropeanaTune();
+
+    tune.title = rawTune.title && rawTune.title[0];
+    tune.preview = rawTune.edmPreview && rawTune.edmPreview[0] || 'http://europeana.eu/Logo.jpg';
+    tune.provider = rawTune.dataProvider && rawTune.dataProvider[0];
+    tune.author = rawTune.dcContributor && rawTune.dcContributor[0];
+    tune.year = rawTune.year && rawTune.year[0];
+    tune.tunePageInProvider = rawTune.edmIsShownAt && rawTune.edmIsShownAt[0] || rawTune.edmIsShownBy && rawTune.edmIsShownBy[0];
+    tune.tunePageInEuropeana = rawTune.guid;
+
+    return tune;
+  }
+
+  static fromRecord(rawTune, $sce) {
+    const tune = new EuropeanaTune();
+
+    tune.title = rawTune.proxies[0].dcTitle && rawTune.proxies[0].dcTitle.def[0];
+    tune.preview = rawTune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg';
+    tune.provider = rawTune.aggregations[0].edmDataProvider && rawTune.aggregations[0].edmDataProvider.def[0];
+    tune.year = rawTune.proxies[0].dcDate && rawTune.proxies[0].dcDate.def[0];
+    tune.tunePageInProvider = rawTune.aggregations[0].edmIsShownAt || rawTune.aggregations[0].edmIsShownBy;
+    tune.tunePageInEuropeana = rawTune.europeanaAggregation.edmLandingPage;
+    tune.audioUrl = $sce.trustAsResourceUrl(rawTune.aggregations[0].edmIsShownBy);
+
+    tune.author = tune.provider === 'Irish Traditional Music Archive'
+      ? rawTune.proxies[0].dcCreator && rawTune.proxies[0].dcCreator.def[0]
+      : rawTune.proxies[0].dcContributor && rawTune.proxies[0].dcContributor.def[0];
+
+    return tune;
+  }
+}

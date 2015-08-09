@@ -71,35 +71,35 @@
               </span>
             </div>
             <div class="divider"></div>
-          </div>
 
-          <div class="center" ng-show="keywordSearch.showEuropeanaLoading">
-            <tp-preloader></tp-preloader>
-          </div>
-
-          <div class="center" ng-show="keywordSearch.showEuropeanaNoResults">
-            <h5 class="message">No Results</h5>
-          </div>
-
-          <div class="collection" ng-repeat="page in keywordSearch.europeanaPages" ng-show="keywordSearch.showEuropeanaResults">
-            <div class="collection-item card-collection-title">
-              <span class="title">{{page.start}} - {{page.end}}</span>
+            <div class="center" ng-if="keywordSearch.showEuropeanaLoading">
+              <tp-preloader></tp-preloader>
             </div>
-            <div class="divider"></div>
-            <div ng-repeat="tune in keywordSearch.europeanaTunes | limitTo : 10 : page.startIndex" class="avatar">
-              <div class="collection-item avatar europeana-tune">
-                <img ng-src="{{tune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" class="circle" alt="{{tune.aggregations[0].edmDataProvider.def[0]}}" title="{{tune.aggregations[0].edmDataProvider.def[0]}}" />
-                <span class="title truncate" title="{{tune.title[0]}}">{{tune.title[0] || '&nbsp;'}}</span>
-                <p class="truncate" title="{{tune.proxies[0].dcContributor.def[0]}}">{{tune.proxies[0].dcContributor.def[0] || '&nbsp;'}}</p>
-                <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
-                <audio controls ng-src="{{tune.tpSoundUrl}}" ng-if="tune.tpSoundUrl"></audio>
-                <span class="secondary-content">
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{tune.aggregations[0].edmIsShownAt || tune.aggregations[0].edmIsShownBy}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
-                </span>
+
+            <div class="collection-item center" ng-if="keywordSearch.showEuropeanaNoResults">
+              <p>No recordings found for "{{keywordSearch.selectedTune.title}}"</p>
+            </div>
+
+            <div ng-repeat="page in keywordSearch.europeanaPages" ng-show="keywordSearch.showEuropeanaResults">
+              <div class="collection-item card-collection-title">
+                <span class="title">{{page.start}} - {{page.end}}</span>
+              </div>
+              <div class="divider"></div>
+              <div ng-repeat="etune in keywordSearch.europeana.items | limitTo : 10 : page.startIndex" class="avatar">
+                <div class="collection-item avatar europeana-tune">
+                  <img ng-src="{{etune.preview}}" class="circle" alt="{{etune.provider}}" title="{{etune.provider}}" />
+                  <span class="title truncate" title="{{etune.title}}">{{etune.title || '&nbsp;'}}</span>
+                  <p class="truncate" title="{{etune.author}}">{{etune.author || '&nbsp;'}}</p>
+                  <p class="truncate">{{etune.year || '&nbsp;'}}</p>
+                  <audio controls ng-src="{{etune.audioUrl}}" ng-if="etune.audioUrl"></audio>
+                  <span class="secondary-content">
+                    <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{etune.provider}}" ng-href="{{etune.tunePageInProvider}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  </span>
+                </div>
+                <div class="divider" ng-if="!$last"></div>
               </div>
               <div class="divider" ng-if="!$last"></div>
             </div>
-            <div class="divider" ng-if="!$last"></div>
           </div>
         </div>
       </div>

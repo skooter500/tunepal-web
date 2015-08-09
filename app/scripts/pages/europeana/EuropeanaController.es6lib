@@ -6,13 +6,14 @@ import TunepalApi from '../../models/TunepalApi.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class EuropeanaController extends ControllerBase {
-  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location) {
+  constructor($scope, $rootScope, $routeParams, $http, $timeout, $location, $sce) {
     super($scope);
     this.config = Config;
     this.utils = Utils;
     this.$http = $http;
     this.$timeout = $timeout;
     this.$location = $location;
+    this.$sce = $sce;
 
     this.showLoading = true;
     this.showNoResults = false;
@@ -39,7 +40,7 @@ export default class EuropeanaController extends ControllerBase {
       this._initResults(Utils.cache.europeana.results);
     }
     else {
-      EuropeanaApi.searchAsync(this.$http, this.tune)
+      EuropeanaApi.searchFetchAsync(this.$http, this.tune, this.$sce)
       .then(this.apply(results => this._initResults(results)));
     }
 
@@ -49,7 +50,7 @@ export default class EuropeanaController extends ControllerBase {
   _initResults(results) {
     this.results = results;
 
-    if (results && results.items && results.items.length > 0) {
+    if (results.items.length > 0) {
       this.pageSize = 10;
       this.pages = this._calcPages(this.results.items, this.pageSize);
       this._initUi();

@@ -79,7 +79,7 @@
         <div class="card-content">
           <div class="collection">
             <div class="collection-item card-collection-title">
-              <span class="title">Archive Recordings <span ng-if="tune.europeanaTunes.length > 0">({{tune.europeanaTunes.length}} of {{tune.totalNumEuropeanaTunes}})</span></span>
+              <span class="title">Archive Recordings <span ng-if="tune.europeana.items.length > 0">({{tune.europeana.items.length}} of {{tune.europeana.totalResults}})</span></span>
               <span class="secondary-content">
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Search in Europeana" ng-href="{{tune.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="More tunes" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-navigation-more-horiz"></i></a>
@@ -95,16 +95,16 @@
               <p>No recordings found for "{{tune.tune.title}}"</p>
             </div>
 
-            <div class="avatar" ng-repeat="europeanaTune in tune.europeanaTunes" ng-if="tune.showEuropeanaResults">
+            <div class="avatar" ng-repeat="etune in tune.europeana.items" ng-if="tune.showEuropeanaResults">
               <div class="collection-item avatar">
-                <img ng-src="{{europeanaTune.europeanaAggregation.edmPreview || 'http://europeana.eu/Logo.jpg'}}" class="circle" alt="{{europeanaTune.aggregations[0].edmDataProvider.def[0]}}" title="{{europeanaTune.aggregations[0].edmDataProvider.def[0]}}" />
-                <span class="title truncate" title="{{europeanaTune.title[0]}}">{{europeanaTune.title[0] || '&nbsp;'}}</span>
-                <p class="truncate" title="{{europeanaTune.proxies[0].dcContributor.def[0]}}">{{europeanaTune.proxies[0].dcContributor.def[0] || '&nbsp;'}}</p>
-                <p class="truncate">{{europeanaTune.year[0] || '&nbsp;'}}</p>
-                <audio controls class="hide-on-med-and-up" ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
+                <img ng-src="{{etune.preview}}" class="circle" alt="{{etune.provider}}" title="{{etune.provider}}" />
+                <span class="title truncate" title="{{etune.title}}">{{etune.title || '&nbsp;'}}</span>
+                <p class="truncate" title="{{etune.author}}">{{etune.author || '&nbsp;'}}</p>
+                <p class="truncate">{{etune.year || '&nbsp;'}}</p>
+                <audio controls class="hide-on-med-and-up" ng-src="{{etune.audioUrl}}" ng-if="etune.audioUrl"></audio>
                 <span class="secondary-content">
-                  <audio controls class="hide-on-small-only" ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{europeanaTune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{europeanaTune.aggregations[0].edmIsShownAt || europeanaTune.aggregations[0].edmIsShownBy}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <audio controls class="hide-on-small-only" ng-src="{{etune.audioUrl}}" ng-if="etune.audioUrl"></audio>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{etune.provider}}" ng-href="{{etune.tunePageInProvider}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>

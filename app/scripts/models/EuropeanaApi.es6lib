@@ -1,4 +1,5 @@
 import Config from '../Config.es6lib';
+import EuropeanaTune from './EuropeanaTune.es6lib';
 import Utils from '../utils/Utils.es6lib';
 
 class _EuropeanaApi {
@@ -10,7 +11,8 @@ class _EuropeanaApi {
     this._qfProvider = this._getProviders(providers);
   }
 
-  searchAsync($http, tune, start = 1, maxNumItems = 20) {
+  // search tune and return the raw results
+  rawSearchAsync($http, tune, start = 1, maxNumItems = 20) {
     return new Promise((resolve, reject) => {
       const apiDomain = Config.EuropeanaApiDomain;
       const apiKey = Config.EuropeanaApiKey;
@@ -22,9 +24,79 @@ class _EuropeanaApi {
       const url = `${apiDomain}/search.json?wskey=${apiKey}&query=${query}&qf=${qfSound}&qf=${qfProvider}&start=${start}&rows=${maxNumItems}&profile=${profile}`;
 
       $http.get(url)
-      .success(data => {
-        Utils.cache.europeana = {id: tune.tunepalId, results: data};
-        resolve(data);
+      .success(rawResults => resolve(rawResults));
+    });
+  }
+
+  fetchRecordAsync($http, europeanaId) {
+    return new Promise((resolve, reject) => {
+      const apiDomain = Config.EuropeanaApiDomain;
+      const apiKey = Config.EuropeanaApiKey;
+
+      const url = `${apiDomain}/record/${europeanaId}.json?wskey=${apiKey}`;
+
+      $http.get(url)
+      .success(rawResult => resolve(rawResult));
+    });
+  }
+
+  getPortalUrl(tune) {
+    const domain = Config.EuropeanaPortalDomain;
+    const query = this._getQuery(tune.title, tune.altTitle);
+    const qfSound = encodeURIComponent('TYPE:SOUND');
+    const qfProviders = this._qfProvider;
+
+    return `${domain}?query=${query}&qf=${qfSound}&qf=${qfProviders}`;
+  }
+
+  // search tune and convert raw results to normalized EuropeanaTune objects
+  searchAsync($http, tune, start = 1, maxNumItems = 20) {
+    return this.rawSearchAsync($http, tune, start, maxNumItems)
+    .then(rawResults => {
+      const results = {totalResults: rawResults.totalResults};
+
+      if (!rawResults.items) {
+        results.items = [];
+        return Promise.resolve(results);
+      }
+
+      results.items = new Array(rawResults.items.length);
+
+      for (let i = 0; i < results.items.length; i++) {
+        results.items[i] = EuropeanaTune.fromSearch(rawResults.items[i]);
+      }
+
+      return Promise.resolve(results);
+    });
+  }
+
+  // search tune, fetch audio urls one by one
+  // and convert raw results to normalized EuropeanaTune objects
+  searchFetchAsync($http, tune, $sce, start = 1, maxNumItems = 20) {
+    return this.rawSearchAsync($http, tune, start, maxNumItems)
+    .then(rawResults => {
+      const results = {totalResults: rawResults.totalResults};
+
+      if (!rawResults.items) {
+        results.items = [];
+        return Promise.resolve(results);
+      }
+
+      results.items = new Array(rawResults.items.length);
+      const promises = new Array(rawResults.items.length);
+
+      for (let i = 0; i < results.items.length; i++) {
+        promises[i] = this.fetchRecordAsync($http, rawResults.items[i].id)
+        .then(rawResult => {
+          results.items[i] = EuropeanaTune.fromRecord(rawResult.object, $sce);
+        });
+      }
+
+      return Promise.all(promises)
+      .then(() => {
+        //TODO: cache europeana results
+        //Utils.cache.europeana = {id: tune.tunepalId, results: results};
+        return Promise.resolve(results);
       });
     });
   }
@@ -72,27 +144,6 @@ class _EuropeanaApi {
     }
 
     return encodeURIComponent(query);
-  }
-
-  fetchRecordAsync($http, europeanaId) {
-    return new Promise((resolve, reject) => {
-      const apiDomain = Config.EuropeanaApiDomain;
-      const apiKey = Config.EuropeanaApiKey;
-
-      const url = `${apiDomain}/record/${europeanaId}.json?wskey=${apiKey}`;
-
-      $http.get(url)
-      .success(result => resolve(result));
-    });
-  }
-
-  getPortalUrl(tune) {
-    const domain = Config.EuropeanaPortalDomain;
-    const query = this._getQuery(tune.title, tune.altTitle);
-    const qfSound = encodeURIComponent('TYPE:SOUND');
-    const qfProviders = this._qfProvider;
-
-    return `${domain}?query=${query}&qf=${qfSound}&qf=${qfProviders}`;
   }
 }
 
