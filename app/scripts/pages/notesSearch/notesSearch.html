@@ -92,7 +92,7 @@
                 <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
                 <audio controls ng-src="{{tune.tpSoundUrl}}" ng-if="tune.tpSoundUrl"></audio>
                 <span class="secondary-content">
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{tune.aggregations[0].edmIsShownAt}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{tune.aggregations[0].edmIsShownAt || tune.aggregations[0].edmIsShownBy}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>

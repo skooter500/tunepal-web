@@ -28,7 +28,7 @@
                 <p class="truncate" title="{{tune.dcContributor[0]}}">{{tune.dcContributor[0] || '&nbsp;'}}</p>
                 <p class="truncate">{{tune.year[0] || '&nbsp;'}}</p>
                 <span class="secondary-content">
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.dataProvider[0]}}" ng-href="{{tune.edmIsShownAt[0]}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{tune.dataProvider[0]}}" ng-href="{{tune.edmIsShownAt[0] || tune.edmIsShownBy[0]}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>

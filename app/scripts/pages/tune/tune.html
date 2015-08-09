@@ -104,7 +104,7 @@
                 <audio controls class="hide-on-med-and-up" ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
                 <span class="secondary-content">
                   <audio controls class="hide-on-small-only" ng-src="{{europeanaTune.tpSoundUrl}}" ng-if="europeanaTune.tpSoundUrl"></audio>
-                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{europeanaTune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{europeanaTune.aggregations[0].edmIsShownAt}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
+                  <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="View at {{europeanaTune.aggregations[0].edmDataProvider.def[0]}}" ng-href="{{europeanaTune.aggregations[0].edmIsShownAt || europeanaTune.aggregations[0].edmIsShownBy}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 </span>
               </div>
               <div class="divider" ng-if="!$last"></div>
