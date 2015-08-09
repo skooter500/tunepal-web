@@ -30,6 +30,10 @@ nav {
 ul.left {
   left: 0;
 
+  li:hover {
+    background-color: transparent;
+  }
+
   i {
     width: 2.7rem;
     text-align: center;
