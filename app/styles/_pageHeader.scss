@@ -41,11 +41,13 @@ ul.left {
 }
 
 .page-title {
+  width: 100%;
   font-size: 24px;
 
   @media #{$medium-and-down} {
     position: absolute;
     left: 58px;
+    width: calc(100% - 58px);
     font-size: 20px;
   }
 }
