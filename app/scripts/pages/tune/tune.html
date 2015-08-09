@@ -79,7 +79,7 @@
         <div class="card-content">
           <div class="collection">
             <div class="collection-item card-collection-title">
-              <span class="title">Archive Recordings</span>
+              <span class="title">Archive Recordings <span ng-if="tune.europeanaTunes.length > 0">({{tune.europeanaTunes.length}} of {{tune.totalNumEuropeanaTunes}})</span></span>
               <span class="secondary-content">
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Search in Europeana" ng-href="{{tune.europeanaPortalUrl}}" target="_blank"><i class="mdi-action-open-in-new"></i></a>
                 <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="More tunes" ng-href="/#!/europeana/{{tune.tunepalIdEncoded}}"><i class="mdi-navigation-more-horiz"></i></a>

@@ -62,13 +62,15 @@ export default class TuneController extends ControllerBase {
   _initEuropeana() {
     this.europeanaPortalUrl = EuropeanaApi.getPortalUrl(this.tune);
 
-    const numDefaultTunes = 5;
+    this.numDefaultTunes = 5;
 
     EuropeanaApi.searchAsync(this.$http, this.tune)
     .then(results => {
+      this.totalNumEuropeanaTunes = results.totalResults;
       this._europeanaIds = results.items
-        ? results.items.slice(0, numDefaultTunes).map(item => item.id)
+        ? results.items.slice(0, this.numDefaultTunes).map(item => item.id)
         : [];
+
       this._initEuropeanaTunes();
     });
   }
