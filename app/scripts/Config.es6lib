@@ -61,7 +61,7 @@ class _Config {
 let Properties = [
   {name: 'fundamental', default: 'D'},
   {name: 'sampleTime', default: 12},
-  {name: 'blankTime', default: 2},
+  {name: 'blankTime', default: 0},
   {name: 'enableSampleRateConversion', default: false},
   {name: 'countdownTime', default: 3},
   {name: 'timeSigs', default: 'all'},
