@@ -162,7 +162,7 @@ export default class Transcriber {
 
 Transcriber.DEFAULT_SAMPLE_RATE = 22050;
 Transcriber.DEFAULT_SAMPLE_TIME = 12;
-Transcriber.DEFAULT_BLANK_TIME = 0;
+Transcriber.DEFAULT_BLANK_TIME = 2;
 Transcriber.DEFAULT_FUNDAMENTAL = 'D';
 Transcriber.FRAME_SIZE = 2048;
 Transcriber.SPECTRUM_SIZE = Transcriber.FRAME_SIZE / 2;
