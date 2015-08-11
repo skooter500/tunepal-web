@@ -147,6 +147,7 @@ export default class Transcriber {
       if (note.spelling == 'Z') continue;
 
       note.qq = Math.round(note.duration / quaverLength);
+      if (note.qq <= 0) continue;
 
       let spelling = note.spelling;
       if (midi) spelling += ',';
