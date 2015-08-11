@@ -5,6 +5,9 @@ export default class Recorder {
   get sampleTime() { return this.config.sampleTime; }
   set sampleTime(value) { this.config.sampleTime = value; }
 
+  get blankTime() { return this.config.blankTime; }
+  set blankTime(value) { this.config.blankTime = value; }
+
   get fundamental() { return this.config.fundamental; }
   set fundamental(value) { this.config.fundamental = value; }
 
@@ -80,6 +83,7 @@ export default class Recorder {
     let initParams = {
       inputSampleRate: this._audioContext.sampleRate,
       sampleTime: this.sampleTime,
+      blankTime: this.blankTime,
       fundamental: this.fundamental,
       enableSampleRateConversion: this.enableSampleRateConversion,
     };

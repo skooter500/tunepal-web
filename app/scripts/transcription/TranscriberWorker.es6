@@ -61,12 +61,12 @@ export default class TranscriberWorker {
 
   _resetSignal() {
     this._signal = [];
-    this.currNumSamples = 0;
+    this._currNumSamples = 0;
   }
 
   _pushSignal(signal) {
     this._signal.push(signal);
-    this.currNumSamples += signal.length;
+    this._currNumSamples += signal.length;
 
     let largest = Number.MIN_VALUE;
 
@@ -76,15 +76,15 @@ export default class TranscriberWorker {
 
     return {
       amplitude: largest,
-      timeRecorded: this.currNumSamples / this._transcriber.inputSampleRate,
-      isBufferFull: this.currNumSamples >= this._transcriber.numInputSamples,
+      timeRecorded: this._currNumSamples / this._transcriber.inputSampleRate,
+      isBufferFull: this._currNumSamples >= this._transcriber.numInputSamples,
     };
   }
 
   _mergeSignal() {
     let length = this._transcriber.numInputSamples;
     let signal = new Float32Array(length);
-    var currNumSamples = 0;
+    let currNumSamples = 0;
 
     for (let buffer of this._signal) {
       let newNumSamples = currNumSamples + buffer.length;

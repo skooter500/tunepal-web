@@ -11,6 +11,9 @@ export default class Transcriber {
   get sampleTime() { return this._sampleTime; }
   set sampleTime(value) { this._sampleTime = value; }
 
+  get blankTime() { return this._blankTime; }
+  set blankTime(value) { this._blankTime = value; }
+
   get fundamental() { return this._fundamental; }
   set fundamental(value) { this._fundamental = value; }
 
@@ -21,7 +24,7 @@ export default class Transcriber {
   get interrupted() { return this._interrupted; }
   get signal() { return this._signal; }
   get outputSampleRate() { return this._outputSampleRate; }
-  get numInputSamples() { return this._inputSampleRate * this._sampleTime; }
+  get numInputSamples() { return this._inputSampleRate * (this._blankTime + this._sampleTime); }
   get numOutputSamples() { return this._outputSampleRate * this._sampleTime; }
 
   constructor(params) {
@@ -32,6 +35,10 @@ export default class Transcriber {
     this._sampleTime = typeof params.sampleTime !== 'undefined'
       ? params.sampleTime
       : Transcriber.DEFAULT_SAMPLE_TIME;
+
+    this._blankTime = typeof params.blankTime !== 'undefined'
+      ? params.blankTime
+      : Transcriber.DEFAULT_BLANK_TIME;
 
     this._fundamental = typeof params.fundamental !== 'undefined'
       ? params.fundamental
@@ -64,13 +71,14 @@ export default class Transcriber {
     let numHops = Math.floor((this.numOutputSamples - Transcriber.FRAME_SIZE) / Transcriber.HOP_SIZE) + 1;
     let notes = [];
     let lastNote = '';
+    const numBlankSamples = this._blankTime * this._outputSampleRate;
 
     for (let i = 0; i < numHops; i++) {
       if (this._interrupted) {
         return '';
       }
 
-      let startAt = Transcriber.HOP_SIZE * i;
+      let startAt = numBlankSamples + Transcriber.HOP_SIZE * i;
       this._progress = i / numHops;
 
       let frame = this._signal.slice(startAt, startAt + Transcriber.FRAME_SIZE);
@@ -153,6 +161,7 @@ export default class Transcriber {
 
 Transcriber.DEFAULT_SAMPLE_RATE = 22050;
 Transcriber.DEFAULT_SAMPLE_TIME = 12;
+Transcriber.DEFAULT_BLANK_TIME = 2;
 Transcriber.DEFAULT_FUNDAMENTAL = 'D';
 Transcriber.FRAME_SIZE = 2048;
 Transcriber.SPECTRUM_SIZE = Transcriber.FRAME_SIZE / 2;
