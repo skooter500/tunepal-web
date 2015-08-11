@@ -6,26 +6,16 @@ import Utils from '../utils/Utils.es6lib';
 
 export default class Transcriber {
   get inputSampleRate() { return this._inputSampleRate; }
-  set inputSampleRate(value) { this._inputSampleRate = value; }
-
   get sampleTime() { return this._sampleTime; }
-  set sampleTime(value) { this._sampleTime = value; }
-
   get blankTime() { return this._blankTime; }
-  set blankTime(value) { this._blankTime = value; }
-
   get fundamental() { return this._fundamental; }
-  set fundamental(value) { this._fundamental = value; }
-
   get enableSampleRateConversion() { return this._enableSampleRateConversion; }
-  set enableSampleRateConversion(value) { this._enableSampleRateConversion = value; }
-
   get progress() { return this._progress; }
   get interrupted() { return this._interrupted; }
   get signal() { return this._signal; }
   get outputSampleRate() { return this._outputSampleRate; }
-  get numInputSamples() { return this._inputSampleRate * (this._blankTime + this._sampleTime); }
-  get numOutputSamples() { return this._outputSampleRate * this._sampleTime; }
+  get numInputSamples() { return this._numInputSamples; }
+  get numOutputSamples() { return this._numOutputSamples; }
 
   constructor(params) {
     this._inputSampleRate = typeof params.inputSampleRate !== 'undefined'
@@ -48,12 +38,19 @@ export default class Transcriber {
       ? params.enableSampleRateConversion
       : false;
 
+    this.onProgress =  typeof params.onProgress !== 'undefined'
+      ? params.onProgress
+      : () => {};
+
     if (this._enableSampleRateConversion) {
       this._outputSampleRate = Transcriber.DEFAULT_SAMPLE_RATE;
     }
     else {
       this._outputSampleRate = this._inputSampleRate;
     }
+
+    this._numInputSamples = this._inputSampleRate * (this._blankTime + this._sampleTime);
+    this._numOutputSamples = this._outputSampleRate * (this._blankTime + this._sampleTime);
 
     this._windowFunction = new WindowFunction(DSP.HANN);
     this._powerSpectrum = new FFT(Transcriber.FRAME_SIZE, this._outputSampleRate);
@@ -68,7 +65,7 @@ export default class Transcriber {
     }
 
     let speller = new PitchSpeller(this._fundamental);
-    let numHops = Math.floor((this.numOutputSamples - Transcriber.FRAME_SIZE) / Transcriber.HOP_SIZE) + 1;
+    let numHops = Math.floor((this._outputSampleRate * this._sampleTime - Transcriber.FRAME_SIZE) / Transcriber.HOP_SIZE) + 1;
     let notes = [];
     let lastNote = '';
     const numBlankSamples = this._blankTime * this._outputSampleRate;
@@ -80,6 +77,7 @@ export default class Transcriber {
 
       let startAt = numBlankSamples + Transcriber.HOP_SIZE * i;
       this._progress = i / numHops;
+      this.onProgress(this._progress);
 
       let frame = this._signal.slice(startAt, startAt + Transcriber.FRAME_SIZE);
 
@@ -132,9 +130,10 @@ export default class Transcriber {
 
     for (let i = 0; i < notes.length - 1; i++) {
       notes[i].duration = notes[i + 1].onset - notes[i].onset;
+      if (notes[i].duration < 0) console.log(notes[i + 1].onset, notes[i].onset);
     }
 
-    notes.last().duration = this._sampleTime - notes.last().onset;
+    notes.last().duration = this._blankTime + this._sampleTime - notes.last().onset;
 
     let durations = new Array(notes.length);
     for (let i = 0; i < notes.length; i++) {
@@ -147,7 +146,6 @@ export default class Transcriber {
       if (note.spelling == 'Z') continue;
 
       note.qq = Math.round(note.duration / quaverLength);
-      if (note.qq <= 0) continue;
 
       let spelling = note.spelling;
       if (midi) spelling += ',';

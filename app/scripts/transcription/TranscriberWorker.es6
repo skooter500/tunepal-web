@@ -22,6 +22,7 @@ export default class TranscriberWorker {
 
     switch (data.cmd) {
       case 'init':
+        msg.onProgress = progress => this._onProgress(progress);
         this._transcriber = new Transcriber(msg);
         this._resetSignal();
         break;
@@ -56,6 +57,13 @@ export default class TranscriberWorker {
       cmd: data.cmd,
       result: result,
       msg: resultMsg,
+    });
+  }
+
+  _onProgress(progress) {
+    postMessage({
+      cmd: 'onProgress',
+      msg: progress,
     });
   }
 

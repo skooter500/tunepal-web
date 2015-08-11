@@ -34,6 +34,8 @@ export default class Recorder {
     this.onTranscribed = () => {};
 
     this._transcriber = new TranscriberAsync();
+
+    this._transcriber.onProgress = progress => this.analysisProgress = progress;
   }
 
   initAsync() {
