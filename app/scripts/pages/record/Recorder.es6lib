@@ -19,7 +19,7 @@ export default class Recorder {
   get amplitude() { return this._amplitude; }
   get timeRecorded() { return this._timeRecorded; }
   get transcription() { return this._transcription; }
-  get progress() { return this._timeRecorded / this.sampleTime; }
+  get progress() { return this._timeRecorded / (this.blankTime + this.sampleTime); }
   get numSamples() { return this._audioContext.sampleRate * this.sampleTime; }
   get status() { return this._status; }
   get signal() { return this._signal; }
