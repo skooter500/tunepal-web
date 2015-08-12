@@ -40,13 +40,15 @@
   right: 20px;
 }
 
-a.btn-flat {
-  padding: 0 0.5rem;
-  color: $primary-font-color;
+.arrow, .secondary-content {
+  a.btn-flat {
+    padding: 0 0.5rem;
+    color: $primary-font-color;
 
-  i {
-    font-size: 2rem;
-    line-height: 36px;
+    i {
+      font-size: 2rem;
+      line-height: 36px;
+    }
   }
 }
 

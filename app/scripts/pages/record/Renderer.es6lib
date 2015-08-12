@@ -186,7 +186,7 @@ export default class Renderer {
       case Recorder.Status.RECORDING:
         return 'RECORDING... (TAP TO STOP)';
       case Recorder.Status.ANALYZING:
-        return `ANALYZING... (${'TODO'} %)`;
+        return `ANALYZING... (${(this.recorder.analysisProgress * 100).toFixed(2)} %)`;
       case Recorder.Status.ANALYSIS_SUCCEEDED:
         return 'SUCCEEDED';
     }

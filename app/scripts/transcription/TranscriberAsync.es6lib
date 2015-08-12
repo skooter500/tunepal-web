@@ -7,6 +7,7 @@ export default class TranscriberAsync {
     this._worker.addEventListener('message', e => this._onMessage(e));
     this._callbacks = [];
     this._nextId = 0;
+    this.onProgress = () => {};
   }
 
   initAsync(params) {
@@ -59,16 +60,23 @@ export default class TranscriberAsync {
   }
 
   _onMessage(e) {
-    let data = e.data;
-    let id = data.id;
+    const data = e.data;
 
-    if (data.result == 'success') {
-      this._callbacks[id].resolve(data.msg);
-    }
-    else {
-      this._callbacks[id].reject(data.msg);
-    }
+    switch (data.cmd) {
+      case 'onProgress':
+        this.onProgress(data.msg);
+        break;
+      default:
+        const id = data.id;
 
-    this._callbacks[id] = null;
+        if (data.result == 'success') {
+          this._callbacks[id].resolve(data.msg);
+        }
+        else {
+          this._callbacks[id].reject(data.msg);
+        }
+
+        this._callbacks[id] = null;
+    }
   }
 }
