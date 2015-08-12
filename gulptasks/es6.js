@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var $ = require('./gulp-plugins');
 var path = require('path');
 var swallowError = require('./swallow-error');
 

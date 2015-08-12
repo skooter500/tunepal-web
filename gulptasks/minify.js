@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var $ = require('./gulp-plugins');
 var merge = require('merge-stream');
 var through = require('through2');
 var fs = require('fs');

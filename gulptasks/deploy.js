@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var $ = require('./gulp-plugins');
 
 // Deploy to GAE
 gulp.task('deploy', $.shell.task([
