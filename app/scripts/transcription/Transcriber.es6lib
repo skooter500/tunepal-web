@@ -84,7 +84,7 @@ export default class Transcriber {
       this._windowFunction.process(frame);
       let spectrum = this._powerSpectrum.forward(frame);
 
-	  console.log(Transcriber.FRAME_SIZE);
+      console.log(Transcriber.FRAME_SIZE);
       let frequency = PitchDetector.mikelsFrequency(spectrum, this._outputSampleRate, Transcriber.FRAME_SIZE);
 
       let currentNote = midi
