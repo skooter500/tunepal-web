@@ -71,6 +71,11 @@ export default class Routing {
         controllerAs: 'settings',
         templateUrl: 'scripts/pages/settings/settings.html',
       })
+      .when('/settings/:options*', {
+        controller: 'SettingsController',
+        controllerAs: 'settings',
+        templateUrl: 'scripts/pages/settings/settings.html',
+      })
       .when('/tune/:tunepalIdEncoded', {
         controller: 'TuneController',
         controllerAs: 'tune',

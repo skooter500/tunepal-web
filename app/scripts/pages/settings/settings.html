@@ -200,6 +200,32 @@
         </div>
       </div>
     </div>
+
+    <div class="col s12 m6 l6" ng-if="settings.options.dev">
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">Development</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="collection-item">
+              <span class="title">Convert Sample Rate to 22050 Hz</span>
+              <span class="secondary-content">
+                <div class="switch">
+                  <label>
+                    <input type="checkbox" ng-model="settings.config.enableSampleRateConversion">
+                    <span class="lever"></span>
+                  </label>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>

@@ -3,11 +3,20 @@ import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class SettingsController extends ControllerBase {
-  constructor($scope, $rootScope, $http) {
+  constructor($scope, $rootScope, $http, $routeParams) {
     super($scope);
     this.$http = $http;
     this.config = Config;
     this.utils = Utils;
+
+    let options = $routeParams['options'];
+    if (options) {
+      options = options.split('/');
+      this.options = [];
+      for (const option of options) {
+        this.options[option] = true;
+      }
+    }
 
     this.showLoading = true;
     this.showTunebooks = false;
