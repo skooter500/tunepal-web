@@ -3,7 +3,7 @@ import Config from '../../Config.es6lib';
 import Utils from '../../utils/Utils.es6lib';
 
 export default class SettingsController extends ControllerBase {
-  constructor($scope, $rootScope, $http, $routeParams) {
+  constructor($scope, $rootScope, $http, $routeParams, $timeout) {
     super($scope);
     this.$http = $http;
     this.config = Config;
@@ -17,15 +17,24 @@ export default class SettingsController extends ControllerBase {
         this.options[option] = true;
       }
     }
+    //TODO:
+    this.options.dev = true;
 
     this.showLoading = true;
     this.showTunebooks = false;
 
     this._initMidiInstruments();
     this.validatePlaybackSpeed();
-    this._initPopupOptions();
+    $timeout(() => this._initPopupOptions());
 
     document.title = 'Tunepal.org > Settings';
+  }
+
+  get expectedAutoFrameSize() {
+    const sampleRate = this.config.enableSampleRateConversion
+      ? 22050
+      : this.config.audioContext.sampleRate;
+    return Utils.transcriber.calcFrameSize(sampleRate);
   }
 
   _initPopupOptions() {

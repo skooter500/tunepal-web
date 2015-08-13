@@ -1,8 +1,9 @@
-import BlobUtils from './BlobUtils.es6lib'
-import CacheUtils from './CacheUtils.es6lib'
-import DateUtils from './DateUtils.es6lib'
-import LocalStorageUtils from './LocalStorageUtils.es6lib'
-import ViewUtils from './ViewUtils.es6lib'
+import BlobUtils from './BlobUtils.es6lib';
+import CacheUtils from './CacheUtils.es6lib';
+import DateUtils from './DateUtils.es6lib';
+import LocalStorageUtils from './LocalStorageUtils.es6lib';
+import TranscriberUtils from './TranscriberUtils.es6lib';
+import ViewUtils from './ViewUtils.es6lib';
 
 class _Utils {
   constructor() {
@@ -10,6 +11,7 @@ class _Utils {
     this.cache = CacheUtils;
     this.date = DateUtils;
     this.localStorage = LocalStorageUtils;
+    this.transcriber = TranscriberUtils;
     this.view = ViewUtils;
     this.tuneCache = null;
     this.europeanaCache = null;

@@ -1,6 +1,7 @@
 import Fundamentals from './models/Fundamentals.es6lib';
 import MidiInstruments from './models/MidiInstruments.es6lib';
 import TimeSignatures from './models/TimeSignatures.es6lib';
+import TranscriberFrameSizes from './models/TranscriberFrameSizes.es6lib';
 import TunebookManager from './models/TunebookManager.es6lib';
 import Utils from './utils/Utils.es6lib';
 
@@ -9,6 +10,7 @@ class _Config {
     this.Fundamentals = Fundamentals;
     this.MidiInstruments = MidiInstruments;
     this.TimeSignatures = TimeSignatures;
+    this.TranscriberFrameSizes = TranscriberFrameSizes;
     this.tunebooks = TunebookManager;
 
     this.CountdownTime = Utils.makeArray(0, 10);
@@ -59,15 +61,16 @@ class _Config {
 }
 
 let Properties = [
-  {name: 'fundamental', default: 'D'},
-  {name: 'sampleTime', default: 12},
   {name: 'blankTime', default: 2},
-  {name: 'enableSampleRateConversion', default: false},
-  {name: 'countdownTime', default: 3},
-  {name: 'timeSigs', default: 'all'},
-  {name: 'melody', default: MidiInstruments[0]},
   {name: 'chords', default: MidiInstruments[0]},
+  {name: 'countdownTime', default: 3},
+  {name: 'enableSampleRateConversion', default: false},
+  {name: 'fundamental', default: 'D'},
+  {name: 'melody', default: MidiInstruments[0]},
   {name: 'playbackSpeed', default: 5},
+  {name: 'sampleTime', default: 12},
+  {name: 'timeSigs', default: 'all'},
+  {name: 'transcriberFrameSize', default: TranscriberFrameSizes[0]},
   {name: 'transpose', default: 0},
 ];
 

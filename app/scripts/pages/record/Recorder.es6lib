@@ -14,6 +14,9 @@ export default class Recorder {
   get enableSampleRateConversion() { return this.config.enableSampleRateConversion; }
   set enableSampleRateConversion(value) { this.config.enableSampleRateConversion = value; }
 
+  get transcriberFrameSize() { return this.config.transcriberFrameSize; }
+  set transcriberFrameSize(value) { this.config.transcriberFrameSize = value; }
+
   get audioContext() { return this._audioContext; }
   get sampleRate() { return this._audioContext.sampleRate; }
   get amplitude() { return this._amplitude; }
@@ -88,6 +91,7 @@ export default class Recorder {
       blankTime: this.blankTime,
       fundamental: this.fundamental,
       enableSampleRateConversion: this.enableSampleRateConversion,
+      frameSize: this.transcriberFrameSize,
     };
 
     this._transcriber.initAsync(initParams)

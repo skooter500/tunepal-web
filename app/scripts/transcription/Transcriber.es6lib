@@ -38,6 +38,10 @@ export default class Transcriber {
       ? params.enableSampleRateConversion
       : false;
 
+    this._frameSize = typeof params.frameSize !== 'undefined'
+      ? params.frameSize
+      : Transcriber.DEFAULT_FRAME_SIZE;
+
     this.onProgress =  typeof params.onProgress !== 'undefined'
       ? params.onProgress
       : () => {};
@@ -52,8 +56,16 @@ export default class Transcriber {
     this._numInputSamples = this._inputSampleRate * (this._blankTime + this._sampleTime);
     this._numOutputSamples = this._outputSampleRate * (this._blankTime + this._sampleTime);
 
+    if (this._frameSize === 'auto') {
+      this._frameSize = Utils.transcriber.calcFrameSize(this._outputSampleRate);
+    }
+
+    this._hopSize = this._frameSize * (1 - Transcriber.OVERLAP);
+
+    console.log('Frame size and hop size:', this._frameSize, this._hopSize);
+
     this._windowFunction = new WindowFunction(DSP.HANN);
-    this._powerSpectrum = new FFT(Transcriber.FRAME_SIZE, this._outputSampleRate);
+    this._powerSpectrum = new FFT(this._frameSize, this._outputSampleRate);
   }
 
   transcribe(signal, midi = false) {
@@ -65,7 +77,7 @@ export default class Transcriber {
     }
 
     let speller = new PitchSpeller(this._fundamental);
-    let numHops = Math.floor((this._outputSampleRate * this._sampleTime - Transcriber.FRAME_SIZE) / Transcriber.HOP_SIZE) + 1;
+    let numHops = Math.floor((this._outputSampleRate * this._sampleTime - this._frameSize) / this._hopSize) + 1;
     let notes = [];
     let lastNote = '';
     const numBlankSamples = this._blankTime * this._outputSampleRate;
@@ -75,17 +87,16 @@ export default class Transcriber {
         return '';
       }
 
-      let startAt = numBlankSamples + Transcriber.HOP_SIZE * i;
+      let startAt = numBlankSamples + this._hopSize * i;
       this._progress = i / numHops;
       this.onProgress(this._progress);
 
-      let frame = this._signal.slice(startAt, startAt + Transcriber.FRAME_SIZE);
+      let frame = this._signal.slice(startAt, startAt + this._frameSize);
 
       this._windowFunction.process(frame);
       let spectrum = this._powerSpectrum.forward(frame);
 
-      console.log(Transcriber.FRAME_SIZE);
-      let frequency = PitchDetector.mikelsFrequency(spectrum, this._outputSampleRate, Transcriber.FRAME_SIZE);
+      let frequency = PitchDetector.mikelsFrequency(spectrum, this._outputSampleRate, this._frameSize);
 
       let currentNote = midi
         ? speller.spellFrequencyAsMidi(frequency)
@@ -163,7 +174,5 @@ Transcriber.DEFAULT_SAMPLE_RATE = 22050;
 Transcriber.DEFAULT_SAMPLE_TIME = 12;
 Transcriber.DEFAULT_BLANK_TIME = 2;
 Transcriber.DEFAULT_FUNDAMENTAL = 'D';
-Transcriber.FRAME_SIZE = 2048;
-Transcriber.SPECTRUM_SIZE = Transcriber.FRAME_SIZE / 2;
+Transcriber.DEFAULT_FRAME_SIZE = 'auto';
 Transcriber.OVERLAP = 0.75;
-Transcriber.HOP_SIZE = Transcriber.FRAME_SIZE * (1 - Transcriber.OVERLAP);
