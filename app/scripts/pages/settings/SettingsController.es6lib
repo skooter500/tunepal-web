@@ -18,6 +18,7 @@ export default class SettingsController extends ControllerBase {
       }
     }
     //TODO:
+    this.options = this.options || {};
     this.options.dev = true;
 
     this.showLoading = true;
