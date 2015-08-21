@@ -62,4 +62,18 @@ a.disabled, .disabled a {
   padding-top: 30px;
 }
 
+.highlight {
+  color: $secondary-color;
+}
+
+.lowlight {
+  color: #b3b3b3;
+}
+
+.highlight-toast {
+  color: $secondary-color;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 }

@@ -4,14 +4,6 @@
   line-height: 1.5rem;
 }
 
-.highlight {
-  color: $secondary-color;
-}
-
-.lowlight {
-  color: #b3b3b3;
-}
-
 .europeana {
   @media #{$large-and-up} {
     position: fixed;

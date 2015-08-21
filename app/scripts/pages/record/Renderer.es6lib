@@ -1,3 +1,4 @@
+import Config from '../../Config.es6lib';
 import Recorder from './Recorder.es6lib';
 const LogoPath = '/images/recording_logo.png';
 
@@ -48,6 +49,11 @@ export default class Renderer {
     }
     else {
       this._timer = setInterval(() => this._countdown(), 1000);
+    }
+
+    if (Config.fundamental !== Config.defaults.fundamental) {
+      const toast = `Warning! Using a fundamental of <span class="highlight-toast">${Config.fundamental}</span> for transcription.`;
+      Materialize.toast(toast, 3000);
     }
   }
 

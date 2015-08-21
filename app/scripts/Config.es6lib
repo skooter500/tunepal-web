@@ -32,8 +32,11 @@ class _Config {
 
   _createProperties() {
     this._settings = [];
+    this.defaults = [];
 
     for (let property of this.Properties) {
+      this.defaults[property.name] = property.default;
+
       let storedValue = Utils.localStorage.getItem(property.name);
 
       if (storedValue == null) {
