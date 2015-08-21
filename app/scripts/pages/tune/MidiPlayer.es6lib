@@ -15,7 +15,7 @@ export default class MidiPlayer extends ControllerBase {
     this.tune = tune;
     console.log('Initializing MIDI.js...');
 
-    this._initPluginAsync()
+    return this._initPluginAsync()
     .then(() => this._generateMidiAsync())
     .then(() => this._loadMidiAsync())
     .then(this.apply(() => {

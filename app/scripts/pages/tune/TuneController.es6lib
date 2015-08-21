@@ -45,11 +45,21 @@ export default class TuneController extends ControllerBase {
 
     $scope.$on('$routeChangeStart', () => {
       this.midi.stopPlaying();
+      $('#toast-container .toast').hide();
     });
   }
 
   _initTune() {
-    this.midi.initAsync(this.tune);
+    if (Utils.view.isLarge) {
+      Materialize.toast('Generating MIDI...', 300000);
+    }
+    else {
+      Materialize.toast('Generating MIDI... It might take a while on mobile.', 300000);
+    }
+
+    this.midi.initAsync(this.tune)
+    .then(() => $('#toast-container .toast').hide());
+
     this._initUi();
     this.$timeout(() => this._createAbcEditor());
     document.title = `Tunepal.org > Tune > ${this.tune.title}`;
