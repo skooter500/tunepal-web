@@ -144,7 +144,7 @@ export default class TuneController extends ControllerBase {
 
       if (this.isEditing) {
         // scroll to active element
-        const scrollTop = $('#card-score').offset().top;
+        const scrollTop = $('#card-score').offset().top - Utils.view.navbarHeight - 5;
         $('html, body').animate({scrollTop: scrollTop}, 500);
       }
     });

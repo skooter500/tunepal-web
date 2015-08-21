@@ -28,7 +28,7 @@
           </li>
           <li>
             <a class="tooltipped" data-tooltip="{{tune.isEditing ? 'Save' : 'Edit'}}" ng-click="tune.toggleEditing()">
-              <i ng-class="tune.isEditing ? 'mdi-content-save' : 'tpi-abc'"></i>
+              <i ng-class="tune.isEditing ? 'mdi-image-audiotrack' : 'tpi-abc'"></i>
             </a>
           </li>
           <li>
@@ -126,8 +126,20 @@
 
     <div class="col" ng-class="tune.isEditing && tune.isLandscape ? 's6' : 's12'" ng-show="tune.isEditing">
       <div class="card">
-        <div id="card-editor" class="card-content input-field">
-          <textarea id="abc" ng-class="{portrait: !tune.isLandscape}" ng-model="tune.tune.notation"></textarea>
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item card-collection-title">
+              <span class="title">&nbsp;</span>
+              <span class="secondary-content">
+                <a class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Hide" ng-click="tune.toggleEditing()"><i class="mdi-navigation-close"></i></a>
+              </span>
+            </div>
+            <div class="divider"></div>
+
+            <div id="card-editor" class="input-field">
+              <textarea id="abc" ng-class="{portrait: !tune.isLandscape}" ng-model="tune.tune.notation"></textarea>
+            </div>
+          </div>
         </div>
       </div>
     </div>

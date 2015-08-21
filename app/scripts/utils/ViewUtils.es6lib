@@ -39,6 +39,10 @@ class _ViewUtils {
     return !this.isLandscape;
   }
 
+  get navbarHeight() {
+    return this.isMediumOrDown ? 56 : 64;
+  }
+
   showSideNav() {
     $('.hamburger-button').sideNav('show');
   }
