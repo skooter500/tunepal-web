@@ -21,15 +21,19 @@
 
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
-    <div class="col s12 m12 center" ng-show="notesSearch.showLoading">
+    <div class="col s12 m12 center" ng-if="notesSearch.showLoading">
       <tp-preloader></tp-preloader>
     </div>
 
-    <div class="col s12 m12 l12 center" ng-show="notesSearch.showNoResults">
+    <div class="col s12 m12 l12 center" ng-if="notesSearch.showNoResults">
       <h5 class="message">No Results</h5>
     </div>
 
-    <div class="col s12 m6 l6" ng-show="notesSearch.showResults">
+    <div class="col s12 m12 l12 center" ng-if="notesSearch.showError">
+      <h5 class="message">Error: {{notesSearch.error}}</h5>
+    </div>
+
+    <div class="col s12 m6 l6" ng-if="notesSearch.showResults">
       <div class="card">
         <div class="card-content">
           <div class="collection" ng-repeat="page in notesSearch.pages">
@@ -58,7 +62,7 @@
       </div>
     </div>
 
-    <div class="col s12 m6 l6 europeana" ng-show="notesSearch.showResults">
+    <div class="col s12 m6 l6 europeana" ng-if="notesSearch.showResults">
       <div class="card">
         <div class="card-content">
           <div class="collection">

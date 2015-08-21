@@ -23,6 +23,7 @@ export default class NotesSearchController extends ControllerBase {
     this.showLoading = true;
     this.showResults = false;
     this.showNoResults = false;
+    this.showError = false;
     this.showEuropeanaLoading = false;
     this.showEuropeanaResults = false;
     this.showEuropeanaNoResults = false;
@@ -73,6 +74,10 @@ export default class NotesSearchController extends ControllerBase {
   _initTunes() {
     if (this.tunes.length === 0) {
       this.showNoResults = true;
+    }
+    else if (this.tunes[0].id === -1) {
+      this.error = this.tunes[0].title;
+      this.showError = true;
     }
     else {
       this.pageSize = 10;
