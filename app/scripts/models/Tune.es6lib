@@ -28,6 +28,24 @@ export default class Tune {
     this.ed = rawTune.ed;
     this.notation = Tune._convertSpecialChars(rawTune.notation);
   }
+  
+  abcForPlayback() {
+  
+	var speed = Config.playbackSpeed;
+	var transpose = Config.transpose;
+	var lines = this.notation.split(/\r?\n/);
+	
+	var abc = lines[0] + "\n";
+	
+	var midiNoteLength = Math.floor(30.0 + (speed / 9.0) * 300.0);
+    abc += "%%MIDI transpose " + transpose + "\n";
+    abc += "Q:1/4 = " + midiNoteLength + "\n";
+	for(var i = 1 ; i < lines.length ; i ++) {
+		abc += lines[i] + "\n";
+	}
+	return abc;
+  }
+
 
   static _convertSpecialChars(text) {
     if (!text) {
