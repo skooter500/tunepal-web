@@ -152,7 +152,7 @@
 
             <a href="#playbackSpeed-sheet" class="collection-item modal-trigger">
               <span class="title">Speed</span>
-              <p>{{settings.config.playbackSpeed}} &times;</p>
+              <p>{{settings.config.playbackSpeed}}</p>
             </a>
             <div id="playbackSpeed-sheet" class="modal modal-fixed-header bottom-sheet">
               <div class="modal-header">
@@ -161,7 +161,7 @@
               <div class="modal-content">
                 <div class="collection">
                   <a class="collection-item" ng-repeat="playbackSpeed in settings.config.PlaybackSpeed" ng-click="settings.set('playbackSpeed', playbackSpeed)">
-                    <span class="title">{{playbackSpeed}} &times;</span>
+                    <span class="title">{{playbackSpeed}}</span>
                     <span class="secondary-content" ng-if="playbackSpeed == settings.config.playbackSpeed"><i class="mdi-action-done"></i></span>
                   </a>
                   <a class="collection-item">
