@@ -27,6 +27,7 @@
                 <div class="collection">
                   <a class="collection-item" ng-repeat="fundamental in settings.config.Fundamentals" ng-click="settings.set('fundamental', fundamental)">
                     <span class="title">{{fundamental}}</span>
+                    <span class="default-text" ng-if="fundamental === settings.config.defaults.fundamental">(Default)</span>
                     <span class="secondary-content" ng-if="fundamental == settings.config.fundamental"><i class="mdi-action-done"></i></span>
                   </a>
                 </div>
@@ -48,6 +49,7 @@
                 <div class="collection" ng-show="settings.showTunebooks">
                   <a class="collection-item" ng-repeat="tunebook in settings.config.tunebooks.all" ng-click="settings.setTunebooks(tunebook.id)">
                     <span class="title">{{tunebook.shortName}}</span>
+                    <span class="default-text" ng-if="tunebook.id === 0">(Default)</span>
                     <span class="secondary-content" ng-if="settings.config.tunebooks.isSelected(tunebook.id)"><i class="mdi-action-done"></i></span>
                   </a>
                 </div>
@@ -68,6 +70,7 @@
                 <div class="collection">
                   <a class="collection-item" ng-repeat="(key, name) in settings.config.TimeSignatures" ng-click="settings.set('timeSigs', key)">
                     <span class="title">{{name}}</span>
+                    <span class="default-text" ng-if="key === settings.config.defaults.timeSigs">(Default)</span>
                     <span class="secondary-content" ng-if="key == settings.config.timeSigs"><i class="mdi-action-done"></i></span>
                   </a>
                 </div>
@@ -88,6 +91,7 @@
                 <div class="collection">
                   <a class="collection-item" ng-repeat="countdownTime in settings.config.CountdownTime" ng-click="settings.set('countdownTime', countdownTime)">
                     <span class="title">{{countdownTime}} Seconds</span>
+                    <span class="default-text" ng-if="countdownTime === settings.config.defaults.countdownTime">(Default)</span>
                     <span class="secondary-content" ng-if="countdownTime == settings.config.countdownTime"><i class="mdi-action-done"></i></span>
                   </a>
                 </div>
@@ -162,6 +166,7 @@
                 <div class="collection">
                   <a class="collection-item" ng-repeat="playbackSpeed in settings.config.PlaybackSpeed" ng-click="settings.set('playbackSpeed', playbackSpeed)">
                     <span class="title">{{playbackSpeed}}</span>
+                    <span class="default-text" ng-if="playbackSpeed === settings.config.defaults.playbackSpeed">(Default)</span>
                     <span class="secondary-content" ng-if="playbackSpeed == settings.config.playbackSpeed"><i class="mdi-action-done"></i></span>
                   </a>
                   <a class="collection-item">
@@ -191,6 +196,7 @@
                 <div class="collection">
                   <a class="collection-item" ng-repeat="transpose in settings.config.Transpose" ng-click="settings.set('transpose', transpose)">
                     <span class="title">{{transpose}} Semitones</span>
+                    <span class="default-text" ng-if="transpose === settings.config.defaults.transpose">(Default)</span>
                     <span class="secondary-content" ng-if="transpose == settings.config.transpose"><i class="mdi-action-done"></i></span>
                   </a>
                 </div>
@@ -213,6 +219,7 @@
 
             <div class="collection-item">
               <span class="title">Convert Sample Rate to 22050 Hz</span>
+              <span class="default-text">(Default {{settings.config.defaults.enableSampleRateConversion ? 'On' : 'Off'}})</span>
               <span class="secondary-content">
                 <div class="switch">
                   <label>
@@ -229,7 +236,7 @@
               <span class="title">Transcriber Frame Size</span>
               <p>
                 {{settings.config.transcriberFrameSize === 'auto' ? 'Auto' : settings.config.transcriberFrameSize}}
-                <span ng-if="settings.config.transcriberFrameSize === 'auto'">({{settings.expectedAutoFrameSize}})</span>
+                <span ng-show="settings.config.transcriberFrameSize === 'auto'">({{settings.expectedAutoFrameSize}})</span>
               </p>
             </a>
             <div id="transcriberFrameSize-sheet" class="modal modal-fixed-header bottom-sheet">
@@ -243,6 +250,7 @@
                       {{transcriberFrameSize === 'auto' ? 'Auto' : transcriberFrameSize}}
                       <span ng-if="transcriberFrameSize === 'auto'">({{settings.expectedAutoFrameSize}})</span>
                     </span>
+                    <span class="default-text" ng-if="transcriberFrameSize === settings.config.defaults.transcriberFrameSize">(Default)</span>
                     <span class="secondary-content" ng-if="transcriberFrameSize == settings.config.transcriberFrameSize"><i class="mdi-action-done"></i></span>
                   </a>
                 </div>
