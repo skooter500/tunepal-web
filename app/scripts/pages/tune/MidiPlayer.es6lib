@@ -39,8 +39,8 @@ export default class MidiPlayer extends ControllerBase {
     return new Promise((resolve, reject) => {
       console.log(`ABC: ${this.tune.notation}`);
 
-	  var abcForPlayback = this.tune.abcForPlayback();
-	  console.log(`ABC For Playback: ${abcForPlayback}`);
+      var abcForPlayback = this.tune.abcForPlayback();
+      console.log(`ABC For Playback: ${abcForPlayback}`);
       this._midi = abc2midi(abcForPlayback);
 
       //this._midi = abc2midi(this.tune.notation);
