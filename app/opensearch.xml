@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Tunepal</ShortName>
+  <Description>A search-by-playing search engine for traditional tunes.</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <!--TODO: change url-->
+  <Image width="144" height="144" type="image/png">http://tunepal-js.appspot.com/images/tunepal_icon_144x144.png</Image>
+  <Url type="text/html" method="get" template="http://tunepal-js.appspot.com/#!/keywordSearch/{searchTerms}"/>
+</OpenSearchDescription>
