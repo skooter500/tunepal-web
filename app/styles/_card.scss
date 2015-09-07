@@ -22,7 +22,8 @@
     border-bottom: none;
     color: $primary-font-color;
 
-    &:hover, &.active {
+    &:hover:not(.collection-item-unselectable),
+    &.active:not(.collection-item-unselectable) {
       background-color: $hover-background-color-light;
     }
 

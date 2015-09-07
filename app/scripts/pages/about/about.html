@@ -6,66 +6,75 @@
   <div class="row">
     <!-- See reference for s, m, and l class prefix here (http://materializecss.com/grid.html#grid-responsive) -->
     <div class="col s12 m12 l12">
-      <p>
-        Welcome to Tunepal!
-      </p>
-      <p>
-        Tunepal is a search-by-playing search engine for traditional Irish, Welsh, Scottish, Breton, American marching band and Canadian tunes. <br/>
-        By playing a 12 second extract from a traditional tune on an an instrument such as the flute or fiddle you can:
-      </p>
-      <ul>
-        <li>
-          - Retrieve score matches from a database of over 24,000 music scores
-        </li>
-        <li>
-          - View and playback, share and download the score
-        </li>
-        <li>
-          - Find and play other recordings of the tune from a collection of over 30 million recordings
-        </li>
-      </ul>
-      <p>Credits:</p>
-      Powered by MATT2 - Machine Annotation of Traditional Tunes.<br>
-<p>The Tunepal team:</p>
-Team lead: Dr. Bryan Duggan<br>
-New website: Jianghan “Chris” Xue<br>
-Europeana integration & support: Breandán Knowlton & Lise den Brok<br>
-Android development & Irish translations: Morgan Conlon<br>
-tunepal.org: Marco Castorina <br>
-Applet development: Jamie Osler<br>
-Testing: Lisa Shields <br>
-Graphics: Jonathan Lynch & Scott Baker<br>
+      <div class="card">
+        <div class="card-content">
+          <div class="collection">
+            <div class="collection-item collection-item-unselectable">
+              <p>
+                Welcome to Tunepal!
+              </p>
+              <p>
+                Tunepal is a search-by-playing search engine for traditional Irish, Welsh, Scottish, Breton, American marching band and Canadian tunes. <br/>
+                By playing a 12 second extract from a traditional tune on an an instrument such as the flute or fiddle you can:
+              </p>
+              <ul>
+                <li>
+                  - Retrieve score matches from a database of over 24,000 music scores
+                </li>
+                <li>
+                  - View and playback, share and download the score
+                </li>
+                <li>
+                  - Find and play other recordings of the tune from a collection of over 30 million recordings
+                </li>
+              </ul>
+              <p class="section-header">Credits:</p>
+              <div>
+                Powered by MATT2 - Machine Annotation of Traditional Tunes.<br/>
+                <p>The Tunepal team:</p>
+                Team lead: Dr. Bryan Duggan<br/>
+                New website: Jianghan “Chris” Xue<br/>
+                Europeana integration & support: Breandán Knowlton & Lise den Brok<br/>
+                Android development & Irish translations: Morgan Conlon<br/>
+                tunepal.org: Marco Castorina <br/>
+                Applet development: Jamie Osler<br/>
+                Testing: Lisa Shields <br/>
+                Graphics: Jonathan Lynch & Scott Baker<br/>
 
-Research sponsored and supported by:<br>
-School of Computing,<br>
-Dublin Institute of Technology,<br>
-Ireland.<br>
+                Research sponsored and supported by:<br/>
+                School of Computing,<br/>
+                Dublin Institute of Technology,<br/>
+                Ireland.<br/>
 
-Technical expertise provided by the Audio Research Group. <br>
-Translation assistance provided by the Siobhán Nic Gaoithín, Oifig na Gaeilge, Dublin Institute of Technology<br>
-Tunepal is supported by grants from the Department of Tourism, Culture and Sport and from Europeana.<br><br>
-Tune collections by thesession.org, Henrik Norbeck and John Chambers (O'Neill's 1001).
-Ceol Rince na hÉireann and Johnny O'Leary of Sliabh Luachra were transcribed by Bill Black <br>
+                Technical expertise provided by the Audio Research Group. <br/>
+                Translation assistance provided by the Siobhán Nic Gaoithín, Oifig na Gaeilge, Dublin Institute of Technology<br/>
+                Tunepal is supported by grants from the Department of Tourism, Culture and Sport and from Europeana.<br/><br/>
+                Tune collections by thesession.org, Henrik Norbeck and John Chambers (O'Neill's 1001).
+                Ceol Rince na hÉireann and Johnny O'Leary of Sliabh Luachra were transcribed by Bill Black <br/>
 
-The Microphone Rambles was collected by Bernie Stocks.<br>
+                The Microphone Rambles was collected by Bernie Stocks.<br/>
 
-Uses:<br>
+                Uses:<br/>
 
-ABCJS by Paul Rosen and Gregory Dyke<br>
-ABC2PS by Michael Methfessel<br>
-ABC2PS iPhone port by Jeremy Huxtable<br>
-ABC4J by Lionel Gueganton.<br>
-ABC2MIDI by Seymour Shlien.<br>
-SOX FFT Library by Ian Turner<br>
-Glypish Icon Set by Joseph Wain <br>
-Jetty<br>
-Emscripten<br>
-Angluar.js<br>
-Materialize<br>
-
-      <!--
-      <p><span style='text-align:center; display: block;'><iframe class='youtube-player' type='text/html' width='960' height='570' src='http://www.youtube.com/embed/Zgp7YLrwodY?version=3&#038;rel=1&#038;fs=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' frameborder='0' allowfullscreen='true'></iframe></span></p>
-      -->
+                ABCJS by Paul Rosen and Gregory Dyke<br/>
+                ABC2PS by Michael Methfessel<br/>
+                ABC2PS iPhone port by Jeremy Huxtable<br/>
+                ABC4J by Lionel Gueganton.<br/>
+                ABC2MIDI by Seymour Shlien.<br/>
+                SOX FFT Library by Ian Turner<br/>
+                Glypish Icon Set by Joseph Wain <br/>
+                Jetty<br/>
+                Emscripten<br/>
+                Angluar.js<br/>
+                Materialize<br/>
+                <!--
+                <p><span style='text-align:center; display: block;'><iframe class='youtube-player' type='text/html' width='960' height='570' src='http://www.youtube.com/embed/Zgp7YLrwodY?version=3&#038;rel=1&#038;fs=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' frameborder='0' allowfullscreen='true'></iframe></span></p>
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="col s12 m6 l6">
@@ -119,7 +128,7 @@ Materialize<br>
             </div>
 
             <div class="avatar" ng-repeat="tunebook in about.tunebooks" ng-if="about.showTunebooksResults">
-              <div class="collection-item avatar">
+              <div class="collection-item avatar collection-item-unselectable">
                 <img ng-src="{{tunebook.logoUrl}}" alt="{{tunebook.shortName}}" class="circle" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate">{{tunebook.fullName}}</span>
                 <p class="truncate">{{tunebook.extra || '&nbsp;'}}</p>
