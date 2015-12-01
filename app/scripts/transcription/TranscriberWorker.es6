@@ -43,7 +43,7 @@ export default class TranscriberWorker {
         
         console.log("PYin transcribe");
 		//let transcription = this._transcriber.transcribe(signal, midi);
-        let transcription = transcribePyin(
+        let transcription = transcribe(
 				signal
 				,this._transcriber.outputSampleRate
 				,this._transcriber.sampleTime				
