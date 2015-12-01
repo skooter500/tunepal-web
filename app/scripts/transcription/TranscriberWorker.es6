@@ -39,7 +39,18 @@ export default class TranscriberWorker {
         let signal = typeof msg.signal !== 'undefined' ? msg.signal : this._mergeSignal();
         let midi = typeof msg.midi !== 'undefined' ? msg.midi : false;
 
-        let transcription = this._transcriber.transcribe(signal, midi);
+        //let transcription = this._transcriber.transcribe(signal, midi);
+        
+        console.log("PYin transcribe");
+		//let transcription = this._transcriber.transcribe(signal, midi);
+        let transcription = transcribePyin(
+				signal
+				,this._transcriber.outputSampleRate
+				,this._transcriber.sampleTime				
+				,false
+				);
+		console.log("Transcription:" + transcription);
+        
 
         resultMsg = {
           transcription: transcription,

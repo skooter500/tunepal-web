@@ -1,0 +1,1928 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i' ]
+2 info using npm@2.14.4
+3 info using node@v4.1.1
+4 verbose readDependencies loading dependencies from C:\Users\skoot\Documents\Projects\tunepal-web\package.json
+5 verbose install where, deps [ 'C:\\Users\\skoot\\Documents\\Projects\\tunepal-web',
+5 verbose install   [ 'browser-sync',
+5 verbose install     'del',
+5 verbose install     'glob',
+5 verbose install     'gulp',
+5 verbose install     'gulp-babel',
+5 verbose install     'gulp-concat',
+5 verbose install     'gulp-cordova',
+5 verbose install     'gulp-cssmin',
+5 verbose install     'gulp-debug',
+5 verbose install     'gulp-es6-module-transpiler',
+5 verbose install     'gulp-htmlhint',
+5 verbose install     'gulp-if',
+5 verbose install     'gulp-load-plugins',
+5 verbose install     'gulp-minify-html',
+5 verbose install     'gulp-plumber',
+5 verbose install     'gulp-rename',
+5 verbose install     'gulp-sass',
+5 verbose install     'gulp-shell',
+5 verbose install     'gulp-size',
+5 verbose install     'gulp-strip-debug',
+5 verbose install     'gulp-uglify',
+5 verbose install     'gulp-useref',
+5 verbose install     'gulp-util',
+5 verbose install     'merge-stream',
+5 verbose install     'require-dir',
+5 verbose install     'run-sequence',
+5 verbose install     'through2',
+5 verbose install     'vinyl-transform' ] ]
+6 verbose install where, peers [ 'C:\\Users\\skoot\\Documents\\Projects\\tunepal-web', [] ]
+7 verbose installManyTop reading for lifecycle C:\Users\skoot\Documents\Projects\tunepal-web\package.json
+8 info preinstall tunepal-web@1.0.0
+9 verbose installManyTop reading scoped package data from C:\Users\skoot\Documents\Projects\tunepal-web\node_modules\gulp\package.json
+10 verbose readDependencies loading dependencies from C:\Users\skoot\Documents\Projects\tunepal-web\package.json
+11 verbose targetResolver reading package data from C:\Users\skoot\Documents\Projects\tunepal-web\node_modules\gulp\package.json
+12 verbose targetResolver reading package data from C:\Users\skoot\Documents\Projects\tunepal-web\node_modules\.bin\gulp\package.json
+13 verbose targetResolver reading package data from C:\Users\skoot\Documents\Projects\tunepal-web\node_modules\.bin\gulp.cmd\package.json
+14 silly cache add args [ 'gulp-load-plugins@^1.0.0-rc.1', null ]
+15 verbose cache add spec gulp-load-plugins@^1.0.0-rc.1
+16 silly cache add parsed spec Result {
+16 silly cache add   raw: 'gulp-load-plugins@^1.0.0-rc.1',
+16 silly cache add   scope: null,
+16 silly cache add   name: 'gulp-load-plugins',
+16 silly cache add   rawSpec: '^1.0.0-rc.1',
+16 silly cache add   spec: '>=1.0.0-rc.1 <2.0.0',
+16 silly cache add   type: 'range' }
+17 silly addNamed gulp-load-plugins@>=1.0.0-rc.1 <2.0.0
+18 verbose addNamed ">=1.0.0-rc.1 <2.0.0" is a valid semver range for gulp-load-plugins
+19 silly addNameRange { name: 'gulp-load-plugins',
+19 silly addNameRange   range: '>=1.0.0-rc.1 <2.0.0',
+19 silly addNameRange   hasData: false }
+20 silly mapToRegistry name gulp-load-plugins
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/gulp-load-plugins
+24 verbose addNameRange registry:https://registry.npmjs.org/gulp-load-plugins not in flight; fetching
+25 silly cache add args [ 'gulp-minify-html@^1.0.3', null ]
+26 verbose cache add spec gulp-minify-html@^1.0.3
+27 silly cache add parsed spec Result {
+27 silly cache add   raw: 'gulp-minify-html@^1.0.3',
+27 silly cache add   scope: null,
+27 silly cache add   name: 'gulp-minify-html',
+27 silly cache add   rawSpec: '^1.0.3',
+27 silly cache add   spec: '>=1.0.3 <2.0.0',
+27 silly cache add   type: 'range' }
+28 silly addNamed gulp-minify-html@>=1.0.3 <2.0.0
+29 verbose addNamed ">=1.0.3 <2.0.0" is a valid semver range for gulp-minify-html
+30 silly addNameRange { name: 'gulp-minify-html',
+30 silly addNameRange   range: '>=1.0.3 <2.0.0',
+30 silly addNameRange   hasData: false }
+31 silly mapToRegistry name gulp-minify-html
+32 silly mapToRegistry using default registry
+33 silly mapToRegistry registry https://registry.npmjs.org/
+34 silly mapToRegistry uri https://registry.npmjs.org/gulp-minify-html
+35 verbose addNameRange registry:https://registry.npmjs.org/gulp-minify-html not in flight; fetching
+36 silly cache add args [ 'gulp-plumber@^1.0.1', null ]
+37 verbose cache add spec gulp-plumber@^1.0.1
+38 silly cache add parsed spec Result {
+38 silly cache add   raw: 'gulp-plumber@^1.0.1',
+38 silly cache add   scope: null,
+38 silly cache add   name: 'gulp-plumber',
+38 silly cache add   rawSpec: '^1.0.1',
+38 silly cache add   spec: '>=1.0.1 <2.0.0',
+38 silly cache add   type: 'range' }
+39 silly addNamed gulp-plumber@>=1.0.1 <2.0.0
+40 verbose addNamed ">=1.0.1 <2.0.0" is a valid semver range for gulp-plumber
+41 silly addNameRange { name: 'gulp-plumber', range: '>=1.0.1 <2.0.0', hasData: false }
+42 silly mapToRegistry name gulp-plumber
+43 silly mapToRegistry using default registry
+44 silly mapToRegistry registry https://registry.npmjs.org/
+45 silly mapToRegistry uri https://registry.npmjs.org/gulp-plumber
+46 verbose addNameRange registry:https://registry.npmjs.org/gulp-plumber not in flight; fetching
+47 silly cache add args [ 'gulp-rename@^1.2.2', null ]
+48 verbose cache add spec gulp-rename@^1.2.2
+49 silly cache add parsed spec Result {
+49 silly cache add   raw: 'gulp-rename@^1.2.2',
+49 silly cache add   scope: null,
+49 silly cache add   name: 'gulp-rename',
+49 silly cache add   rawSpec: '^1.2.2',
+49 silly cache add   spec: '>=1.2.2 <2.0.0',
+49 silly cache add   type: 'range' }
+50 silly addNamed gulp-rename@>=1.2.2 <2.0.0
+51 verbose addNamed ">=1.2.2 <2.0.0" is a valid semver range for gulp-rename
+52 silly addNameRange { name: 'gulp-rename', range: '>=1.2.2 <2.0.0', hasData: false }
+53 silly mapToRegistry name gulp-rename
+54 silly mapToRegistry using default registry
+55 silly mapToRegistry registry https://registry.npmjs.org/
+56 silly mapToRegistry uri https://registry.npmjs.org/gulp-rename
+57 verbose addNameRange registry:https://registry.npmjs.org/gulp-rename not in flight; fetching
+58 silly cache add args [ 'gulp-sass@^2.0.1', null ]
+59 verbose cache add spec gulp-sass@^2.0.1
+60 silly cache add parsed spec Result {
+60 silly cache add   raw: 'gulp-sass@^2.0.1',
+60 silly cache add   scope: null,
+60 silly cache add   name: 'gulp-sass',
+60 silly cache add   rawSpec: '^2.0.1',
+60 silly cache add   spec: '>=2.0.1 <3.0.0',
+60 silly cache add   type: 'range' }
+61 silly addNamed gulp-sass@>=2.0.1 <3.0.0
+62 verbose addNamed ">=2.0.1 <3.0.0" is a valid semver range for gulp-sass
+63 silly addNameRange { name: 'gulp-sass', range: '>=2.0.1 <3.0.0', hasData: false }
+64 silly mapToRegistry name gulp-sass
+65 silly mapToRegistry using default registry
+66 silly mapToRegistry registry https://registry.npmjs.org/
+67 silly mapToRegistry uri https://registry.npmjs.org/gulp-sass
+68 verbose addNameRange registry:https://registry.npmjs.org/gulp-sass not in flight; fetching
+69 silly cache add args [ 'gulp-shell@^0.4.2', null ]
+70 verbose cache add spec gulp-shell@^0.4.2
+71 silly cache add parsed spec Result {
+71 silly cache add   raw: 'gulp-shell@^0.4.2',
+71 silly cache add   scope: null,
+71 silly cache add   name: 'gulp-shell',
+71 silly cache add   rawSpec: '^0.4.2',
+71 silly cache add   spec: '>=0.4.2 <0.5.0',
+71 silly cache add   type: 'range' }
+72 silly addNamed gulp-shell@>=0.4.2 <0.5.0
+73 verbose addNamed ">=0.4.2 <0.5.0" is a valid semver range for gulp-shell
+74 silly addNameRange { name: 'gulp-shell', range: '>=0.4.2 <0.5.0', hasData: false }
+75 silly mapToRegistry name gulp-shell
+76 silly mapToRegistry using default registry
+77 silly mapToRegistry registry https://registry.npmjs.org/
+78 silly mapToRegistry uri https://registry.npmjs.org/gulp-shell
+79 verbose addNameRange registry:https://registry.npmjs.org/gulp-shell not in flight; fetching
+80 silly cache add args [ 'gulp-size@^1.2.1', null ]
+81 verbose cache add spec gulp-size@^1.2.1
+82 silly cache add parsed spec Result {
+82 silly cache add   raw: 'gulp-size@^1.2.1',
+82 silly cache add   scope: null,
+82 silly cache add   name: 'gulp-size',
+82 silly cache add   rawSpec: '^1.2.1',
+82 silly cache add   spec: '>=1.2.1 <2.0.0',
+82 silly cache add   type: 'range' }
+83 silly addNamed gulp-size@>=1.2.1 <2.0.0
+84 verbose addNamed ">=1.2.1 <2.0.0" is a valid semver range for gulp-size
+85 silly addNameRange { name: 'gulp-size', range: '>=1.2.1 <2.0.0', hasData: false }
+86 silly mapToRegistry name gulp-size
+87 silly mapToRegistry using default registry
+88 silly mapToRegistry registry https://registry.npmjs.org/
+89 silly mapToRegistry uri https://registry.npmjs.org/gulp-size
+90 verbose addNameRange registry:https://registry.npmjs.org/gulp-size not in flight; fetching
+91 silly cache add args [ 'gulp-strip-debug@^1.0.2', null ]
+92 verbose cache add spec gulp-strip-debug@^1.0.2
+93 silly cache add parsed spec Result {
+93 silly cache add   raw: 'gulp-strip-debug@^1.0.2',
+93 silly cache add   scope: null,
+93 silly cache add   name: 'gulp-strip-debug',
+93 silly cache add   rawSpec: '^1.0.2',
+93 silly cache add   spec: '>=1.0.2 <2.0.0',
+93 silly cache add   type: 'range' }
+94 silly addNamed gulp-strip-debug@>=1.0.2 <2.0.0
+95 verbose addNamed ">=1.0.2 <2.0.0" is a valid semver range for gulp-strip-debug
+96 silly addNameRange { name: 'gulp-strip-debug',
+96 silly addNameRange   range: '>=1.0.2 <2.0.0',
+96 silly addNameRange   hasData: false }
+97 silly mapToRegistry name gulp-strip-debug
+98 silly mapToRegistry using default registry
+99 silly mapToRegistry registry https://registry.npmjs.org/
+100 silly mapToRegistry uri https://registry.npmjs.org/gulp-strip-debug
+101 verbose addNameRange registry:https://registry.npmjs.org/gulp-strip-debug not in flight; fetching
+102 silly cache add args [ 'gulp-uglify@^1.2.0', null ]
+103 verbose cache add spec gulp-uglify@^1.2.0
+104 silly cache add parsed spec Result {
+104 silly cache add   raw: 'gulp-uglify@^1.2.0',
+104 silly cache add   scope: null,
+104 silly cache add   name: 'gulp-uglify',
+104 silly cache add   rawSpec: '^1.2.0',
+104 silly cache add   spec: '>=1.2.0 <2.0.0',
+104 silly cache add   type: 'range' }
+105 silly addNamed gulp-uglify@>=1.2.0 <2.0.0
+106 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for gulp-uglify
+107 silly addNameRange { name: 'gulp-uglify', range: '>=1.2.0 <2.0.0', hasData: false }
+108 silly mapToRegistry name gulp-uglify
+109 silly mapToRegistry using default registry
+110 silly mapToRegistry registry https://registry.npmjs.org/
+111 silly mapToRegistry uri https://registry.npmjs.org/gulp-uglify
+112 verbose addNameRange registry:https://registry.npmjs.org/gulp-uglify not in flight; fetching
+113 silly cache add args [ 'gulp-useref@^1.2.0', null ]
+114 verbose cache add spec gulp-useref@^1.2.0
+115 silly cache add parsed spec Result {
+115 silly cache add   raw: 'gulp-useref@^1.2.0',
+115 silly cache add   scope: null,
+115 silly cache add   name: 'gulp-useref',
+115 silly cache add   rawSpec: '^1.2.0',
+115 silly cache add   spec: '>=1.2.0 <2.0.0',
+115 silly cache add   type: 'range' }
+116 silly addNamed gulp-useref@>=1.2.0 <2.0.0
+117 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for gulp-useref
+118 silly addNameRange { name: 'gulp-useref', range: '>=1.2.0 <2.0.0', hasData: false }
+119 silly mapToRegistry name gulp-useref
+120 silly mapToRegistry using default registry
+121 silly mapToRegistry registry https://registry.npmjs.org/
+122 silly mapToRegistry uri https://registry.npmjs.org/gulp-useref
+123 verbose addNameRange registry:https://registry.npmjs.org/gulp-useref not in flight; fetching
+124 silly cache add args [ 'gulp-util@^3.0.5', null ]
+125 verbose cache add spec gulp-util@^3.0.5
+126 silly cache add parsed spec Result {
+126 silly cache add   raw: 'gulp-util@^3.0.5',
+126 silly cache add   scope: null,
+126 silly cache add   name: 'gulp-util',
+126 silly cache add   rawSpec: '^3.0.5',
+126 silly cache add   spec: '>=3.0.5 <4.0.0',
+126 silly cache add   type: 'range' }
+127 silly addNamed gulp-util@>=3.0.5 <4.0.0
+128 verbose addNamed ">=3.0.5 <4.0.0" is a valid semver range for gulp-util
+129 silly addNameRange { name: 'gulp-util', range: '>=3.0.5 <4.0.0', hasData: false }
+130 silly mapToRegistry name gulp-util
+131 silly mapToRegistry using default registry
+132 silly mapToRegistry registry https://registry.npmjs.org/
+133 silly mapToRegistry uri https://registry.npmjs.org/gulp-util
+134 verbose addNameRange registry:https://registry.npmjs.org/gulp-util not in flight; fetching
+135 silly cache add args [ 'merge-stream@^0.1.7', null ]
+136 verbose cache add spec merge-stream@^0.1.7
+137 silly cache add parsed spec Result {
+137 silly cache add   raw: 'merge-stream@^0.1.7',
+137 silly cache add   scope: null,
+137 silly cache add   name: 'merge-stream',
+137 silly cache add   rawSpec: '^0.1.7',
+137 silly cache add   spec: '>=0.1.7 <0.2.0',
+137 silly cache add   type: 'range' }
+138 silly addNamed merge-stream@>=0.1.7 <0.2.0
+139 verbose addNamed ">=0.1.7 <0.2.0" is a valid semver range for merge-stream
+140 silly addNameRange { name: 'merge-stream', range: '>=0.1.7 <0.2.0', hasData: false }
+141 silly mapToRegistry name merge-stream
+142 silly mapToRegistry using default registry
+143 silly mapToRegistry registry https://registry.npmjs.org/
+144 silly mapToRegistry uri https://registry.npmjs.org/merge-stream
+145 verbose addNameRange registry:https://registry.npmjs.org/merge-stream not in flight; fetching
+146 silly cache add args [ 'require-dir@^0.3.0', null ]
+147 verbose cache add spec require-dir@^0.3.0
+148 silly cache add parsed spec Result {
+148 silly cache add   raw: 'require-dir@^0.3.0',
+148 silly cache add   scope: null,
+148 silly cache add   name: 'require-dir',
+148 silly cache add   rawSpec: '^0.3.0',
+148 silly cache add   spec: '>=0.3.0 <0.4.0',
+148 silly cache add   type: 'range' }
+149 silly addNamed require-dir@>=0.3.0 <0.4.0
+150 verbose addNamed ">=0.3.0 <0.4.0" is a valid semver range for require-dir
+151 silly addNameRange { name: 'require-dir', range: '>=0.3.0 <0.4.0', hasData: false }
+152 silly mapToRegistry name require-dir
+153 silly mapToRegistry using default registry
+154 silly mapToRegistry registry https://registry.npmjs.org/
+155 silly mapToRegistry uri https://registry.npmjs.org/require-dir
+156 verbose addNameRange registry:https://registry.npmjs.org/require-dir not in flight; fetching
+157 silly cache add args [ 'run-sequence@^1.1.0', null ]
+158 verbose cache add spec run-sequence@^1.1.0
+159 silly cache add parsed spec Result {
+159 silly cache add   raw: 'run-sequence@^1.1.0',
+159 silly cache add   scope: null,
+159 silly cache add   name: 'run-sequence',
+159 silly cache add   rawSpec: '^1.1.0',
+159 silly cache add   spec: '>=1.1.0 <2.0.0',
+159 silly cache add   type: 'range' }
+160 silly addNamed run-sequence@>=1.1.0 <2.0.0
+161 verbose addNamed ">=1.1.0 <2.0.0" is a valid semver range for run-sequence
+162 silly addNameRange { name: 'run-sequence', range: '>=1.1.0 <2.0.0', hasData: false }
+163 silly mapToRegistry name run-sequence
+164 silly mapToRegistry using default registry
+165 silly mapToRegistry registry https://registry.npmjs.org/
+166 silly mapToRegistry uri https://registry.npmjs.org/run-sequence
+167 verbose addNameRange registry:https://registry.npmjs.org/run-sequence not in flight; fetching
+168 silly cache add args [ 'through2@^0.6.5', null ]
+169 verbose cache add spec through2@^0.6.5
+170 silly cache add parsed spec Result {
+170 silly cache add   raw: 'through2@^0.6.5',
+170 silly cache add   scope: null,
+170 silly cache add   name: 'through2',
+170 silly cache add   rawSpec: '^0.6.5',
+170 silly cache add   spec: '>=0.6.5 <0.7.0',
+170 silly cache add   type: 'range' }
+171 silly addNamed through2@>=0.6.5 <0.7.0
+172 verbose addNamed ">=0.6.5 <0.7.0" is a valid semver range for through2
+173 silly addNameRange { name: 'through2', range: '>=0.6.5 <0.7.0', hasData: false }
+174 silly mapToRegistry name through2
+175 silly mapToRegistry using default registry
+176 silly mapToRegistry registry https://registry.npmjs.org/
+177 silly mapToRegistry uri https://registry.npmjs.org/through2
+178 verbose addNameRange registry:https://registry.npmjs.org/through2 not in flight; fetching
+179 silly cache add args [ 'vinyl-transform@^1.0.0', null ]
+180 verbose cache add spec vinyl-transform@^1.0.0
+181 silly cache add parsed spec Result {
+181 silly cache add   raw: 'vinyl-transform@^1.0.0',
+181 silly cache add   scope: null,
+181 silly cache add   name: 'vinyl-transform',
+181 silly cache add   rawSpec: '^1.0.0',
+181 silly cache add   spec: '>=1.0.0 <2.0.0',
+181 silly cache add   type: 'range' }
+182 silly addNamed vinyl-transform@>=1.0.0 <2.0.0
+183 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for vinyl-transform
+184 silly addNameRange { name: 'vinyl-transform',
+184 silly addNameRange   range: '>=1.0.0 <2.0.0',
+184 silly addNameRange   hasData: false }
+185 silly mapToRegistry name vinyl-transform
+186 silly mapToRegistry using default registry
+187 silly mapToRegistry registry https://registry.npmjs.org/
+188 silly mapToRegistry uri https://registry.npmjs.org/vinyl-transform
+189 verbose addNameRange registry:https://registry.npmjs.org/vinyl-transform not in flight; fetching
+190 silly cache add args [ 'browser-sync@^2.7.6', null ]
+191 verbose cache add spec browser-sync@^2.7.6
+192 silly cache add parsed spec Result {
+192 silly cache add   raw: 'browser-sync@^2.7.6',
+192 silly cache add   scope: null,
+192 silly cache add   name: 'browser-sync',
+192 silly cache add   rawSpec: '^2.7.6',
+192 silly cache add   spec: '>=2.7.6 <3.0.0',
+192 silly cache add   type: 'range' }
+193 silly addNamed browser-sync@>=2.7.6 <3.0.0
+194 verbose addNamed ">=2.7.6 <3.0.0" is a valid semver range for browser-sync
+195 silly addNameRange { name: 'browser-sync', range: '>=2.7.6 <3.0.0', hasData: false }
+196 silly mapToRegistry name browser-sync
+197 silly mapToRegistry using default registry
+198 silly mapToRegistry registry https://registry.npmjs.org/
+199 silly mapToRegistry uri https://registry.npmjs.org/browser-sync
+200 verbose addNameRange registry:https://registry.npmjs.org/browser-sync not in flight; fetching
+201 silly cache add args [ 'del@^1.2.0', null ]
+202 verbose cache add spec del@^1.2.0
+203 silly cache add parsed spec Result {
+203 silly cache add   raw: 'del@^1.2.0',
+203 silly cache add   scope: null,
+203 silly cache add   name: 'del',
+203 silly cache add   rawSpec: '^1.2.0',
+203 silly cache add   spec: '>=1.2.0 <2.0.0',
+203 silly cache add   type: 'range' }
+204 silly addNamed del@>=1.2.0 <2.0.0
+205 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for del
+206 silly addNameRange { name: 'del', range: '>=1.2.0 <2.0.0', hasData: false }
+207 silly mapToRegistry name del
+208 silly mapToRegistry using default registry
+209 silly mapToRegistry registry https://registry.npmjs.org/
+210 silly mapToRegistry uri https://registry.npmjs.org/del
+211 verbose addNameRange registry:https://registry.npmjs.org/del not in flight; fetching
+212 silly cache add args [ 'glob@^5.0.10', null ]
+213 verbose cache add spec glob@^5.0.10
+214 silly cache add parsed spec Result {
+214 silly cache add   raw: 'glob@^5.0.10',
+214 silly cache add   scope: null,
+214 silly cache add   name: 'glob',
+214 silly cache add   rawSpec: '^5.0.10',
+214 silly cache add   spec: '>=5.0.10 <6.0.0',
+214 silly cache add   type: 'range' }
+215 silly addNamed glob@>=5.0.10 <6.0.0
+216 verbose addNamed ">=5.0.10 <6.0.0" is a valid semver range for glob
+217 silly addNameRange { name: 'glob', range: '>=5.0.10 <6.0.0', hasData: false }
+218 silly mapToRegistry name glob
+219 silly mapToRegistry using default registry
+220 silly mapToRegistry registry https://registry.npmjs.org/
+221 silly mapToRegistry uri https://registry.npmjs.org/glob
+222 verbose addNameRange registry:https://registry.npmjs.org/glob not in flight; fetching
+223 verbose already installed skipping gulp@^3.9.0 C:\Users\skoot\Documents\Projects\tunepal-web
+224 silly cache add args [ 'gulp-babel@^5.1.0', null ]
+225 verbose cache add spec gulp-babel@^5.1.0
+226 silly cache add parsed spec Result {
+226 silly cache add   raw: 'gulp-babel@^5.1.0',
+226 silly cache add   scope: null,
+226 silly cache add   name: 'gulp-babel',
+226 silly cache add   rawSpec: '^5.1.0',
+226 silly cache add   spec: '>=5.1.0 <6.0.0',
+226 silly cache add   type: 'range' }
+227 silly addNamed gulp-babel@>=5.1.0 <6.0.0
+228 verbose addNamed ">=5.1.0 <6.0.0" is a valid semver range for gulp-babel
+229 silly addNameRange { name: 'gulp-babel', range: '>=5.1.0 <6.0.0', hasData: false }
+230 silly mapToRegistry name gulp-babel
+231 silly mapToRegistry using default registry
+232 silly mapToRegistry registry https://registry.npmjs.org/
+233 silly mapToRegistry uri https://registry.npmjs.org/gulp-babel
+234 verbose addNameRange registry:https://registry.npmjs.org/gulp-babel not in flight; fetching
+235 silly cache add args [ 'gulp-concat@^2.5.2', null ]
+236 verbose cache add spec gulp-concat@^2.5.2
+237 silly cache add parsed spec Result {
+237 silly cache add   raw: 'gulp-concat@^2.5.2',
+237 silly cache add   scope: null,
+237 silly cache add   name: 'gulp-concat',
+237 silly cache add   rawSpec: '^2.5.2',
+237 silly cache add   spec: '>=2.5.2 <3.0.0',
+237 silly cache add   type: 'range' }
+238 silly addNamed gulp-concat@>=2.5.2 <3.0.0
+239 verbose addNamed ">=2.5.2 <3.0.0" is a valid semver range for gulp-concat
+240 silly addNameRange { name: 'gulp-concat', range: '>=2.5.2 <3.0.0', hasData: false }
+241 silly mapToRegistry name gulp-concat
+242 silly mapToRegistry using default registry
+243 silly mapToRegistry registry https://registry.npmjs.org/
+244 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat
+245 verbose addNameRange registry:https://registry.npmjs.org/gulp-concat not in flight; fetching
+246 silly cache add args [ 'gulp-cordova@^0.1.2', null ]
+247 verbose cache add spec gulp-cordova@^0.1.2
+248 silly cache add parsed spec Result {
+248 silly cache add   raw: 'gulp-cordova@^0.1.2',
+248 silly cache add   scope: null,
+248 silly cache add   name: 'gulp-cordova',
+248 silly cache add   rawSpec: '^0.1.2',
+248 silly cache add   spec: '>=0.1.2 <0.2.0',
+248 silly cache add   type: 'range' }
+249 silly addNamed gulp-cordova@>=0.1.2 <0.2.0
+250 verbose addNamed ">=0.1.2 <0.2.0" is a valid semver range for gulp-cordova
+251 silly addNameRange { name: 'gulp-cordova', range: '>=0.1.2 <0.2.0', hasData: false }
+252 silly mapToRegistry name gulp-cordova
+253 silly mapToRegistry using default registry
+254 silly mapToRegistry registry https://registry.npmjs.org/
+255 silly mapToRegistry uri https://registry.npmjs.org/gulp-cordova
+256 verbose addNameRange registry:https://registry.npmjs.org/gulp-cordova not in flight; fetching
+257 silly cache add args [ 'gulp-cssmin@^0.1.7', null ]
+258 verbose cache add spec gulp-cssmin@^0.1.7
+259 silly cache add parsed spec Result {
+259 silly cache add   raw: 'gulp-cssmin@^0.1.7',
+259 silly cache add   scope: null,
+259 silly cache add   name: 'gulp-cssmin',
+259 silly cache add   rawSpec: '^0.1.7',
+259 silly cache add   spec: '>=0.1.7 <0.2.0',
+259 silly cache add   type: 'range' }
+260 silly addNamed gulp-cssmin@>=0.1.7 <0.2.0
+261 verbose addNamed ">=0.1.7 <0.2.0" is a valid semver range for gulp-cssmin
+262 silly addNameRange { name: 'gulp-cssmin', range: '>=0.1.7 <0.2.0', hasData: false }
+263 silly mapToRegistry name gulp-cssmin
+264 silly mapToRegistry using default registry
+265 silly mapToRegistry registry https://registry.npmjs.org/
+266 silly mapToRegistry uri https://registry.npmjs.org/gulp-cssmin
+267 verbose addNameRange registry:https://registry.npmjs.org/gulp-cssmin not in flight; fetching
+268 silly cache add args [ 'gulp-debug@^2.0.1', null ]
+269 verbose cache add spec gulp-debug@^2.0.1
+270 silly cache add parsed spec Result {
+270 silly cache add   raw: 'gulp-debug@^2.0.1',
+270 silly cache add   scope: null,
+270 silly cache add   name: 'gulp-debug',
+270 silly cache add   rawSpec: '^2.0.1',
+270 silly cache add   spec: '>=2.0.1 <3.0.0',
+270 silly cache add   type: 'range' }
+271 silly addNamed gulp-debug@>=2.0.1 <3.0.0
+272 verbose addNamed ">=2.0.1 <3.0.0" is a valid semver range for gulp-debug
+273 silly addNameRange { name: 'gulp-debug', range: '>=2.0.1 <3.0.0', hasData: false }
+274 silly mapToRegistry name gulp-debug
+275 silly mapToRegistry using default registry
+276 silly mapToRegistry registry https://registry.npmjs.org/
+277 silly mapToRegistry uri https://registry.npmjs.org/gulp-debug
+278 verbose addNameRange registry:https://registry.npmjs.org/gulp-debug not in flight; fetching
+279 silly cache add args [ 'gulp-es6-module-transpiler@git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git',
+279 silly cache add   null ]
+280 verbose cache add spec gulp-es6-module-transpiler@git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git
+281 silly cache add args [ 'gulp-htmlhint@^0.1.1', null ]
+282 verbose cache add spec gulp-htmlhint@^0.1.1
+283 silly cache add parsed spec Result {
+283 silly cache add   raw: 'gulp-htmlhint@^0.1.1',
+283 silly cache add   scope: null,
+283 silly cache add   name: 'gulp-htmlhint',
+283 silly cache add   rawSpec: '^0.1.1',
+283 silly cache add   spec: '>=0.1.1 <0.2.0',
+283 silly cache add   type: 'range' }
+284 silly addNamed gulp-htmlhint@>=0.1.1 <0.2.0
+285 verbose addNamed ">=0.1.1 <0.2.0" is a valid semver range for gulp-htmlhint
+286 silly addNameRange { name: 'gulp-htmlhint',
+286 silly addNameRange   range: '>=0.1.1 <0.2.0',
+286 silly addNameRange   hasData: false }
+287 silly mapToRegistry name gulp-htmlhint
+288 silly mapToRegistry using default registry
+289 silly mapToRegistry registry https://registry.npmjs.org/
+290 silly mapToRegistry uri https://registry.npmjs.org/gulp-htmlhint
+291 verbose addNameRange registry:https://registry.npmjs.org/gulp-htmlhint not in flight; fetching
+292 silly cache add args [ 'gulp-if@^1.2.5', null ]
+293 verbose cache add spec gulp-if@^1.2.5
+294 silly cache add parsed spec Result {
+294 silly cache add   raw: 'gulp-if@^1.2.5',
+294 silly cache add   scope: null,
+294 silly cache add   name: 'gulp-if',
+294 silly cache add   rawSpec: '^1.2.5',
+294 silly cache add   spec: '>=1.2.5 <2.0.0',
+294 silly cache add   type: 'range' }
+295 silly addNamed gulp-if@>=1.2.5 <2.0.0
+296 verbose addNamed ">=1.2.5 <2.0.0" is a valid semver range for gulp-if
+297 silly addNameRange { name: 'gulp-if', range: '>=1.2.5 <2.0.0', hasData: false }
+298 silly mapToRegistry name gulp-if
+299 silly mapToRegistry using default registry
+300 silly mapToRegistry registry https://registry.npmjs.org/
+301 silly mapToRegistry uri https://registry.npmjs.org/gulp-if
+302 verbose addNameRange registry:https://registry.npmjs.org/gulp-if not in flight; fetching
+303 silly cache add parsed spec Result {
+303 silly cache add   raw: 'gulp-es6-module-transpiler@git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add   scope: null,
+303 silly cache add   name: 'gulp-es6-module-transpiler',
+303 silly cache add   rawSpec: 'git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add   spec: 'git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add   type: 'hosted',
+303 silly cache add   hosted:
+303 silly cache add    { type: 'github',
+303 silly cache add      ssh: 'git@github.com:chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add      sshUrl: 'git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add      httpsUrl: 'git+https://github.com/chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add      gitUrl: 'git://github.com/chrisxue815/gulp-es6-module-transpiler.git',
+303 silly cache add      shortcut: 'github:chrisxue815/gulp-es6-module-transpiler',
+303 silly cache add      directUrl: 'https://raw.githubusercontent.com/chrisxue815/gulp-es6-module-transpiler/master/package.json' } }
+304 verbose addRemoteGit caching git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git
+305 verbose addRemoteGit git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git is a repository hosted by github
+306 silly tryClone cloning git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git via git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git
+307 verbose tryClone ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5 not in flight; caching
+308 verbose request uri https://registry.npmjs.org/gulp-minify-html
+309 verbose request no auth needed
+310 info attempt registry request try #1 at 3:40:24 PM
+311 verbose request id f08ee7e61c2aba59
+312 verbose etag "5LLQCHAGGW83KKLP3BTQR72BS"
+313 http request GET https://registry.npmjs.org/gulp-minify-html
+314 verbose request uri https://registry.npmjs.org/gulp-rename
+315 verbose request no auth needed
+316 info attempt registry request try #1 at 3:40:24 PM
+317 verbose etag "5HRXSZ43LLSM84HXOH5Y8RK6N"
+318 http request GET https://registry.npmjs.org/gulp-rename
+319 verbose request uri https://registry.npmjs.org/gulp-load-plugins
+320 verbose request no auth needed
+321 info attempt registry request try #1 at 3:40:24 PM
+322 verbose etag "5VNNFO3LJ99LM6ADR4M28ENY"
+323 http request GET https://registry.npmjs.org/gulp-load-plugins
+324 verbose request uri https://registry.npmjs.org/gulp-plumber
+325 verbose request no auth needed
+326 info attempt registry request try #1 at 3:40:24 PM
+327 verbose etag "5KUF5091HF0L0ZLBAOMVOZHWK"
+328 http request GET https://registry.npmjs.org/gulp-plumber
+329 verbose request uri https://registry.npmjs.org/gulp-sass
+330 verbose request no auth needed
+331 info attempt registry request try #1 at 3:40:24 PM
+332 verbose etag "BER29RIQEYW62W1FYUVWP806H"
+333 http request GET https://registry.npmjs.org/gulp-sass
+334 verbose request uri https://registry.npmjs.org/gulp-shell
+335 verbose request no auth needed
+336 info attempt registry request try #1 at 3:40:24 PM
+337 verbose etag "A1CKOVE0L5J99497XTWS1SG66"
+338 http request GET https://registry.npmjs.org/gulp-shell
+339 verbose request uri https://registry.npmjs.org/gulp-size
+340 verbose request no auth needed
+341 info attempt registry request try #1 at 3:40:24 PM
+342 verbose etag "9BVQDF9HRSHVHFUKNLXE2YCMM"
+343 http request GET https://registry.npmjs.org/gulp-size
+344 verbose request uri https://registry.npmjs.org/gulp-uglify
+345 verbose request no auth needed
+346 info attempt registry request try #1 at 3:40:24 PM
+347 verbose etag "5G2GCAV6V4CDPJNZC2EOTXANX"
+348 http request GET https://registry.npmjs.org/gulp-uglify
+349 verbose request uri https://registry.npmjs.org/gulp-strip-debug
+350 verbose request no auth needed
+351 info attempt registry request try #1 at 3:40:24 PM
+352 verbose etag "S4K0E2G00KXOTBOPBSWR4PWD"
+353 http request GET https://registry.npmjs.org/gulp-strip-debug
+354 verbose request uri https://registry.npmjs.org/merge-stream
+355 verbose request no auth needed
+356 info attempt registry request try #1 at 3:40:24 PM
+357 verbose etag "AY4470FZCI1OJZECZU8SMQ2R"
+358 http request GET https://registry.npmjs.org/merge-stream
+359 verbose request uri https://registry.npmjs.org/gulp-util
+360 verbose request no auth needed
+361 info attempt registry request try #1 at 3:40:24 PM
+362 verbose etag "8D9X7OWRJ54KNOS7CNX9LM3CH"
+363 http request GET https://registry.npmjs.org/gulp-util
+364 verbose request uri https://registry.npmjs.org/require-dir
+365 verbose request no auth needed
+366 info attempt registry request try #1 at 3:40:24 PM
+367 verbose etag "3MDNF3QGZAXFUPWB848L7GZ6T"
+368 http request GET https://registry.npmjs.org/require-dir
+369 verbose request uri https://registry.npmjs.org/gulp-useref
+370 verbose request no auth needed
+371 info attempt registry request try #1 at 3:40:24 PM
+372 verbose etag "CP9XUXPBKZNISNL5E2AZQ1F1I"
+373 http request GET https://registry.npmjs.org/gulp-useref
+374 verbose request uri https://registry.npmjs.org/run-sequence
+375 verbose request no auth needed
+376 info attempt registry request try #1 at 3:40:24 PM
+377 verbose etag "2ZLPFJX94ATTRNBLHIG7GLERY"
+378 http request GET https://registry.npmjs.org/run-sequence
+379 verbose request uri https://registry.npmjs.org/vinyl-transform
+380 verbose request no auth needed
+381 info attempt registry request try #1 at 3:40:24 PM
+382 verbose etag "124MPRTXBHQQMY4NMZ0BNPAM"
+383 http request GET https://registry.npmjs.org/vinyl-transform
+384 verbose request uri https://registry.npmjs.org/glob
+385 verbose request no auth needed
+386 info attempt registry request try #1 at 3:40:24 PM
+387 verbose etag "8HEL05R4BOWZCM13ITMB2QQEQ"
+388 http request GET https://registry.npmjs.org/glob
+389 verbose request uri https://registry.npmjs.org/through2
+390 verbose request no auth needed
+391 info attempt registry request try #1 at 3:40:24 PM
+392 verbose etag "29QD4EZ5M4DS3KA95MWTG42XX"
+393 http request GET https://registry.npmjs.org/through2
+394 verbose request uri https://registry.npmjs.org/del
+395 verbose request no auth needed
+396 info attempt registry request try #1 at 3:40:24 PM
+397 verbose etag "AI36JUW2I1OCVQYVG6U1YYXZO"
+398 http request GET https://registry.npmjs.org/del
+399 verbose request uri https://registry.npmjs.org/gulp-babel
+400 verbose request no auth needed
+401 info attempt registry request try #1 at 3:40:24 PM
+402 verbose etag "FOJDDFY8CHU9ITIZ45BZIZMY"
+403 http request GET https://registry.npmjs.org/gulp-babel
+404 verbose request uri https://registry.npmjs.org/gulp-cssmin
+405 verbose request no auth needed
+406 info attempt registry request try #1 at 3:40:24 PM
+407 verbose etag "1H36J0BOKBKRZEE9YCHYWVH0F"
+408 http request GET https://registry.npmjs.org/gulp-cssmin
+409 verbose request uri https://registry.npmjs.org/gulp-cordova
+410 verbose request no auth needed
+411 info attempt registry request try #1 at 3:40:24 PM
+412 verbose etag "BU5AI8LYHG2AXOIVLQIFET30O"
+413 http request GET https://registry.npmjs.org/gulp-cordova
+414 verbose request uri https://registry.npmjs.org/gulp-concat
+415 verbose request no auth needed
+416 info attempt registry request try #1 at 3:40:24 PM
+417 verbose etag "998EZW2EPK3IKP3AKBMZC5YJ8"
+418 http request GET https://registry.npmjs.org/gulp-concat
+419 verbose request uri https://registry.npmjs.org/gulp-htmlhint
+420 verbose request no auth needed
+421 info attempt registry request try #1 at 3:40:24 PM
+422 verbose etag "CNKK3GZYHJLW5UHCR0HWM878Y"
+423 http request GET https://registry.npmjs.org/gulp-htmlhint
+424 verbose request uri https://registry.npmjs.org/gulp-debug
+425 verbose request no auth needed
+426 info attempt registry request try #1 at 3:40:24 PM
+427 verbose etag "BFQAALVKO34DY50LPF8UY2KH1"
+428 http request GET https://registry.npmjs.org/gulp-debug
+429 verbose request uri https://registry.npmjs.org/gulp-if
+430 verbose request no auth needed
+431 info attempt registry request try #1 at 3:40:24 PM
+432 verbose etag "A1A8YLIDKHKOHTYI3G3OW3Z3R"
+433 http request GET https://registry.npmjs.org/gulp-if
+434 verbose request uri https://registry.npmjs.org/browser-sync
+435 verbose request no auth needed
+436 info attempt registry request try #1 at 3:40:24 PM
+437 verbose etag "AGBHHBUMQMDRXXZ0376T7BNK5"
+438 http request GET https://registry.npmjs.org/browser-sync
+439 info git [ 'config', '--get', 'remote.origin.url' ]
+440 warn addRemoteGit Error: Command failed: git -c core.longpaths=true config --get remote.origin.url
+440 warn addRemoteGit
+440 warn addRemoteGit     at ChildProcess.exithandler (child_process.js:203:12)
+440 warn addRemoteGit     at emitTwo (events.js:87:13)
+440 warn addRemoteGit     at ChildProcess.emit (events.js:172:7)
+440 warn addRemoteGit     at maybeClose (internal/child_process.js:817:16)
+440 warn addRemoteGit     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+440 warn addRemoteGit  git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git resetting remote C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5 because of error: { [Error: Command failed: git -c core.longpaths=true config --get remote.origin.url
+440 warn addRemoteGit ]
+440 warn addRemoteGit   killed: false,
+440 warn addRemoteGit   code: 1,
+440 warn addRemoteGit   signal: null,
+440 warn addRemoteGit   cmd: 'git -c core.longpaths=true config --get remote.origin.url' }
+441 info resetRemote resetting C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5 for git+ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git
+442 silly gentlyRm C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5 is being purged
+443 verbose gentlyRm don't care about contents; nuking C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5
+444 silly vacuum-fs purging C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5
+445 silly vacuum-fs quitting because other entries in C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes
+446 info git [ 'clone',
+446 info git   '--template=C:\\Users\\skoot\\AppData\\Roaming\\npm-cache\\_git-remotes\\_templates',
+446 info git   '--mirror',
+446 info git   'ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git',
+446 info git   'C:\\Users\\skoot\\AppData\\Roaming\\npm-cache\\_git-remotes\\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5' ]
+447 http 304 https://registry.npmjs.org/gulp-rename
+448 silly get cb [ 304,
+448 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+448 silly get     via: '1.1 varnish',
+448 silly get     'cache-control': 'max-age=60',
+448 silly get     etag: '"5HRXSZ43LLSM84HXOH5Y8RK6N"',
+448 silly get     age: '12',
+448 silly get     connection: 'keep-alive',
+448 silly get     'x-served-by': 'cache-fra1248-FRA',
+448 silly get     'x-cache': 'HIT',
+448 silly get     'x-cache-hits': '1',
+448 silly get     'x-timer': 'S1448984423.810790,VS0,VE0',
+448 silly get     vary: 'Accept' } ]
+449 verbose etag https://registry.npmjs.org/gulp-rename from cache
+450 verbose get saving gulp-rename to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-rename\.cache.json
+451 http 304 https://registry.npmjs.org/gulp-load-plugins
+452 silly get cb [ 304,
+452 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+452 silly get     via: '1.1 varnish',
+452 silly get     'cache-control': 'max-age=60',
+452 silly get     etag: '"5VNNFO3LJ99LM6ADR4M28ENY"',
+452 silly get     age: '43',
+452 silly get     connection: 'keep-alive',
+452 silly get     'x-served-by': 'cache-fra1243-FRA',
+452 silly get     'x-cache': 'HIT',
+452 silly get     'x-cache-hits': '1',
+452 silly get     'x-timer': 'S1448984423.809412,VS0,VE0',
+452 silly get     vary: 'Accept' } ]
+453 verbose etag https://registry.npmjs.org/gulp-load-plugins from cache
+454 verbose get saving gulp-load-plugins to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-load-plugins\.cache.json
+455 http 304 https://registry.npmjs.org/glob
+456 silly get cb [ 304,
+456 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+456 silly get     via: '1.1 varnish',
+456 silly get     'cache-control': 'max-age=60',
+456 silly get     etag: '"8HEL05R4BOWZCM13ITMB2QQEQ"',
+456 silly get     age: '6',
+456 silly get     connection: 'keep-alive',
+456 silly get     'x-served-by': 'cache-fra1242-FRA',
+456 silly get     'x-cache': 'HIT',
+456 silly get     'x-cache-hits': '3',
+456 silly get     'x-timer': 'S1448984423.819046,VS0,VE0',
+456 silly get     vary: 'Accept' } ]
+457 verbose etag https://registry.npmjs.org/glob from cache
+458 verbose get saving glob to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\glob\.cache.json
+459 http 304 https://registry.npmjs.org/gulp-uglify
+460 silly get cb [ 304,
+460 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+460 silly get     via: '1.1 varnish',
+460 silly get     'cache-control': 'max-age=60',
+460 silly get     etag: '"5G2GCAV6V4CDPJNZC2EOTXANX"',
+460 silly get     age: '34',
+460 silly get     connection: 'keep-alive',
+460 silly get     'x-served-by': 'cache-fra1240-FRA',
+460 silly get     'x-cache': 'HIT',
+460 silly get     'x-cache-hits': '2',
+460 silly get     'x-timer': 'S1448984423.819052,VS0,VE0',
+460 silly get     vary: 'Accept' } ]
+461 verbose etag https://registry.npmjs.org/gulp-uglify from cache
+462 verbose get saving gulp-uglify to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-uglify\.cache.json
+463 http 304 https://registry.npmjs.org/gulp-sass
+464 silly get cb [ 304,
+464 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+464 silly get     via: '1.1 varnish',
+464 silly get     'cache-control': 'max-age=60',
+464 silly get     etag: '"BER29RIQEYW62W1FYUVWP806H"',
+464 silly get     age: '25',
+464 silly get     connection: 'keep-alive',
+464 silly get     'x-served-by': 'cache-fra1242-FRA',
+464 silly get     'x-cache': 'HIT',
+464 silly get     'x-cache-hits': '1',
+464 silly get     'x-timer': 'S1448984423.819061,VS0,VE0',
+464 silly get     vary: 'Accept' } ]
+465 verbose etag https://registry.npmjs.org/gulp-sass from cache
+466 verbose get saving gulp-sass to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-sass\.cache.json
+467 http 304 https://registry.npmjs.org/run-sequence
+468 silly get cb [ 304,
+468 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+468 silly get     via: '1.1 varnish',
+468 silly get     'cache-control': 'max-age=60',
+468 silly get     etag: '"2ZLPFJX94ATTRNBLHIG7GLERY"',
+468 silly get     age: '30',
+468 silly get     connection: 'keep-alive',
+468 silly get     'x-served-by': 'cache-fra1239-FRA',
+468 silly get     'x-cache': 'HIT',
+468 silly get     'x-cache-hits': '1',
+468 silly get     'x-timer': 'S1448984423.820159,VS0,VE2',
+468 silly get     vary: 'Accept' } ]
+469 verbose etag https://registry.npmjs.org/run-sequence from cache
+470 verbose get saving run-sequence to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\run-sequence\.cache.json
+471 http 304 https://registry.npmjs.org/vinyl-transform
+472 silly get cb [ 304,
+472 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+472 silly get     via: '1.1 varnish',
+472 silly get     'cache-control': 'max-age=60',
+472 silly get     etag: '"124MPRTXBHQQMY4NMZ0BNPAM"',
+472 silly get     age: '6',
+472 silly get     connection: 'keep-alive',
+472 silly get     'x-served-by': 'cache-fra1228-FRA',
+472 silly get     'x-cache': 'HIT',
+472 silly get     'x-cache-hits': '1',
+472 silly get     'x-timer': 'S1448984423.880135,VS0,VE0',
+472 silly get     vary: 'Accept' } ]
+473 verbose etag https://registry.npmjs.org/vinyl-transform from cache
+474 verbose get saving vinyl-transform to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\vinyl-transform\.cache.json
+475 http 304 https://registry.npmjs.org/gulp-util
+476 silly get cb [ 304,
+476 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+476 silly get     via: '1.1 varnish',
+476 silly get     'cache-control': 'max-age=60',
+476 silly get     etag: '"8D9X7OWRJ54KNOS7CNX9LM3CH"',
+476 silly get     age: '21',
+476 silly get     connection: 'keep-alive',
+476 silly get     'x-served-by': 'cache-fra1246-FRA',
+476 silly get     'x-cache': 'HIT',
+476 silly get     'x-cache-hits': '1',
+476 silly get     'x-timer': 'S1448984423.880310,VS0,VE1',
+476 silly get     vary: 'Accept' } ]
+477 verbose etag https://registry.npmjs.org/gulp-util from cache
+478 verbose get saving gulp-util to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-util\.cache.json
+479 http 304 https://registry.npmjs.org/through2
+480 silly get cb [ 304,
+480 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+480 silly get     via: '1.1 varnish',
+480 silly get     'cache-control': 'max-age=60',
+480 silly get     etag: '"29QD4EZ5M4DS3KA95MWTG42XX"',
+480 silly get     age: '18',
+480 silly get     connection: 'keep-alive',
+480 silly get     'x-served-by': 'cache-fra1243-FRA',
+480 silly get     'x-cache': 'HIT',
+480 silly get     'x-cache-hits': '1',
+480 silly get     'x-timer': 'S1448984423.887456,VS0,VE0',
+480 silly get     vary: 'Accept' } ]
+481 verbose etag https://registry.npmjs.org/through2 from cache
+482 verbose get saving through2 to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\through2\.cache.json
+483 http 304 https://registry.npmjs.org/gulp-concat
+484 silly get cb [ 304,
+484 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+484 silly get     via: '1.1 varnish',
+484 silly get     'cache-control': 'max-age=60',
+484 silly get     etag: '"998EZW2EPK3IKP3AKBMZC5YJ8"',
+484 silly get     age: '59',
+484 silly get     connection: 'keep-alive',
+484 silly get     'x-served-by': 'cache-fra1242-FRA',
+484 silly get     'x-cache': 'HIT',
+484 silly get     'x-cache-hits': '1',
+484 silly get     'x-timer': 'S1448984423.888145,VS0,VE2',
+484 silly get     vary: 'Accept' } ]
+485 verbose etag https://registry.npmjs.org/gulp-concat from cache
+486 verbose get saving gulp-concat to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-concat\.cache.json
+487 http 304 https://registry.npmjs.org/gulp-useref
+488 silly get cb [ 304,
+488 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+488 silly get     via: '1.1 varnish',
+488 silly get     'cache-control': 'max-age=60',
+488 silly get     etag: '"CP9XUXPBKZNISNL5E2AZQ1F1I"',
+488 silly get     age: '0',
+488 silly get     connection: 'keep-alive',
+488 silly get     'x-served-by': 'cache-fra1228-FRA',
+488 silly get     'x-cache': 'HIT',
+488 silly get     'x-cache-hits': '1',
+488 silly get     'x-timer': 'S1448984423.913737,VS0,VE0',
+488 silly get     vary: 'Accept' } ]
+489 verbose etag https://registry.npmjs.org/gulp-useref from cache
+490 verbose get saving gulp-useref to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-useref\.cache.json
+491 http 304 https://registry.npmjs.org/gulp-strip-debug
+492 silly get cb [ 304,
+492 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+492 silly get     via: '1.1 varnish',
+492 silly get     'cache-control': 'max-age=60',
+492 silly get     etag: '"S4K0E2G00KXOTBOPBSWR4PWD"',
+492 silly get     age: '31',
+492 silly get     connection: 'keep-alive',
+492 silly get     'x-served-by': 'cache-fra1221-FRA',
+492 silly get     'x-cache': 'HIT',
+492 silly get     'x-cache-hits': '1',
+492 silly get     'x-timer': 'S1448984423.921701,VS0,VE0',
+492 silly get     vary: 'Accept' } ]
+493 verbose etag https://registry.npmjs.org/gulp-strip-debug from cache
+494 verbose get saving gulp-strip-debug to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-strip-debug\.cache.json
+495 http 304 https://registry.npmjs.org/del
+496 silly get cb [ 304,
+496 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+496 silly get     via: '1.1 varnish',
+496 silly get     'cache-control': 'max-age=60',
+496 silly get     etag: '"AI36JUW2I1OCVQYVG6U1YYXZO"',
+496 silly get     age: '37',
+496 silly get     connection: 'keep-alive',
+496 silly get     'x-served-by': 'cache-fra1241-FRA',
+496 silly get     'x-cache': 'HIT',
+496 silly get     'x-cache-hits': '2',
+496 silly get     'x-timer': 'S1448984423.929734,VS0,VE0',
+496 silly get     vary: 'Accept' } ]
+497 verbose etag https://registry.npmjs.org/del from cache
+498 verbose get saving del to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\del\.cache.json
+499 http 304 https://registry.npmjs.org/gulp-debug
+500 silly get cb [ 304,
+500 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+500 silly get     via: '1.1 varnish',
+500 silly get     'cache-control': 'max-age=60',
+500 silly get     etag: '"BFQAALVKO34DY50LPF8UY2KH1"',
+500 silly get     age: '43',
+500 silly get     connection: 'keep-alive',
+500 silly get     'x-served-by': 'cache-fra1232-FRA',
+500 silly get     'x-cache': 'HIT',
+500 silly get     'x-cache-hits': '1',
+500 silly get     'x-timer': 'S1448984423.929556,VS0,VE0',
+500 silly get     vary: 'Accept' } ]
+501 verbose etag https://registry.npmjs.org/gulp-debug from cache
+502 verbose get saving gulp-debug to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-debug\.cache.json
+503 http 304 https://registry.npmjs.org/gulp-size
+504 silly get cb [ 304,
+504 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+504 silly get     via: '1.1 varnish',
+504 silly get     'cache-control': 'max-age=60',
+504 silly get     etag: '"9BVQDF9HRSHVHFUKNLXE2YCMM"',
+504 silly get     age: '0',
+504 silly get     connection: 'keep-alive',
+504 silly get     'x-served-by': 'cache-fra1226-FRA',
+504 silly get     'x-cache': 'HIT',
+504 silly get     'x-cache-hits': '1',
+504 silly get     'x-timer': 'S1448984423.880063,VS0,VE62',
+504 silly get     vary: 'Accept' } ]
+505 verbose etag https://registry.npmjs.org/gulp-size from cache
+506 verbose get saving gulp-size to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-size\.cache.json
+507 http 304 https://registry.npmjs.org/merge-stream
+508 silly get cb [ 304,
+508 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+508 silly get     via: '1.1 varnish',
+508 silly get     'cache-control': 'max-age=60',
+508 silly get     etag: '"AY4470FZCI1OJZECZU8SMQ2R"',
+508 silly get     age: '40',
+508 silly get     connection: 'keep-alive',
+508 silly get     'x-served-by': 'cache-fra1222-FRA',
+508 silly get     'x-cache': 'HIT',
+508 silly get     'x-cache-hits': '1',
+508 silly get     'x-timer': 'S1448984423.946197,VS0,VE1',
+508 silly get     vary: 'Accept' } ]
+509 verbose etag https://registry.npmjs.org/merge-stream from cache
+510 verbose get saving merge-stream to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\merge-stream\.cache.json
+511 silly addNameRange number 2 { name: 'glob', range: '>=5.0.10 <6.0.0', hasData: true }
+512 silly addNameRange versions [ 'glob',
+512 silly addNameRange   [ '1.1.0',
+512 silly addNameRange     '2.0.9',
+512 silly addNameRange     '2.0.8',
+512 silly addNameRange     '2.0.7',
+512 silly addNameRange     '2.1.0',
+512 silly addNameRange     '3.0.0',
+512 silly addNameRange     '3.0.1',
+512 silly addNameRange     '3.1.0',
+512 silly addNameRange     '3.1.1',
+512 silly addNameRange     '3.1.2',
+512 silly addNameRange     '3.1.3',
+512 silly addNameRange     '3.1.4',
+512 silly addNameRange     '3.1.5',
+512 silly addNameRange     '3.1.6',
+512 silly addNameRange     '3.1.7',
+512 silly addNameRange     '3.1.9',
+512 silly addNameRange     '3.1.10',
+512 silly addNameRange     '3.1.11',
+512 silly addNameRange     '3.1.12',
+512 silly addNameRange     '3.1.13',
+512 silly addNameRange     '3.1.14',
+512 silly addNameRange     '3.1.15',
+512 silly addNameRange     '3.1.16',
+512 silly addNameRange     '3.1.17',
+512 silly addNameRange     '3.1.18',
+512 silly addNameRange     '3.1.19',
+512 silly addNameRange     '3.1.20',
+512 silly addNameRange     '3.1.21',
+512 silly addNameRange     '3.2.0',
+512 silly addNameRange     '3.2.1',
+512 silly addNameRange     '3.2.3',
+512 silly addNameRange     '3.2.4',
+512 silly addNameRange     '3.2.5',
+512 silly addNameRange     '3.2.6',
+512 silly addNameRange     '3.2.7',
+512 silly addNameRange     '3.2.8',
+512 silly addNameRange     '3.2.9',
+512 silly addNameRange     '3.2.10',
+512 silly addNameRange     '3.2.11',
+512 silly addNameRange     '4.0.0',
+512 silly addNameRange     '4.0.1',
+512 silly addNameRange     '4.0.2',
+512 silly addNameRange     '4.0.3',
+512 silly addNameRange     '4.0.4',
+512 silly addNameRange     '4.0.5',
+512 silly addNameRange     '4.0.6',
+512 silly addNameRange     '4.1.2-beta',
+512 silly addNameRange     '4.1.2',
+512 silly addNameRange     '4.1.3',
+512 silly addNameRange     '4.1.4',
+512 silly addNameRange     '4.1.5',
+512 silly addNameRange     '4.1.6',
+512 silly addNameRange     '4.2.0',
+512 silly addNameRange     '4.2.1',
+512 silly addNameRange     '4.2.2',
+512 silly addNameRange     '4.3.0',
+512 silly addNameRange     '4.3.1',
+512 silly addNameRange     '4.3.2',
+512 silly addNameRange     '4.3.3',
+512 silly addNameRange     '4.3.4',
+512 silly addNameRange     '4.3.5',
+512 silly addNameRange     '4.4.0',
+512 silly addNameRange     '4.4.2',
+512 silly addNameRange     '4.5.0',
+512 silly addNameRange     '5.0.0',
+512 silly addNameRange     '4.5.1',
+512 silly addNameRange     '5.0.1',
+512 silly addNameRange     '4.5.2',
+512 silly addNameRange     '5.0.2',
+512 silly addNameRange     '4.5.3',
+512 silly addNameRange     '5.0.3',
+512 silly addNameRange     '5.0.4',
+512 silly addNameRange     '5.0.5',
+512 silly addNameRange     '5.0.6',
+512 silly addNameRange     '5.0.7',
+512 silly addNameRange     '5.0.9',
+512 silly addNameRange     '5.0.10',
+512 silly addNameRange     '5.0.11',
+512 silly addNameRange     '5.0.12',
+512 silly addNameRange     '5.0.13',
+512 silly addNameRange     '5.0.14',
+512 silly addNameRange     '5.0.15',
+512 silly addNameRange     '6.0.1' ] ]
+513 silly addNamed glob@5.0.15
+514 verbose addNamed "5.0.15" is a plain semver version for glob
+515 silly addNameRange number 2 { name: 'gulp-uglify', range: '>=1.2.0 <2.0.0', hasData: true }
+516 silly addNameRange versions [ 'gulp-uglify',
+516 silly addNameRange   [ '0.0.1',
+516 silly addNameRange     '0.0.3',
+516 silly addNameRange     '0.0.4',
+516 silly addNameRange     '0.1.0',
+516 silly addNameRange     '0.2.0',
+516 silly addNameRange     '0.2.1',
+516 silly addNameRange     '0.3.0',
+516 silly addNameRange     '0.3.1',
+516 silly addNameRange     '0.3.2',
+516 silly addNameRange     '1.0.0-0',
+516 silly addNameRange     '1.0.0',
+516 silly addNameRange     '1.0.1',
+516 silly addNameRange     '1.0.2',
+516 silly addNameRange     '1.1.0',
+516 silly addNameRange     '1.2.0',
+516 silly addNameRange     '1.3.0',
+516 silly addNameRange     '1.4.0',
+516 silly addNameRange     '1.4.1',
+516 silly addNameRange     '1.4.2',
+516 silly addNameRange     '1.5.1' ] ]
+517 silly addNamed gulp-uglify@1.5.1
+518 verbose addNamed "1.5.1" is a plain semver version for gulp-uglify
+519 silly addNameRange number 2 { name: 'gulp-rename', range: '>=1.2.2 <2.0.0', hasData: true }
+520 silly addNameRange versions [ 'gulp-rename',
+520 silly addNameRange   [ '0.1.0', '0.2.1', '0.2.2', '1.0.0', '1.1.0', '1.2.0', '1.2.2' ] ]
+521 silly addNamed gulp-rename@1.2.2
+522 verbose addNamed "1.2.2" is a plain semver version for gulp-rename
+523 silly addNameRange number 2 { name: 'vinyl-transform',
+523 silly addNameRange   range: '>=1.0.0 <2.0.0',
+523 silly addNameRange   hasData: true }
+524 silly addNameRange versions [ 'vinyl-transform', [ '0.0.0', '0.0.1', '1.0.0' ] ]
+525 silly addNamed vinyl-transform@1.0.0
+526 verbose addNamed "1.0.0" is a plain semver version for vinyl-transform
+527 http 304 https://registry.npmjs.org/require-dir
+528 silly get cb [ 304,
+528 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+528 silly get     via: '1.1 varnish',
+528 silly get     'cache-control': 'max-age=60',
+528 silly get     etag: '"3MDNF3QGZAXFUPWB848L7GZ6T"',
+528 silly get     age: '58',
+528 silly get     connection: 'keep-alive',
+528 silly get     'x-served-by': 'cache-fra1227-FRA',
+528 silly get     'x-cache': 'HIT',
+528 silly get     'x-cache-hits': '2',
+528 silly get     'x-timer': 'S1448984423.962251,VS0,VE0',
+528 silly get     vary: 'Accept' } ]
+529 verbose etag https://registry.npmjs.org/require-dir from cache
+530 verbose get saving require-dir to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\require-dir\.cache.json
+531 silly addNameRange number 2 { name: 'gulp-load-plugins',
+531 silly addNameRange   range: '>=1.0.0-rc.1 <2.0.0',
+531 silly addNameRange   hasData: true }
+532 silly addNameRange versions [ 'gulp-load-plugins',
+532 silly addNameRange   [ '0.2.0',
+532 silly addNameRange     '0.3.0',
+532 silly addNameRange     '0.4.0',
+532 silly addNameRange     '0.5.0',
+532 silly addNameRange     '0.5.1',
+532 silly addNameRange     '0.6.0-beta',
+532 silly addNameRange     '0.5.2',
+532 silly addNameRange     '0.5.3',
+532 silly addNameRange     '0.6.0',
+532 silly addNameRange     '0.7.0',
+532 silly addNameRange     '0.7.1',
+532 silly addNameRange     '0.8.0',
+532 silly addNameRange     '0.8.1',
+532 silly addNameRange     '0.9.0',
+532 silly addNameRange     '0.10.0',
+532 silly addNameRange     '1.0.0-rc.1',
+532 silly addNameRange     '1.0.0',
+532 silly addNameRange     '1.1.0' ] ]
+533 silly addNamed gulp-load-plugins@1.1.0
+534 verbose addNamed "1.1.0" is a plain semver version for gulp-load-plugins
+535 silly addNameRange number 2 { name: 'gulp-sass', range: '>=2.0.1 <3.0.0', hasData: true }
+536 silly addNameRange versions [ 'gulp-sass',
+536 silly addNameRange   [ '0.1.0',
+536 silly addNameRange     '0.2.1',
+536 silly addNameRange     '0.2.2',
+536 silly addNameRange     '0.2.3',
+536 silly addNameRange     '0.3.0',
+536 silly addNameRange     '0.4.0',
+536 silly addNameRange     '0.4.1',
+536 silly addNameRange     '0.5.0',
+536 silly addNameRange     '0.5.1',
+536 silly addNameRange     '0.5.2',
+536 silly addNameRange     '0.6.0',
+536 silly addNameRange     '0.7.0',
+536 silly addNameRange     '0.7.1',
+536 silly addNameRange     '0.7.2',
+536 silly addNameRange     '0.7.3',
+536 silly addNameRange     '1.0.0',
+536 silly addNameRange     '1.1.0',
+536 silly addNameRange     '1.2.0',
+536 silly addNameRange     '1.2.1',
+536 silly addNameRange     '1.2.2',
+536 silly addNameRange     '1.2.3',
+536 silly addNameRange     '1.2.4',
+536 silly addNameRange     '1.3.0',
+536 silly addNameRange     '1.3.1',
+536 silly addNameRange     '1.3.2',
+536 silly addNameRange     '1.3.3',
+536 silly addNameRange     '2.0.0-alpha.1',
+536 silly addNameRange     '2.0.0',
+536 silly addNameRange     '2.0.2',
+536 silly addNameRange     '2.0.3',
+536 silly addNameRange     '2.0.4',
+536 silly addNameRange     '2.1.0-beta',
+536 silly addNameRange     '2.1.0' ] ]
+537 silly addNamed gulp-sass@2.1.0
+538 verbose addNamed "2.1.0" is a plain semver version for gulp-sass
+539 silly addNameRange number 2 { name: 'gulp-util', range: '>=3.0.5 <4.0.0', hasData: true }
+540 silly addNameRange versions [ 'gulp-util',
+540 silly addNameRange   [ '0.0.1',
+540 silly addNameRange     '1.0.0',
+540 silly addNameRange     '1.1.0',
+540 silly addNameRange     '1.1.1',
+540 silly addNameRange     '1.2.0',
+540 silly addNameRange     '1.3.0',
+540 silly addNameRange     '2.0.0',
+540 silly addNameRange     '2.1.1',
+540 silly addNameRange     '2.1.2',
+540 silly addNameRange     '2.1.3',
+540 silly addNameRange     '2.1.4',
+540 silly addNameRange     '2.2.0',
+540 silly addNameRange     '2.2.1',
+540 silly addNameRange     '2.2.2',
+540 silly addNameRange     '2.2.3',
+540 silly addNameRange     '2.2.5',
+540 silly addNameRange     '2.2.6',
+540 silly addNameRange     '2.2.7',
+540 silly addNameRange     '2.2.8',
+540 silly addNameRange     '2.2.9',
+540 silly addNameRange     '2.2.10',
+540 silly addNameRange     '2.2.11',
+540 silly addNameRange     '2.2.12',
+540 silly addNameRange     '2.2.13',
+540 silly addNameRange     '2.2.14',
+540 silly addNameRange     '2.2.15',
+540 silly addNameRange     '2.2.16',
+540 silly addNameRange     '2.2.17',
+540 silly addNameRange     '2.2.18',
+540 silly addNameRange     '2.2.19',
+540 silly addNameRange     '2.2.20',
+540 silly addNameRange     '3.0.0',
+540 silly addNameRange     '3.0.1',
+540 silly addNameRange     '3.0.2',
+540 silly addNameRange     '3.0.3',
+540 silly addNameRange     '3.0.4',
+540 silly addNameRange     '3.0.5',
+540 silly addNameRange     '3.0.6',
+540 silly addNameRange     '3.0.7' ] ]
+541 silly addNamed gulp-util@3.0.7
+542 verbose addNamed "3.0.7" is a plain semver version for gulp-util
+543 silly addNameRange number 2 { name: 'gulp-concat', range: '>=2.5.2 <3.0.0', hasData: true }
+544 silly addNameRange versions [ 'gulp-concat',
+544 silly addNameRange   [ '0.0.1',
+544 silly addNameRange     '1.0.0',
+544 silly addNameRange     '1.1.0',
+544 silly addNameRange     '2.0.0',
+544 silly addNameRange     '2.1.0',
+544 silly addNameRange     '2.1.1',
+544 silly addNameRange     '2.1.2',
+544 silly addNameRange     '2.1.3',
+544 silly addNameRange     '2.1.4',
+544 silly addNameRange     '2.1.5',
+544 silly addNameRange     '2.1.6',
+544 silly addNameRange     '2.1.7',
+544 silly addNameRange     '2.2.0',
+544 silly addNameRange     '2.3.0',
+544 silly addNameRange     '2.3.3',
+544 silly addNameRange     '2.3.4',
+544 silly addNameRange     '2.3.5',
+544 silly addNameRange     '2.4.0',
+544 silly addNameRange     '2.4.1',
+544 silly addNameRange     '2.4.2',
+544 silly addNameRange     '2.4.3',
+544 silly addNameRange     '2.5.0',
+544 silly addNameRange     '2.5.1',
+544 silly addNameRange     '2.5.2',
+544 silly addNameRange     '2.6.0' ] ]
+545 silly addNamed gulp-concat@2.6.0
+546 verbose addNamed "2.6.0" is a plain semver version for gulp-concat
+547 silly addNameRange number 2 { name: 'gulp-useref', range: '>=1.2.0 <2.0.0', hasData: true }
+548 silly addNameRange versions [ 'gulp-useref',
+548 silly addNameRange   [ '0.1.0',
+548 silly addNameRange     '0.1.1',
+548 silly addNameRange     '0.1.2',
+548 silly addNameRange     '0.2.0',
+548 silly addNameRange     '0.2.1',
+548 silly addNameRange     '0.2.2',
+548 silly addNameRange     '0.3.0',
+548 silly addNameRange     '0.3.1',
+548 silly addNameRange     '0.4.0',
+548 silly addNameRange     '0.4.1',
+548 silly addNameRange     '0.4.2',
+548 silly addNameRange     '0.4.3',
+548 silly addNameRange     '0.4.4',
+548 silly addNameRange     '0.4.5',
+548 silly addNameRange     '0.5.0',
+548 silly addNameRange     '0.6.0',
+548 silly addNameRange     '1.0.0',
+548 silly addNameRange     '1.0.1',
+548 silly addNameRange     '1.0.2',
+548 silly addNameRange     '1.1.0',
+548 silly addNameRange     '1.1.1',
+548 silly addNameRange     '1.1.2',
+548 silly addNameRange     '1.2.0',
+548 silly addNameRange     '1.3.0',
+548 silly addNameRange     '2.0.0',
+548 silly addNameRange     '2.0.1',
+548 silly addNameRange     '2.1.0',
+548 silly addNameRange     '3.0.0',
+548 silly addNameRange     '3.0.1',
+548 silly addNameRange     '3.0.2',
+548 silly addNameRange     '3.0.3' ] ]
+549 silly addNamed gulp-useref@1.3.0
+550 verbose addNamed "1.3.0" is a plain semver version for gulp-useref
+551 silly addNameRange number 2 { name: 'run-sequence', range: '>=1.1.0 <2.0.0', hasData: true }
+552 silly addNameRange versions [ 'run-sequence',
+552 silly addNameRange   [ '0.3.1',
+552 silly addNameRange     '0.3.2',
+552 silly addNameRange     '0.3.3',
+552 silly addNameRange     '0.3.4',
+552 silly addNameRange     '0.3.5',
+552 silly addNameRange     '0.3.6',
+552 silly addNameRange     '0.3.7',
+552 silly addNameRange     '1.0.0',
+552 silly addNameRange     '1.0.1',
+552 silly addNameRange     '1.0.2',
+552 silly addNameRange     '1.1.0',
+552 silly addNameRange     '1.1.1',
+552 silly addNameRange     '1.1.2',
+552 silly addNameRange     '1.1.3',
+552 silly addNameRange     '1.1.4',
+552 silly addNameRange     '1.1.5' ] ]
+553 silly addNamed run-sequence@1.1.5
+554 verbose addNamed "1.1.5" is a plain semver version for run-sequence
+555 http 304 https://registry.npmjs.org/browser-sync
+556 silly get cb [ 304,
+556 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+556 silly get     via: '1.1 varnish',
+556 silly get     'cache-control': 'max-age=60',
+556 silly get     etag: '"AGBHHBUMQMDRXXZ0376T7BNK5"',
+556 silly get     age: '17',
+556 silly get     connection: 'keep-alive',
+556 silly get     'x-served-by': 'cache-fra1223-FRA',
+556 silly get     'x-cache': 'HIT',
+556 silly get     'x-cache-hits': '1',
+556 silly get     'x-timer': 'S1448984423.966048,VS0,VE4',
+556 silly get     vary: 'Accept' } ]
+557 verbose etag https://registry.npmjs.org/browser-sync from cache
+558 verbose get saving browser-sync to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\browser-sync\.cache.json
+559 http 304 https://registry.npmjs.org/gulp-plumber
+560 silly get cb [ 304,
+560 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+560 silly get     via: '1.1 varnish',
+560 silly get     'cache-control': 'max-age=60',
+560 silly get     etag: '"5KUF5091HF0L0ZLBAOMVOZHWK"',
+560 silly get     age: '21',
+560 silly get     connection: 'keep-alive',
+560 silly get     'x-served-by': 'cache-fra1234-FRA',
+560 silly get     'x-cache': 'HIT',
+560 silly get     'x-cache-hits': '1',
+560 silly get     'x-timer': 'S1448984423.970422,VS0,VE0',
+560 silly get     vary: 'Accept' } ]
+561 verbose etag https://registry.npmjs.org/gulp-plumber from cache
+562 verbose get saving gulp-plumber to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-plumber\.cache.json
+563 silly addNameRange number 2 { name: 'through2', range: '>=0.6.5 <0.7.0', hasData: true }
+564 silly addNameRange versions [ 'through2',
+564 silly addNameRange   [ '0.0.0',
+564 silly addNameRange     '0.0.1',
+564 silly addNameRange     '0.0.2',
+564 silly addNameRange     '0.0.3',
+564 silly addNameRange     '0.0.4',
+564 silly addNameRange     '0.0.5',
+564 silly addNameRange     '0.1.0',
+564 silly addNameRange     '0.2.0',
+564 silly addNameRange     '0.2.1',
+564 silly addNameRange     '0.2.2',
+564 silly addNameRange     '0.2.3',
+564 silly addNameRange     '0.3.0',
+564 silly addNameRange     '0.4.0',
+564 silly addNameRange     '0.4.1',
+564 silly addNameRange     '1.0.0',
+564 silly addNameRange     '0.4.2',
+564 silly addNameRange     '0.5.0',
+564 silly addNameRange     '0.5.1',
+564 silly addNameRange     '0.6.0',
+564 silly addNameRange     '1.1.0',
+564 silly addNameRange     '0.6.1',
+564 silly addNameRange     '1.1.1',
+564 silly addNameRange     '0.6.2',
+564 silly addNameRange     '0.6.3',
+564 silly addNameRange     '0.6.4',
+564 silly addNameRange     '0.6.5',
+564 silly addNameRange     '2.0.0' ] ]
+565 silly addNamed through2@0.6.5
+566 verbose addNamed "0.6.5" is a plain semver version for through2
+567 silly addNameRange number 2 { name: 'gulp-strip-debug',
+567 silly addNameRange   range: '>=1.0.2 <2.0.0',
+567 silly addNameRange   hasData: true }
+568 silly addNameRange versions [ 'gulp-strip-debug',
+568 silly addNameRange   [ '0.1.0',
+568 silly addNameRange     '0.1.1',
+568 silly addNameRange     '0.2.0',
+568 silly addNameRange     '0.3.0',
+568 silly addNameRange     '0.3.1',
+568 silly addNameRange     '1.0.0',
+568 silly addNameRange     '1.0.1',
+568 silly addNameRange     '1.0.2',
+568 silly addNameRange     '1.1.0' ] ]
+569 silly addNamed gulp-strip-debug@1.1.0
+570 verbose addNamed "1.1.0" is a plain semver version for gulp-strip-debug
+571 silly addNameRange number 2 { name: 'del', range: '>=1.2.0 <2.0.0', hasData: true }
+572 silly addNameRange versions [ 'del',
+572 silly addNameRange   [ '0.1.0',
+572 silly addNameRange     '0.1.1',
+572 silly addNameRange     '0.1.2',
+572 silly addNameRange     '0.1.3',
+572 silly addNameRange     '1.0.0',
+572 silly addNameRange     '1.1.0',
+572 silly addNameRange     '1.1.1',
+572 silly addNameRange     '1.2.0',
+572 silly addNameRange     '1.2.1',
+572 silly addNameRange     '2.0.0',
+572 silly addNameRange     '2.0.1',
+572 silly addNameRange     '2.0.2',
+572 silly addNameRange     '2.1.0' ] ]
+573 silly addNamed del@1.2.1
+574 verbose addNamed "1.2.1" is a plain semver version for del
+575 silly addNameRange number 2 { name: 'gulp-debug', range: '>=2.0.1 <3.0.0', hasData: true }
+576 silly addNameRange versions [ 'gulp-debug',
+576 silly addNameRange   [ '0.1.0',
+576 silly addNameRange     '0.1.1',
+576 silly addNameRange     '0.1.2',
+576 silly addNameRange     '0.2.0',
+576 silly addNameRange     '0.3.0',
+576 silly addNameRange     '0.3.1',
+576 silly addNameRange     '1.0.0',
+576 silly addNameRange     '1.0.1',
+576 silly addNameRange     '2.0.0',
+576 silly addNameRange     '2.0.1',
+576 silly addNameRange     '2.1.0',
+576 silly addNameRange     '2.1.1',
+576 silly addNameRange     '2.1.2' ] ]
+577 silly addNamed gulp-debug@2.1.2
+578 verbose addNamed "2.1.2" is a plain semver version for gulp-debug
+579 silly addNameRange number 2 { name: 'gulp-size', range: '>=1.2.1 <2.0.0', hasData: true }
+580 silly addNameRange versions [ 'gulp-size',
+580 silly addNameRange   [ '0.1.0',
+580 silly addNameRange     '0.1.1',
+580 silly addNameRange     '0.1.2',
+580 silly addNameRange     '0.1.3',
+580 silly addNameRange     '0.2.0',
+580 silly addNameRange     '0.3.0',
+580 silly addNameRange     '0.3.1',
+580 silly addNameRange     '0.4.0',
+580 silly addNameRange     '0.4.1',
+580 silly addNameRange     '1.0.0',
+580 silly addNameRange     '1.1.0',
+580 silly addNameRange     '1.2.0',
+580 silly addNameRange     '1.2.1',
+580 silly addNameRange     '1.2.2',
+580 silly addNameRange     '1.2.3',
+580 silly addNameRange     '1.3.0',
+580 silly addNameRange     '2.0.0' ] ]
+581 silly addNamed gulp-size@1.3.0
+582 verbose addNamed "1.3.0" is a plain semver version for gulp-size
+583 silly cache afterAdd glob@5.0.15
+584 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\glob\5.0.15\package\package.json not in flight; writing
+585 silly cache afterAdd gulp-uglify@1.5.1
+586 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-uglify\1.5.1\package\package.json not in flight; writing
+587 silly cache afterAdd gulp-rename@1.2.2
+588 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-rename\1.2.2\package\package.json not in flight; writing
+589 silly cache afterAdd vinyl-transform@1.0.0
+590 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\vinyl-transform\1.0.0\package\package.json not in flight; writing
+591 silly cache afterAdd gulp-load-plugins@1.1.0
+592 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-load-plugins\1.1.0\package\package.json not in flight; writing
+593 silly cache afterAdd gulp-sass@2.1.0
+594 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-sass\2.1.0\package\package.json not in flight; writing
+595 silly cache afterAdd gulp-util@3.0.7
+596 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-util\3.0.7\package\package.json not in flight; writing
+597 silly cache afterAdd gulp-concat@2.6.0
+598 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-concat\2.6.0\package\package.json not in flight; writing
+599 silly cache afterAdd gulp-useref@1.3.0
+600 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-useref\1.3.0\package\package.json not in flight; writing
+601 silly addNameRange number 2 { name: 'merge-stream', range: '>=0.1.7 <0.2.0', hasData: true }
+602 silly addNameRange versions [ 'merge-stream',
+602 silly addNameRange   [ '0.0.0',
+602 silly addNameRange     '0.0.1',
+602 silly addNameRange     '0.1.1',
+602 silly addNameRange     '0.1.2',
+602 silly addNameRange     '0.1.3',
+602 silly addNameRange     '0.1.4',
+602 silly addNameRange     '0.1.5',
+602 silly addNameRange     '0.1.6',
+602 silly addNameRange     '0.1.7',
+602 silly addNameRange     '0.1.8',
+602 silly addNameRange     '1.0.0' ] ]
+603 silly addNamed merge-stream@0.1.8
+604 verbose addNamed "0.1.8" is a plain semver version for merge-stream
+605 http 304 https://registry.npmjs.org/gulp-cssmin
+606 silly get cb [ 304,
+606 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+606 silly get     via: '1.1 varnish',
+606 silly get     'cache-control': 'max-age=60',
+606 silly get     etag: '"1H36J0BOKBKRZEE9YCHYWVH0F"',
+606 silly get     age: '0',
+606 silly get     connection: 'keep-alive',
+606 silly get     'x-served-by': 'cache-fra1244-FRA',
+606 silly get     'x-cache': 'HIT',
+606 silly get     'x-cache-hits': '1',
+606 silly get     'x-timer': 'S1448984423.819091,VS0,VE198',
+606 silly get     vary: 'Accept' } ]
+607 verbose etag https://registry.npmjs.org/gulp-cssmin from cache
+608 verbose get saving gulp-cssmin to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-cssmin\.cache.json
+609 silly cache afterAdd run-sequence@1.1.5
+610 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\run-sequence\1.1.5\package\package.json not in flight; writing
+611 http 304 https://registry.npmjs.org/gulp-minify-html
+612 silly get cb [ 304,
+612 silly get   { date: 'Tue, 01 Dec 2015 15:40:24 GMT',
+612 silly get     via: '1.1 varnish',
+612 silly get     'cache-control': 'max-age=60',
+612 silly get     etag: '"5LLQCHAGGW83KKLP3BTQR72BS"',
+612 silly get     age: '21',
+612 silly get     connection: 'keep-alive',
+612 silly get     'x-served-by': 'cache-fra1224-FRA',
+612 silly get     'x-cache': 'HIT',
+612 silly get     'x-cache-hits': '1',
+612 silly get     'x-timer': 'S1448984424.015980,VS0,VE0',
+612 silly get     vary: 'Accept' } ]
+613 verbose etag https://registry.npmjs.org/gulp-minify-html from cache
+614 verbose get saving gulp-minify-html to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-minify-html\.cache.json
+615 silly addNameRange number 2 { name: 'require-dir', range: '>=0.3.0 <0.4.0', hasData: true }
+616 silly addNameRange versions [ 'require-dir', [ '0.1.0', '0.2.0', '0.3.0' ] ]
+617 silly addNamed require-dir@0.3.0
+618 verbose addNamed "0.3.0" is a plain semver version for require-dir
+619 silly cache afterAdd through2@0.6.5
+620 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\through2\0.6.5\package\package.json not in flight; writing
+621 silly cache afterAdd gulp-strip-debug@1.1.0
+622 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-strip-debug\1.1.0\package\package.json not in flight; writing
+623 silly addNameRange number 2 { name: 'browser-sync', range: '>=2.7.6 <3.0.0', hasData: true }
+624 silly addNameRange versions [ 'browser-sync',
+624 silly addNameRange   [ '0.1.0',
+624 silly addNameRange     '0.1.1',
+624 silly addNameRange     '0.1.3',
+624 silly addNameRange     '0.1.5',
+624 silly addNameRange     '0.1.6',
+624 silly addNameRange     '0.1.7',
+624 silly addNameRange     '0.1.8',
+624 silly addNameRange     '0.1.9',
+624 silly addNameRange     '0.1.10',
+624 silly addNameRange     '0.2.0',
+624 silly addNameRange     '0.2.1',
+624 silly addNameRange     '0.3.0',
+624 silly addNameRange     '0.3.1',
+624 silly addNameRange     '0.3.2',
+624 silly addNameRange     '0.3.3',
+624 silly addNameRange     '0.3.4',
+624 silly addNameRange     '0.3.5',
+624 silly addNameRange     '0.3.6',
+624 silly addNameRange     '0.3.7',
+624 silly addNameRange     '0.3.8',
+624 silly addNameRange     '0.3.10',
+624 silly addNameRange     '0.4.0',
+624 silly addNameRange     '0.4.1',
+624 silly addNameRange     '0.4.2',
+624 silly addNameRange     '0.4.21',
+624 silly addNameRange     '0.4.3',
+624 silly addNameRange     '0.4.4',
+624 silly addNameRange     '0.4.5',
+624 silly addNameRange     '0.4.6',
+624 silly addNameRange     '0.4.7',
+624 silly addNameRange     '0.4.8',
+624 silly addNameRange     '0.4.9',
+624 silly addNameRange     '0.4.10',
+624 silly addNameRange     '0.4.11',
+624 silly addNameRange     '0.4.12',
+624 silly addNameRange     '0.5.0',
+624 silly addNameRange     '0.5.1',
+624 silly addNameRange     '0.5.2',
+624 silly addNameRange     '0.5.3',
+624 silly addNameRange     '0.5.4',
+624 silly addNameRange     '0.5.5',
+624 silly addNameRange     '0.5.6',
+624 silly addNameRange     '0.5.7',
+624 silly addNameRange     '0.5.8',
+624 silly addNameRange     '0.5.9',
+624 silly addNameRange     '0.6.0',
+624 silly addNameRange     '0.6.1',
+624 silly addNameRange     '0.6.2',
+624 silly addNameRange     '0.7.0',
+624 silly addNameRange     '0.7.1',
+624 silly addNameRange     '0.7.2',
+624 silly addNameRange     '0.7.3',
+624 silly addNameRange     '0.7.4',
+624 silly addNameRange     '0.7.5',
+624 silly addNameRange     '0.7.7',
+624 silly addNameRange     '0.8.0',
+624 silly addNameRange     '0.8.1',
+624 silly addNameRange     '0.8.2',
+624 silly addNameRange     '0.9.0',
+624 silly addNameRange     '0.9.1',
+624 silly addNameRange     '1.0.0',
+624 silly addNameRange     '1.1.0',
+624 silly addNameRange     '1.1.1',
+624 silly addNameRange     '1.1.2',
+624 silly addNameRange     '1.2.0',
+624 silly addNameRange     '1.2.1',
+624 silly addNameRange     '1.3.0',
+624 silly addNameRange     '1.3.2',
+624 silly addNameRange     '1.3.3',
+624 silly addNameRange     '1.3.4',
+624 silly addNameRange     '1.3.5',
+624 silly addNameRange     '1.3.6',
+624 silly addNameRange     '1.3.7',
+624 silly addNameRange     '1.5.0',
+624 silly addNameRange     '1.5.1',
+624 silly addNameRange     '1.5.2',
+624 silly addNameRange     '1.5.3',
+624 silly addNameRange     '1.5.4',
+624 silly addNameRange     '1.5.5',
+624 silly addNameRange     '1.5.6',
+624 silly addNameRange     '1.5.7',
+624 silly addNameRange     '1.5.8',
+624 silly addNameRange     '1.5.9',
+624 silly addNameRange     '1.6.0',
+624 silly addNameRange     '1.6.1',
+624 silly addNameRange     '1.6.2',
+624 silly addNameRange     '1.6.3',
+624 silly addNameRange     '1.6.4',
+624 silly addNameRange     '1.6.5',
+624 silly addNameRange     '1.7.0',
+624 silly addNameRange     '1.7.1',
+624 silly addNameRange     '1.7.2',
+624 silly addNameRange     '1.7.3',
+624 silly addNameRange     '1.8.0',
+624 silly addNameRange     '1.8.1',
+624 silly addNameRange     '1.8.2',
+624 silly addNameRange     '1.8.3',
+624 silly addNameRange     '1.9.0',
+624 silly addNameRange     '1.9.1',
+624 silly addNameRange     '2.0.0-rc1',
+624 silly addNameRange     '2.0.0-rc2',
+624 silly addNameRange     '2.0.0-rc3',
+624 silly addNameRange     '2.0.0-rc4',
+624 silly addNameRange     '2.0.0-rc5',
+624 silly addNameRange     '2.0.0-rc6',
+624 silly addNameRange     '2.0.0-rc7',
+624 silly addNameRange     '2.0.0-rc8',
+624 silly addNameRange     '2.0.0-rc9',
+624 silly addNameRange     '2.0.0-rc10',
+624 silly addNameRange     '2.0.0',
+624 silly addNameRange     '2.0.1',
+624 silly addNameRange     '2.1.0',
+624 silly addNameRange     '2.1.1',
+624 silly addNameRange     '2.1.2',
+624 silly addNameRange     '2.1.3',
+624 silly addNameRange     '2.1.4',
+624 silly addNameRange     '2.1.6',
+624 silly addNameRange     '2.2.0',
+624 silly addNameRange     '2.2.1',
+624 silly addNameRange     '2.2.2',
+624 silly addNameRange     '2.2.3',
+624 silly addNameRange     '2.2.4',
+624 silly addNameRange     '2.2.5',
+624 silly addNameRange     '2.3.0',
+624 silly addNameRange     '2.3.1',
+624 silly addNameRange     '2.3.2',
+624 silly addNameRange     '2.4.0',
+624 silly addNameRange     '2.4.1',
+624 silly addNameRange     '2.5.0',
+624 silly addNameRange     '2.5.1',
+624 silly addNameRange     '2.5.2',
+624 silly addNameRange     '2.5.3',
+624 silly addNameRange     '2.6.0',
+624 silly addNameRange     '2.6.1',
+624 silly addNameRange     '2.6.2',
+624 silly addNameRange     '2.6.3',
+624 silly addNameRange     '2.6.4',
+624 silly addNameRange     '2.6.5',
+624 silly addNameRange     '2.6.6',
+624 silly addNameRange     '1.9.2',
+624 silly addNameRange     '2.6.7',
+624 silly addNameRange     '2.6.8',
+624 silly addNameRange     '2.6.9',
+624 silly addNameRange     '2.6.10',
+624 silly addNameRange     '2.6.11',
+624 silly addNameRange     '2.7.0',
+624 silly addNameRange     '2.7.1',
+624 silly addNameRange     '2.7.2',
+624 silly addNameRange     '2.7.3',
+624 silly addNameRange     '2.7.4',
+624 silly addNameRange     '2.7.5',
+624 silly addNameRange     '2.7.6',
+624 silly addNameRange     '2.7.7',
+624 silly addNameRange     '2.7.8',
+624 silly addNameRange     '2.7.9',
+624 silly addNameRange     '2.7.10',
+624 silly addNameRange     '2.7.11',
+624 silly addNameRange     '2.7.12',
+624 silly addNameRange     '2.7.13',
+624 silly addNameRange     '2.8.0',
+624 silly addNameRange     '2.8.1',
+624 silly addNameRange     '2.8.2',
+624 silly addNameRange     '2.8.3',
+624 silly addNameRange     '2.9.0',
+624 silly addNameRange     '2.9.1',
+624 silly addNameRange     '2.9.2',
+624 silly addNameRange     '2.9.3',
+624 silly addNameRange     '2.9.4',
+624 silly addNameRange     '2.9.5',
+624 silly addNameRange     '2.9.6',
+624 silly addNameRange     '2.9.7',
+624 silly addNameRange     '2.9.8',
+624 silly addNameRange     '2.9.9',
+624 silly addNameRange     '2.9.10',
+624 silly addNameRange     '2.9.11',
+624 silly addNameRange     '2.9.12',
+624 silly addNameRange     '2.10.0' ] ]
+625 silly addNamed browser-sync@2.10.0
+626 verbose addNamed "2.10.0" is a plain semver version for browser-sync
+627 silly cache afterAdd del@1.2.1
+628 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\del\1.2.1\package\package.json not in flight; writing
+629 silly cache afterAdd gulp-debug@2.1.2
+630 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-debug\2.1.2\package\package.json not in flight; writing
+631 http 304 https://registry.npmjs.org/gulp-shell
+632 silly get cb [ 304,
+632 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+632 silly get     via: '1.1 varnish',
+632 silly get     'cache-control': 'max-age=60',
+632 silly get     etag: '"A1CKOVE0L5J99497XTWS1SG66"',
+632 silly get     age: '0',
+632 silly get     connection: 'keep-alive',
+632 silly get     'x-served-by': 'cache-fra1243-FRA',
+632 silly get     'x-cache': 'HIT',
+632 silly get     'x-cache-hits': '1',
+632 silly get     'x-timer': 'S1448984423.879492,VS0,VE166',
+632 silly get     vary: 'Accept' } ]
+633 verbose etag https://registry.npmjs.org/gulp-shell from cache
+634 verbose get saving gulp-shell to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-shell\.cache.json
+635 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-uglify\1.5.1\package\package.json written
+636 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\glob\5.0.15\package\package.json written
+637 silly cache afterAdd gulp-size@1.3.0
+638 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-size\1.3.0\package\package.json not in flight; writing
+639 silly addNameRange number 2 { name: 'gulp-plumber', range: '>=1.0.1 <2.0.0', hasData: true }
+640 silly addNameRange versions [ 'gulp-plumber',
+640 silly addNameRange   [ '0.0.1',
+640 silly addNameRange     '0.1.0',
+640 silly addNameRange     '0.2.0',
+640 silly addNameRange     '0.2.1',
+640 silly addNameRange     '0.2.3',
+640 silly addNameRange     '0.3.0',
+640 silly addNameRange     '0.4.0',
+640 silly addNameRange     '0.4.1',
+640 silly addNameRange     '0.5.0-rc1',
+640 silly addNameRange     '0.5.0',
+640 silly addNameRange     '0.5.1',
+640 silly addNameRange     '0.5.2',
+640 silly addNameRange     '0.5.3',
+640 silly addNameRange     '0.5.4',
+640 silly addNameRange     '0.5.5',
+640 silly addNameRange     '0.5.6',
+640 silly addNameRange     '0.6.0',
+640 silly addNameRange     '0.6.1',
+640 silly addNameRange     '0.6.2',
+640 silly addNameRange     '0.6.3',
+640 silly addNameRange     '0.6.4',
+640 silly addNameRange     '0.6.5',
+640 silly addNameRange     '0.6.6',
+640 silly addNameRange     '1.0.0',
+640 silly addNameRange     '1.0.1' ] ]
+641 silly addNamed gulp-plumber@1.0.1
+642 verbose addNamed "1.0.1" is a plain semver version for gulp-plumber
+643 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\vinyl-transform\1.0.0\package\package.json written
+644 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-rename\1.2.2\package\package.json written
+645 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-load-plugins\1.1.0\package\package.json written
+646 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-concat\2.6.0\package\package.json written
+647 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-useref\1.3.0\package\package.json written
+648 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-util\3.0.7\package\package.json written
+649 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-sass\2.1.0\package\package.json written
+650 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\run-sequence\1.1.5\package\package.json written
+651 silly cache afterAdd merge-stream@0.1.8
+652 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\merge-stream\0.1.8\package\package.json not in flight; writing
+653 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-strip-debug\1.1.0\package\package.json written
+654 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\through2\0.6.5\package\package.json written
+655 silly cache afterAdd require-dir@0.3.0
+656 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\require-dir\0.3.0\package\package.json not in flight; writing
+657 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\del\1.2.1\package\package.json written
+658 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-debug\2.1.2\package\package.json written
+659 silly addNameRange number 2 { name: 'gulp-cssmin', range: '>=0.1.7 <0.2.0', hasData: true }
+660 silly addNameRange versions [ 'gulp-cssmin',
+660 silly addNameRange   [ '0.1.0',
+660 silly addNameRange     '0.1.1',
+660 silly addNameRange     '0.1.2',
+660 silly addNameRange     '0.1.3',
+660 silly addNameRange     '0.1.4',
+660 silly addNameRange     '0.1.5',
+660 silly addNameRange     '0.1.6',
+660 silly addNameRange     '0.1.7' ] ]
+661 silly addNamed gulp-cssmin@0.1.7
+662 verbose addNamed "0.1.7" is a plain semver version for gulp-cssmin
+663 silly cache afterAdd browser-sync@2.10.0
+664 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\browser-sync\2.10.0\package\package.json not in flight; writing
+665 silly cache afterAdd gulp-plumber@1.0.1
+666 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-plumber\1.0.1\package\package.json not in flight; writing
+667 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-size\1.3.0\package\package.json written
+668 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\merge-stream\0.1.8\package\package.json written
+669 silly addNameRange number 2 { name: 'gulp-minify-html',
+669 silly addNameRange   range: '>=1.0.3 <2.0.0',
+669 silly addNameRange   hasData: true }
+670 silly addNameRange versions [ 'gulp-minify-html',
+670 silly addNameRange   [ '0.0.1',
+670 silly addNameRange     '0.1.0',
+670 silly addNameRange     '0.1.1',
+670 silly addNameRange     '0.1.2',
+670 silly addNameRange     '0.1.3',
+670 silly addNameRange     '0.1.4',
+670 silly addNameRange     '0.1.5',
+670 silly addNameRange     '0.1.6',
+670 silly addNameRange     '0.1.7',
+670 silly addNameRange     '0.1.8',
+670 silly addNameRange     '1.0.0',
+670 silly addNameRange     '1.0.1',
+670 silly addNameRange     '1.0.2',
+670 silly addNameRange     '1.0.3',
+670 silly addNameRange     '1.0.4' ] ]
+671 silly addNamed gulp-minify-html@1.0.4
+672 verbose addNamed "1.0.4" is a plain semver version for gulp-minify-html
+673 silly addNameRange number 2 { name: 'gulp-shell', range: '>=0.4.2 <0.5.0', hasData: true }
+674 silly addNameRange versions [ 'gulp-shell',
+674 silly addNameRange   [ '0.1.0',
+674 silly addNameRange     '0.2.0',
+674 silly addNameRange     '0.2.1',
+674 silly addNameRange     '0.2.2',
+674 silly addNameRange     '0.2.3',
+674 silly addNameRange     '0.2.4',
+674 silly addNameRange     '0.2.5',
+674 silly addNameRange     '0.2.7',
+674 silly addNameRange     '0.2.8',
+674 silly addNameRange     '0.2.9',
+674 silly addNameRange     '0.2.10',
+674 silly addNameRange     '0.2.11',
+674 silly addNameRange     '0.3.0',
+674 silly addNameRange     '0.4.0',
+674 silly addNameRange     '0.4.1',
+674 silly addNameRange     '0.4.2',
+674 silly addNameRange     '0.4.3',
+674 silly addNameRange     '0.5.0',
+674 silly addNameRange     '0.5.1' ] ]
+675 silly addNamed gulp-shell@0.4.3
+676 verbose addNamed "0.4.3" is a plain semver version for gulp-shell
+677 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\require-dir\0.3.0\package\package.json written
+678 silly cache afterAdd gulp-cssmin@0.1.7
+679 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-cssmin\0.1.7\package\package.json not in flight; writing
+680 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-plumber\1.0.1\package\package.json written
+681 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\browser-sync\2.10.0\package\package.json written
+682 silly cache afterAdd gulp-minify-html@1.0.4
+683 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-minify-html\1.0.4\package\package.json not in flight; writing
+684 silly cache afterAdd gulp-shell@0.4.3
+685 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-shell\0.4.3\package\package.json not in flight; writing
+686 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-minify-html\1.0.4\package\package.json written
+687 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-cssmin\0.1.7\package\package.json written
+688 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-shell\0.4.3\package\package.json written
+689 http 304 https://registry.npmjs.org/gulp-babel
+690 silly get cb [ 304,
+690 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+690 silly get     via: '1.1 varnish',
+690 silly get     'cache-control': 'max-age=60',
+690 silly get     etag: '"FOJDDFY8CHU9ITIZ45BZIZMY"',
+690 silly get     age: '0',
+690 silly get     connection: 'keep-alive',
+690 silly get     'x-served-by': 'cache-fra1247-FRA',
+690 silly get     'x-cache': 'HIT',
+690 silly get     'x-cache-hits': '1',
+690 silly get     'x-timer': 'S1448984423.916191,VS0,VE187',
+690 silly get     vary: 'Accept' } ]
+691 verbose etag https://registry.npmjs.org/gulp-babel from cache
+692 verbose get saving gulp-babel to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-babel\.cache.json
+693 http 304 https://registry.npmjs.org/gulp-htmlhint
+694 silly get cb [ 304,
+694 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+694 silly get     via: '1.1 varnish',
+694 silly get     'cache-control': 'max-age=60',
+694 silly get     etag: '"CNKK3GZYHJLW5UHCR0HWM878Y"',
+694 silly get     age: '0',
+694 silly get     connection: 'keep-alive',
+694 silly get     'x-served-by': 'cache-fra1245-FRA',
+694 silly get     'x-cache': 'HIT',
+694 silly get     'x-cache-hits': '1',
+694 silly get     'x-timer': 'S1448984423.913635,VS0,VE190',
+694 silly get     vary: 'Accept' } ]
+695 verbose etag https://registry.npmjs.org/gulp-htmlhint from cache
+696 verbose get saving gulp-htmlhint to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-htmlhint\.cache.json
+697 silly addNameRange number 2 { name: 'gulp-htmlhint', range: '>=0.1.1 <0.2.0', hasData: true }
+698 silly addNameRange versions [ 'gulp-htmlhint',
+698 silly addNameRange   [ '0.0.2',
+698 silly addNameRange     '0.0.3',
+698 silly addNameRange     '0.0.4',
+698 silly addNameRange     '0.0.5',
+698 silly addNameRange     '0.0.6',
+698 silly addNameRange     '0.0.7',
+698 silly addNameRange     '0.0.8',
+698 silly addNameRange     '0.0.9',
+698 silly addNameRange     '0.1.0',
+698 silly addNameRange     '0.1.1',
+698 silly addNameRange     '0.2.0',
+698 silly addNameRange     '0.2.1',
+698 silly addNameRange     '0.3.0' ] ]
+699 silly addNamed gulp-htmlhint@0.1.1
+700 verbose addNamed "0.1.1" is a plain semver version for gulp-htmlhint
+701 silly addNameRange number 2 { name: 'gulp-babel', range: '>=5.1.0 <6.0.0', hasData: true }
+702 silly addNameRange versions [ 'gulp-babel',
+702 silly addNameRange   [ '4.0.0',
+702 silly addNameRange     '4.0.1',
+702 silly addNameRange     '5.0.0',
+702 silly addNameRange     '5.1.0',
+702 silly addNameRange     '5.2.0',
+702 silly addNameRange     '5.2.1',
+702 silly addNameRange     '5.3.0',
+702 silly addNameRange     '6.0.0',
+702 silly addNameRange     '6.1.0',
+702 silly addNameRange     '6.1.1' ] ]
+703 silly addNamed gulp-babel@5.3.0
+704 verbose addNamed "5.3.0" is a plain semver version for gulp-babel
+705 silly cache afterAdd gulp-htmlhint@0.1.1
+706 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-htmlhint\0.1.1\package\package.json not in flight; writing
+707 silly cache afterAdd gulp-babel@5.3.0
+708 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-babel\5.3.0\package\package.json not in flight; writing
+709 http 304 https://registry.npmjs.org/gulp-if
+710 silly get cb [ 304,
+710 silly get   { date: 'Tue, 01 Dec 2015 15:40:24 GMT',
+710 silly get     via: '1.1 varnish',
+710 silly get     'cache-control': 'max-age=60',
+710 silly get     etag: '"A1A8YLIDKHKOHTYI3G3OW3Z3R"',
+710 silly get     age: '25',
+710 silly get     connection: 'keep-alive',
+710 silly get     'x-served-by': 'cache-fra1235-FRA',
+710 silly get     'x-cache': 'HIT',
+710 silly get     'x-cache-hits': '2',
+710 silly get     'x-timer': 'S1448984424.052621,VS0,VE0',
+710 silly get     vary: 'Accept' } ]
+711 verbose etag https://registry.npmjs.org/gulp-if from cache
+712 verbose get saving gulp-if to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-if\.cache.json
+713 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-htmlhint\0.1.1\package\package.json written
+714 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-babel\5.3.0\package\package.json written
+715 silly addNameRange number 2 { name: 'gulp-if', range: '>=1.2.5 <2.0.0', hasData: true }
+716 silly addNameRange versions [ 'gulp-if',
+716 silly addNameRange   [ '0.0.3',
+716 silly addNameRange     '0.0.4',
+716 silly addNameRange     '0.0.5',
+716 silly addNameRange     '1.0.0',
+716 silly addNameRange     '1.1.0',
+716 silly addNameRange     '1.2.0',
+716 silly addNameRange     '1.2.1',
+716 silly addNameRange     '1.2.2',
+716 silly addNameRange     '1.2.3',
+716 silly addNameRange     '1.2.4',
+716 silly addNameRange     '1.2.5',
+716 silly addNameRange     '2.0.0' ] ]
+717 silly addNamed gulp-if@1.2.5
+718 verbose addNamed "1.2.5" is a plain semver version for gulp-if
+719 silly cache afterAdd gulp-if@1.2.5
+720 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-if\1.2.5\package\package.json not in flight; writing
+721 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-if\1.2.5\package\package.json written
+722 http 304 https://registry.npmjs.org/gulp-cordova
+723 silly get cb [ 304,
+723 silly get   { date: 'Tue, 01 Dec 2015 15:40:23 GMT',
+723 silly get     via: '1.1 varnish',
+723 silly get     'cache-control': 'max-age=60',
+723 silly get     etag: '"BU5AI8LYHG2AXOIVLQIFET30O"',
+723 silly get     age: '0',
+723 silly get     connection: 'keep-alive',
+723 silly get     'x-served-by': 'cache-fra1238-FRA',
+723 silly get     'x-cache': 'MISS',
+723 silly get     'x-cache-hits': '0',
+723 silly get     'x-timer': 'S1448984423.953845,VS0,VE722',
+723 silly get     vary: 'Accept' } ]
+724 verbose etag https://registry.npmjs.org/gulp-cordova from cache
+725 verbose get saving gulp-cordova to C:\Users\skoot\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-cordova\.cache.json
+726 silly addNameRange number 2 { name: 'gulp-cordova', range: '>=0.1.2 <0.2.0', hasData: true }
+727 silly addNameRange versions [ 'gulp-cordova',
+727 silly addNameRange   [ '0.1.0', '0.1.1', '0.1.2', '1.0.0', '1.1.0' ] ]
+728 silly addNamed gulp-cordova@0.1.2
+729 verbose addNamed "0.1.2" is a plain semver version for gulp-cordova
+730 silly cache afterAdd gulp-cordova@0.1.2
+731 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-cordova\0.1.2\package\package.json not in flight; writing
+732 verbose afterAdd C:\Users\skoot\AppData\Roaming\npm-cache\gulp-cordova\0.1.2\package\package.json written
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5: Cloning into bare repository 'C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5'...
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5: Warning: Permanently added the RSA host key for IP address '192.30.252.129' to the list of known hosts.
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5: Permission denied (publickey).
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5: fatal: Could not read from remote repository.
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5:
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5: Please make sure you have the correct access rights
+733 error git clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5: and the repository exists.
+734 verbose stack Error: Command failed: git -c core.longpaths=true clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5
+734 verbose stack Cloning into bare repository 'C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5'...
+734 verbose stack Warning: Permanently added the RSA host key for IP address '192.30.252.129' to the list of known hosts.
+734 verbose stack Permission denied (publickey).
+734 verbose stack fatal: Could not read from remote repository.
+734 verbose stack
+734 verbose stack Please make sure you have the correct access rights
+734 verbose stack and the repository exists.
+734 verbose stack
+734 verbose stack     at ChildProcess.exithandler (child_process.js:203:12)
+734 verbose stack     at emitTwo (events.js:87:13)
+734 verbose stack     at ChildProcess.emit (events.js:172:7)
+734 verbose stack     at maybeClose (internal/child_process.js:817:16)
+734 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+735 verbose cwd C:\Users\skoot\Documents\Projects\tunepal-web
+736 error Windows_NT 10.0.10240
+737 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i"
+738 error node v4.1.1
+739 error npm  v2.14.4
+740 error code 128
+741 error Command failed: git -c core.longpaths=true clone --template=C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/chrisxue815/gulp-es6-module-transpiler.git C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5
+741 error Cloning into bare repository 'C:\Users\skoot\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-chrisxue815-gulp-es6-module-transpiler-git-2b5f5ca5'...
+741 error Warning: Permanently added the RSA host key for IP address '192.30.252.129' to the list of known hosts.
+741 error Permission denied (publickey).
+741 error fatal: Could not read from remote repository.
+741 error
+741 error Please make sure you have the correct access rights
+741 error and the repository exists.
+742 error If you need help, you may report this error at:
+742 error     <https://github.com/npm/npm/issues>
+743 verbose exit [ 1, true ]
