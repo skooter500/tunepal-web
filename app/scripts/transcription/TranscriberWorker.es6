@@ -3,6 +3,7 @@ import Utils from '../utils/Utils.es6lib';
 const ScriptPaths = [
   '/lib/dsp.js/dsp.js',
   '/lib/babel/browser-polyfill.js',
+  '/lib/abc2midi/abc2midi.js',
 ];
 
 export default class TranscriberWorker {
@@ -43,7 +44,7 @@ export default class TranscriberWorker {
         
         console.log("PYin transcribe");
 		//let transcription = this._transcriber.transcribe(signal, midi);
-        let transcription = transcribe(
+        let transcription = transcribePyin(
 				signal
 				,this._transcriber.outputSampleRate
 				,this._transcriber.sampleTime				
