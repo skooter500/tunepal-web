@@ -16,8 +16,8 @@ class _Config {
     this.CountdownTime = Utils.makeArray(0, 10);
     this.PlaybackSpeed = Utils.makeArray(1, 10);
     this.Transpose = Utils.makeArray(-12, 12);
-    this.ApiDomain = 'https://tunepal-test.cloudapp.net/tunepal2';
-    this.EuropeanaApiDomain = 'https://www.europeana.eu/api/v2';
+    this.ApiDomain = 'https://tunepal.org/tunepal2';
+    this.EuropeanaApiDomain = 'https://tunepal.org/europeana';
     this.EuropeanaPortalDomain = 'http://www.europeana.eu/portal/search.html';
     this.EuropeanaApiKey = 'QNbCgzoWb';
 
