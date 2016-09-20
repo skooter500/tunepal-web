@@ -7,7 +7,7 @@ var swallowError = require('./swallow-error');
 
 // Build ECMAScript 6
 gulp.task('es6', function () {
-  return gulp.src(['app/{scripts,tests}/**/*.es6'])
+  return gulp.src(['app/scripts/pages/record/Recorder.es6lib', 'app/scripts/Config.es6lib'])
     .pipe($.plumber({
       errorHandler: swallowError
     }))
