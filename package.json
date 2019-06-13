@@ -40,6 +40,6 @@
     "vinyl-transform": "^1.0.0"
   },
   "scripts": {
-    "start": "git submodule update --init && npm i -g bower cordova gulp ripple-emulator && npm i && bower i"
+    "start": "git submodule update --init && npm i -g bower cordova gulp@3 ripple-emulator && npm i && bower i"
   }
 }

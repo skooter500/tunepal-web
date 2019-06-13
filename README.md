@@ -7,7 +7,7 @@ Node.js 0.12.0+, used to run JavaScript build tools.
 
 Run the following line in the root directory of this project:
 
-`git submodule update --init && npm i -g bower cordova gulp ripple-emulator && npm i && bower i`
+`git submodule update --init && npm i -g bower cordova gulp@3 ripple-emulator && npm i && bower i`
 
 ## Build and run local server in debug mode
 
