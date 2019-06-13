@@ -4,11 +4,11 @@ import Utils from '../utils/Utils.es6lib';
 
 class _EuropeanaApi {
   constructor() {
-    const providers = [
+    this._providers = [
       'Comhaltas Traditional Music Archive',
       'Irish Traditional Music Archive',
     ];
-    this._qfProvider = this._getProviders(providers);
+    this._qfProvider = this._getProviders(this._providers);
   }
 
   // search tune and return the raw results
@@ -33,7 +33,7 @@ class _EuropeanaApi {
       const apiDomain = Config.EuropeanaApiDomain;
       const apiKey = Config.EuropeanaApiKey;
 
-      const url = `${apiDomain}/record/${europeanaId}.json?wskey=${apiKey}`;
+      const url = `${apiDomain}/record${europeanaId}.json?wskey=${apiKey}`;
 
       $http.get(url)
       .success(rawResult => resolve(rawResult));
@@ -43,10 +43,10 @@ class _EuropeanaApi {
   getPortalUrl(tune) {
     const domain = Config.EuropeanaPortalDomain;
     const query = this._getQuery(tune.title, tune.altTitle);
-    const qfSound = encodeURIComponent('TYPE:SOUND');
-    const qfProviders = this._qfProvider;
+    const qfSound = `${encodeURIComponent('f[TYPE][]')}=SOUND`;
+    const qfProvider = this._providers.map(provider => `&${encodeURIComponent('f[DATA_PROVIDER][]')}=${encodeURIComponent(provider)}`).join('');
 
-    return `${domain}?query=${query}&qf=${qfSound}&qf=${qfProviders}`;
+    return `${domain}?q=${query}&${qfSound}${qfProvider}`;
   }
 
   // search tune and convert raw results to normalized EuropeanaTune objects
