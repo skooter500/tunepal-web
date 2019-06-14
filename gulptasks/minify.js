@@ -41,7 +41,7 @@ gulp.task('minify-search', ['get-git-info'], function () {
     .pipe($.if(['**/*.js', '!**/App.js', '!**/*.min.js'], $.uglify({mangle: true})))
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
-    .pipe($.if('*.css', $.cssmin()))
+    .pipe($.if('**/*.css', $.cssmin()))
     .pipe(assets.restore())
     .pipe($.useref({
       git: function(content, target, options, alternateSearchPath) {
@@ -49,7 +49,7 @@ gulp.task('minify-search', ['get-git-info'], function () {
       }
     }))
     // Minify Any HTML
-    .pipe($.if('*.html', $.minifyHtml({
+    .pipe($.if('**/*.html', $.minifyHtml({
       empty: true,  // do not remove empty attributes
       conditionals: true,  // do not remove conditional internet explorer comments
       spare:true  // do not remove redundant attributes
