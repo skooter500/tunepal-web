@@ -161,7 +161,7 @@ export default class TuneController extends ControllerBase {
   }
 
   showAddThis() {
-    const addThisButton = document.getElementById('at4m-sb');
+    const addThisButton = document.querySelector('.addthis_inline_share_toolbox a');
     addThisButton.click();
   }
 
