@@ -41,7 +41,7 @@
             </div>
             <div class="divider"></div>
             <div ng-repeat="tune in keywordSearch.tunes | limitTo : keywordSearch.pageSize : page.startIndex" class="avatar tune-container">
-              <a class="collection-item avatar tune" ng-href="/#!/tune/{{tune.tunepalIdDoubleEncoded}}" ng-class="{active: keywordSearch.selectedTune === tune}">
+              <a class="collection-item avatar tune" ng-href="#!/tune/{{tune.tunepalIdDoubleEncoded}}" ng-class="{active: keywordSearch.selectedTune === tune}">
                 <img ng-src="{{tune.tunebook.logoUrl}}" class="circle" alt="{{tune.tunebook.shortName}}" title="Tunebook: {{tune.tunebook.shortName}}" />
                 <span class="title truncate" title="{{tune.title}}">{{tune.title}}</span>
                 <p class="truncate" title="{{tune.altTitle}}">{{tune.altTitle || '&nbsp;'}}</p>
