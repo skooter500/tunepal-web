@@ -15,8 +15,6 @@ else {
 }
 
 $(function() {
-  FastClick.attach(document.body);
-
   $(".button-collapse").sideNav();
 
   // Side Navigation fix
