@@ -44,11 +44,27 @@ class _Utils {
 
   createPolyfills() {
     if (typeof navigator !== 'undefined') {
-      navigator.getUserMedia = (navigator.getUserMedia
-        || navigator.webkitGetUserMedia
-        || navigator.mozGetUserMedia
-        || navigator.msGetUserMedia
-      );
+      if (typeof navigator.mediaDevices === 'undefined') {
+        navigator.mediaDevices = {};
+      }
+      if (typeof navigator.mediaDevices.getUserMedia === 'undefined') {
+        navigator.mediaDevices.getUserMedia = constraints => {
+          let getUserMediaOld = navigator.getUserMedia
+            || navigator.webkitGetUserMedia
+            || navigator.mozGetUserMedia
+            || navigator.msGetUserMedia;
+          let callbacks = {};
+
+          getUserMediaOld(constraints,
+            stream => callbacks.successCallback(stream),
+            err => callbacks.errorCallback(err));
+
+          return {
+            then: successCallback => callbacks.successCallback = successCallback,
+            catch: errorCallback => callbacks.errorCallback = errorCallback,
+          };
+        };
+      }
     }
 
     if (typeof window !== 'undefined') {

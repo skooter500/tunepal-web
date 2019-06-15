@@ -49,10 +49,9 @@ export default class Recorder {
       }
       else {
         this._status = Recorder.Status.INIT;
-        navigator.getUserMedia({audio: true},
-          stream => this._onStream(stream, resolve),
-          error => this._onStreamError(error, reject)
-        );
+        navigator.mediaDevices.getUserMedia({audio: true})
+          .then(stream => this._onStream(stream, resolve))
+          .catch(error => this._onStreamError(error, reject));
       }
     });
   }
