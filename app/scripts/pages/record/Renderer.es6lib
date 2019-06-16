@@ -173,12 +173,19 @@ export default class Renderer {
       ? `RECORDING IN ${this._timeLeft} SEC...`
       : this._getRecorderStatusText();
 
-    this._canvasContext.font = status.length <= 27 ? '3vh Roboto' : '2vh Roboto';
+    this._drawStatusMultiLine(status.split('\n'))
+  }
+
+  _drawStatusMultiLine(statusTexts) {
+    this._canvasContext.font = (statusTexts.length == 1 && statusTexts[0].length <= 27) ? '3vh Roboto' : '2vh Roboto';
     this._canvasContext.textBaseline = 'top';
     this._canvasContext.textAlign = 'center';
-
     this._canvasContext.fillStyle = 'white';
-    this._canvasContext.fillText(status, this._statusTop.x, this._statusTop.y);
+
+    for (let i = 0; i < statusTexts.length; i++) {
+      const lineHeight = 25;
+      this._canvasContext.fillText(statusTexts[i], this._statusTop.x, this._statusTop.y + lineHeight * i);
+    }
   }
 
   _getRecorderStatusText() {
@@ -197,6 +204,8 @@ export default class Renderer {
         return `ANALYZING... (${(this.recorder.analysisProgress * 100).toFixed(2)} %)`;
       case Recorder.Status.ANALYSIS_SUCCEEDED:
         return 'SUCCEEDED';
+      case Recorder.Status.API_MISSING:
+        return 'ERROR: MICROPHONE NOT WORKING.\nPLEASE UPGRADE OR SWITCH BROWSER!';
     }
   }
 }

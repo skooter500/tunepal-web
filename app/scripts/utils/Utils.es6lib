@@ -48,22 +48,24 @@ class _Utils {
         navigator.mediaDevices = {};
       }
       if (typeof navigator.mediaDevices.getUserMedia === 'undefined') {
-        navigator.mediaDevices.getUserMedia = constraints => {
-          let getUserMediaOld = navigator.getUserMedia
-            || navigator.webkitGetUserMedia
-            || navigator.mozGetUserMedia
-            || navigator.msGetUserMedia;
-          let callbacks = {};
+        let getUserMediaOld = navigator.getUserMedia
+          || navigator.webkitGetUserMedia
+          || navigator.mozGetUserMedia
+          || navigator.msGetUserMedia;
+        if (typeof getUserMediaOld !== 'undefined') {
+          navigator.mediaDevices.getUserMedia = constraints => {
+            let callbacks = {};
 
-          getUserMediaOld(constraints,
-            stream => callbacks.successCallback(stream),
-            err => callbacks.errorCallback(err));
-
-          return {
-            then: successCallback => callbacks.successCallback = successCallback,
-            catch: errorCallback => callbacks.errorCallback = errorCallback,
+            getUserMediaOld(constraints,
+              stream => callbacks.successCallback(stream),
+              err => callbacks.errorCallback(err));
+          
+            return {
+              then: successCallback => callbacks.successCallback = successCallback,
+              catch: errorCallback => callbacks.errorCallback = errorCallback,
+            };
           };
-        };
+        }
       }
     }
 

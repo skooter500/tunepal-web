@@ -47,11 +47,14 @@ export default class Recorder {
         this._status = Recorder.Status.INIT_SUCCEEDED;
         resolve();
       }
-      else {
+      else if (navigator && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         this._status = Recorder.Status.INIT;
         navigator.mediaDevices.getUserMedia({audio: true})
           .then(stream => this._onStream(stream, resolve))
           .catch(error => this._onStreamError(error, reject));
+      }
+      else {
+        this._status = Recorder.Status.API_MISSING;
       }
     });
   }
@@ -150,4 +153,5 @@ Recorder.Status = Utils.createEnum([
   'RECORDING',
   'ANALYZING',
   'ANALYSIS_SUCCEEDED',
+  'API_MISSING',
 ]);
