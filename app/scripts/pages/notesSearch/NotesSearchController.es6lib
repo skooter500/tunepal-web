@@ -35,16 +35,34 @@ export default class NotesSearchController extends ControllerBase {
     }
     else {
       this.showConfidencePopup = true;
-      this._fetchTunes();
+      this._getGeolocationAndFetchTunes();
     }
 
     document.title = 'Tunepal.org > Notes Search';
   }
 
-  _fetchTunes() {
+  _getGeolocationAndFetchTunes() {
+    const fakePosition = {
+      coords: {
+        latitude: 1,
+        longitude: 2,
+      },
+    };
+
+    if (navigator && navigator.geolocation && typeof navigator.geolocation.getCurrentPosition === 'function') {
+      navigator.geolocation.getCurrentPosition(
+        position => this._fetchTunes(position),
+        err => this._fetchTunes(fakePosition));
+    }
+    else {
+      this._fetchTunes(fakePosition);
+    }
+  }
+
+  _fetchTunes(position) {
     const sources = Utils.joinSet(this.config.tunebooks.selectedIds);
-    const latitude = 1; //TODO
-    const longitude = 2;
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
     const client = 'tunepal.org';
     const localTimestamp = Utils.date.format(new Date());
 
