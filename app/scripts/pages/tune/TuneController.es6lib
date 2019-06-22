@@ -62,7 +62,7 @@ export default class TuneController extends ControllerBase {
 
     this._initUi();
     this.$timeout(() => this._createAbcEditor());
-    document.title = `Tunepal.org > Tune > ${this.tune.title}`;
+    document.title = this.tune.title;
     this.showTune = true;
 
     this.showEuropeanaLoading = true;
