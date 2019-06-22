@@ -161,6 +161,13 @@ export default class TuneController extends ControllerBase {
   }
 
   showAddThis() {
+    if (addthis && addthis.layers && typeof addthis.layers.refresh === 'function') {
+      addthis.layers.refresh();
+    }
+    else {
+      console.error('AddThis API changed. Title may be incorrect in sharing link.');
+    }
+
     const addThisButton = document.querySelector('.addthis_inline_share_toolbox a');
     addThisButton.click();
   }
