@@ -56,7 +56,16 @@
                 <a ng-click="tune.downloadAbc()"><i class="left mdi-image-audiotrack"></i>Download ABC</a>
               </li>
               <li>
-                <a ng-click="tune.showAddThis()"><i class="left mdi-social-share"></i>Share</a>
+                <!-- AddToAny -->
+                <!-- This is placed here instaed of in index.html to prevent incorrect title and url when sharing -->
+                <div style="display: none">
+                  <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                  </div>
+                </div>
+                <script src="//static.addtoany.com/menu/page.js"></script>
+
+                <a ng-click="tune.showSocialShare()"><i class="left mdi-social-share"></i>Share</a>
               </li>
             </ul>
           </li>
