@@ -10,7 +10,7 @@
   "license": "TODO",
   "dependencies": {},
   "devDependencies": {
-    "browser-sync": "^2.7.6",
+    "browser-sync": "^2.27.10",
     "del": "^1.2.0",
     "glob": "^5.0.10",
     "gulp": "^3.9.0",
